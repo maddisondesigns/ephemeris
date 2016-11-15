@@ -2099,11 +2099,11 @@ h1.page-title {
 		padding: 5px;
 		padding: .3125rem;
 	}
-	ul.page-numbers {
+	.nav-links .page-numbers {
 		line-height: 3;
 	}
-	li a.page-numbers,
-	li span.page-numbers {
+	.nav-links a.page-numbers,
+	.nav-links span.page-numbers {
 		padding: 12px 10px;
 		padding: .75rem .625rem;
 	}
