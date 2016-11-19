@@ -831,12 +831,7 @@ if ( ! function_exists( 'ephemeris_after_woocommerce_wrapper' ) ) {
  * @return void
  */
 function ephemeris_is_woocommerce_active() {
-	if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	return in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
 }
 
 /**
