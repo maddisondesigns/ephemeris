@@ -7,13 +7,17 @@
  */
 
 /**
- * Set the content width based on the theme's design and stylesheet.
+ * Sets the content width in pixels, based on the theme's design and stylesheet.
+ * Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
  *
  * @since Ephemeris 1.0
  */
-if ( ! isset( $content_width ) ) {
-	$content_width = 806; /* Default the embedded content width to 806px */
+function ephemeris_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'ephemeris_content_width', 806 );
 }
+add_action( 'after_setup_theme', 'ephemeris_content_width', 0 );
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -28,7 +32,6 @@ if ( ! isset( $content_width ) ) {
  */
 if ( ! function_exists( 'ephemeris_setup' ) ) {
 	function ephemeris_setup() {
-		global $content_width;
 
 		/**
 		 * Make theme available for translation
@@ -181,12 +184,11 @@ if ( ! function_exists( 'ephemeris_fonts_url' ) ) {
 			if ( 'off' !== $headerFont )
 				$font_families[] = 'Dosis:700';
 
-			$protocol = is_ssl() ? 'https' : 'http';
 			$query_args = array(
 				'family' => implode( '|', $font_families ),
 				'subset' => $subsets,
 			);
-			$fonts_url = add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" );
+			$fonts_url = add_query_arg( $query_args, "https://fonts.googleapis.com/css" );
 		}
 
 		return $fonts_url;
