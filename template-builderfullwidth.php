@@ -10,13 +10,14 @@
 
 get_header(); ?>
 
-	<?php if ( have_posts() ) : ?>
+	<?php if ( have_posts() ) { ?>
 
-		<?php while ( have_posts() ) : the_post(); ?>
+		<?php while ( have_posts() ) {
+			the_post(); ?>
 			<?php get_template_part( 'content', 'builderfullwidth' ); ?>
 			<?php comments_template( '', true ); ?>
-		<?php endwhile; // end of the loop. ?>
+		<?php } // end of the loop. ?>
 
-	<?php endif; // end have_posts() check ?>
+	<?php } // end have_posts() check ?>
 
 <?php get_footer(); ?>

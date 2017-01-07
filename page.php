@@ -19,10 +19,11 @@ get_header(); ?>
 
 		<div class="grid-70 tablet-grid-70">
 
-			<?php if ( have_posts() ) : ?>
+			<?php if ( have_posts() ) { ?>
 
 				<?php // Start the Loop ?>
-				<?php while ( have_posts() ) : the_post(); ?>
+				<?php while ( have_posts() ) {
+					the_post(); ?>
 					<?php get_template_part( 'content', 'page' ); ?>
 
 					<?php
@@ -31,9 +32,9 @@ get_header(); ?>
 						comments_template( '', true );
 					}
 					?>
-				<?php endwhile; ?>
+				<?php } ?>
 
-			<?php endif; // end have_posts() check ?>
+			<?php } // end have_posts() check ?>
 
 		</div> <!-- /.grid-70 -->
 		<?php get_sidebar(); ?>

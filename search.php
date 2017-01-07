@@ -13,24 +13,25 @@ get_header(); ?>
 
 		<div class="grid-70 tablet-grid-70">
 
-			<?php if ( have_posts() ) : ?>
+			<?php if ( have_posts() ) { ?>
 
 				<header class="page-header">
 					<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'ephemeris' ), '<span>&ldquo;' . get_search_query() . '&rdquo;</span>' ); ?></h1>
 				</header>
 
 				<?php // Start the Loop ?>
-				<?php while ( have_posts() ) : the_post(); ?>
+				<?php while ( have_posts() ) {
+					the_post(); ?>
 					<?php get_template_part( 'content', get_post_format() ); ?>
-				<?php endwhile; ?>
+				<?php } ?>
 
 				<?php ephemeris_posts_pagination(); ?>
 
-			<?php else : ?>
+			<?php } else { ?>
 
 				<?php get_template_part( 'no-results' ); // Include the template that displays a message that posts cannot be found ?>
 
-			<?php endif; // end have_posts() check ?>
+			<?php } // end have_posts() check ?>
 
 		</div> <!-- /.grid-70 -->
 		<?php get_sidebar(); ?>
