@@ -172,6 +172,11 @@ ol, ul {
 	list-style: none outside none;
 }
 
+li {
+	margin-bottom: 8px;
+	margin-bottom: .5rem;
+}
+
 p, ol, ul, dl, address {
 	margin: 0 0 24px 0;
 	margin: 0 0 1.5rem 0;
@@ -672,7 +677,7 @@ select {
 }
 
 /* Small headers */
-.archive-title,
+.archive-header,
 .page-title,
 .entry-content th,
 .comment-content th {
@@ -1012,9 +1017,14 @@ article.sticky .featured-post {
 
 .entry-content td,
 .comment-content td {
-	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 	padding: 6px 10px 6px 0;
 	padding: 0.375rem 0.625rem 0.375rem 0;
+}
+
+.entry-content thead th,
+.comment-content thead th {
+	border-bottom: 1px solid #ccc;
 }
 
 .entry-content ol,
@@ -1050,8 +1060,8 @@ article.sticky .featured-post {
 
 .entry-content li,
 .comment-content li {
-	margin: 0 0 0 28px;
-	margin: 0 0 0 1.75rem;
+	margin: 0 0 4px 28px;
+	margin: 0 0 .25rem 1.75rem;
 }
 
 /* Author profiles */
@@ -1115,9 +1125,8 @@ article.sticky .featured-post {
 }
 
 .author.archive .author-info {
-	border-top: 0;
-	margin: 0 0 48px;
-	margin: 0 0 3rem;
+	border: none;
+	margin: 0;
 }
 
 .author.archive .author-avatar {
