@@ -13,28 +13,29 @@ get_header(); ?>
 
 		<div class="grid-70 tablet-grid-70">
 
-			<?php if ( have_posts() ) : ?>
+			<?php if ( have_posts() ) { ?>
 
 				<header class="archive-header">
-					<h1 class="archive-title"><?php printf( esc_html__( 'Category Archives: %s', 'ephemeris' ), '<span class="cat-archive">' . single_cat_title( '', false ) . '</span>' ); ?></h1>
+					<?php the_archive_title(); ?>
 
 					<?php if ( category_description() ) { // Show an optional category description ?>
-						<div class="archive-meta"><?php echo category_description(); ?></div>
+						<div class="archive-meta"><?php the_archive_description(); ?></div>
 					<?php } ?>
 				</header>
 
 				<?php // Start the Loop ?>
-				<?php while ( have_posts() ) : the_post(); ?>
+				<?php while ( have_posts() ) {
+					the_post(); ?>
 					<?php get_template_part( 'content', get_post_format() ); ?>
-				<?php endwhile; ?>
+				<?php } ?>
 
 				<?php ephemeris_posts_pagination(); ?>
 
-			<?php else : ?>
+			<?php } else { ?>
 
 				<?php get_template_part( 'no-results' ); // Include the template that displays a message that posts cannot be found ?>
 
-			<?php endif; // end have_posts() check ?>
+			<?php } // end have_posts() check ?>
 
 		</div> <!-- /.grid-70 -->
 		<?php get_sidebar(); ?>
