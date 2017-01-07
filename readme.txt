@@ -2,7 +2,7 @@
 Contributors: ahortin
 Tags: one-column, two-columns, right-sidebar, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready
 Requires at least: 4.5
-Tested up to: 4.6
+Tested up to: 4.7
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -130,13 +130,16 @@ Free Software Foundation; either version 2 of the License, or (at your option) a
 
 == Credits ==
 
-Ephemeris utilises the following awesomeness:
+Ephemeris includes the following awesomeness:
 
 [Unsemantic](http://unsemantic.com), which is licensed under GPL and MIT license
 [Modernizr](http://modernizr.com), which is licensed under the MIT license
 [Normalize.css](https://github.com/necolas/normalize.css), which is licensed under the MIT license
 [jQuery Validation](http://bassistance.de/jquery-plugins/jquery-plugin-validation) which is dual licensed under the MIT license and GPL licenses
 [Font Awesome](http://fortawesome.github.io/Font-Awesome) icon font, which is licensed under SIL Open Font License and MIT License
+
+and also uses the following:
+
 [Open Sans font](https://fonts.google.com/specimen/Open+Sans), which is licensed under Apache License Version 2.0
 [Dosis](https://fonts.google.com/specimen/Dosis), which is licensed under SIL Open Font License 1.1
 
