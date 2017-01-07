@@ -769,6 +769,18 @@ add_filter( 'excerpt_more', 'ephemeris_auto_excerpt_more' );
 add_filter( 'widget_text', 'do_shortcode' );
 
 /**
+ * Provide an extra layer of security by changing the login error message so it's not specific as to whether the Username or Password was incorrect
+ *
+ * @since Ephemeris 1.0
+ */
+if ( ! function_exists( 'ephemeris_failed_login' ) ) {
+	function ephemeris_failed_login() {
+		return '<strong>ERROR:</strong> The login information you have entered is incorrect.';
+	}
+	add_filter( 'login_errors', 'ephemeris_failed_login' );
+}
+
+/**
  * Return a string containing the footer credits & link
  *
  * @since Ephemeris 1.0
