@@ -313,14 +313,14 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		 */
 
 		// Start off with a clean base by using normalise.
-		wp_enqueue_style( 'normalize', trailingslashit( get_template_directory_uri() ) . 'css/normalize.css' , array(), '4.1.1', 'all' );
+		wp_enqueue_style( 'normalize', trailingslashit( get_template_directory_uri() ) . 'css/normalize.css', array(), '4.1.1', 'all' );
 
 		// Register and enqueue our icon font
 		// We're using the awesome Font Awesome icon font. http://fortawesome.github.io/Font-Awesome
-		wp_enqueue_style( 'fontawesome', trailingslashit( get_template_directory_uri() ) . 'css/font-awesome.min.css' , array( 'normalize' ), '4.6.3', 'all' );
+		wp_enqueue_style( 'fontawesome', trailingslashit( get_template_directory_uri() ) . 'css/font-awesome.min.css', array( 'normalize' ), '4.6.3', 'all' );
 
 		// Our styles for setting up the grid. We're using Unsemantic. http://unsemantic.com
-		wp_enqueue_style( 'unsemanticgrid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css' , array( 'fontawesome' ), '1.0.0', 'all' );
+		wp_enqueue_style( 'unsemanticgrid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'fontawesome' ), '1.0.0', 'all' );
 
 		/*
 		 * Load our Google Fonts.
@@ -943,3 +943,31 @@ if ( ! function_exists( 'ephemeris_woocommerce_pagination_args' ) ) {
 	}
 }
 add_filter( 'woocommerce_pagination_args', 'ephemeris_woocommerce_pagination_args', 10 );
+
+/**
+ * Show all the registered Sidebars in the Customizer Widgets Panel all the time
+ */
+function ephemeris_show_all_sidebars_in_customizer( $args ) {
+	$args['active_callback'] = '__return_true';
+	return $args;
+}
+add_filter( 'customizer_widgets_section_args', 'ephemeris_show_all_sidebars_in_customizer' );
+
+/**
+ * Set our Customizer default options
+ */
+if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
+	function ephemeris_generate_defaults() {
+		$customizer_defaults = array(
+			'social_newtab' => '',
+			'social_urls' => '',
+		);
+
+		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );
+	}
+}
+
+/**
+ * Load all our Customizer options
+ */
+include_once trailingslashit( dirname(__FILE__) ) . 'inc/customizer.php';
