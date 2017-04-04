@@ -56,7 +56,8 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		// This theme uses wp_nav_menu() in one location
 		register_nav_menus( array(
 				'primary' => esc_html__( 'Primary Menu', 'ephemeris' )
-			) );
+			)
+		);
 
 		// This theme supports a variety of post formats
 		add_theme_support( 'post-formats', array(
@@ -69,7 +70,8 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 			'quote',
 			'status',
 			'video'
-		) );
+			)
+		);
 
 		// Add theme support for HTML5 markup for the search forms, comment forms, comment lists, gallery, and caption
 		add_theme_support( 'html5', array(
@@ -78,7 +80,8 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 			'search-form',
 			'gallery',
 			'caption'
-		) );
+			)
+		);
 
 		// Enable support for widget sidebars selective refresh in the Customizer.
 		add_theme_support( 'customize-selective-refresh-widgets' );
@@ -86,8 +89,10 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		// Enable support for Custom Backgrounds
 		add_theme_support( 'custom-background', array(
 				// Background color default
-				'default-color' => 'fff'
-			) );
+				'default-color' => 'fff',
+				'wp-head-callback' => 'ephemeris_custom_background_cb',
+			)
+		);
 
 		// Enable support for Custom Headers (or in our case, a custom logo)
 		add_theme_support( 'custom-header', array(
@@ -103,7 +108,8 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 				'flex-height' => true,
 				// Header image height (in pixels)
 				'height' => 280
-			) );
+			)
+		);
 
 		// Enable support for Theme Logos
 		add_theme_support( 'custom-logo', array(
@@ -112,7 +118,8 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 			'flex-height' => true,
 			'flex-width'  => true,
 			'header-text' => array( 'site-title', 'site-description' ),
-			) );
+			)
+		);
 
 		/*
 		 * Let WordPress manage the document title.
@@ -223,7 +230,8 @@ if ( ! function_exists( 'ephemeris_widgets_init' ) ) {
 				'after_widget' => '</aside>',
 				'before_title' => '<h3 class="widget-title">',
 				'after_title' => '</h3>'
-			) );
+			)
+		);
 
 		register_sidebar( array(
 				'name' => esc_html__( 'Blog Sidebar', 'ephemeris' ),
@@ -233,7 +241,8 @@ if ( ! function_exists( 'ephemeris_widgets_init' ) ) {
 				'after_widget' => '</aside>',
 				'before_title' => '<h3 class="widget-title">',
 				'after_title' => '</h3>'
-			) );
+			)
+		);
 
 		register_sidebar( array(
 				'name' => esc_html__( 'Single Post Sidebar', 'ephemeris' ),
@@ -243,7 +252,8 @@ if ( ! function_exists( 'ephemeris_widgets_init' ) ) {
 				'after_widget' => '</aside>',
 				'before_title' => '<h3 class="widget-title">',
 				'after_title' => '</h3>'
-			) );
+			)
+		);
 
 		register_sidebar( array(
 				'name' => esc_html__( 'Page Sidebar', 'ephemeris' ),
@@ -253,7 +263,8 @@ if ( ! function_exists( 'ephemeris_widgets_init' ) ) {
 				'after_widget' => '</aside>',
 				'before_title' => '<h3 class="widget-title">',
 				'after_title' => '</h3>'
-			) );
+			)
+		);
 
 		register_sidebar( array(
 				'name' => esc_html__( 'First Footer Widget Area', 'ephemeris' ),
@@ -263,7 +274,8 @@ if ( ! function_exists( 'ephemeris_widgets_init' ) ) {
 				'after_widget' => '</aside>',
 				'before_title' => '<h3 class="widget-title">',
 				'after_title' => '</h3>'
-			) );
+			)
+		);
 
 		register_sidebar( array(
 				'name' => esc_html__( 'Second Footer Widget Area', 'ephemeris' ),
@@ -273,7 +285,8 @@ if ( ! function_exists( 'ephemeris_widgets_init' ) ) {
 				'after_widget' => '</aside>',
 				'before_title' => '<h3 class="widget-title">',
 				'after_title' => '</h3>'
-			) );
+			)
+		);
 
 		register_sidebar( array(
 				'name' => esc_html__( 'Third Footer Widget Area', 'ephemeris' ),
@@ -283,7 +296,8 @@ if ( ! function_exists( 'ephemeris_widgets_init' ) ) {
 				'after_widget' => '</aside>',
 				'before_title' => '<h3 class="widget-title">',
 				'after_title' => '</h3>'
-			) );
+			)
+		);
 
 		register_sidebar( array(
 				'name' => esc_html__( 'Fourth Footer Widget Area', 'ephemeris' ),
@@ -293,7 +307,8 @@ if ( ! function_exists( 'ephemeris_widgets_init' ) ) {
 				'after_widget' => '</aside>',
 				'before_title' => '<h3 class="widget-title">',
 				'after_title' => '</h3>'
-			) );
+			)
+		);
 	}
 }
 add_action( 'widgets_init', 'ephemeris_widgets_init' );
@@ -360,7 +375,7 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		// Load jQuery Validation as well as the initialiser to provide client side comment form validation
 		// You can change the validation error messages below
 		if ( is_singular() && comments_open() ) {
-			wp_register_script( 'validate', trailingslashit( get_template_directory_uri() ) . 'js/jquery.validate.min.1.15.0.js', array( 'jquery' ), '1.15.0', true );
+			wp_register_script( 'validate', trailingslashit( get_template_directory_uri() ) . 'js/jquery.validate.min.js', array( 'jquery' ), '1.16.0', true );
 			wp_enqueue_script( 'commentvalidate', trailingslashit( get_template_directory_uri() ) . 'js/comment-form-validation.js', array( 'jquery', 'validate' ), '1.0.0', true );
 
 			wp_localize_script( 'commentvalidate', 'comments_object', array(
@@ -371,12 +386,99 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 			);
 		}
 
+		// Enqueue our common scripts
+		wp_register_script( 'commonjs', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.0', true );
+		wp_enqueue_script( 'commonjs' );
+
 		// Load our script that envokes a button toggle for the main navigation menu on small screens
-		wp_enqueue_script( 'ephemeris-small-menu', trailingslashit( get_template_directory_uri() ) . 'js/small-menu.js', array( 'jquery' ), '1.0.0', true );
+		//wp_enqueue_script( 'ephemeris-small-menu', trailingslashit( get_template_directory_uri() ) . 'js/small-menu.js', array( 'jquery' ), '1.0.0', true );
 
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
+
+/**
+ * Custom Background Callback
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return void
+ */
+if ( ! function_exists( 'ephemeris_custom_background_cb' ) ) {
+	function ephemeris_custom_background_cb() {
+		// $background is the saved custom image, or the default image.
+		$background = set_url_scheme( get_background_image() );
+
+		// $color is the saved custom color.
+		// A default has to be specified in style.css. It will not be printed here.
+		$color = get_background_color();
+
+		if ( $color === get_theme_support( 'custom-background', 'default-color' ) ) {
+			$color = false;
+		}
+
+		if ( ! $background && ! $color ) {
+			if ( is_customize_preview() ) {
+				echo '<style type="text/css" id="custom-background-css"></style>';
+			}
+			return;
+		}
+
+		$style = $color ? "background-color: #$color;" : '';
+
+		if ( $background ) {
+			$image = " background-image: url(" . wp_json_encode( $background ) . ");";
+
+			// Background Position.
+			$position_x = get_theme_mod( 'background_position_x', get_theme_support( 'custom-background', 'default-position-x' ) );
+			$position_y = get_theme_mod( 'background_position_y', get_theme_support( 'custom-background', 'default-position-y' ) );
+
+			if ( ! in_array( $position_x, array( 'left', 'center', 'right' ), true ) ) {
+				$position_x = 'left';
+			}
+
+			if ( ! in_array( $position_y, array( 'top', 'center', 'bottom' ), true ) ) {
+				$position_y = 'top';
+			}
+
+			$position = " background-position: $position_x $position_y;";
+
+			// Background Size.
+			$size = get_theme_mod( 'background_size', get_theme_support( 'custom-background', 'default-size' ) );
+
+			if ( ! in_array( $size, array( 'auto', 'contain', 'cover' ), true ) ) {
+				$size = 'auto';
+			}
+
+			$size = " background-size: $size;";
+
+			// Background Repeat.
+			$repeat = get_theme_mod( 'background_repeat', get_theme_support( 'custom-background', 'default-repeat' ) );
+
+			if ( ! in_array( $repeat, array( 'repeat-x', 'repeat-y', 'repeat', 'no-repeat' ), true ) ) {
+				$repeat = 'repeat';
+			}
+
+			$repeat = " background-repeat: $repeat;";
+
+			// Background Scroll.
+			$attachment = get_theme_mod( 'background_attachment', get_theme_support( 'custom-background', 'default-attachment' ) );
+
+			if ( 'fixed' !== $attachment ) {
+				$attachment = 'scroll';
+			}
+
+			$attachment = " background-attachment: $attachment;";
+
+			$style .= $image . $position . $size . $repeat . $attachment;
+		}
+	?>
+	<style type="text/css" id="custom-background-css">
+	body.custom-background main { <?php echo trim( $style ); ?> }
+	</style>
+	<?php
+	}
+}
 
 /*
  * Remove query string from enqueued files. See https://developers.google.com/speed/docs/insights/rules
@@ -954,13 +1056,130 @@ function ephemeris_show_all_sidebars_in_customizer( $args ) {
 add_filter( 'customizer_widgets_section_args', 'ephemeris_show_all_sidebars_in_customizer' );
 
 /**
+ * Set our Social Icons URLs
+ */
+if ( ! function_exists( 'ephemeris_generate_social_urls' ) ) {
+	function ephemeris_generate_social_urls() {
+		$social_icons = array(
+			array( 'url' => 'behance.net', 'icon' => 'fa-behance', 'title' => esc_html__( 'Follow me on Behance', 'ephemeris' ), 'class' => 'behance' ),
+			array( 'url' => 'bitbucket.org', 'icon' => 'fa-bitbucket', 'title' => esc_html__( 'Fork me on Bitbucket', 'ephemeris' ), 'class' => 'bitbucket' ),
+			array( 'url' => 'codepen.io', 'icon' => 'fa-codepen', 'title' => esc_html__( 'Follow me on CodePen', 'ephemeris' ), 'class' => 'codepen' ),
+			array( 'url' => 'deviantart.com', 'icon' => 'fa-deviantart', 'title' => esc_html__( 'Watch me on DeviantArt', 'ephemeris' ), 'class' => 'deviantart' ),
+			array( 'url' => 'dribbble.com', 'icon' => 'fa-dribbble', 'title' => esc_html__( 'Follow me on Dribbble', 'ephemeris' ), 'class' => 'dribbble' ),
+			array( 'url' => 'etsy.com', 'icon' => 'fa-etsy', 'title' => esc_html__( 'favourite me on Etsy', 'ephemeris' ), 'class' => 'etsy' ),
+			array( 'url' => 'facebook.com', 'icon' => 'fa-facebook', 'title' => esc_html__( 'Like me on Facebook', 'ephemeris' ), 'class' => 'facebook' ),
+			array( 'url' => 'flickr.com', 'icon' => 'fa-flickr', 'title' => esc_html__( 'Connect with me on Flickr', 'ephemeris' ), 'class' => 'flickr' ),
+			array( 'url' => 'foursquare.com', 'icon' => 'fa-foursquare', 'title' => esc_html__( 'Follow me on Foursquare', 'ephemeris' ), 'class' => 'foursquare' ),
+			array( 'url' => 'github.com', 'icon' => 'fa-github', 'title' => esc_html__( 'Fork me on GitHub', 'ephemeris' ), 'class' => 'github' ),
+			array( 'url' => 'instagram.com', 'icon' => 'fa-instagram', 'title' => esc_html__( 'Follow me on Instagram', 'ephemeris' ), 'class' => 'instagram' ),
+			array( 'url' => 'last.fm', 'icon' => 'fa-lastfm', 'title' => esc_html__( 'Follow me on Last.fm', 'ephemeris' ), 'class' => 'lastfm' ),
+			array( 'url' => 'linkedin.com', 'icon' => 'fa-linkedin', 'title' => esc_html__( 'Connect with me on LinkedIn', 'ephemeris' ), 'class' => 'linkedin' ),
+			array( 'url' => 'medium.com', 'icon' => 'fa-medium', 'title' => esc_html__( 'Folllow me on Medium', 'ephemeris' ), 'class' => 'medium' ),
+			array( 'url' => 'pinterest.com', 'icon' => 'fa-pinterest', 'title' => esc_html__( 'Follow me on Pinterest', 'ephemeris' ), 'class' => 'pinterest' ),
+			array( 'url' => 'plus.google.com', 'icon' => 'fa-google-plus', 'title' => esc_html__( 'Connect with me on Google+', 'ephemeris' ), 'class' => 'googleplus' ),
+			array( 'url' => 'reddit.com', 'icon' => 'fa-reddit', 'title' => esc_html__( 'Join me on Reddit', 'ephemeris' ), 'class' => 'reddit' ),
+			array( 'url' => 'slack.com', 'icon' => 'fa-slack', 'title' => esc_html__( 'Join me on Slack', 'ephemeris' ), 'class' => 'slack.' ),
+			array( 'url' => 'slideshare.net', 'icon' => 'fa-slideshare', 'title' => esc_html__( 'Follow me on SlideShare', 'ephemeris' ), 'class' => 'slideshare' ),
+			array( 'url' => 'snapchat.com', 'icon' => 'fa-snapchat', 'title' => esc_html__( 'Add me on Snapchat', 'ephemeris' ), 'class' => 'snapchat' ),
+			array( 'url' => 'soundcloud.com', 'icon' => 'fa-soundcloud', 'title' => esc_html__( 'Follow me on SoundCloud', 'ephemeris' ), 'class' => 'soundcloud' ),
+			array( 'url' => 'spotify.com', 'icon' => 'fa-spotify', 'title' => esc_html__( 'Follow me on Spotify', 'ephemeris' ), 'class' => 'spotify' ),
+			array( 'url' => 'stackoverflow.com', 'icon' => 'fa-stack-overflow', 'title' => esc_html__( 'Join me on Stack Overflow', 'ephemeris' ), 'class' => 'stackoverflow' ),
+			array( 'url' => 'tumblr.com', 'icon' => 'fa-tumblr', 'title' => esc_html__( 'Follow me on Tumblr', 'ephemeris' ), 'class' => 'tumblr' ),
+			array( 'url' => 'twitch.tv', 'icon' => 'fa-twitch', 'title' => esc_html__( 'Follow me on Twitch', 'ephemeris' ), 'class' => 'twitch' ),
+			array( 'url' => 'twitter.com', 'icon' => 'fa-twitter', 'title' => esc_html__( 'Follow me on Twitter', 'ephemeris' ), 'class' => 'twitter' ),
+			array( 'url' => 'vimeo.com', 'icon' => 'fa-vimeo', 'title' => esc_html__( 'Follow me on Vimeo', 'ephemeris' ), 'class' => 'vimeo' ),
+			array( 'url' => 'youtube.com', 'icon' => 'fa-youtube', 'title' => esc_html__( 'Subscribe to me on YouTube', 'ephemeris' ), 'class' => 'youtube' ),
+		);
+
+		return apply_filters( 'ephemeris_social_icons', $social_icons );
+	}
+}
+
+/**
+ * Return an unordered list of linked social media icons, based on the urls provided in the Customizer
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return string Unordered list of linked social media icons
+ */
+if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
+	function ephemeris_get_social_media() {
+		$defaults = ephemeris_generate_defaults();
+		$output = '';
+		$social_icons = ephemeris_generate_social_urls();
+		$social_urls = [];
+		$social_newtab = 0;
+		$social_alignment = '';
+		$social_phone = '';
+
+		$social_urls = explode( ',', get_theme_mod( 'social_urls' ) );
+		$social_newtab = get_theme_mod( 'social_newtab', $defaults['social_newtab'] );
+		$social_alignment = get_theme_mod( 'social_alignment', $defaults['social_alignment'] );
+		$social_phone = get_theme_mod( 'social_phone', $defaults['social_phone'] );
+
+		if( !empty( $social_phone ) ) {
+			$output .= sprintf( '<li class="%1$s"><i class="fa %2$s"></i>%3$s</li>',
+				'phone',
+				'fa-phone',
+				$social_phone
+			);
+		}
+
+		foreach( $social_urls as $key => $value ) {
+			if ( !empty( $value ) ) {
+				$domain = str_ireplace( 'www.', '', parse_url( $value, PHP_URL_HOST ) );
+				$index = array_search( $domain, array_column( $social_icons, 'url' ) );
+				if( false !== $index ) {
+					$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="fa %5$s"></i></a></li>',
+						$social_icons[$index]['class'],
+						esc_url( $value ),
+						$social_icons[$index]['title'],
+						( !$social_newtab ? '' : ' target="_blank"' ),
+						$social_icons[$index]['icon']
+					);
+				}
+				else {
+					$output .= sprintf( '<li class="nosocial"><a href="%2$s"%3$s><i class="fa %4$s"></i></a></li>',
+						$social_icons[$index]['class'],
+						esc_url( $value ),
+						( !$social_newtab ? '' : ' target="_blank"' ),
+						'fa-globe'
+					);
+				}
+			}
+		}
+
+		if( get_theme_mod( 'social_rss', $defaults['social_rss'] ) ) {
+			$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="fa %5$s"></i></a></li>',
+				'rss',
+				home_url( '/feed' ),
+				'Subscribe to my RSS feed',
+				( !$social_newtab ? '' : ' target="_blank"' ),
+				'fa-rss'
+			);
+		}
+
+		if ( !empty( $output ) ) {
+			$output = '<ul class="social-icons ' . $social_alignment . '">' . $output . '</ul>';
+		}
+
+		return $output;
+	}
+}
+
+/**
  * Set our Customizer default options
  */
 if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 	function ephemeris_generate_defaults() {
 		$customizer_defaults = array(
-			'social_newtab' => '',
+			'social_newtab' => 0,
 			'social_urls' => '',
+			'social_alignment' => 'alignright',
+			'social_phone' => '',
+			'social_rss' => 0,
+			'social_phone' => '',
+			'woocommerce_shop_sidebar' => 1,
 		);
 
 		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );
