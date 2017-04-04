@@ -24,7 +24,7 @@ jQuery( document ).ready(function($) {
 			if(numRepeaterItems > 1) {
 				var i;
 				for (i = 1; i < numRepeaterItems; ++i) {
-					ephemerisAppendRow($(this), defaultValuesArray[i]);
+					skyrocketAppendRow($(this), defaultValuesArray[i]);
 				}
 			}
 		}
@@ -33,7 +33,7 @@ jQuery( document ).ready(function($) {
 	// Make our Repeater fields sortable
 	$(this).find('.sortable').sortable({
 		update: function(event, ui) {
-			ephemerisGetAllInputs($(this).parent());
+			skyrocketGetAllInputs($(this).parent());
 		}
 	});
 
@@ -46,29 +46,39 @@ jQuery( document ).ready(function($) {
 			$(this).parent().slideUp('fast', function() {
 				var parentContainer = $(this).parent().parent();
 				$(this).remove();
-				ephemerisGetAllInputs(parentContainer);
+				skyrocketGetAllInputs(parentContainer);
 			})
 		}
 		else {
 			$(this).parent().find('.repeater-input').val('');
-			ephemerisGetAllInputs($(this).parent().parent().parent());
+			skyrocketGetAllInputs($(this).parent().parent().parent());
 		}
 	});
 
 	// Add new item
 	$('.customize-control-sortable-repeater-add').click(function(event) {
 		event.preventDefault();
-		ephemerisAppendRow($(this).parent());
-		ephemerisGetAllInputs($(this).parent());
+		skyrocketAppendRow($(this).parent());
+		skyrocketGetAllInputs($(this).parent());
 	});
 
 	// Refresh our hidden field if any fields change
 	$('.sortable').change(function() {
-		ephemerisGetAllInputs($(this).parent());
+		skyrocketGetAllInputs($(this).parent());
 	})
 
+	// Add http:// to the start of the URL if it doesn't have it
+	$('.sortable').on('blur', '.repeater-input', function() {
+		var url = $(this);
+		var val = url.val();
+		if(val && !val.match(/^.+:\/\/.*/)) {
+			// Important! Make sure to trigger change event so Customizer knows it has to save the field
+			url.val('http://' + val).trigger('change');
+		}
+	});
+
 	// Append a new row to our list of elements
-	function ephemerisAppendRow($element, defaultValue = '') {
+	function skyrocketAppendRow($element, defaultValue = '') {
 		var newRow = '<div class="repeater" style="display:none"><input type="text" value="' + defaultValue + '" class="repeater-input" placeholder="http://" /><span class="dashicons dashicons-sort"></span><a class="customize-control-sortable-repeater-delete" href="#"><span class="dashicons dashicons-no-alt"></span></a></div>';
 
 		$element.find('.sortable').append(newRow);
@@ -78,13 +88,13 @@ jQuery( document ).ready(function($) {
 	}
 
 	// Get the values from the repeater input fields and add to our hidden field
-	function ephemerisGetAllInputs($element) {
+	function skyrocketGetAllInputs($element) {
 		var inputValues = $element.find('.repeater-input').map(function() {
 			return $(this).val();
 		}).toArray();
 		// Add all the values from our repeater fields to the hidden field (which is the one that actually gets saved)
 		$element.find('.customize-control-sortable-repeater').val(inputValues);
-		// Important! Make sure to trigger change event on hidden input field so Customizer knows it has to save the field
+		// Important! Make sure to trigger change event so Customizer knows it has to save the field
 		$element.find('.customize-control-sortable-repeater').trigger('change');
 	}
 
@@ -112,7 +122,7 @@ jQuery( document ).ready(function($) {
 			max: sliderMaxValue,
 			step: sliderStepValue,
 			change: function(e,ui){
-				// Important! When slider stops moving make sure to trigger change event on hidden input field so Customizer knows it has to save the field
+				// Important! When slider stops moving make sure to trigger change event so Customizer knows it has to save the field
 				$(this).parent().find('.customize-control-slider-value').trigger('change');
 	      }
 		});
@@ -176,7 +186,7 @@ jQuery( document ).ready(function($) {
 	 //     return '';
 	    }
 	  }).toArray();
-	  // Important! Make sure to trigger change event on hidden input field so Customizer knows it has to save the field
+	  // Important! Make sure to trigger change event so Customizer knows it has to save the field
 	  $element.find('.customize-control-multi-image-checkbox').val(inputValues).trigger('change');
 	}
 
@@ -195,6 +205,7 @@ jQuery( document ).ready(function($) {
 		var elementItalicWeight = $(this).parent().parent().find('.google-fonts-italicweight-style');
 		var elementBoldWeight = $(this).parent().parent().find('.google-fonts-boldweight-style');
 		var selectedFont = $(this).val();
+		var customizerControlName = $(this).attr('control-name');
 		var elementItalicWeightCount = 0;
 		var elementBoldWeightCount = 0;
 
@@ -207,10 +218,10 @@ jQuery( document ).ready(function($) {
 		elementBoldWeight.prop('disabled', false);
 
 		// Get the Google Fonts control object
-		var bodyfontcontrol = _wpCustomizeSettings.controls.body_font;
+		var bodyfontcontrol = _wpCustomizeSettings.controls[customizerControlName];
 
 		// Find the index of the selected font
-		var indexes = $.map(bodyfontcontrol.fontslist, function(obj, index) {
+		var indexes = $.map(bodyfontcontrol.skyrocketfontslist, function(obj, index) {
 			if(obj.family === selectedFont) {
 				return index;
 			}
@@ -218,7 +229,7 @@ jQuery( document ).ready(function($) {
 		var index = indexes[0];
 
 		// For the selected Google font show the available weight/style variants
-		$.each(bodyfontcontrol.fontslist[index].variants, function(val, text) {
+		$.each(bodyfontcontrol.skyrocketfontslist[index].variants, function(val, text) {
 			elementRegularWeight.append(
 				$('<option></option>').val(text).html(text)
 			);
@@ -249,16 +260,16 @@ jQuery( document ).ready(function($) {
 		}
 
 		// Update the font category based on the selected font
-		$(this).parent().parent().find('.google-fonts-category').val(bodyfontcontrol.fontslist[index].category);
+		$(this).parent().parent().find('.google-fonts-category').val(bodyfontcontrol.skyrocketfontslist[index].category);
 
-		ephemerisGetAllSelects($(this).parent().parent());
+		skyrocketGetAllSelects($(this).parent().parent());
 	});
 
 	$('.google_fonts_select_control select').on('change', function() {
-		ephemerisGetAllSelects($(this).parent().parent());
+		skyrocketGetAllSelects($(this).parent().parent());
 	});
 
-	function ephemerisGetAllSelects($element) {
+	function skyrocketGetAllSelects($element) {
 		var selectedFont = {
 			font: $element.find('.google-fonts-list').val(),
 			regularweight: $element.find('.google-fonts-regularweight-style').val(),
@@ -267,7 +278,7 @@ jQuery( document ).ready(function($) {
 			category: $element.find('.google-fonts-category').val()
 		};
 
-		// Important! Make sure to trigger change event on hidden input field so Customizer knows it has to save the field
+		// Important! Make sure to trigger change event so Customizer knows it has to save the field
 		$element.find('.customize-control-google-font-selection').val(JSON.stringify(selectedFont)).trigger('change');
 	}
 
