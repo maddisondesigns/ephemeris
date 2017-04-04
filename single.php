@@ -13,20 +13,21 @@ get_header(); ?>
 
 			<div class="grid-70 tablet-grid-70">
 
-				<?php while ( have_posts() ) {
-					the_post(); ?>
-					<?php get_template_part( 'content', get_post_format() ); ?>
+				<?php
+				// Start the Loop
+				while ( have_posts() ) {
+					the_post();
+					get_template_part( 'template-parts/content', get_post_format() );
 
-					<?php
 					// If comments are open or we have at least one comment, load up the comment template
 					if ( comments_open() || '0' != get_comments_number() ) {
 						comments_template( '', true );
 					}
-					?>
 
-					<?php ephemeris_single_posts_pagination(); ?>
+					ephemeris_single_posts_pagination();
 
-				<?php } // end of the loop. ?>
+				} // end of the loop
+				?>
 
 			</div> <!-- /.grid-70 -->
 			<?php get_sidebar(); ?>

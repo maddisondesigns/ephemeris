@@ -16,21 +16,23 @@ get_header(); ?>
 		<?php get_sidebar(); ?>
 		<div class="grid-70 tablet-grid-70">
 
-			<?php if ( have_posts() ) { ?>
+			<?php
+			if ( have_posts() ) {
 
-				<?php // Start the Loop ?>
-				<?php while ( have_posts() ) {
-					the_post(); ?>
-					<?php get_template_part( 'content', 'page' ); ?>
-				<?php } ?>
+				// Start the Loop
+				while ( have_posts() ) {
+					the_post();
+					get_template_part( 'template-parts/content', 'page' );
+				} // end of the loop
 
-				<?php ephemeris_posts_pagination(); ?>
+				ephemeris_posts_pagination();
 
-			<?php } else { ?>
+			} else {
 
-				<?php get_template_part( 'no-results' ); // Include the template that displays a message that posts cannot be found ?>
+				get_template_part( 'template-parts/no', 'results' ); // Include the template that displays a message that posts cannot be found
 
-			<?php } // end have_posts() check ?>
+			} // end have_posts()
+			?>
 
 		</div> <!-- /.grid-70 -->
 

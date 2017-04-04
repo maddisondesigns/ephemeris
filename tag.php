@@ -23,19 +23,21 @@ get_header(); ?>
 					<?php } ?>
 				</header>
 
-				<?php // Start the Loop ?>
-				<?php while ( have_posts() ) {
-					the_post(); ?>
-					<?php get_template_part( 'content', get_post_format() ); ?>
-				<?php } ?>
+				<?php
+				// Start the Loop
+				while ( have_posts() ) {
+					the_post();
+					get_template_part( 'template-parts/content', get_post_format() );
+				} // end of the loop
+				?>
 
 				<?php ephemeris_posts_pagination(); ?>
 
 			<?php } else { ?>
 
-				<?php get_template_part( 'no-results' ); // Include the template that displays a message that posts cannot be found ?>
+				<?php get_template_part( 'template-parts/no', 'results' ); // Include the template that displays a message that posts cannot be found ?>
 
-			<?php } // end have_posts() check ?>
+			<?php } // end have_posts() ?>
 
 		</div> <!-- /.grid-70 -->
 		<?php get_sidebar(); ?>

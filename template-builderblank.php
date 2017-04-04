@@ -10,14 +10,17 @@
 
 get_header( 'blank' ); ?>
 
-	<?php if ( have_posts() ) { ?>
+	<?php
+	if ( have_posts() ) {
 
-		<?php while ( have_posts() ) {
-			the_post(); ?>
-			<?php get_template_part( 'content', 'builderfullwidth' ); ?>
-			<?php comments_template( '', true ); ?>
-		<?php } // end of the loop. ?>
+		// Start the Loop
+		while ( have_posts() ) {
+			the_post();
+			get_template_part( 'template-parts/content', 'builderfullwidth' );
+			comments_template( '', true );
+		} // end of the loop
 
-	<?php } // end have_posts() check ?>
+	} // end have_posts()
+	?>
 
 <?php get_footer( 'blank' ); ?>

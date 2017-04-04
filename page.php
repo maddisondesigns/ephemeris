@@ -19,22 +19,23 @@ get_header(); ?>
 
 		<div class="grid-70 tablet-grid-70">
 
-			<?php if ( have_posts() ) { ?>
+			<?php
+			if ( have_posts() ) {
 
-				<?php // Start the Loop ?>
-				<?php while ( have_posts() ) {
-					the_post(); ?>
-					<?php get_template_part( 'content', 'page' ); ?>
+				// Start the Loop
+				while ( have_posts() ) {
+					the_post();
+					get_template_part( 'template-parts/content', 'page' );
 
-					<?php
 					// If comments are open or we have at least one comment, load up the comment template
 					if ( comments_open() || '0' != get_comments_number() ) {
 						comments_template( '', true );
 					}
-					?>
-				<?php } ?>
 
-			<?php } // end have_posts() check ?>
+				} // end of the loop
+
+			} // end have_posts()
+			?>
 
 		</div> <!-- /.grid-70 -->
 		<?php get_sidebar(); ?>

@@ -14,15 +14,18 @@ get_header(); ?>
 	<div id="primary" class="grid-container site-content" role="main">
 		<div class="grid-100">
 
-			<?php if ( have_posts() ) { ?>
+			<?php
+			if ( have_posts() ) {
 
-				<?php while ( have_posts() ) {
-					the_post(); ?>
-					<?php get_template_part( 'content', 'builderboxed' ); ?>
-					<?php comments_template( '', true ); ?>
-				<?php } // end of the loop. ?>
+				// Start the Loop
+				while ( have_posts() ) {
+					the_post();
+					get_template_part( 'template-parts/content', 'builderboxed' );
+					comments_template( '', true );
+				} // end of the loop
 
-			<?php } // end have_posts() check ?>
+			} // end have_posts()
+			?>
 
 		</div> <!-- /.grid-100 -->
 	</div><!-- /#primary.grid-container.site-content -->
