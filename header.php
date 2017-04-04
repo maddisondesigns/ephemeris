@@ -35,18 +35,27 @@
 
 <body <?php body_class(); ?>>
 
-<div id="wrapper" class="hfeed site">
+<main class="hfeed site" role="main">
 
 	<div class="visuallyhidden skip-link"><a href="#primary" title="<?php esc_attr_e( 'Skip to main content', 'ephemeris' ); ?>"><?php esc_html_e( 'Skip to main content', 'ephemeris' ); ?></a></div>
+
+	<div class="top-header">
+		<div class="header-social-icons grid-container">
+			<div class="grid-100 tablet-grid-100">
+				<?php echo ephemeris_get_social_media(); ?>
+			</div>
+
+		</div>
+	</div>
 
 	<div id="headercontainer">
 
 		<header id="masthead" class="grid-container site-header" role="banner">
-			<div class="grid-40 tablet-grid-40 site-title">
+			<div class="grid-40 tablet-grid-40  mobile-grid-100 site-title">
 				<?php ephemeris_the_custom_logo() ?>
 			</div> <!-- /.grid-40.site-title -->
 
-			<div class="grid-60 tablet-grid-60">
+			<div class="grid-60 tablet-grid-60 mobile-grid-100">
 				<nav id="site-navigation" class="main-navigation" role="navigation">
 					<h3 class="menu-toggle assistive-text"><?php esc_html_e( 'Menu', 'ephemeris' ); ?></h3>
 					<div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'ephemeris' ); ?>"><?php esc_html_e( 'Skip to content', 'ephemeris' ); ?></a></div>
