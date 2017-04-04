@@ -24,7 +24,28 @@
 
 	</div> <!-- /.footercontainer -->
 
-</div> <!-- /.#wrapper.hfeed.site -->
+</main> <!-- /.hfeed.site -->
+
+<a id="mobile-site-navigation" href="#cd-nav" class="mobile-navigation mobile-nav-trigger">
+	<div class="menu-hamburger">
+		<span class="line"></span>
+		<span class="line"></span>
+		<span class="line"></span>
+		<span class="mobile-nav-title">MENU</span>
+	</div>
+</a>
+
+<div id="cd-nav" class="grid-container cd-nav">
+	<div class="grid-100">
+		<div class="cd-navigation-wrapper">
+			<h2>Navigation</h2>
+
+			<nav role="navigation">
+				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'mobile-menu' ) ); ?>
+			</nav>
+		</div><!-- .cd-navigation-wrapper -->
+	</div> <!-- .grid-100 -->
+</div> <!-- .cd-nav -->
 
 <?php wp_footer(); ?>
 </body>
