@@ -16,7 +16,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	 class Ephemeris_Image_Checkbox_Custom_Control extends WP_Customize_Control {
+	 class Skyrocket_Image_Checkbox_Custom_Control extends WP_Customize_Control {
  		/**
  		 * The type of control being rendered
  		 */
@@ -25,7 +25,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  		 * Enqueue our scripts and styles
  		 */
   		public function enqueue() {
- 			wp_enqueue_style( 'ephemeris_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+ 			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
   		}
  		/**
  		 * Render the control in the customizer
@@ -61,7 +61,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	 class Ephemeris_Text_Radio_Button_Custom_Control extends WP_Customize_Control {
+	 class Skyrocket_Text_Radio_Button_Custom_Control extends WP_Customize_Control {
  		/**
  		 * The type of control being rendered
  		 */
@@ -70,7 +70,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  		 * Enqueue our scripts and styles
  		 */
   		public function enqueue() {
- 			wp_enqueue_style( 'ephemeris_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+ 			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
   		}
  		/**
  		 * Render the control in the customizer
@@ -107,7 +107,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Image_Radio_Button_Custom_Control extends WP_Customize_Control {
+	class Skyrocket_Image_Radio_Button_Custom_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -116,7 +116,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
  		public function enqueue() {
-			wp_enqueue_style( 'ephemeris_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
  		}
 		/**
 		 * Render the control in the customizer
@@ -151,17 +151,17 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Single_Accordion_Custom_Control extends WP_Customize_Control {
+	class Skyrocket_Single_Accordion_Custom_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
-		public $type = 'single_Accordion';
+		public $type = 'single_accordion';
 		/**
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
-			wp_enqueue_style( 'ephemeris_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
 			wp_enqueue_style( 'fontawesome', trailingslashit( get_template_directory_uri() ) . 'css/font-awesome.min.css', array(), '4.6.3', 'all' );
 		}
 		/**
@@ -191,6 +191,37 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	}
 
 	/**
+	 * Simple Notice Custom Control
+	 *
+	 * @since Ephemeris 1.0
+	 *
+	 * @author Anthony Hortin <http://maddisondesigns.com>
+	 * @license http://www.gnu.org/licenses/gpl-2.0.html
+	 * @link https://github.com/maddisondesigns
+	 */
+	class Skyrocket_Simple_Notice_Custom_Control extends WP_Customize_Control {
+		/**
+		 * The type of control being rendered
+		 */
+		public $type = 'simple_notice';
+		/**
+		 * Render the control in the customizer
+		 */
+		public function render_content() {
+		?>
+			<div class="simple-notice-custom-control">
+				<?php if( !empty( $this->label ) ) { ?>
+					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+				<?php } ?>
+				<?php if( !empty( $this->description ) ) { ?>
+					<span class="customize-control-description"><?php echo wp_kses_post( $this->description ); ?></span>
+				<?php } ?>
+			</div>
+		<?php
+		}
+	}
+
+	/**
 	 * Slider Custom Control
 	 *
 	 * @since Ephemeris 1.0
@@ -199,7 +230,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Slider_Custom_Control extends WP_Customize_Control {
+	class Skyrocket_Slider_Custom_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -208,8 +239,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
-			wp_enqueue_style( 'ephemeris_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
+			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -233,7 +264,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Toggle_Switch_Custom_control extends WP_Customize_Control {
+	class Skyrocket_Toggle_Switch_Custom_control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -242,7 +273,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue(){
-			wp_enqueue_style( 'ephemeris_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -275,7 +306,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Sortable_Repeater_Custom_Control extends WP_Customize_Control {
+	class Skyrocket_Sortable_Repeater_Custom_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -284,8 +315,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
-			wp_enqueue_style( 'ephemeris_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
+			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -320,7 +351,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  	 * @license http://www.gnu.org/licenses/gpl-3.0.html
  	 * @link https://github.com/BraadMartin/components/tree/master/customizer/alpha-color-picker
  	 */
-	class Ephemeris_Customize_Alpha_Color_Control extends WP_Customize_Control {
+	class Skyrocket_Customize_Alpha_Color_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -339,8 +370,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'wp-color-picker' ), '1.0', true );
-			wp_enqueue_style( 'ephemeris_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array( 'wp-color-picker' ), '1.0', 'all' );
+			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'wp-color-picker' ), '1.0', true );
+			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array( 'wp-color-picker' ), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -383,7 +414,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Google_Font_Select_Custom_Control extends WP_Customize_Control {
+	class Skyrocket_Google_Font_Select_Custom_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -416,15 +447,15 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
-			wp_enqueue_style( 'ephemeris_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
 		}
 		/**
 		 * Export our List of Google Fonts to JavaScript
 		 */
 		public function to_json() {
 			parent::to_json();
-			$this->json['fontslist'] = $this->fontList;
+			$this->json['skyrocketfontslist'] = $this->fontList;
 		}
 		/**
 		 * Render the control in the customizer
@@ -441,7 +472,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					<?php } ?>
 					<input type="hidden" id="<?php echo esc_attr( $this->id ); ?>" name="<?php echo esc_attr( $this->id ); ?>" value="<?php echo esc_attr( $this->value() ); ?>" class="customize-control-google-font-selection" <?php $this->link(); ?> />
 					<div class="google-fonts">
-						<select class="google-fonts-list">
+						<select class="google-fonts-list" control-name="<?php echo esc_attr( $this->id ); ?>">
 							<?php
 								foreach( $this->fontList as $key => $value ) {
 									echo '<option value="' . $value->family . '" ' . selected( $this->fontValues->font, $value->family, false ) . '>' . $value->family . '</option>';
