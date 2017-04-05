@@ -41,22 +41,22 @@ td { vertical-align: top; }
    ========================================================================== */
 
 body {
-	margin: 0 auto;
-	padding: 0;
-	font: 16px/1.5 'Open Sans', Helvetica, Arial, sans-serif;
-	font-size: 1rem;
-	font-style: normal;
-	font-weight: 400;
-	color: #3a3a3a;
-	background-color: #fff;
-	text-align: left;
+   margin: 0 auto;
+   padding: 0;
+   font: 16px/1.5 'Open Sans', Helvetica, Arial, sans-serif;
+   font-size: 1rem;
+   font-style: normal;
+   font-weight: 400;
+   color: #3a3a3a;
+   background-color: #fff;
+   text-align: left;
 }
 
 /* Set the default behavior for touch-based browsing in IE10 on devices running Windows 8 */
-canvas {
-	-ms-touch-action: double-tap-zoom;
-}
 
+canvas {
+   -ms-touch-action: double-tap-zoom;
+}
 /* Make sure videos and embeds fit their containers */
 embed, iframe, object, video {
 	max-width: 100%;
@@ -2354,6 +2354,22 @@ h1.page-title {
 
 .shipping-calculator-button {
 	text-decoration: none;
+}
+
+.woocommerce div.product div.images ol.flex-control-thumbs {
+	padding-top: 1em;
+}
+
+.woocommerce div.product div.images ol.flex-control-thumbs li {
+	width: 32%;
+	margin: 0 2% 10px 0;
+}
+.woocommerce div.product div.images ol.flex-control-thumbs li:nth-child(3n+3) {
+	margin-right: 0;
+}
+
+.woocommerce .pswp__caption__center {
+	text-align: center;
 }
 
 /* ==========================================================================

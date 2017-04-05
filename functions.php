@@ -129,8 +129,10 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		 */
 		add_theme_support( 'title-tag' );
 
-		// Enable support for WooCommerce
+		// Enable support for WooCommerce & WooCommerce product galleries
 		add_theme_support( 'woocommerce' );
+		add_theme_support( 'wc-product-gallery-lightbox' );
+		add_theme_support( 'wc-product-gallery-slider' );
 	}
 }
 add_action( 'after_setup_theme', 'ephemeris_setup' );
