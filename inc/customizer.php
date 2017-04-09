@@ -290,7 +290,7 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'woocommerce_shop_sidebar',
 			array(
 				'default' => $this->defaults['woocommerce_shop_sidebar'],
-				'transport' => 'postMessage',
+				'transport' => 'refresh',
 				'sanitize_callback' => 'ephemeris_switch_sanitization'
 			)
 		);
@@ -326,39 +326,56 @@ class ephemeris_initialise_customizer_settings {
 	 */
 	public function ephemeris_register_sample_custom_controls( $wp_customize ) {
 
-		// Test of Slider Custom Control
-		$wp_customize->add_setting( 'sample_header_font_size',
+		// Test of Checkbox Switch Custom Control
+		$wp_customize->add_setting( 'sample_checkbox_switch',
 			array(
-				'default' => '18',
+				'default' => 0,
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'ephemeris_switch_sanitization'
+			)
+		);
+		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'sample_checkbox_switch',
+			array(
+				'label' => esc_html__( 'Checkbox switch', 'ephemeris' ),
+				'type' => 'checkbox',
+				'settings' => 'sample_checkbox_switch',
+				'section' => 'sample_custom_controls_section'
+			)
+		) );
+
+		// Test of Slider Custom Control
+		$wp_customize->add_setting( 'sample_slider_control',
+			array(
+				'default' => '48',
 				'transport' => 'postMessage',
 				'sanitize_callback' => 'ephemeris_sanitize_integer'
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Slider_Custom_Control( $wp_customize, 'sample_header_font_size',
+		$wp_customize->add_control( new Skyrocket_Slider_Custom_Control( $wp_customize, 'sample_slider_control',
 			array(
 				'label' => esc_html__( 'Slider Control (px)', 'ephemeris' ),
-				'settings' => 'sample_header_font_size',
+				'settings' => 'sample_slider_control',
 				'section' => 'sample_custom_controls_section',
 				'input_attrs' => array(
 					'min' => 10,
-					'max' => 50,
-					'step' => 2,
+					'max' => 90,
+					'step' => 1,
 				),
 			)
 		) );
 
 		// Test of Image Radio Button Custom Control
-		$wp_customize->add_setting( 'sample_image_options',
+		$wp_customize->add_setting( 'sample_image_radio_button',
 			array(
 				'default' => 'sidebarright',
 				'sanitize_callback' => 'ephemeris_text_sanitization'
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Image_Radio_Button_Custom_Control( $wp_customize, 'sample_image_options',
+		$wp_customize->add_control( new Skyrocket_Image_Radio_Button_Custom_Control( $wp_customize, 'sample_image_radio_button',
 			array(
 				'label' => esc_attr__( 'Image Radio Button Control', 'ephemeris' ),
 				'description' => esc_attr__( 'Sample custom control description', 'ephemeris' ),
-				'settings' => 'sample_image_options',
+				'settings' => 'sample_image_radio_button',
 				'section' => 'sample_custom_controls_section',
 				'choices' => array(
 					'sidebarleft' => array(
@@ -377,17 +394,18 @@ class ephemeris_initialise_customizer_settings {
 			)
 		) );
 
-		$wp_customize->add_setting( 'sample_text_layout',
+		// Test of Text Radio Button Custom Control
+		$wp_customize->add_setting( 'sample_text_radio_button',
 			array(
 				'default' => 'right',
 				'sanitize_callback' => 'ephemeris_text_sanitization'
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Text_Radio_Button_Custom_Control( $wp_customize, 'sample_text_layout',
+		$wp_customize->add_control( new Skyrocket_Text_Radio_Button_Custom_Control( $wp_customize, 'sample_text_radio_button',
 			array(
 				'label' => esc_attr__( 'Text Radio Button Control', 'ephemeris' ),
 				'description' => esc_attr__( 'Sample custom control description', 'ephemeris' ),
-				'settings' => 'sample_text_layout',
+				'settings' => 'sample_text_radio_button',
 				'section' => 'sample_custom_controls_section',
 				'choices' => array(
 					'left' => esc_html__( 'Left' ),
@@ -398,17 +416,17 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Test of Image Checkbox Custom Control
-		$wp_customize->add_setting( 'sample_header_font_style',
+		$wp_customize->add_setting( 'sample_image_checkbox',
 			array(
 				'default' => 'stylebold',
 				'sanitize_callback' => 'ephemeris_text_sanitization'
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Image_checkbox_Custom_Control( $wp_customize, 'sample_header_font_style',
+		$wp_customize->add_control( new Skyrocket_Image_checkbox_Custom_Control( $wp_customize, 'sample_image_checkbox',
 			array(
 				'label' => esc_attr__( 'Image Checkbox Control', 'ephemeris' ),
 				'description' => esc_attr__( 'Sample custom control description', 'ephemeris' ),
-				'settings' => 'sample_header_font_style',
+				'settings' => 'sample_image_checkbox',
 				'section' => 'sample_custom_controls_section',
 				'choices' => array(
 					'stylebold' => array(
@@ -460,17 +478,17 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Test of Alpha Color Picker Control
-		$wp_customize->add_setting( 'sample_body_font_alpha_color',
+		$wp_customize->add_setting( 'sample_alpha_color_picker',
 			array(
 				'default' => 'rgba(209,0,55,0.7)',
 				'transport' => 'postMessage'
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'sample_body_font_alpha_color',
+		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'sample_alpha_color_picker',
 			array(
 				'label' => esc_attr__( 'Alpha Color Picker Control', 'ephemeris' ),
 				'section' => 'sample_custom_controls_section',
-				'settings' => 'sample_body_font_alpha_color',
+				'settings' => 'sample_alpha_color_picker',
 				'show_opacity' => true,
 				'palette' => array(
 					'#000',
@@ -502,17 +520,17 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Test of Google Font Select Control
-		$wp_customize->add_setting( 'sample_body_font',
+		$wp_customize->add_setting( 'sample_google_font_select',
 			array(
 			 'default' => '{"font":"Open Sans","regularweight":"regular","italicweight":"italic","boldweight":"700","category":"sans-serif"}'
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Google_Font_Select_Custom_Control( $wp_customize, 'sample_body_font',
+		$wp_customize->add_control( new Skyrocket_Google_Font_Select_Custom_Control( $wp_customize, 'sample_google_font_select',
 			array(
 				'label' => esc_attr__( 'Google Font Control', 'ephemeris' ),
 				'description' => esc_attr__( 'Sample custom control description', 'ephemeris' ),
 				'section' => 'sample_custom_controls_section',
-				'settings' => 'sample_body_font'
+				'settings' => 'sample_google_font_select'
 			)
 		) );
 
@@ -653,4 +671,4 @@ require_once trailingslashit( dirname(__FILE__) ) . 'custom-controls.php';
 /**
  * Initialise our Customizer settings
  */
-new ephemeris_initialise_customizer_settings();
+$ephemeris_settings = new ephemeris_initialise_customizer_settings();
