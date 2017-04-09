@@ -2209,6 +2209,81 @@ main {
 }
 
 /* ==========================================================================
+   Search
+   ========================================================================== */
+
+.search-overlay {
+   display: none;
+   position: fixed;
+   top: 0px;
+   right: 0px;
+   bottom: 0px;
+   left: 0px;
+	z-index: 9999;
+   background-color: #f1f1f1;
+}
+
+.search-overlay.open {
+   display: block;
+}
+
+.search-overlay .search-close {
+   background: transparent;
+   border: none;
+   font-size: 5em;
+   outline: none;
+   position: absolute;
+   top: 0.3em;
+   right: 0.3em;
+   z-index: 100;
+	color: #5daed9;
+	line-height: 1;
+}
+
+.search-form {
+	margin: 0;
+   max-width: 1200px;
+   width: 75%;
+}
+
+.search-overlay form {
+	margin: 75px auto 40px;
+   position: relative;
+   top: 20%;
+}
+
+.search-form input {
+   background: none;
+   border: none;
+   font-size: 4em;
+   font-weight: 300;
+   width: 100%;
+}
+
+.search-overlay form input {
+   font-size: 7em;
+}
+
+.search-form label {
+	display: inline-block;
+	width: 88%;
+}
+
+.search-submit {
+   background: inherit;
+   border: none;
+   color: #aaa;
+   display: inline-block;
+   font-size: 5em;
+	width: 10%;
+	padding: 0;
+}
+
+.search-overlay .search-submit {
+   font-size: 7em;
+}
+
+/* ==========================================================================
    WPML translation plugin
    ========================================================================== */
 
@@ -2430,6 +2505,12 @@ h1.page-title {
 	.social-media-icons {
 		display: block;
 	}
+	.search-overlay form input {
+	   font-size: 5em;
+	}
+	.search-overlay .search-submit {
+	   font-size: 5em;
+	}
 }
 
 @media only screen and (max-width: 767px) {
@@ -2533,6 +2614,15 @@ h1.page-title {
 	.header-meta .post-categories {
 		margin-right: 8px;
 		margin-right: .5rem;
+	}
+	.search-overlay form {
+	   top: 10%;
+	}
+	.search-overlay form input {
+	   font-size: 3em;
+	}
+	.search-overlay .search-submit {
+	   font-size: 3em;
 	}
 }
 

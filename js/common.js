@@ -1,4 +1,8 @@
 jQuery( document ).ready( function( $ ){
+
+	/**
+	 * Responsive menu
+	 */
 	var isLateralNavAnimating = false;
 
 	//open/close lateral navigation
@@ -15,4 +19,26 @@ jQuery( document ).ready( function( $ ){
 			} );
 		}
 	} );
+
+	/**
+	 * Fullscreen search
+	 */
+	$(document).on('click', '.search-close', function(e) {
+		e.preventDefault();
+		$('.search-overlay').toggleClass('open');
+	});
+
+	$('.menu-item-search').on('click', '.nav-search', function(e) {
+		e.preventDefault();
+		$('.search-overlay').toggleClass('open');
+		$('.search-overlay form input[name="s"]').focus();
+	});
+
+	$('.search-overlay form input[name="s"]').keyup(function(e) {
+		e.preventDefault();
+		if (e.keyCode == 27) {
+			$('.search-overlay').toggleClass('open');
+		}
+	});
+
 } );

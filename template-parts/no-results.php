@@ -17,8 +17,8 @@
 	<div class="entry-content">
 		<?php if ( is_home() && current_user_can( 'edit_posts' ) ) { ?>
 
-			<p><?php printf( wp_kses( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'ephemeris' ), array( 
-				'a' => array( 
+			<p><?php printf( wp_kses( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'ephemeris' ), array(
+				'a' => array(
 					'href' => array() )
 				) ), admin_url( 'post-new.php' ) ); ?></p>
 

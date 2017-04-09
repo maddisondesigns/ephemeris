@@ -47,6 +47,11 @@
 	</div> <!-- .grid-100 -->
 </div> <!-- .cd-nav -->
 
+<div class="search-overlay">
+	<button type="button" class="search-close"><i class="fa fa-times-circle-o"></i></button>
+	<?php get_search_form() ?>
+</div>
+
 <?php wp_footer(); ?>
 </body>
 
