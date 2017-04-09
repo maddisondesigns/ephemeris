@@ -7,6 +7,31 @@
  */
 
 /**
+* Set our Customizer default options
+*/
+if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
+	function ephemeris_generate_defaults() {
+		$customizer_defaults = array(
+			'general_search' => 0,
+			'social_newtab' => 0,
+			'social_urls' => '',
+			'social_alignment' => 'alignright',
+			'social_phone' => '',
+			'social_rss' => 0,
+			'social_phone' => '',
+			'woocommerce_shop_sidebar' => 1,
+		);
+
+		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );
+	}
+}
+
+/**
+* Load all our Customizer options
+*/
+include_once trailingslashit( dirname(__FILE__) ) . 'inc/customizer.php';
+
+/**
  * Sets the content width in pixels, based on the theme's design and stylesheet.
  * Priority 0 to make it available to lower priority callbacks.
  *
@@ -389,8 +414,8 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		}
 
 		// Enqueue our common scripts
-		wp_register_script( 'commonjs', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.0', true );
-		wp_enqueue_script( 'commonjs' );
+		wp_register_script( 'ephemeriscommonjs', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.0', true );
+		wp_enqueue_script( 'ephemeriscommonjs' );
 
 		// Load our script that envokes a button toggle for the main navigation menu on small screens
 		//wp_enqueue_script( 'ephemeris-small-menu', trailingslashit( get_template_directory_uri() ) . 'js/small-menu.js', array( 'jquery' ), '1.0.0', true );
@@ -398,6 +423,22 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
+
+/**
+ * Enqueue scripts for our Customizer preview
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return void
+ */
+if ( ! function_exists( 'ephemeris_customizer_preview_scripts' ) ) {
+	function ephemeris_customizer_preview_scripts() {
+		wp_enqueue_script( 'ephemeris-customizer-preview', trailingslashit( get_template_directory_uri() ) . 'js/customizer-preview.js', array( 'customize-preview', 'jquery' ) );
+		wp_register_script( 'ephemeriscommonjs', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.0', true );
+		wp_enqueue_script( 'ephemeriscommonjs' );
+	}
+}
+add_action( 'customize_preview_init', 'ephemeris_customizer_preview_scripts' );
 
 /**
  * Custom Background Callback
@@ -906,6 +947,21 @@ if ( ! function_exists( 'ephemeris_get_credits' ) ) {
 }
 
 /**
+ * Append a search icon to the primary menu
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return string Menu list items
+ */
+function ephemris_add_search_menu_item( $items, $args ) {
+	if( $args->theme_location == 'primary' ) {
+		$items .= '<li class="menu-item menu-item-search"><a href="#" class="nav-search"><i class="fa fa-search"></i></a></li>';
+	}
+	return $items;
+}
+add_filter( 'wp_nav_menu_items', 'ephemris_add_search_menu_item', 10, 2 );
+
+/**
  * Unhook the WooCommerce Wrappers
  */
 remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
@@ -1168,27 +1224,3 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 		return $output;
 	}
 }
-
-/**
- * Set our Customizer default options
- */
-if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
-	function ephemeris_generate_defaults() {
-		$customizer_defaults = array(
-			'social_newtab' => 0,
-			'social_urls' => '',
-			'social_alignment' => 'alignright',
-			'social_phone' => '',
-			'social_rss' => 0,
-			'social_phone' => '',
-			'woocommerce_shop_sidebar' => 1,
-		);
-
-		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );
-	}
-}
-
-/**
- * Load all our Customizer options
- */
-include_once trailingslashit( dirname(__FILE__) ) . 'inc/customizer.php';
