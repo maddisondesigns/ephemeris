@@ -7,31 +7,6 @@
  */
 
 /**
-* Set our Customizer default options
-*/
-if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
-	function ephemeris_generate_defaults() {
-		$customizer_defaults = array(
-			'general_search' => 0,
-			'social_newtab' => 0,
-			'social_urls' => '',
-			'social_alignment' => 'alignright',
-			'social_phone' => '',
-			'social_rss' => 0,
-			'social_phone' => '',
-			'woocommerce_shop_sidebar' => 1,
-		);
-
-		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );
-	}
-}
-
-/**
-* Load all our Customizer options
-*/
-include_once trailingslashit( dirname(__FILE__) ) . 'inc/customizer.php';
-
-/**
  * Sets the content width in pixels, based on the theme's design and stylesheet.
  * Priority 0 to make it available to lower priority callbacks.
  *
@@ -953,11 +928,17 @@ if ( ! function_exists( 'ephemeris_get_credits' ) ) {
  *
  * @return string Menu list items
  */
-function ephemris_add_search_menu_item( $items, $args ) {
-	if( $args->theme_location == 'primary' ) {
-		$items .= '<li class="menu-item menu-item-search"><a href="#" class="nav-search"><i class="fa fa-search"></i></a></li>';
+if ( ! function_exists( 'ephemris_add_search_menu_item' ) ) {
+	function ephemris_add_search_menu_item( $items, $args ) {
+		$defaults = ephemeris_generate_defaults();
+
+		if( get_theme_mod( 'search_menu_icon', $defaults['search_menu_icon'] ) ) {
+			if( $args->theme_location == 'primary' ) {
+				$items .= '<li class="menu-item menu-item-search"><a href="#" class="nav-search"><i class="fa fa-search"></i></a></li>';
+			}
+		}
+		return $items;
 	}
-	return $items;
 }
 add_filter( 'wp_nav_menu_items', 'ephemris_add_search_menu_item', 10, 2 );
 
@@ -1168,18 +1149,18 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 		$social_urls = [];
 		$social_newtab = 0;
 		$social_alignment = '';
-		$social_phone = '';
+		$contact_phone = '';
 
-		$social_urls = explode( ',', get_theme_mod( 'social_urls' ) );
+		$social_urls = explode( ',', get_theme_mod( 'social_urls', $defaults['social_urls'] ) );
 		$social_newtab = get_theme_mod( 'social_newtab', $defaults['social_newtab'] );
 		$social_alignment = get_theme_mod( 'social_alignment', $defaults['social_alignment'] );
-		$social_phone = get_theme_mod( 'social_phone', $defaults['social_phone'] );
+		$contact_phone = get_theme_mod( 'contact_phone', $defaults['contact_phone'] );
 
-		if( !empty( $social_phone ) ) {
+		if( !empty( $contact_phone ) ) {
 			$output .= sprintf( '<li class="%1$s"><i class="fa %2$s"></i>%3$s</li>',
 				'phone',
 				'fa-phone',
-				$social_phone
+				$contact_phone
 			);
 		}
 
@@ -1224,3 +1205,27 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 		return $output;
 	}
 }
+
+/**
+* Set our Customizer default options
+*/
+if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
+	function ephemeris_generate_defaults() {
+		$customizer_defaults = array(
+			'social_newtab' => 0,
+			'social_urls' => '',
+			'social_alignment' => 'alignright',
+			'social_rss' => 0,
+			'contact_phone' => '',
+			'search_menu_icon' => 0,
+			'woocommerce_shop_sidebar' => 1,
+		);
+
+		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );
+	}
+}
+
+/**
+* Load all our Customizer options
+*/
+include_once trailingslashit( dirname(__FILE__) ) . 'inc/customizer.php';
