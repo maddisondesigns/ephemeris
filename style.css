@@ -2246,6 +2246,10 @@ main {
    width: 75%;
 }
 
+.widget-area .search-form {
+   width: 100%;
+}
+
 .search-overlay form {
 	margin: 75px auto 40px;
    position: relative;
@@ -2258,6 +2262,11 @@ main {
    font-size: 4em;
    font-weight: 300;
    width: 100%;
+	color: #aaa;
+}
+
+.widget-area .search-form input {
+   font-size: 2em;
 }
 
 .search-overlay form input {
@@ -2267,6 +2276,7 @@ main {
 .search-form label {
 	display: inline-block;
 	width: 88%;
+	border-bottom: 1px solid #bbb;
 }
 
 .search-submit {
@@ -2277,6 +2287,10 @@ main {
    font-size: 5em;
 	width: 10%;
 	padding: 0;
+}
+
+.widget-area .search-submit {
+	font-size: 2em;
 }
 
 .search-overlay .search-submit {
