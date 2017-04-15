@@ -17,11 +17,20 @@ class ephemeris_initialise_customizer_settings {
 		// Get our Customizer defaults
 		$this->defaults = ephemeris_generate_defaults();
 
+		// Register our Panels
+		add_action( 'customize_register', array( $this, 'ephemeris_add_customizer_panels' ) );
+
 		// Register our sections
 		add_action( 'customize_register', array( $this, 'ephemeris_add_customizer_sections' ) );
 
 		// Register our social media controls
 		add_action( 'customize_register', array( $this, 'ephemeris_register_social_controls' ) );
+
+		// Register our contact controls
+		add_action( 'customize_register', array( $this, 'ephemeris_register_contact_controls' ) );
+
+		// Register our search controls
+		add_action( 'customize_register', array( $this, 'ephemeris_register_search_controls' ) );
 
 		// Register our Typography controls
 		//add_action( 'customize_register', array( $this, 'ephemeris_register_typography_controls' ) );
@@ -43,6 +52,21 @@ class ephemeris_initialise_customizer_settings {
 	}
 
 	/**
+	 * Register the Customizer panels
+	 */
+	public function ephemeris_add_customizer_panels( $wp_customize ) {
+		/**
+		 * Add our Header & Navigation Panel
+		 */
+		 $wp_customize->add_panel( 'header_naviation_panel',
+		 	array(
+				'title' => __( 'Header & Navigation' ),
+				'description' => 'Adjust your Header and Navigation sections.'
+			)
+		);
+	}
+
+	/**
 	 * Register the Customizer sections
 	 */
 	public function ephemeris_add_customizer_sections( $wp_customize ) {
@@ -51,8 +75,31 @@ class ephemeris_initialise_customizer_settings {
 		 */
 		$wp_customize->add_section( 'social_icons_section',
 			array(
-				'title' => esc_html__(  'Social Icons & Contact Info' ),
-				'description' => esc_html__(  'Add your social media lnks and we’ll automatically match them with the appropriate icons. Drag and drop the URLs to rearrange their order.' )
+				'title' => esc_html__(  'Social Icons' ),
+				'description' => esc_html__(  'Add your social media lnks and we’ll automatically match them with the appropriate icons. Drag and drop the URLs to rearrange their order.' ),
+				'panel' => 'header_naviation_panel'
+			)
+		);
+
+		/**
+		 * Add our Contact Section
+		 */
+		$wp_customize->add_section( 'contact_section',
+			array(
+				'title' => esc_html__(  'Contact' ),
+				'description' => esc_html__(  'Add your phone number to the site header bar.' ),
+				'panel' => 'header_naviation_panel'
+			)
+		);
+
+		/**
+		 * Add our Search Section
+		 */
+		$wp_customize->add_section( 'search_section',
+			array(
+				'title' => esc_html__(  'Search' ),
+				'description' => esc_html__(  'Add a search icon to your primary naigation menu.' ),
+				'panel' => 'header_naviation_panel'
 			)
 		);
 
@@ -105,7 +152,6 @@ class ephemeris_initialise_customizer_settings {
 				'section' => 'social_icons_section'
 			)
 		) );
-
 		$wp_customize->selective_refresh->add_partial( 'social_newtab',
 			array(
 				'selector' => '.social-icons',
@@ -137,7 +183,6 @@ class ephemeris_initialise_customizer_settings {
 				)
 			)
 		) );
-
 		$wp_customize->selective_refresh->add_partial( 'social_alignment',
 			array(
 				'selector' => '.social-icons',
@@ -165,7 +210,6 @@ class ephemeris_initialise_customizer_settings {
 				'section' => 'social_icons_section'
 			)
 		) );
-
 		$wp_customize->selective_refresh->add_partial( 'social_urls',
 			array(
 				'selector' => '.social-icons',
@@ -211,6 +255,7 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'social_url_icons',
 			array(
 				'default' => '',
+				'transport' => 'refresh',
 				'sanitize_callback' => 'ephemeris_text_sanitization'
 			)
 		);
@@ -239,7 +284,6 @@ class ephemeris_initialise_customizer_settings {
 				'section' => 'social_icons_section'
 			)
 		) );
-
 		$wp_customize->selective_refresh->add_partial( 'social_rss',
 			array(
 				'selector' => '.social-icons',
@@ -251,24 +295,29 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
+	}
+
+	/**
+	 * Register our Contact controls
+	 */
+	public function ephemeris_register_contact_controls( $wp_customize ) {
 		// Add our Text field setting and Control for displaying the phone number
-		$wp_customize->add_setting( 'social_phone',
+		$wp_customize->add_setting( 'contact_phone',
 			array(
-				'default' => $this->defaults['social_phone'],
+				'default' => $this->defaults['contact_phone'],
 				'transport' => 'postMessage',
 				'sanitize_callback' => 'ephemeris_text_sanitization'
 			)
 		);
-		$wp_customize->add_control( 'social_phone',
+		$wp_customize->add_control( 'contact_phone',
 			array(
 				'label' => esc_html__( 'Display phone number', 'ephemeris' ),
 				'type' => 'text',
-				'settings' => 'social_phone',
-				'section' => 'social_icons_section'
+				'settings' => 'contact_phone',
+				'section' => 'contact_section'
 			)
 		);
-
-		$wp_customize->selective_refresh->add_partial( 'social_phone',
+		$wp_customize->selective_refresh->add_partial( 'contact_phone',
 			array(
 				'selector' => '.social-icons',
 				'container_inclusive' => true,
@@ -279,6 +328,28 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
+	}
+
+	/**
+	 * Register our Search controls
+	 */
+	public function ephemeris_register_search_controls( $wp_customize ) {
+		// Add our Checkbox switch setting and control for opening URLs in a new tab
+		$wp_customize->add_setting( 'search_menu_icon',
+			array(
+				'default' => $this->defaults['search_menu_icon'],
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'ephemeris_switch_sanitization'
+			)
+		);
+		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'search_menu_icon',
+			array(
+				'label' => esc_html__( 'Display Search Icon', 'ephemeris' ),
+				'type' => 'checkbox',
+				'settings' => 'search_menu_icon',
+				'section' => 'search_section'
+			)
+		) );
 	}
 
 	/**
@@ -368,6 +439,7 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_image_radio_button',
 			array(
 				'default' => 'sidebarright',
+				'transport' => 'refresh',
 				'sanitize_callback' => 'ephemeris_text_sanitization'
 			)
 		);
@@ -398,6 +470,7 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_text_radio_button',
 			array(
 				'default' => 'right',
+				'transport' => 'refresh',
 				'sanitize_callback' => 'ephemeris_text_sanitization'
 			)
 		);
@@ -419,6 +492,7 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_image_checkbox',
 			array(
 				'default' => 'stylebold',
+				'transport' => 'refresh',
 				'sanitize_callback' => 'ephemeris_text_sanitization'
 			)
 		);
@@ -465,6 +539,7 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_single_accordion',
 			array(
 				'default' => '',
+				'transport' => 'refresh',
 				'sanitize_callback' => 'ephemeris_text_sanitization'
 			)
 		);
@@ -544,7 +619,8 @@ class ephemeris_initialise_customizer_settings {
 		// Test of Text Control
         $wp_customize->add_setting( 'sample_default_text',
   			array(
-  				'default' => ''
+  				'default' => '',
+				'transport' => 'refresh'
   			)
         );
         $wp_customize->add_control( 'sample_default_text',
@@ -560,7 +636,8 @@ class ephemeris_initialise_customizer_settings {
 		 // Test of Standard Checkbox Control
  		$wp_customize->add_setting( 'sample_default_checkbox',
  			array(
- 			'default' => 0
+ 			'default' => 0,
+			'transport' => 'refresh'
  			)
  		);
  		$wp_customize->add_control( 'sample_default_checkbox',
@@ -576,7 +653,8 @@ class ephemeris_initialise_customizer_settings {
  		// Test of Standard Select Control
  		$wp_customize->add_setting( 'sample_default_select',
  			array(
- 				'default'=>'jet-fuel'
+ 				'default'=>'jet-fuel',
+				'transport' => 'refresh'
  			)
  		);
  		$wp_customize->add_control( 'sample_default_select',
@@ -597,7 +675,8 @@ class ephemeris_initialise_customizer_settings {
 		// Test of Standard Radio Control
  		$wp_customize->add_setting( 'sample_default_radio',
  			array(
- 				'default'=>'spider-man'
+ 				'default'=>'spider-man',
+				'transport' => 'refresh'
  			)
  		);
  		$wp_customize->add_control( 'sample_default_radio',
@@ -618,7 +697,8 @@ class ephemeris_initialise_customizer_settings {
 		// Test of Dropdown Pages Control
        $wp_customize->add_setting( 'sample_default_dropdownpages',
  			array(
- 				'default' => '0'
+ 				'default' => '0',
+				'transport' => 'refresh'
  			)
        );
        $wp_customize->add_control( 'sample_default_dropdownpages',
@@ -633,7 +713,8 @@ class ephemeris_initialise_customizer_settings {
 		// Test of Textarea Control
        $wp_customize->add_setting( 'sample_default_textarea',
  			array(
- 				'default' => ''
+ 				'default' => '',
+				'transport' => 'refresh'
  			)
        );
        $wp_customize->add_control( 'sample_default_textarea',
@@ -648,7 +729,8 @@ class ephemeris_initialise_customizer_settings {
 		// Test of Color Control
        $wp_customize->add_setting( 'sample_default_color',
  			array(
- 				'default' => '#333'
+ 				'default' => '#333',
+				'transport' => 'refresh'
  			)
        );
        $wp_customize->add_control( 'sample_default_color',
