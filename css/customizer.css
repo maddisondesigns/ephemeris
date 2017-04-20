@@ -6,8 +6,8 @@
    Standard Selection
    ========================================================================== */
 .customize-control select{
-	border: 1px solid #f9f9fe;
-	background: #fff;
+	border: none;
+	background: #fcfcff;
 	position: relative;
 	border-radius: 0;
 	height: 27px;
@@ -28,8 +28,11 @@
    Standard Input
    ========================================================================== */
 input[type="text"],
-input[type="number"] {
-	background: #f9f9fe;
+input[type="number"],
+input[type="url"],
+input[type="email"],
+input[type="date"] {
+	background: #fcfcff;
 	position: relative;
 	border-radius: 0;
 	border: 0;
