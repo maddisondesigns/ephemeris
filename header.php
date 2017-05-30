@@ -41,7 +41,7 @@
 
 	<div class="top-header">
 		<div class="header-social-icons grid-container">
-			<div class="grid-100 tablet-grid-100">
+			<div class="grid-100 tablet-grid-100 social-header">
 				<?php echo ephemeris_get_social_media(); ?>
 			</div>
 
