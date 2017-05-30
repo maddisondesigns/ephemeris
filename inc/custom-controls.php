@@ -168,6 +168,20 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Render the control in the customizer
 		 */
 		public function render_content() {
+			$allowed_html = array(
+				'a' => array(
+					'href' => array(),
+					'title' => array(),
+					'class' => array(),
+					'target' => array(),
+				),
+				'br' => array(),
+				'em' => array(),
+				'strong' => array(),
+				'i' => array(
+					'class' => array()
+				),
+			);
 		?>
 			<div class="single-accordion-custom-control">
 				<div class="single-accordion-toggle"><?php esc_html_e( $this->label, 'ephemeris' ); ?><span class="accordion-icon-toggle dashicons dashicons-plus"></span></div>
@@ -176,12 +190,12 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 						if ( is_array( $this->description ) ) {
 							echo '<ul class="single-accordion-description">';
 					  		foreach ( $this->description as $key => $value ) {
-								echo '<li>' . $key . '<i class="fa ' . $value . '"></i></li>';
+								echo '<li>' . $key . wp_kses( $value, $allowed_html ) . '</li>';
 							}
 							echo '</ul>';
 						}
 						else {
-							echo esc_html( $this->description );
+							echo wp_kses( $this->description, $allowed_html );
 						}
 				  ?>
 				</div>
@@ -208,13 +222,27 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Render the control in the customizer
 		 */
 		public function render_content() {
+			$allowed_html = array(
+				'a' => array(
+					'href' => array(),
+					'title' => array(),
+					'class' => array(),
+					'target' => array(),
+				),
+				'br' => array(),
+				'em' => array(),
+				'strong' => array(),
+				'i' => array(
+					'class' => array()
+				),
+			);
 		?>
 			<div class="simple-notice-custom-control">
 				<?php if( !empty( $this->label ) ) { ?>
 					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 				<?php } ?>
 				<?php if( !empty( $this->description ) ) { ?>
-					<span class="customize-control-description"><?php echo wp_kses_post( $this->description ); ?></span>
+					<span class="customize-control-description"><?php echo wp_kses( $this->description, $allowed_html ); ?></span>
 				<?php } ?>
 			</div>
 		<?php
@@ -312,6 +340,22 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		public $type = 'sortable_repeater';
 		/**
+ 		 * Button labels
+ 		 */
+		public $button_labels = array();
+		/**
+		 * Constructor
+		 */
+		public function __construct( $manager, $id, $args = array(), $options = array() ) {
+			parent::__construct( $manager, $id, $args );
+			// Merge the passed button labels with our default labels
+			$this->button_labels = wp_parse_args( $this->button_labels,
+				array(
+					'add' => __( 'Add' ),
+				)
+			);
+		}
+		/**
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
@@ -336,74 +380,11 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 						<input type="text" value="" class="repeater-input" placeholder="http://" /><span class="dashicons dashicons-sort"></span><a class="customize-control-sortable-repeater-delete" href="#"><span class="dashicons dashicons-no-alt"></span></a>
 					</div>
 				</div>
-				<button class="button customize-control-sortable-repeater-add" type="button"><?php esc_html_e( 'Add icon', 'ephemeris' ) ?></button>
+				<button class="button customize-control-sortable-repeater-add" type="button"><?php echo $this->button_labels['add']; ?></button>
 			</div>
 		<?php
 		}
 	}
-
-	/**
- 	 * Alpha Color Picker Custom Control
- 	 *
- 	 * @since Ephemeris 1.0
- 	 *
- 	 * @author Braad Martin <http://braadmartin.com>
- 	 * @license http://www.gnu.org/licenses/gpl-3.0.html
- 	 * @link https://github.com/BraadMartin/components/tree/master/customizer/alpha-color-picker
- 	 */
-	class Skyrocket_Customize_Alpha_Color_Control extends WP_Customize_Control {
-		/**
-		 * The type of control being rendered
-		 */
-		public $type = 'alpha-color';
-		/**
-		 * Add support for palettes to be passed in.
-		 *
-		 * Supported palette values are true, false, or an array of RGBa and Hex colors.
-		 */
-		public $palette;
-		/**
-		 * Add support for showing the opacity value on the slider handle.
-		 */
-		public $show_opacity;
-		/**
-		 * Enqueue our scripts and styles
-		 */
-		public function enqueue() {
-			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'wp-color-picker' ), '1.0', true );
-			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array( 'wp-color-picker' ), '1.0', 'all' );
-		}
-		/**
-		 * Render the control in the customizer
-		 */
-		public function render_content() {
-
-			// Process the palette
-			if ( is_array( $this->palette ) ) {
-				$palette = implode( '|', $this->palette );
-			} else {
-				// Default to true.
-				$palette = ( false === $this->palette || 'false' === $this->palette ) ? 'false' : 'true';
-			}
-
-			// Support passing show_opacity as string or boolean. Default to true.
-			$show_opacity = ( false === $this->show_opacity || 'false' === $this->show_opacity ) ? 'false' : 'true';
-
-			?>
-				<label>
-					<?php // Output the label and description if they were passed in.
-					if ( isset( $this->label ) && '' !== $this->label ) {
-						echo '<span class="customize-control-title">' . sanitize_text_field( $this->label ) . '</span>';
-					}
-					if ( isset( $this->description ) && '' !== $this->description ) {
-						echo '<span class="description customize-control-description">' . sanitize_text_field( $this->description ) . '</span>';
-					} ?>
-					<input class="alpha-color-control" type="text" data-show-opacity="<?php echo $show_opacity; ?>" data-palette="<?php echo esc_attr( $palette ); ?>" data-default-color="<?php echo esc_attr( $this->settings['default']->default ); ?>" <?php $this->link(); ?>  />
-				</label>
-			<?php
-		}
-	}
-
 
 	/**
 	 * Googe Font Select Custom Control
@@ -561,6 +542,68 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			}
 		}
    }
+
+	/**
+ 	 * Alpha Color Picker Custom Control
+ 	 *
+ 	 * @since Ephemeris 1.0
+ 	 *
+ 	 * @author Braad Martin <http://braadmartin.com>
+ 	 * @license http://www.gnu.org/licenses/gpl-3.0.html
+ 	 * @link https://github.com/BraadMartin/components/tree/master/customizer/alpha-color-picker
+ 	 */
+	class Skyrocket_Customize_Alpha_Color_Control extends WP_Customize_Control {
+		/**
+		 * The type of control being rendered
+		 */
+		public $type = 'alpha-color';
+		/**
+		 * Add support for palettes to be passed in.
+		 *
+		 * Supported palette values are true, false, or an array of RGBa and Hex colors.
+		 */
+		public $palette;
+		/**
+		 * Add support for showing the opacity value on the slider handle.
+		 */
+		public $show_opacity;
+		/**
+		 * Enqueue our scripts and styles
+		 */
+		public function enqueue() {
+			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'wp-color-picker' ), '1.0', true );
+			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array( 'wp-color-picker' ), '1.0', 'all' );
+		}
+		/**
+		 * Render the control in the customizer
+		 */
+		public function render_content() {
+
+			// Process the palette
+			if ( is_array( $this->palette ) ) {
+				$palette = implode( '|', $this->palette );
+			} else {
+				// Default to true.
+				$palette = ( false === $this->palette || 'false' === $this->palette ) ? 'false' : 'true';
+			}
+
+			// Support passing show_opacity as string or boolean. Default to true.
+			$show_opacity = ( false === $this->show_opacity || 'false' === $this->show_opacity ) ? 'false' : 'true';
+
+			?>
+				<label>
+					<?php // Output the label and description if they were passed in.
+					if ( isset( $this->label ) && '' !== $this->label ) {
+						echo '<span class="customize-control-title">' . sanitize_text_field( $this->label ) . '</span>';
+					}
+					if ( isset( $this->description ) && '' !== $this->description ) {
+						echo '<span class="description customize-control-description">' . sanitize_text_field( $this->description ) . '</span>';
+					} ?>
+					<input class="alpha-color-control" type="text" data-show-opacity="<?php echo $show_opacity; ?>" data-palette="<?php echo esc_attr( $palette ); ?>" data-default-color="<?php echo esc_attr( $this->settings['default']->default ); ?>" <?php $this->link(); ?>  />
+				</label>
+			<?php
+		}
+	}
 
 	/**
 	 * URL sanitization function for Customizer Custom Control
