@@ -730,6 +730,7 @@ main {
 	width: 100%;
 	position: relative;
 	text-align: left;
+	background-color: #fff;
 }
 
 .site-title h1 {
@@ -799,8 +800,8 @@ main {
 }
 
 .social-icons {
-	margin: .8px 0;
-	margin: .5rem 0;
+	margin: 4px 0;
+	margin: .25rem 0;
 	padding: 0;
 }
 
@@ -2450,10 +2451,10 @@ h1.page-title {
 }
 
 .woocommerce div.product div.images ol.flex-control-thumbs li {
-	width: 32%;
+	width: 23.5%;
 	margin: 0 2% 10px 0;
 }
-.woocommerce div.product div.images ol.flex-control-thumbs li:nth-child(3n+3) {
+.woocommerce div.product div.images ol.flex-control-thumbs li:nth-child(4n+4) {
 	margin-right: 0;
 }
 
