@@ -334,7 +334,7 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 
 		// Register and enqueue our icon font
 		// We're using the awesome Font Awesome icon font. http://fortawesome.github.io/Font-Awesome
-		wp_enqueue_style( 'fontawesome', trailingslashit( get_template_directory_uri() ) . 'css/font-awesome.min.css', array( 'normalize' ), '4.6.3', 'all' );
+		wp_enqueue_style( 'fontawesome', trailingslashit( get_template_directory_uri() ) . 'css/font-awesome.min.css', array( 'normalize' ), '4.7', 'all' );
 
 		// Our styles for setting up the grid. We're using Unsemantic. http://unsemantic.com
 		wp_enqueue_style( 'unsemanticgrid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'fontawesome' ), '1.0.0', 'all' );
@@ -392,9 +392,6 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		wp_register_script( 'ephemeriscommonjs', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.0', true );
 		wp_enqueue_script( 'ephemeriscommonjs' );
 
-		// Load our script that envokes a button toggle for the main navigation menu on small screens
-		//wp_enqueue_script( 'ephemeris-small-menu', trailingslashit( get_template_directory_uri() ) . 'js/small-menu.js', array( 'jquery' ), '1.0.0', true );
-
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
@@ -408,9 +405,8 @@ add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
  */
 if ( ! function_exists( 'ephemeris_customizer_preview_scripts' ) ) {
 	function ephemeris_customizer_preview_scripts() {
-		wp_enqueue_script( 'ephemeris-customizer-preview', trailingslashit( get_template_directory_uri() ) . 'js/customizer-preview.js', array( 'customize-preview', 'jquery' ) );
-		wp_register_script( 'ephemeriscommonjs', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.0', true );
-		wp_enqueue_script( 'ephemeriscommonjs' );
+		wp_enqueue_script( 'ephemeris-customizer-preview', trailingslashit( get_template_directory_uri() ) . 'js/customizer-preview.js', array( 'customize-preview', 'jquery' ), true );
+		wp_enqueue_script( 'ephemeriscommonjs', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.0', true );
 	}
 }
 add_action( 'customize_preview_init', 'ephemeris_customizer_preview_scripts' );
@@ -497,23 +493,6 @@ if ( ! function_exists( 'ephemeris_custom_background_cb' ) ) {
 	<?php
 	}
 }
-
-/*
- * Remove query string from enqueued files. See https://developers.google.com/speed/docs/insights/rules
- *
- * @since Ephemeris 1.0
- *
- * @param string css/js include
- * @return string
- */
-function ephemeris_remove_cssjs_ver( $src ) {
-	if ( strpos( $src, '?ver=' ) ) {
-		$src = remove_query_arg( 'ver', $src );
-	}
-	return $src;
-}
-add_filter( 'style_loader_src', 'ephemeris_remove_cssjs_ver', 10, 2 );
-add_filter( 'script_loader_src', 'ephemeris_remove_cssjs_ver', 10, 2 );
 
 /**
  * Displays the optional custom logo. If no logo is available, it displays the Site Title
@@ -981,7 +960,7 @@ if ( ! function_exists( 'ephemeris_after_woocommerce_wrapper' ) ) {
  *
  * @since Ephemeris 1.0
  *
- * @return void
+ * @return boolean
  */
 function ephemeris_is_woocommerce_active() {
 	return in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
@@ -1013,7 +992,9 @@ add_action( 'template_redirect', 'ephemeris_setup_woocommerce_wrappers', 9 );
  */
 if ( ! function_exists( 'ephemeris_woocommerce_before_main_content' ) ) {
 	function ephemeris_woocommerce_before_main_content() {
-		if ( is_product() ) {
+		$defaults = ephemeris_generate_defaults();
+
+		if ( ( is_shop() && !get_theme_mod( 'woocommerce_shop_sidebar', $defaults['woocommerce_shop_sidebar'] ) ) || ( is_product() && !get_theme_mod( 'woocommerce_product_sidebar', $defaults['woocommerce_product_sidebar'] ) ) ) {
 			echo '<div class="grid-100">';
 		}
 		else {
@@ -1046,7 +1027,9 @@ add_action( 'woocommerce_after_main_content', 'ephemeris_woocommerce_after_main_
  */
 if ( ! function_exists( 'ephemeris_remove_woocommerce_sidebar' ) ) {
 	function ephemeris_remove_woocommerce_sidebar() {
-		if ( is_product() ) {
+		$defaults = ephemeris_generate_defaults();
+
+		if ( ( is_shop() && !get_theme_mod( 'woocommerce_shop_sidebar', $defaults['woocommerce_shop_sidebar'] ) ) || ( is_product() && !get_theme_mod( 'woocommerce_product_sidebar', $defaults['woocommerce_product_sidebar'] ) ) ) {
 			remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 		}
 	}
@@ -1219,6 +1202,7 @@ if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 			'contact_phone' => '',
 			'search_menu_icon' => 0,
 			'woocommerce_shop_sidebar' => 1,
+			'woocommerce_product_sidebar' => 0,
 		);
 
 		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );
