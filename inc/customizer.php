@@ -60,8 +60,8 @@ class ephemeris_initialise_customizer_settings {
 		 */
 		 $wp_customize->add_panel( 'header_naviation_panel',
 		 	array(
-				'title' => __( 'Header & Navigation' ),
-				'description' => esc_html__( 'Adjust your Header and Navigation sections.' )
+				'title' => __( 'Header & Navigation', 'ephemeris' ),
+				'description' => esc_html__( 'Adjust your Header and Navigation sections.', 'ephemeris' )
 			)
 		);
 	}
@@ -75,8 +75,8 @@ class ephemeris_initialise_customizer_settings {
 		 */
 		$wp_customize->add_section( 'social_icons_section',
 			array(
-				'title' => __( 'Social Icons' ),
-				'description' => esc_html__( 'Add your social media links and we’ll automatically match them with the appropriate icons. Drag and drop the URLs to rearrange their order.' ),
+				'title' => __( 'Social Icons', 'ephemeris' ),
+				'description' => esc_html__( 'Add your social media links and we\'ll automatically match them with the appropriate icons. Drag and drop the URLs to rearrange their order.', 'ephemeris' ),
 				'panel' => 'header_naviation_panel'
 			)
 		);
@@ -86,8 +86,8 @@ class ephemeris_initialise_customizer_settings {
 		 */
 		$wp_customize->add_section( 'contact_section',
 			array(
-				'title' => __( 'Contact' ),
-				'description' => esc_html__( 'Add your phone number to the site header bar.' ),
+				'title' => __( 'Contact', 'ephemeris' ),
+				'description' => esc_html__( 'Add your phone number to the site header bar.', 'ephemeris' ),
 				'panel' => 'header_naviation_panel'
 			)
 		);
@@ -97,8 +97,8 @@ class ephemeris_initialise_customizer_settings {
 		 */
 		$wp_customize->add_section( 'search_section',
 			array(
-				'title' => __( 'Search' ),
-				'description' => esc_html__( 'Add a search icon to your primary naigation menu.' ),
+				'title' => __( 'Search', 'ephemeris' ),
+				'description' => esc_html__( 'Add a search icon to your primary naigation menu.', 'ephemeris' ),
 				'panel' => 'header_naviation_panel'
 			)
 		);
@@ -108,23 +108,23 @@ class ephemeris_initialise_customizer_settings {
 		 */
 		$wp_customize->add_section( 'woocommerce_layout_section',
 			array(
-				'title' => __( 'WooCommerce Layout' ),
-				'description' => esc_html__( 'Adjust the layout of your WooCommerce shop.' ),
-				'active_callback' => 'ephemeris_is_woocommerce_active'
+				'title' => __( 'WooCommerce Layout', 'ephemeris' ),
+				'description' => esc_html__( 'Adjust the layout of your WooCommerce shop.', 'ephemeris' ),
+				'active_callback' => 'skyrocket_is_woocommerce_active'
 			)
 		);
 
 		$wp_customize->add_section( 'sample_custom_controls_section',
 			array(
-				'title' => __( 'Sample Custom Controls' ),
-				'description' => esc_html__( 'These are an example of Customizer Custom Controls.' )
+				'title' => __( 'Sample Custom Controls', 'ephemeris' ),
+				'description' => esc_html__( 'These are an example of Customizer Custom Controls.', 'ephemeris' )
 			)
 		);
 
 		$wp_customize->add_section( 'default_controls_section',
 			array(
-				'title' => __( 'Default Controls' ),
-				'description' => esc_html__( 'These are an example of the default Customizer Controls.' )
+				'title' => __( 'Default Controls', 'ephemeris' ),
+				'description' => esc_html__( 'These are an example of the default Customizer Controls.', 'ephemeris' )
 			)
 		);
 
@@ -140,7 +140,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => $this->defaults['social_newtab'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'ephemeris_switch_sanitization'
+				'sanitize_callback' => 'skyrocket_switch_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'social_newtab',
@@ -165,7 +165,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => $this->defaults['social_alignment'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'ephemeris_text_sanitization'
+				'sanitize_callback' => 'skyrocket_radio_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Text_Radio_Button_Custom_Control( $wp_customize, 'social_alignment',
@@ -174,8 +174,8 @@ class ephemeris_initialise_customizer_settings {
 				'description' => esc_html__( 'Choose the alignment for your social icons', 'ephemeris' ),
 				'section' => 'social_icons_section',
 				'choices' => array(
-					'alignleft' => __( 'Left' ),
-					'alignright' => __( 'Right' )
+					'alignleft' => __( 'Left', 'ephemeris' ),
+					'alignright' => __( 'Right', 'ephemeris' )
 				)
 			)
 		) );
@@ -195,7 +195,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => $this->defaults['social_urls'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'ephemeris_url_sanitization'
+				'sanitize_callback' => 'skyrocket_url_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Sortable_Repeater_Custom_Control( $wp_customize, 'social_urls',
@@ -204,7 +204,7 @@ class ephemeris_initialise_customizer_settings {
 				'description' => esc_html__( 'Add your social media links.', 'ephemeris' ),
 				'section' => 'social_icons_section',
 				'button_labels' => array(
-					'add' => __( 'Add Icon' ),
+					'add' => __( 'Add Icon', 'ephemeris' ),
 				)
 			)
 		) );
@@ -254,7 +254,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => '',
 				'transport' => 'refresh',
-				'sanitize_callback' => 'ephemeris_text_sanitization'
+				'sanitize_callback' => 'skyrocket_text_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Single_Accordion_Custom_Control( $wp_customize, 'social_url_icons',
@@ -270,7 +270,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => $this->defaults['social_rss'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'ephemeris_switch_sanitization'
+				'sanitize_callback' => 'skyrocket_switch_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'social_rss',
@@ -301,7 +301,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => $this->defaults['contact_phone'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'ephemeris_text_sanitization'
+				'sanitize_callback' => 'wp_filter_nohtml_kses'
 			)
 		);
 		$wp_customize->add_control( 'contact_phone',
@@ -333,7 +333,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => $this->defaults['search_menu_icon'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'ephemeris_switch_sanitization'
+				'sanitize_callback' => 'skyrocket_switch_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'search_menu_icon',
@@ -361,7 +361,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => $this->defaults['woocommerce_shop_sidebar'],
 				'transport' => 'refresh',
-				'sanitize_callback' => 'ephemeris_switch_sanitization'
+				'sanitize_callback' => 'skyrocket_switch_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'woocommerce_shop_sidebar',
@@ -376,7 +376,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => $this->defaults['woocommerce_product_sidebar'],
 				'transport' => 'refresh',
-				'sanitize_callback' => 'ephemeris_switch_sanitization'
+				'sanitize_callback' => 'skyrocket_switch_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'woocommerce_product_sidebar',
@@ -390,13 +390,13 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'woocommerce_other_sidebar',
 			array(
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'ephemeris_text_sanitization'
+				'sanitize_callback' => 'skyrocket_text_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Simple_Notice_Custom_control( $wp_customize, 'woocommerce_other_sidebar',
 			array(
 				'label' => __( 'Cart, Checkout & My Account sidebars', 'ephemeris' ),
-				'description' => __( 'The Cart, Checkout and My Account pages are displayed using shortcodes. To remove the sidebar from these Pages, simply edit each Page and change the Template (in the Page Attributes Panel) to Full-width Page.', 'ephemeris' ),
+				'description' => esc_html__( 'The Cart, Checkout and My Account pages are displayed using shortcodes. To remove the sidebar from these Pages, simply edit each Page and change the Template (in the Page Attributes Panel) to Full-width Page.', 'ephemeris' ),
 				'section' => 'woocommerce_layout_section'
 			)
 		) );
@@ -413,7 +413,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => 0,
 				'transport' => 'refresh',
-				'sanitize_callback' => 'ephemeris_switch_sanitization'
+				'sanitize_callback' => 'skyrocket_switch_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'sample_toggle_switch',
@@ -428,7 +428,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => '48',
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'ephemeris_sanitize_integer'
+				'sanitize_callback' => 'absint'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Slider_Custom_Control( $wp_customize, 'sample_slider_control',
@@ -448,7 +448,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => '',
 				'transport' => 'refresh',
-				'sanitize_callback' => 'ephemeris_url_sanitization'
+				'sanitize_callback' => 'skyrocket_url_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Sortable_Repeater_Custom_Control( $wp_customize, 'sample_sortable_repeater_control',
@@ -457,7 +457,7 @@ class ephemeris_initialise_customizer_settings {
 				'description' => esc_html__( 'This is the control description.', 'ephemeris' ),
 				'section' => 'sample_custom_controls_section',
 				'button_labels' => array(
-					'add' => __( 'Add Row' ),
+					'add' => __( 'Add Row', 'ephemeris' ),
 				)
 			)
 		) );
@@ -467,7 +467,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => 'sidebarright',
 				'transport' => 'refresh',
-				'sanitize_callback' => 'ephemeris_text_sanitization'
+				'sanitize_callback' => 'skyrocket_radio_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Image_Radio_Button_Custom_Control( $wp_customize, 'sample_image_radio_button',
@@ -478,15 +478,15 @@ class ephemeris_initialise_customizer_settings {
 				'choices' => array(
 					'sidebarleft' => array(
 						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-left.png',
-						'name' => __( 'Left Sidebar' )
+						'name' => __( 'Left Sidebar', 'ephemeris' )
 					),
 					'sidebarnone' => array(
 						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-none.png',
-						'name' => __( 'No Sidebar' )
+						'name' => __( 'No Sidebar', 'ephemeris' )
 					),
 					'sidebarright' => array(
 						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-right.png',
-						'name' => __( 'Right Sidebar' )
+						'name' => __( 'Right Sidebar', 'ephemeris' )
 					)
 				)
 			)
@@ -497,7 +497,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => 'right',
 				'transport' => 'refresh',
-				'sanitize_callback' => 'ephemeris_text_sanitization'
+				'sanitize_callback' => 'skyrocket_radio_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Text_Radio_Button_Custom_Control( $wp_customize, 'sample_text_radio_button',
@@ -506,9 +506,9 @@ class ephemeris_initialise_customizer_settings {
 				'description' => esc_html__( 'Sample custom control description', 'ephemeris' ),
 				'section' => 'sample_custom_controls_section',
 				'choices' => array(
-					'left' => __( 'Left' ),
-					'centered' => __( 'Centered' ),
-					'right' => __( 'Right' )
+					'left' => __( 'Left', 'ephemeris' ),
+					'centered' => __( 'Centered', 'ephemeris' ),
+					'right' => __( 'Right', 'ephemeris' )
 				)
 			)
 		) );
@@ -518,7 +518,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => 'stylebold',
 				'transport' => 'refresh',
-				'sanitize_callback' => 'ephemeris_text_sanitization'
+				'sanitize_callback' => 'skyrocket_text_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Image_checkbox_Custom_Control( $wp_customize, 'sample_image_checkbox',
@@ -529,19 +529,19 @@ class ephemeris_initialise_customizer_settings {
 				'choices' => array(
 					'stylebold' => array(
 						'image' => trailingslashit( get_template_directory_uri() ) . 'images/bold.png',
-						'name' => __( 'Bold' )
+						'name' => __( 'Bold', 'ephemeris' )
 					),
 					'styleitalic' => array(
 						'image' => trailingslashit( get_template_directory_uri() ) . 'images/italic.png',
-						'name' => __( 'Italic' )
+						'name' => __( 'Italic', 'ephemeris' )
 					),
 					'styleallcaps' => array(
 						'image' => trailingslashit( get_template_directory_uri() ) . 'images/allcaps.png',
-						'name' => __( 'All Caps' )
+						'name' => __( 'All Caps', 'ephemeris' )
 					),
 					'styleunderline' => array(
 						'image' => trailingslashit( get_template_directory_uri() ) . 'images/underline.png',
-						'name' => __( 'Underline' )
+						'name' => __( 'Underline', 'ephemeris' )
 					)
 				)
 			)
@@ -564,7 +564,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => '',
 				'transport' => 'refresh',
-				'sanitize_callback' => 'ephemeris_text_sanitization'
+				'sanitize_callback' => 'skyrocket_text_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Single_Accordion_Custom_Control( $wp_customize, 'sample_single_accordion',
@@ -579,7 +579,8 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_alpha_color_picker',
 			array(
 				'default' => 'rgba(209,0,55,0.7)',
-				'transport' => 'postMessage'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'sample_alpha_color_picker',
@@ -604,13 +605,13 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_simple_notice',
 			array(
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'ephemeris_text_sanitization'
+				'sanitize_callback' => 'skyrocket_text_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Simple_Notice_Custom_control( $wp_customize, 'sample_simple_notice',
 			array(
 				'label' => __( 'Simple Notice Control', 'ephemeris' ),
-				'description' => __('This Custom Control allows you to display a simple title and description to your users. <span>text</span> <a href="http://google.com" target="_blank">This is a link</a>', 'ephemeris'),
+				'description' => __( 'This Custom Control allows you to display a simple title and description to your users. You can even include <a href="http://google.com" target="_blank">basic html</a>.', 'ephemeris' ),
 				'section' => 'sample_custom_controls_section'
 			)
 		) );
@@ -618,7 +619,16 @@ class ephemeris_initialise_customizer_settings {
 		// Test of Google Font Select Control
 		$wp_customize->add_setting( 'sample_google_font_select',
 			array(
-			 'default' => '{"font":"Open Sans","regularweight":"regular","italicweight":"italic","boldweight":"700","category":"sans-serif"}'
+				'default' => json_encode(
+					array(
+						'font' => 'Open Sans',
+						'regularweight' => 'regular',
+						'italicweight' => 'italic',
+						'boldweight' => '700',
+						'category' => 'sans-serif'
+					)
+				),
+				'sanitize_callback' => 'skyrocket_google_font_sanitization'
 			)
 		);
 		$wp_customize->add_control( new Skyrocket_Google_Font_Select_Custom_Control( $wp_customize, 'sample_google_font_select',
@@ -628,7 +638,6 @@ class ephemeris_initialise_customizer_settings {
 				'section' => 'sample_custom_controls_section',
 			)
 		) );
-
 	}
 
 	/**
@@ -640,19 +649,20 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_default_text',
 			array(
 				'default' => '',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'skyrocket_text_sanitization'
 			)
 		);
 		$wp_customize->add_control( 'sample_default_text',
 			array(
-				'label' => __( 'Default Text Control' ),
-				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date' ),
+				'label' => __( 'Default Text Control', 'ephemeris' ),
+				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'type' => 'text',
 				'input_attrs' => array(
 					'class' => 'my-custom-class',
 					'style' => 'border: 1px solid rebeccapurple',
-					'placeholder' => __( 'Enter name...' ),
+					'placeholder' => __( 'Enter name...', 'ephemeris' ),
 				),
 			)
 		);
@@ -661,13 +671,14 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_email_text',
 			array(
 				'default' => '',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'sanitize_email'
 			)
 		);
 		$wp_customize->add_control( 'sample_email_text',
 			array(
-				'label' => __( 'Default Email Control' ),
-				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date' ),
+				'label' => __( 'Default Email Control', 'ephemeris' ),
+				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'type' => 'email'
 			)
@@ -677,13 +688,14 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_url_text',
 			array(
 				'default' => '',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'esc_url_raw'
 			)
 		);
 		$wp_customize->add_control( 'sample_url_text',
 			array(
-				'label' => __( 'Default URL Control' ),
-				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date' ),
+				'label' => __( 'Default URL Control', 'ephemeris' ),
+				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'type' => 'url'
 			)
@@ -693,13 +705,14 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_number_text',
 			array(
 				'default' => '',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'skyrocket_sanitize_integer'
 			)
 		);
 		$wp_customize->add_control( 'sample_number_text',
 			array(
-				'label' => __( 'Default Number Control' ),
-				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date' ),
+				'label' => __( 'Default Number Control', 'ephemeris' ),
+				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'type' => 'number'
 			)
@@ -709,13 +722,14 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_hidden_text',
 			array(
 				'default' => '',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'skyrocket_text_sanitization'
 			)
 		);
 		$wp_customize->add_control( 'sample_hidden_text',
 			array(
-				'label' => __( 'Default Hidden Control' ),
-				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date' ),
+				'label' => __( 'Default Hidden Control', 'ephemeris' ),
+				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'type' => 'hidden'
 			)
@@ -725,13 +739,14 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_date_text',
 			array(
 				'default' => '',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'skyrocket_text_sanitization'
 			)
 		);
 		$wp_customize->add_control( 'sample_date_text',
 			array(
-				'label' => __( 'Default Date Control' ),
-				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date' ),
+				'label' => __( 'Default Date Control', 'ephemeris' ),
+				'description' => esc_html__( 'Text controls Type can be either text, email, url, number, hidden, or date', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'type' => 'text'
 			)
@@ -741,15 +756,16 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_default_checkbox',
 			array(
 				'default' => 0,
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'skyrocket_switch_sanitization'
 			)
 		);
 		$wp_customize->add_control( 'sample_default_checkbox',
 			array(
 				'label' => __( 'Default Checkbox Control', 'ephemeris' ),
-				'description' => esc_html__( 'Sample Checkbox description' ),
+				'description' => esc_html__( 'Sample Checkbox description', 'ephemeris' ),
 				'section' => 'default_controls_section',
-				'type'=> 'checkbox'
+				'type' => 'checkbox'
 			)
 		);
 
@@ -757,19 +773,20 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_default_select',
 			array(
 				'default'=>'jet-fuel',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'skyrocket_radio_sanitization'
 			)
 		);
 		$wp_customize->add_control( 'sample_default_select',
 			array(
-				'label' => 'Standard Select Control',
+				'label' => __( 'Standard Select Control', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'type' => 'select',
 				'choices' => array(
-					'wordpress' => 'WordPress',
-					'hamsters' => 'Hamsters',
-					'jet-fuel' => 'Jet Fuel',
-					'nuclear-energy' => 'Nuclear Energy'
+					'wordpress' => __( 'WordPress', 'ephemeris' ),
+					'hamsters' => __( 'Hamsters', 'ephemeris' ),
+					'jet-fuel' => __( 'Jet Fuel', 'ephemeris' ),
+					'nuclear-energy' => __( 'Nuclear Energy', 'ephemeris' )
 				)
 			)
 		);
@@ -777,20 +794,21 @@ class ephemeris_initialise_customizer_settings {
 		// Test of Standard Radio Control
 		$wp_customize->add_setting( 'sample_default_radio',
 			array(
-				'default'=>'spider-man',
-				'transport' => 'refresh'
+				'default' => __( 'spider-man', 'ephemeris' ),
+				'transport' => 'refresh',
+				'sanitize_callback' => 'skyrocket_radio_sanitization'
 			)
 		);
 		$wp_customize->add_control( 'sample_default_radio',
 			array(
-				'label' => 'Standard Radio Control',
+				'label' => __( 'Standard Radio Control', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'type' => 'radio',
 				'choices' => array(
-					'captain-america' => 'Captain America',
-					'iron-man' => 'Iron Man',
-					'spider-man' => 'Spider-Man',
-					'thor' => 'Thor'
+					'captain-america' => __( 'Captain America', 'ephemeris' ),
+					'iron-man' => __( 'Iron Man', 'ephemeris' ),
+					'spider-man' => __( 'Spider-Man', 'ephemeris' ),
+					'thor' => __( 'Thor', 'ephemeris' )
 				)
 			)
 		);
@@ -799,12 +817,13 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_default_dropdownpages',
 			array(
 				'default' => '0',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'absint'
 			)
 		);
 		$wp_customize->add_control( 'sample_default_dropdownpages',
 			array(
-				'label' => 'Default Dropdown Pages Control',
+				'label' => __( 'Default Dropdown Pages Control', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'type' => 'dropdown-pages'
 			)
@@ -814,18 +833,19 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_default_textarea',
 			array(
 				'default' => '',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'wp_filter_nohtml_kses'
 			)
 		);
 		$wp_customize->add_control( 'sample_default_textarea',
 			array(
-				'label' => 'Default Textarea Control',
+				'label' => __( 'Default Textarea Control', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'type' => 'textarea',
 				'input_attrs' => array(
 					'class' => 'my-custom-class',
 					'style' => 'border: 1px solid #999',
-					'placeholder' => __( 'Enter message...' ),
+					'placeholder' => __( 'Enter message...', 'ephemeris' ),
 				),
 			)
 		);
@@ -834,12 +854,13 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_default_color',
 			array(
 				'default' => '#333',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'sanitize_hex_color'
 			)
 		);
 		$wp_customize->add_control( 'sample_default_color',
 			array(
-				'label' => 'Default Color Control',
+				'label' => __( 'Default Color Control', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'type' => 'color'
 			)
@@ -849,23 +870,24 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_default_media',
 			array(
 				'default' => '',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'absint'
 			)
 		);
 		$wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'sample_default_media',
 			array(
-				'label' => __( 'Default Media Control' ),
-				'description' => esc_html__( 'This is the description for the Media Control' ),
+				'label' => __( 'Default Media Control', 'ephemeris' ),
+				'description' => esc_html__( 'This is the description for the Media Control', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'mime_type' => 'image',
 				'button_labels' => array(
-					'select' => __( 'Select File' ),
-					'change' => __( 'Change File' ),
-					'default' => __( 'Default' ),
-					'remove' => __( 'Remove' ),
-					'placeholder' => __( 'No file selected' ),
-					'frame_title' => __( 'Select File' ),
-					'frame_button' => __( 'Choose File' ),
+					'select' => __( 'Select File', 'ephemeris' ),
+					'change' => __( 'Change File', 'ephemeris' ),
+					'default' => __( 'Default', 'ephemeris' ),
+					'remove' => __( 'Remove', 'ephemeris' ),
+					'placeholder' => __( 'No file selected', 'ephemeris' ),
+					'frame_title' => __( 'Select File', 'ephemeris' ),
+					'frame_button' => __( 'Choose File', 'ephemeris' ),
 				)
 			)
 		) );
@@ -874,22 +896,23 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_default_image',
 			array(
 				'default' => '',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'absint'
 			)
 		);
 		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'sample_default_image',
 			array(
-				'label' => __( 'Default Image Control' ),
-				'description' => esc_html__( 'This is the description for the Image Control' ),
+				'label' => __( 'Default Image Control', 'ephemeris' ),
+				'description' => esc_html__( 'This is the description for the Image Control', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'button_labels' => array(
-					'select' => __( 'Select Image' ),
-					'change' => __( 'Change Image' ),
-					'remove' => __( 'Remove' ),
-					'default' => __( 'Default' ),
-					'placeholder' => __( 'No image selected' ),
-					'frame_title' => __( 'Select Image' ),
-					'frame_button' => __( 'Choose Image' ),
+					'select' => __( 'Select Image', 'ephemeris' ),
+					'change' => __( 'Change Image', 'ephemeris' ),
+					'remove' => __( 'Remove', 'ephemeris' ),
+					'default' => __( 'Default', 'ephemeris' ),
+					'placeholder' => __( 'No image selected', 'ephemeris' ),
+					'frame_title' => __( 'Select Image', 'ephemeris' ),
+					'frame_button' => __( 'Choose Image', 'ephemeris' ),
 				)
 			)
 		) );
@@ -898,13 +921,14 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'sample_default_cropped_image',
 			array(
 				'default' => '',
-				'transport' => 'refresh'
+				'transport' => 'refresh',
+				'sanitize_callback' => 'absint'
 			)
 		);
 		$wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'sample_default_cropped_image',
 			array(
-				'label' => __( 'Default Cropped Image Control' ),
-				'description' => esc_html__( 'This is the description for the Cropped Image Control' ),
+				'label' => __( 'Default Cropped Image Control', 'ephemeris' ),
+				'description' => esc_html__( 'This is the description for the Cropped Image Control', 'ephemeris' ),
 				'section' => 'default_controls_section',
 				'flex_width' => false,
 				'flex_height' => false,
