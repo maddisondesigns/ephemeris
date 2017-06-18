@@ -12,20 +12,25 @@
 			<?php
 			do_action( 'ephemeris_before_sidebar' );
 
-			if ( is_active_sidebar( 'sidebar-main' ) ) {
-				dynamic_sidebar( 'sidebar-main' );
+			if ( ephemeris_is_woocommerce_active() && is_active_sidebar( 'sidebar-shop' ) && ( is_woocommerce() || is_cart() || is_checkout() ) ) {
+				dynamic_sidebar( 'sidebar-shop' );
 			}
+			else {
+				if ( is_active_sidebar( 'sidebar-main' ) ) {
+					dynamic_sidebar( 'sidebar-main' );
+				}
 
-			if ( ( is_home() || is_archive() ) && is_active_sidebar( 'sidebar-blog' ) ) {
-				dynamic_sidebar( 'sidebar-blog' );
-			}
+				if ( ( is_home() || is_archive() ) && is_active_sidebar( 'sidebar-blog' ) ) {
+					dynamic_sidebar( 'sidebar-blog' );
+				}
 
-			if ( is_single() && is_active_sidebar( 'sidebar-single' ) ) {
-				dynamic_sidebar( 'sidebar-single' );
-			}
+				if ( is_single() && is_active_sidebar( 'sidebar-single' ) ) {
+					dynamic_sidebar( 'sidebar-single' );
+				}
 
-			if ( is_page() && is_active_sidebar( 'sidebar-page' ) ) {
-				dynamic_sidebar( 'sidebar-page' );
+				if ( is_page() && is_active_sidebar( 'sidebar-page' ) ) {
+					dynamic_sidebar( 'sidebar-page' );
+				}
 			}
 			?>
 
