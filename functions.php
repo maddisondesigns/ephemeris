@@ -1005,9 +1005,7 @@ add_action( 'template_redirect', 'ephemeris_setup_woocommerce_wrappers', 9 );
  */
 if ( ! function_exists( 'ephemeris_woocommerce_before_main_content' ) ) {
 	function ephemeris_woocommerce_before_main_content() {
-		$defaults = ephemeris_generate_defaults();
-
-		if ( ( is_shop() && !get_theme_mod( 'woocommerce_shop_sidebar', $defaults['woocommerce_shop_sidebar'] ) ) || ( is_product() && !get_theme_mod( 'woocommerce_product_sidebar', $defaults['woocommerce_product_sidebar'] ) ) ) {
+		if ( !ephemeris_display_woocommerce_sidebar( 'woocommerce_shop_sidebar' ) || !ephemeris_display_woocommerce_sidebar( 'woocommerce_cattag_sidebar' ) || !ephemeris_display_woocommerce_sidebar( 'woocommerce_product_sidebar' ) ) {
 			echo '<div class="grid-100">';
 		}
 		else {
@@ -1040,14 +1038,48 @@ add_action( 'woocommerce_after_main_content', 'ephemeris_woocommerce_after_main_
  */
 if ( ! function_exists( 'ephemeris_remove_woocommerce_sidebar' ) ) {
 	function ephemeris_remove_woocommerce_sidebar() {
-		$defaults = ephemeris_generate_defaults();
-
-		if ( ( is_shop() && !get_theme_mod( 'woocommerce_shop_sidebar', $defaults['woocommerce_shop_sidebar'] ) ) || ( is_product() && !get_theme_mod( 'woocommerce_product_sidebar', $defaults['woocommerce_product_sidebar'] ) ) ) {
+		if ( !ephemeris_display_woocommerce_sidebar( 'woocommerce_shop_sidebar' ) || !ephemeris_display_woocommerce_sidebar( 'woocommerce_cattag_sidebar' ) || !ephemeris_display_woocommerce_sidebar( 'woocommerce_product_sidebar' ) ) {
 			remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 		}
 	}
 }
 add_action( 'woocommerce_before_main_content', 'ephemeris_remove_woocommerce_sidebar' );
+
+
+/**
+ * Work out whether the sidebar should be displayed on various WooCommerce pages based on the Customizer setting
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return boolean
+ */
+function ephemeris_display_woocommerce_sidebar( $wcsidebar ) {
+	$defaults = ephemeris_generate_defaults();
+	$returnVal = true;
+
+	switch ( $wcsidebar ) {
+		case 'woocommerce_shop_sidebar':
+			if ( is_shop() && !get_theme_mod( 'woocommerce_shop_sidebar', $defaults['woocommerce_shop_sidebar'] ) ) {
+				$returnVal = false;
+			}
+			break;
+		case 'woocommerce_product_sidebar':
+			if ( is_product() && !get_theme_mod( 'woocommerce_product_sidebar', $defaults['woocommerce_product_sidebar'] ) ) {
+				$returnVal = false;
+			}
+			break;
+		case 'woocommerce_cattag_sidebar':
+			if ( ( is_product_category() || is_product_tag() ) && !get_theme_mod( 'woocommerce_cattag_sidebar', $defaults['woocommerce_cattag_sidebar'] ) ) {
+				$returnVal = false;
+			}
+			break;
+		default:
+			$returnVal = true;
+			break;
+	}
+
+	return $returnVal;
+}
 
 /**
  * Set the number of products to display on the WooCommerce shop page
@@ -1062,6 +1094,20 @@ if ( ! function_exists( 'ephemeris_shop_product_count' ) ) {
 	}
 }
 add_filter( 'loop_shop_per_page', 'ephemeris_shop_product_count', 20 );
+
+/**
+ * Set the number of WooCommerce products to display per row
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return integer
+ */
+// if ( !function_exists( 'ephemeris_loop_columns' ) ) {
+// 	function ephemeris_loop_columns() {
+// 		return get_theme_mod( 'woocommerce_products_per_row', $defaults['woocommerce_products_per_row'] );
+// 	}
+// }
+// add_filter( 'loop_shop_columns', 'ephemeris_loop_columns' );
 
 /**
  * Filter the WooCommerce pagination so that it matches the theme pagination
@@ -1215,7 +1261,9 @@ if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 			'contact_phone' => '',
 			'search_menu_icon' => 0,
 			'woocommerce_shop_sidebar' => 1,
+			'woocommerce_cattag_sidebar' => 1,
 			'woocommerce_product_sidebar' => 0,
+			'woocommerce_breadcrumbs' => 1,
 		);
 
 		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );
