@@ -110,7 +110,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'title' => __( 'WooCommerce Layout', 'ephemeris' ),
 				'description' => esc_html__( 'Adjust the layout of your WooCommerce shop.', 'ephemeris' ),
-				'active_callback' => 'skyrocket_is_woocommerce_active'
+				'active_callback' => 'ephemeris_is_woocommerce_active'
 			)
 		);
 
@@ -386,6 +386,21 @@ class ephemeris_initialise_customizer_settings {
 			)
 		) );
 
+		// Add our Checkbox switch setting and control for displaying a sidebar on the Product Category & Tag page
+		$wp_customize->add_setting( 'woocommerce_cattag_sidebar',
+			array(
+				'default' => $this->defaults['woocommerce_cattag_sidebar'],
+				'transport' => 'refresh',
+				'sanitize_callback' => 'skyrocket_switch_sanitization'
+			)
+		);
+		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'woocommerce_cattag_sidebar',
+			array(
+				'label' => __( 'Category & Tag sidebar', 'ephemeris' ),
+				'section' => 'woocommerce_layout_section'
+			)
+		) );
+
 		// Add our Simple Notice setting and control for displaying a message about the WooCommerce shop sidebars
 		$wp_customize->add_setting( 'woocommerce_other_sidebar',
 			array(
@@ -397,6 +412,21 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'label' => __( 'Cart, Checkout & My Account sidebars', 'ephemeris' ),
 				'description' => esc_html__( 'The Cart, Checkout and My Account pages are displayed using shortcodes. To remove the sidebar from these Pages, simply edit each Page and change the Template (in the Page Attributes Panel) to Full-width Page.', 'ephemeris' ),
+				'section' => 'woocommerce_layout_section'
+			)
+		) );
+
+		// Add our Checkbox switch setting and control for displaying the WooCommerce Breadcrumbs
+		$wp_customize->add_setting( 'woocommerce_breadcrumbs',
+			array(
+				'default' => $this->defaults['woocommerce_breadcrumbs'],
+				'transport' => 'refresh',
+				'sanitize_callback' => 'skyrocket_switch_sanitization'
+			)
+		);
+		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'woocommerce_breadcrumbs',
+			array(
+				'label' => __( 'Display breadcrumbs', 'ephemeris' ),
 				'section' => 'woocommerce_layout_section'
 			)
 		) );
