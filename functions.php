@@ -32,7 +32,6 @@ add_action( 'after_setup_theme', 'ephemeris_content_width', 0 );
  */
 if ( ! function_exists( 'ephemeris_setup' ) ) {
 	function ephemeris_setup() {
-
 		/**
 		 * Make theme available for translation
 		 * Translations can be filed in the /languages/ directory
@@ -133,9 +132,27 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'wc-product-gallery-lightbox' );
 		add_theme_support( 'wc-product-gallery-slider' );
+
 	}
 }
 add_action( 'after_setup_theme', 'ephemeris_setup' );
+
+/**
+ * Action any theme or plugin specific hooks. Will also work in Customizer preview refreshes.
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return void
+ */
+function ephemeris_template_redirect() {
+	$defaults = ephemeris_generate_defaults();
+
+	// If WooCommerce is running, check if we should be displaying the Breadcrumbs
+	if( ephemeris_is_woocommerce_active() && !get_theme_mod( 'woocommerce_breadcrumbs', $defaults['woocommerce_breadcrumbs'] ) ) {
+		ephemeris_remove_woocommerce_breadcrumbs();
+	}
+}
+add_action( 'template_redirect', 'ephemeris_template_redirect' );
 
 /**
  * Returns the Google font stylesheet URL, if available.
@@ -418,11 +435,35 @@ add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
  */
 if ( ! function_exists( 'ephemeris_customizer_preview_scripts' ) ) {
 	function ephemeris_customizer_preview_scripts() {
-		wp_enqueue_script( 'ephemeris-customizer-preview', trailingslashit( get_template_directory_uri() ) . 'js/customizer-preview.js', array( 'customize-preview', 'jquery' ), true );
-		wp_enqueue_script( 'ephemeriscommonjs', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.0', true );
+		wp_enqueue_script( 'ephemeris-customizer-previewjs', trailingslashit( get_template_directory_uri() ) . 'js/customizer-preview.js', array( 'customize-preview', 'jquery' ), '1.0', true );
+		wp_enqueue_script( 'ephemeriscommonjs', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '1.0', true );
 	}
 }
 add_action( 'customize_preview_init', 'ephemeris_customizer_preview_scripts' );
+
+/**
+ * Enqueue scripts for our Customizer controls. Allows Customizer preview to update based on panel selected
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return void
+ */
+if ( ! function_exists( 'ephemeris_customize_controls_enqueue_scripts' ) ) {
+	function ephemeris_customize_controls_enqueue_scripts() {
+		if( ephemeris_is_woocommerce_active() ) {
+			$shop_page_url = wc_get_page_permalink( 'shop' );
+
+			wp_enqueue_script( 'ephemeris-customize-controlsjs', trailingslashit( get_template_directory_uri() ) . 'js/customize-controls.js', array( 'customize-controls' ), '1.0', true );
+
+			wp_localize_script( 'ephemeris-customize-controlsjs', 'ephemeris_woocommerce_data',
+				array(
+					'ephemeris_woocommerce_url' => $shop_page_url
+				)
+			);
+		}
+	}
+}
+add_action( 'customize_controls_enqueue_scripts', 'ephemeris_customize_controls_enqueue_scripts' );
 
 /**
  * Custom Background Callback
@@ -893,16 +934,16 @@ if ( ! function_exists( 'ephemeris_failed_login' ) ) {
 }
 
 /**
- * Return a string containing the footer credits & link
+ * Return a string containing the default footer credits & link
  *
  * @since Ephemeris 1.0
  *
  * @return string Footer credits & link
  */
-if ( ! function_exists( 'ephemeris_get_credits' ) ) {
-	function ephemeris_get_credits() {
+if ( ! function_exists( 'ephemeris_get_credits_default' ) ) {
+	function ephemeris_get_credits_default() {
 		$output = '';
-		$output = sprintf( '<p>%1$s <a href="%2$s" title="%3$s">%4$s</a></p>',
+		$output = sprintf( '%1$s <a href="%2$s" title="%3$s">%4$s</a>',
 			esc_html__( 'Proudly powered by', 'ephemeris' ),
 			esc_url( esc_html__( 'http://wordpress.org/', 'ephemeris' ) ),
 			esc_attr( esc_html__( 'Semantic Personal Publishing Platform', 'ephemeris' ) ),
@@ -910,6 +951,22 @@ if ( ! function_exists( 'ephemeris_get_credits' ) ) {
 		);
 
 		return $output;
+	}
+}
+
+/**
+ * Return a string containing the footer credits theme option
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return string footer credits theme option
+ */
+if ( ! function_exists( 'ephemeris_get_credits' ) ) {
+	function ephemeris_get_credits() {
+		$defaults = ephemeris_generate_defaults();
+
+		// wpautop this so that it acts like a the new visual text widget, since we're using the same TinyMCE control
+		return wpautop( get_theme_mod( 'footer_credits', $defaults['footer_credits'] ) );
 	}
 }
 
@@ -1082,6 +1139,19 @@ function ephemeris_display_woocommerce_sidebar( $wcsidebar ) {
 }
 
 /**
+ * Remove the breadcrumbs from the WooCommerce pages
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return void
+ */
+if ( ! function_exists( 'ephemeris_remove_woocommerce_breadcrumbs' ) ) {
+	function ephemeris_remove_woocommerce_breadcrumbs() {
+		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+	}
+}
+
+/**
  * Set the number of products to display on the WooCommerce shop page
  *
  * @since Ephemeris 1.0
@@ -1090,24 +1160,12 @@ function ephemeris_display_woocommerce_sidebar( $wcsidebar ) {
  */
 if ( ! function_exists( 'ephemeris_shop_product_count' ) ) {
 	function ephemeris_shop_product_count( $numprods ) {
-		return 12;
+		$defaults = ephemeris_generate_defaults();
+
+		return get_theme_mod( 'woocommerce_shop_products', $defaults['woocommerce_shop_products'] );
 	}
 }
 add_filter( 'loop_shop_per_page', 'ephemeris_shop_product_count', 20 );
-
-/**
- * Set the number of WooCommerce products to display per row
- *
- * @since Ephemeris 1.0
- *
- * @return integer
- */
-// if ( !function_exists( 'ephemeris_loop_columns' ) ) {
-// 	function ephemeris_loop_columns() {
-// 		return get_theme_mod( 'woocommerce_products_per_row', $defaults['woocommerce_products_per_row'] );
-// 	}
-// }
-// add_filter( 'loop_shop_columns', 'ephemeris_loop_columns' );
 
 /**
  * Filter the WooCommerce pagination so that it matches the theme pagination
@@ -1129,6 +1187,10 @@ add_filter( 'woocommerce_pagination_args', 'ephemeris_woocommerce_pagination_arg
 
 /**
  * Show all the registered Sidebars in the Customizer Widgets Panel all the time
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return array	Customizer arguments
  */
 function ephemeris_show_all_sidebars_in_customizer( $args ) {
 	$args['active_callback'] = '__return_true';
@@ -1138,6 +1200,10 @@ add_filter( 'customizer_widgets_section_args', 'ephemeris_show_all_sidebars_in_c
 
 /**
  * Set our Social Icons URLs
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return array	Social media site urls
  */
 if ( ! function_exists( 'ephemeris_generate_social_urls' ) ) {
 	function ephemeris_generate_social_urls() {
@@ -1249,6 +1315,25 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 }
 
 /**
+ * Output our Customizer styles in the site header
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return string	css styles
+ */
+function ephemeris_customizer_css_styles() {
+	$defaults = ephemeris_generate_defaults();
+	$styles = '';
+
+	// Footer styles
+	$styles .= '#footercontainer { background-color:' . get_theme_mod( 'footer_background_color', $defaults['footer_background_color'] ) . '}';
+	$styles .= '.site-credits { color:' . get_theme_mod( 'footer_font_color', $defaults['footer_font_color'] ) . '}';
+
+	echo '<style type="text/css">' . $styles . '</style>';
+}
+add_action( 'wp_head', 'ephemeris_customizer_css_styles' );
+
+/**
 * Set our Customizer default options
 */
 if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
@@ -1260,10 +1345,14 @@ if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 			'social_rss' => 0,
 			'contact_phone' => '',
 			'search_menu_icon' => 0,
+			'footer_background_color' => '#f9f9f9',
+			'footer_font_color' => '#9a9a9a',
+			'footer_credits' => ephemeris_get_credits_default(),
 			'woocommerce_shop_sidebar' => 1,
 			'woocommerce_cattag_sidebar' => 1,
 			'woocommerce_product_sidebar' => 0,
 			'woocommerce_breadcrumbs' => 1,
+			'woocommerce_shop_products' => 12,
 		);
 
 		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );
