@@ -32,6 +32,9 @@ class ephemeris_initialise_customizer_settings {
 		// Register our search controls
 		add_action( 'customize_register', array( $this, 'ephemeris_register_search_controls' ) );
 
+		// Register our search controls
+		add_action( 'customize_register', array( $this, 'ephemeris_register_footer_controls' ) );
+
 		// Register our Typography controls
 		//add_action( 'customize_register', array( $this, 'ephemeris_register_typography_controls' ) );
 
@@ -100,6 +103,16 @@ class ephemeris_initialise_customizer_settings {
 				'title' => __( 'Search', 'ephemeris' ),
 				'description' => esc_html__( 'Add a search icon to your primary naigation menu.', 'ephemeris' ),
 				'panel' => 'header_naviation_panel'
+			)
+		);
+
+		/**
+		 * Add our Footer Section
+		 */
+		$wp_customize->add_section( 'footer_section',
+			array(
+				'title' => __( 'Footer Layout', 'ephemeris' ),
+				'description' => esc_html__( 'Update the content and style of the site footer. The Footer Content will be displayed just below the footer widgets.', 'ephemeris' )
 			)
 		);
 
@@ -342,10 +355,91 @@ class ephemeris_initialise_customizer_settings {
 				'section' => 'search_section'
 			)
 		) );
-		$wp_customize->selective_refresh->add_partial( 'search_menu_icon',
+	}
+
+	/**
+	 * Register our Footer controls
+	 */
+	public function ephemeris_register_footer_controls( $wp_customize ) {
+		// Add our Alpha Color Picker setting & control for the footer background colour
+		$wp_customize->add_setting( 'footer_background_color',
 			array(
-				'selector' => '.menu-item-search',
+				'default' => $this->defaults['footer_background_color'],
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization'
+			)
+		);
+		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'footer_background_color',
+			array(
+				'label' => __( 'Footer Background Color', 'ephemeris' ),
+				'description' => __( 'Select the background color for the footer.', 'ephemeris' ),
+				'section' => 'footer_section',
+				'show_opacity' => true,
+				'palette' => array(
+					'#000',
+					'#fff',
+					'#df312c',
+					'#df9a23',
+					'#eef000',
+					'#7ed934',
+					'#1571c1',
+					'#8309e7'
+				)
+			)
+		) );
+
+		// Add our Alpha Color Picker setting & control for the footer font colour
+		$wp_customize->add_setting( 'footer_font_color',
+			array(
+				'default' => $this->defaults['footer_font_color'],
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization'
+			)
+		);
+		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'footer_font_color',
+			array(
+				'label' => __( 'Footer Font Color', 'ephemeris' ),
+				'description' => __( 'Select the font color for the footer.', 'ephemeris' ),
+				'section' => 'footer_section',
+				'show_opacity' => true,
+				'palette' => array(
+					'#000',
+					'#fff',
+					'#df312c',
+					'#df9a23',
+					'#eef000',
+					'#7ed934',
+					'#1571c1',
+					'#8309e7'
+				)
+			)
+		) );
+
+		// Add our TinyMCE Editor setting & control for getting the footer credits
+		$wp_customize->add_setting( 'footer_credits',
+			array(
+				'default' => $this->defaults['footer_credits'],
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'wp_kses_post'
+			)
+		);
+		$wp_customize->add_control( new Skyrocket_TinyMCE_Custom_control( $wp_customize, 'footer_credits',
+			array(
+				'label' => __( 'Footer Content', 'ephemeris' ),
+				'description' => __( 'Enter the text you&#8217;d like to display in the footer.', 'ephemeris' ),
+				'section' => 'footer_section',
+				'input_attrs' => array(
+					'toolbar1' => 'bold italic bullist numlist alignleft aligncenter alignright link',
+				)
+			)
+		) );
+		$wp_customize->selective_refresh->add_partial( 'footer_credits',
+			array(
+				'selector' => '.footer-credits',
 				'container_inclusive' => false,
+				'render_callback' => function() {
+					echo ephemeris_get_credits();
+				},
 				'fallback_refresh' => false
 			)
 		);
@@ -431,6 +525,31 @@ class ephemeris_initialise_customizer_settings {
 			)
 		) );
 
+		// Test of Standard Select Control
+		$wp_customize->add_setting( 'woocommerce_shop_products',
+			array(
+				'default'=> $this->defaults['woocommerce_shop_products'],
+				'transport' => 'refresh',
+				'sanitize_callback' => 'skyrocket_radio_sanitization'
+			)
+		);
+		$wp_customize->add_control( 'woocommerce_shop_products',
+			array(
+				'label' => __( 'Shop Products', 'ephemeris' ),
+				'description' => esc_html__( 'Select the number of products to display on the shop page', 'ephemeris' ),
+				'section' => 'woocommerce_layout_section',
+				'type' => 'select',
+				'choices' => array(
+					'4' => __( '4 Products', 'ephemeris' ),
+					'8' => __( '8 Products', 'ephemeris' ),
+					'12' => __( '12 Products', 'ephemeris' ),
+					'16' => __( '16 Products', 'ephemeris' ),
+					'20' => __( '20 Products', 'ephemeris' ),
+					'24' => __( '24 Products', 'ephemeris' ),
+					'28' => __( '28 Products', 'ephemeris' ),
+				)
+			)
+		);
 	}
 
 	/**
@@ -643,6 +762,25 @@ class ephemeris_initialise_customizer_settings {
 				'label' => __( 'Simple Notice Control', 'ephemeris' ),
 				'description' => __( 'This Custom Control allows you to display a simple title and description to your users. You can even include <a href="http://google.com" target="_blank">basic html</a>.', 'ephemeris' ),
 				'section' => 'sample_custom_controls_section'
+			)
+		) );
+
+		// Test of TinyMCE control
+		$wp_customize->add_setting( 'sample_tinymce_editor',
+			array(
+				'default' => '',
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'wp_kses_post'
+			)
+		);
+		$wp_customize->add_control( new Skyrocket_TinyMCE_Custom_control( $wp_customize, 'sample_tinymce_editor',
+			array(
+				'label' => __( 'TinyMCE Control', 'ephemeris' ),
+				'description' => __( 'This is a TinyMCE Editor Custom Control', 'ephemeris' ),
+				'section' => 'sample_custom_controls_section',
+				'input_attrs' => array(
+					'toolbar1' => 'bold italic bullist numlist alignleft aligncenter alignright link',
+				)
 			)
 		) );
 

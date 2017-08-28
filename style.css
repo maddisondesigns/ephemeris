@@ -1549,6 +1549,7 @@ form label.error {
    ========================================================================== */
 
 #footercontainer {
+	background-color: #f9f9f9;
 	width: 100%;
 }
 
@@ -1556,6 +1557,8 @@ form label.error {
 	font-size: 16px;
 	font-size: 1rem;
 	color: #999;
+	padding-top: 16px;
+	padding-top: 1rem;
 }
 
 .site-footer h3 {
@@ -1584,24 +1587,28 @@ form label.error {
 	margin-bottom: 1rem;
 }
 
-.smallprint {
-	color: #999;
+.site-credits {
+	color: #9a9a9a;
+	padding-top: 16px;
+	padding-top: 1rem;
 }
 
-.smallprint p {
+.site-credits p {
 	font-size: 14px;
 	font-size: 0.875rem;
+	margin: 0 0 12px 0;
+	margin: 0 0 .75rem 0;
 }
 
-.smallprint a {
+.site-credits a {
 	color: #555;
 }
 
-.smallprint a:visited {
+.site-credits a:visited {
 	color: #555;
 }
 
-.smallprint a:hover {
+.site-credits a:hover {
 	color: #339bcb;
 }
 
