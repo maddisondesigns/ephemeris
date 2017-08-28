@@ -16,8 +16,8 @@
 
 		<?php get_sidebar( 'footer' ); ?>
 
-		<div class="grid-container smallprint">
-			<div class="grid-100">
+		<div class="grid-container site-credits">
+			<div class="grid-100 footer-credits">
 				<?php echo ephemeris_get_credits() ?>
 			</div> <!-- /.grid-100 -->
 		</div> <!-- /.grid-container.smallprint -->
