@@ -226,22 +226,40 @@ ins {
 }
 
 a {
-	color: #3a3a3a;
+	color: #2c7dbe;
 	outline: none;
+	-o-transition: .5s;
+	-ms-transition: .5s;
+	-moz-transition: .5s;
+	-webkit-transition: .5s;
+	transition: .5s;
 }
 
 a:visited {
-	color: #666;
+	color: #2c7dbe;
+}
+
+a:hover {
+	outline: 0;
+	color: #344860;
+}
+
+a:active {
+	outline: 0;
+	color: #344860;
 }
 
 a:focus {
 	outline: thin dotted;
-	color: #339bcb;
+	color: #344860;
 }
 
-a:hover, a:active {
-	outline: 0;
-	color: #339bcb;
+.logged-in.customize-partial-edit-shortcuts-shown a {
+	-o-transition: none !important;
+	-ms-transition: none !important;
+	-moz-transition: none !important;
+	-webkit-transition: none !important;
+   transition: none !important;
 }
 
 .alignleft {
@@ -442,7 +460,7 @@ img.wp-smiley, .rsswidget img {
 	clear: both;
 }
 
-#primary .entry-content [id^="gallery-"] img {
+#content .entry-content [id^="gallery-"] img {
 	border: none;
 }
 
@@ -733,20 +751,34 @@ main {
 	background-color: #fff;
 }
 
-.site-title h1 {
+.site-title a {
+	font-family: 'Dosis', sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	color: #3a3a3a;
+	font-size: 64px;
+	font-size: 4rem;
+	line-height: 1.25;
+	text-decoration: none;
 	margin-top: 20px;
 	margin-top: 1.25rem;
+	display: inline-block;
+}
+
+.site-title a:visited {
+	color: #3a3a3a;
+}
+
+.site-title a:hover {
+	color: #2c7dbe;
+}
+
+.site-title a:active {
+	color: #2c7dbe;
 }
 
 .site-title img {
 	vertical-align: text-bottom;
-}
-
-.site-title a {
-	color: #3a3a3a;
-	font-size: 64px;
-	font-size: 4rem;
-	text-decoration: none;
 }
 
 #bannercontainer {
@@ -761,8 +793,6 @@ main {
 
 #maincontentcontainer {
 	width: 100%;
-	padding: 32px 0;
-	padding: 2rem 0;
 }
 
 .site-content {
@@ -770,11 +800,11 @@ main {
 	font-size: 1rem;
 	color: #3a3a3a;
 	line-height: 1.5;
+	padding-top: 32px;
+	padding-top: 2rem;
+	padding-bottom: 32px;
+	padding-bottom: 2rem;
 	position: relative;
-}
-
-.home.page .site-content {
-	padding-bottom: 0;
 }
 
 .home.page .site-content article {
@@ -837,13 +867,20 @@ main {
 	margin-right: .25rem;
 }
 
+.social-icons a {
+	color: #3a3a3a;
+}
+
 .social-icons a:visited {
 	color: #3a3a3a;
 }
 
-.social-icons a:hover,
+.social-icons a:hover {
+	color: #2c7dbe;
+}
+
 .social-icons a:active {
-	color: #339bcb;
+	color: #2c7dbe;
 }
 
 /* ==========================================================================
@@ -872,12 +909,20 @@ main {
 	text-decoration: none;
 }
 
+.entry-header h1 a {
+	color: #3a3a3a;
+}
+
 .entry-header h1 a:visited {
 	color: #3a3a3a;
 }
 
 .entry-header h1 a:hover {
-	color: #339bcb;
+	color: #2c7dbe;
+}
+
+.entry-header h1 a:active {
+	color: #2c7dbe;
 }
 
 article.sticky .featured-post {
@@ -892,6 +937,10 @@ article.sticky .featured-post {
 	margin-bottom: 24px;
 	margin-bottom: 1.5rem;
 	text-align: center;
+}
+
+article.sticky {
+	border-bottom: 3px solid #eee;
 }
 
 .site-content article {
@@ -920,14 +969,20 @@ article.sticky .featured-post {
 
 .header-meta a {
 	text-decoration:none;
+	color: #3a3a3a;
 }
 
 .header-meta a:visited {
+	text-decoration:none;
 	color: #3a3a3a;
 }
 
 .header-meta a:hover {
-	color: #339bcb;
+	color: #2c7dbe;
+}
+
+.header-meta a:active {
+	color: #2c7dbe;
 }
 
 .entry-content {
@@ -965,7 +1020,13 @@ article.sticky .featured-post {
 
 .post-categories a:hover,
 .post-tags a:hover {
-	background-color: #339bcb;
+	background-color: #2c7dbe;
+	color: #fff;
+}
+
+.post-categories a:active,
+.post-tags a:active {
+	background-color: #2c7dbe;
 	color: #fff;
 }
 
@@ -1014,21 +1075,50 @@ article.sticky .featured-post {
 	color: #3a3a3a;
 }
 
+.page-links a:visited .page-numbers {
+	background-color: transparent;
+	color: #3a3a3a;
+}
+
 .page-links a:hover .page-numbers {
-	background-color: #339bcb;
+	background-color: #2c7dbe;
+	color: #fff;
+}
+
+.page-links a:active .page-numbers {
+	outline: none;
+	background-color: #2c7dbe;
+	color: #fff;
+}
+
+.page-links a:focus .page-numbers {
+	outline: none;
+	background-color: #2c7dbe;
 	color: #fff;
 }
 
 .more-link {
-	color: #339bcb;
+	color: #2c7dbe;
 	text-decoration: none;
+	font-style: normal;
+	font-weight: 700;
 }
 
-.more-link:hover,
-.more-link:active,
 .more-link:visited {
+	color: #2c7dbe;
+	text-decoration: none;
+	font-style: normal;
+	font-weight: 700;
+}
+
+.more-link:hover {
 	outline: 0;
-	color: #339bcb;
+	color: #344860;
+}
+
+.more-link:active {
+	outline: 0;
+	color: #344860;
 }
 
 .post-edit-link {
@@ -1082,8 +1172,8 @@ article.sticky .featured-post {
 	padding: 0.375rem 0.625rem 0.375rem 0;
 }
 
-.entry-content thead th,
-.comment-content thead th {
+.entry-content th,
+.comment-content th {
 	border-bottom: 1px solid #ccc;
 }
 
@@ -1177,11 +1267,14 @@ article.sticky .featured-post {
 	color: #666;
 }
 
-.author-link a:focus,
-.author-link a:hover,
+.author-link a:hover {
+	outline: 0;
+	color: #2c7dbe;
+}
+
 .author-link a:active {
 	outline: 0;
-	color: #339bcb;
+	color: #2c7dbe;
 }
 
 .author.archive .author-info {
@@ -1574,12 +1667,11 @@ form label.error {
 }
 
 .site-footer a:hover {
-	color: #339bcb;
+	color: #2c7dbe;
 }
 
-.site-footer a:focus {
-	outline: thin dotted;
-	color: #339bcb;
+.site-footer a:active {
+	color: #2c7dbe;
 }
 
 .site-footer .widget-area .widget {
@@ -1609,9 +1701,12 @@ form label.error {
 }
 
 .site-credits a:hover {
-	color: #339bcb;
+	color: #2c7dbe;
 }
 
+.site-credits a:active {
+	color: #2c7dbe;
+}
 
 /* ==========================================================================
    Widgets
@@ -1757,6 +1852,7 @@ form label.error {
 
 .nav-links a.page-numbers,
 .nav-links span.page-numbers {
+	color: #3a3a3a;
 	padding: 5px;
 	padding: 0.3125rem;
 	text-decoration: none;
@@ -1767,14 +1863,48 @@ form label.error {
 }
 
 .nav-links a:hover.page-numbers {
-	background-color: #339bcb;
+	background-color: #2c7dbe;
 	color: #fff;
+}
+
+.nav-links a:active.page-numbers {
+	outline: none;
+	background-color: #2c7dbe;
+	color: #fff;
+}
+
+.nav-links a:focus.page-numbers {
+	outline: none;
+	background-color: #2c7dbe;
+	color: #fff;
+}
+
+.nav-links a.prev,
+.nav-links a.next {
+	color: #3a3a3a;
+}
+
+.nav-links a:visited.prev,
+.nav-links a:visited.next {
+	color: #3a3a3a;
 }
 
 .nav-links a:hover.prev,
 .nav-links a:hover.next {
 	background-color: transparent;
-	color: #339bcb;
+	color: #2c7dbe;
+}
+
+.nav-links a:active.prev,
+.nav-links a:active.next {
+	background-color: transparent;
+	color: #2c7dbe;
+}
+
+.nav-links a:focus.prev,
+.nav-links a:focus.next {
+	background-color: transparent;
+	color: #2c7dbe;
 }
 
 .nav-links span.current {
@@ -1797,8 +1927,8 @@ form label.error {
 	text-align: left;
 	float: right;
 	clear: right;
-	margin: 45px 0 0 0;
-	margin: 2.8125rem 0 0 0;
+	margin: 64px 0 0 0;
+	margin: 4rem 0 0 0;
 }
 
 .main-navigation h1 {
@@ -1860,8 +1990,8 @@ form label.error {
 }
 
 .main-navigation ul ul a {
-	padding: 0 5px; /* Padding around each dropdown menu option */
-	padding: 0 0.3125rem;
+	padding: 8px 12px; /* Padding around each dropdown menu option */
+	padding: .5rem .75rem;
 }
 
 .main-navigation a {
@@ -1876,9 +2006,7 @@ form label.error {
 	left: 0;
 	z-index: 99999;
 	line-height: 1.7;
-	background-color: #3a3a3a; /* Nav bar dropdown background color */
-	-webkit-box-shadow:2px 2px 5px 0px rgba(0, 0, 0, 0.6);
-	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.6);
+	background-color: #2c7dbe; /* Nav bar dropdown background color */
 }
 
 .main-navigation ul ul ul {
@@ -1888,23 +2016,23 @@ form label.error {
 
 .main-navigation ul ul a {
 	color: #fff; /* Nav bar dropdown link color */
-	width: 11em; /* Nav bar dropdown width */
+	width: 12em; /* Nav bar dropdown width */
 }
 
 .main-navigation ul ul li {
 }
 
-.main-navigation li:hover > a {
-	color: #339bcb; /* Nav bar link color on hover */
+.main-navigation ul ul :hover > a {
+	color: #bec3c7; /* Nav bar dropdown level 2 link color on level 3 hover */
+	background-color: #344860; /* Nav bar dropdown link background color on hover */
 }
 
-.main-navigation ul ul :hover > a {
-	color: #3a3a3a; /* Nav bar dropdown level 2 link color on level 3 hover */
-	background-color: #fff; /* Nav bar dropdown link background color on hover */
+.main-navigation li:hover > a {
+	color: #2c7dbe; /* Nav bar link color on hover */
 }
 
 .main-navigation ul ul a:hover {
-	color: #339bcb; /* Nav bar dropdown link color on hover */
+	color: #fff; /* Nav bar dropdown link color on hover */
 }
 
 .main-navigation ul li:hover > ul {
@@ -1920,7 +2048,12 @@ form label.error {
 .main-navigation .current_page_item > a,
 .main-navigation .current_page_ancestor > a,
 .main-navigation .current_page_parent > a {
-	color: #339bcb; /* Nav bar link color for current menu item or ancestor */
+	color: #2c7dbe; /* Nav bar link color for current menu item or ancestor */
+}
+
+.main-navigation ul ul li.current-menu-item > a,
+.main-navigation ul ul li.current-menu-ancestor > a {
+	color: #bec3c7; /* Nav bar dropdown link color for current menu item */
 }
 
 .main-navigation ul .divider {
@@ -1939,7 +2072,7 @@ form label.error {
 /* Responsive menu for smaller devices */
 .mobile-navigation {
 	display: none;
-	background-color: rgba(51, 155, 203, .8);
+	background-color: rgba(44, 125, 190, .8);
 	color: #fff;
 	border-radius: 50%;
 	width: 70px;
@@ -2080,7 +2213,7 @@ main {
 }
 
 .cd-nav .mobile-menu .current-menu-item a {
-	color: #339bcb;
+	color: #2c7dbe;
 }
 
 .no-touch .cd-nav .mobile-menu a:hover {
@@ -2244,7 +2377,7 @@ main {
    top: 0.3em;
    right: 0.3em;
    z-index: 100;
-	color: #5daed9;
+	color: #2c7dbe;
 	line-height: 1;
 }
 
@@ -2373,14 +2506,14 @@ h1.page-title {
 .woocommerce-page .woocommerce-info:before,
 .woocommerce .woocommerce-message:before,
 .woocommerce-page .woocommerce-message:before {
-	color: #339bcb;
+	color: #2c7dbe;
 }
 
 .woocommerce .woocommerce-info,
 .woocommerce-page .woocommerce-info,
 .woocommerce .woocommerce-message,
 .woocommerce-page .woocommerce-message {
-	border-color: #339bcb;
+	border-color: #2c7dbe;
 }
 
 .woocommerce #content div.product p.price,
@@ -2395,7 +2528,71 @@ h1.page-title {
 .woocommerce-page ul.products li.product .price,
 .woocommerce ul.products li.product .price,
 .woocommerce-page ul.products li.product .price {
-	color: #339bcb;
+	color: #2c7dbe;
+}
+
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #content input.button.alt,
+.woocommerce #respond input#submit.alt,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt,
+.woocommerce-page #content input.button.alt,
+.woocommerce-page #respond input#submit.alt,
+.woocommerce-page a.button.alt,
+.woocommerce-page button.button.alt,
+.woocommerce-page input.button.alt {
+	background-color: #2c7dbe;
+	*background-color: #2c7dbe;
+	border: none;
+	*border: 0;
+	border-radius: 0;
+	color: #fff;
+	text-shadow: none;
+	padding: 12px 12px;
+	padding: 0.75rem 0.75rem;
+}
+
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce #content input.button.alt:hover,
+.woocommerce #respond input#submit.alt:hover,
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover,
+.woocommerce input.button.alt:hover,
+.woocommerce-page #content input.button.alt:hover,
+.woocommerce-page #respond input#submit.alt:hover,
+.woocommerce-page a.button.alt:hover,
+.woocommerce-page button.button.alt:hover,
+.woocommerce-page input.button.alt:hover {
+	color: #fff;
+	background-color: #344860;
+	*background-color: #344860;
+	border: none;
+}
+
+.woocommerce .quantity .qty {
+	padding: 5.6px 5.6px;
+	padding: 0.35rem;
+}
+
+#add_payment_method table.cart td.actions .coupon .input-text,
+.woocommerce-cart table.cart td.actions .coupon .input-text,
+.woocommerce-checkout table.cart td.actions .coupon .input-text {
+	padding: 11px;
+	padding: .6875rem;
+}
+
+.woocommerce-page #content table.cart td.actions .input-text {
+	width: 150px
+}
+
+.woocommerce-page .entry-content th,
+.woocommerce-page .entry-content td {
+	border-bottom: none;
 }
 
 .woocommerce span.onsale,
@@ -2403,8 +2600,8 @@ h1.page-title {
 	line-height: 2.6;
 	min-height: 3em;
 	min-width: 3em;
-	background-color: #339bcb;
-	*background-color: #339bcb;
+	background-color: #2c7dbe;
+	*background-color: #2c7dbe;
 }
 
 .woocommerce #content nav.woocommerce-pagination ul li span.current,
@@ -2439,14 +2636,14 @@ h1.page-title {
 }
 
 .woocommerce nav.woocommerce-pagination li a:hover.page-numbers {
-	background-color: #339bcb;
+	background-color: #2c7dbe;
 	color: #fff;
 }
 
 .woocommerce nav.woocommerce-pagination li a:hover.prev,
 .woocommerce nav.woocommerce-pagination li a:hover.next {
 	background-color: transparent;
-	color: #339bcb;
+	color: #2c7dbe;
 }
 
 .shipping-calculator-button {
