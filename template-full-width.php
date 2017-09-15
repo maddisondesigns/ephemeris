@@ -2,8 +2,7 @@
 /**
  * Template Name: Full-width Page
  *
- * Description: Displays a full-width page, with no sidebar. This template is great for pages
- * containing large amounts of content.
+ * Description: Displays a full-width page, with no sidebar. This template is great for pages containing large amounts of content.
  *
  * @package Ephemeris
  * @since Ephemeris 1.0
@@ -12,10 +11,13 @@
 get_header(); ?>
 
 <div id="maincontentcontainer">
-	<div id="primary" class="grid-container site-content" role="main">
+	<div id="content" class="grid-container site-content" role="main">
+
+		<?php do_action( 'ephemeris_before_main_grid' ); ?>
 		<div class="grid-100">
 
 			<?php
+			do_action( 'ephemeris_before_content' );
 			if ( have_posts() ) {
 
 				// Start the Loop
@@ -26,10 +28,13 @@ get_header(); ?>
 				} // end of the loop
 
 			} // end have_posts()
+			do_action( 'ephemeris_after_content' );
 			?>
 
 		</div> <!-- /.grid-100 -->
-	</div><!-- /#primary.grid-container.site-content -->
+		<?php do_action( 'ephemeris_after_main_grid' ); ?>
+
+	</div><!-- /#content.grid-container.site-content -->
 </div> <!-- /#maincontentcontainer -->
 
 <?php get_footer(); ?>

@@ -9,10 +9,12 @@
 get_header(); ?>
 
 <div id="maincontentcontainer">
-	<div id="primary" class="grid-container site-content" role="main">
+	<div id="content" class="grid-container site-content" role="main">
 
+		<?php do_action( 'ephemeris_before_main_grid' ); ?>
 		<div class="grid-70 tablet-grid-70">
 
+			<?php do_action( 'ephemeris_before_content' ); ?>
 			<?php if ( have_posts() ) { ?>
 
 				<header class="archive-header">
@@ -35,12 +37,14 @@ get_header(); ?>
 
 				<?php get_template_part( 'template-parts/no', 'results' ); // Include the template that displays a message that posts cannot be found ?>
 
-			<?php } // end have_posts() check ?>
+			<?php } // end have_posts() ?>
+			<?php do_action( 'ephemeris_after_content' ); ?>
 
 		</div> <!-- /.grid-70 -->
 		<?php get_sidebar(); ?>
+		<?php do_action( 'ephemeris_after_main_grid' ); ?>
 
-	</div> <!-- /#primary.grid-container.site-content -->
+	</div> <!-- /#content.grid-container.site-content -->
 </div> <!-- /#maincontentcontainer -->
 
 <?php get_footer(); ?>

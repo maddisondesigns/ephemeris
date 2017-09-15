@@ -9,7 +9,7 @@
 get_header(); ?>
 
 <div id="maincontentcontainer">
-	<div id="primary" class="grid-container site-content" role="main">
+	<div id="content" class="grid-container site-content" role="main">
 
 		<div class="grid-70 tablet-grid-70">
 
@@ -38,7 +38,7 @@ get_header(); ?>
 		</div> <!-- /.grid-70 -->
 		<?php get_sidebar(); ?>
 
-	</div> <!-- /#primary.grid-container.site-content -->
+	</div> <!-- /#content.grid-container.site-content -->
 </div> <!-- /#maincontentcontainer -->
 
 <?php get_footer(); ?>
