@@ -11,17 +11,18 @@
  */
 ?>
 
-	<?php	do_action( 'ephemeris_after_woocommerce' ); ?>
+	<?php	do_action( 'ephemeris_after_main_content' ); ?>
 	<div id="footercontainer">
+		<?php	do_action( 'ephemeris_before_footer_content' ); ?>
 
 		<?php get_sidebar( 'footer' ); ?>
-
 		<div class="grid-container site-credits">
 			<div class="grid-100 footer-credits">
 				<?php echo ephemeris_get_credits() ?>
 			</div> <!-- /.grid-100 -->
 		</div> <!-- /.grid-container.smallprint -->
 
+		<?php	do_action( 'ephemeris_after_footer_content' ); ?>
 	</div> <!-- /.footercontainer -->
 
 </main> <!-- /.hfeed.site -->
