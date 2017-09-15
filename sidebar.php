@@ -32,6 +32,7 @@
 					dynamic_sidebar( 'sidebar-page' );
 				}
 			}
+			do_action( 'ephemeris_after_sidebar' );
 			?>
 
 		</div> <!-- /#secondary.widget-area -->
