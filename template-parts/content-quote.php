@@ -8,13 +8,16 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php do_action( 'ephemeris_before_entry_header' ); ?>
 	<header class="entry-header">
-		<?php ephemeris_posted_on(); ?>
+		<?php do_action( 'ephemeris_after_entry_title' ); ?>
 	</header> <!-- /.entry-header -->
+	<?php do_action( 'ephemeris_after_entry_header' ); ?>
+
 	<div class="entry-content">
 		<blockquote>
-			<?php the_content( wp_kses( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'ephemeris' ), array( 
-				'span' => array( 
+			<?php the_content( wp_kses( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'ephemeris' ), array(
+				'span' => array(
 					'class' => array() )
 				) ) ); ?>
 			<cite><?php the_title(); ?></cite>
@@ -34,4 +37,5 @@
 		} ?>
 		<?php edit_post_link( esc_html__( 'Edit', 'ephemeris' ) . ' <i class="fa fa-angle-right"></i>', '<div class="edit-link">', '</div>' ); ?>
 	</footer> <!-- /.entry-meta -->
+	<?php do_action( 'ephemeris_after_entry_content' ); ?>
 </article> <!-- /#post -->
