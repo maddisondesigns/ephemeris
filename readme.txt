@@ -7,7 +7,7 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. The Ephemeris theme is WooCommerce compatible, Multilingual Ready (WPML) and translateable. It's also compatible with a wide range of popular page builders such as Visual Composer, Beaver Builder, Divi Builder, SiteOrigin Page Builder and the Elementor Page Builder.
+The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. The Ephemeris theme is WooCommerce compatible, Multilingual Ready (WPML) and translateable. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer.
 
 
 == Description ==
@@ -16,7 +16,7 @@ The Ephemeris theme is a clean, fast and simple platform for creating beautiful,
 
 If you do decide to use a child theme with Ephemeris, there's no need to use CSS @import or even enqueue the parent stylesheet. Ephemeris will automatically enqueue the parent stylesheet for you. Cool eh!
 
-Ephemeris' base is a fluid, responsive grid based on percentages. It uses [Normalize](https://github.com/necolas/normalize.css) to make sure that browsers render all elements more consistently and [Modernizr](http://modernizr.com) for detecting HTML5 and CSS3 browser capabilities along with some default stylings from HTML5 Boilerplate. It also incorporates the gorgeous [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icon font by Dave Gandy.
+Ephemeris uses [Normalize](https://github.com/necolas/normalize.css) to make sure that browsers render all elements more consistently and [Modernizr](http://modernizr.com) for detecting HTML5 and CSS3 browser capabilities along with some default stylings from HTML5 Boilerplate. It also incorporates the gorgeous [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icon font by Dave Gandy.
 
 If you're looking to build an eCommerce website, Ephemeris supports the excellent WooCommerce plugin, straight out of the box.
 
@@ -38,12 +38,13 @@ Main Sidebar: Appears in the sidebar on posts and pages
 Blog Sidebar: Appears in the sidebar on the blog and archive pages only
 Single Post Sidebar: Appears in the sidebar on single posts only
 Page Sidebar: Appears in the sidebar on pages only
+WooCommerce Sidebar: Appears in the sidebar on WooCommerce pages only
 
 The Footer Widget areas are dynamic! You can use up to four of these and they'll magically space themselves out evenly. For example, if you only add widgets into the First Footer Widget Area, then it will expand the full width of the page. However, if you add widgets to all four Footer Widget Areas, they'll magically space themselves out over four equal columns.
-First Footer Widget Area: Appears in the footer sidebar
-Second Footer Widget Area: Appears in the footer sidebar
-Third Footer Widget Area: Appears in the footer sidebar
-Fourth Footer Widget Area: Appears in the footer sidebar
+Footer Widget 1: Appears in the footer in column 1
+Footer Widget 2: Appears in the footer in column 2
+Footer Widget 3: Appears in the footer in column 3
+Footer Widget 4: Appears in the footer in column 4
 
 Custom Logo
 
