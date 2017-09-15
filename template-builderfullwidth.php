@@ -2,7 +2,7 @@
 /**
  * Template Name: Page Builder Full-Width
  *
- * Description: Displays a browser full-width page for use with page builders like Visual Composer, Beaver Builder and the Divi Builder.
+ * Description: Displays a browser full-width page for use with page builders like Elementor, Beaver Builder,  Divi Builder, and Visual Composer.
  *
  * @package Ephemeris
  * @since Ephemeris 1.0
