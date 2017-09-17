@@ -41,9 +41,6 @@ class ephemeris_initialise_customizer_settings {
 		// Register our search controls
 		add_action( 'customize_register', array( $this, 'ephemeris_register_footer_controls' ) );
 
-		// Register our Typography controls
-		//add_action( 'customize_register', array( $this, 'ephemeris_register_typography_controls' ) );
-
 		// Register our WooCommerce controls, only if WooCommerce is active
 		if( ephemeris_is_woocommerce_active() ) {
 			add_action( 'customize_register', array( $this, 'ephemeris_register_woocommerce_controls' ) );
@@ -61,7 +58,7 @@ class ephemeris_initialise_customizer_settings {
 		 	array(
 				'title' => __( 'Colors', 'ephemeris' ),
 				'description' => esc_html__( 'Set the colors for your site.', 'ephemeris' ),
-				'priority' => 39,
+				'priority' => 40,
 			)
 		);
 
@@ -72,7 +69,7 @@ class ephemeris_initialise_customizer_settings {
 		 	array(
 				'title' => __( 'Header & Navigation', 'ephemeris' ),
 				'description' => esc_html__( 'Adjust your Header and Navigation sections.', 'ephemeris' ),
-				'priority' => 165,
+				'priority' => 50,
 			)
 		);
 	}
@@ -139,7 +136,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'title' => __( 'Site Layout', 'ephemeris' ),
 				'description' => esc_html__( 'Adjust the layout of your site. After adjusting the width, the correct Featured Image width will be calculated for all new images that are uploaded. For all your previously uploaded images, you should consider regenerating your thumbnails.', 'ephemeris' ),
-				'priority' => 160,
+				'priority' => 30,
 			)
 		);
 
@@ -183,7 +180,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'title' => __( 'Footer Layout', 'ephemeris' ),
 				'description' => esc_html__( 'Update the content and style of the site footer. The Footer Content will be displayed just below the footer widgets.', 'ephemeris' ),
-				'priority' => 170,
+				'priority' => 95,
 			)
 		);
 
@@ -195,7 +192,7 @@ class ephemeris_initialise_customizer_settings {
 				'title' => __( 'WooCommerce Layout', 'ephemeris' ),
 				'description' => esc_html__( 'Adjust the layout of your WooCommerce shop.', 'ephemeris' ),
 				'active_callback' => 'ephemeris_is_woocommerce_active',
-				'priority' => 175,
+				'priority' => 160,
 			)
 		);
 	}
