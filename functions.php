@@ -158,7 +158,7 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		 */
 
 		// Start off with a clean base by using normalise.
-		wp_enqueue_style( 'normalize', trailingslashit( get_template_directory_uri() ) . 'css/normalize.css', array(), '4.1.1', 'all' );
+		wp_enqueue_style( 'normalize', trailingslashit( get_template_directory_uri() ) . 'css/normalize.css', array(), '7.0.0', 'all' );
 
 		// Register and enqueue our icon font
 		// We're using the awesome Font Awesome icon font. http://fortawesome.github.io/Font-Awesome
@@ -1007,11 +1007,14 @@ add_filter( 'excerpt_more', 'ephemeris_auto_excerpt_more' );
 if ( ! function_exists( 'ephemeris_get_credits_default' ) ) {
 	function ephemeris_get_credits_default() {
 		$output = '';
-		$output = sprintf( '%1$s <a href="%2$s" title="%3$s">%4$s</a>',
+		$output = sprintf( '<p style="text-align: center;">%1$s <a href="%2$s" title="%3$s">%4$s</a> &amp; <a href="%5$s" title="%6$s">%7$s</a></p>',
 			esc_html__( 'Proudly powered by', 'ephemeris' ),
-			esc_url( esc_html__( 'http://wordpress.org/', 'ephemeris' ) ),
+			esc_url( esc_html__( 'http://wordpress.org', 'ephemeris' ) ),
 			esc_attr( esc_html__( 'Semantic Personal Publishing Platform', 'ephemeris' ) ),
-			esc_html__( 'WordPress', 'ephemeris' )
+			esc_html__( 'WordPress', 'ephemeris' ),
+			esc_url( esc_html__( 'http://skyrocketthemes.com', 'ephemeris' ) ),
+			esc_attr( esc_html__( 'Skyrocket Themes', 'ephemeris' ) ),
+			esc_html__( 'Skyrocket Themes', 'ephemeris' )
 		);
 
 		return $output;
