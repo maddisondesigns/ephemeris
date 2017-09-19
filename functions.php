@@ -246,7 +246,7 @@ add_action( 'customize_preview_init', 'ephemeris_customizer_preview_scripts' );
  */
 if ( ! function_exists( 'ephemeris_customize_controls_enqueue_scripts' ) ) {
 	function ephemeris_customize_controls_enqueue_scripts() {
-		if( ephemeris_is_woocommerce_active() ) {
+		if( ephemeris_is_plugin_active( 'woocommerce' ) ) {
 			$shop_page_url = wc_get_page_permalink( 'shop' );
 
 			wp_enqueue_script( 'ephemeriscustomizecontrolsjs', trailingslashit( get_template_directory_uri() ) . 'js/customize-controls.js', array( 'customize-controls' ), '1.0', true );
@@ -272,7 +272,7 @@ function ephemeris_template_redirect() {
 	$defaults = ephemeris_generate_defaults();
 
 	// If WooCommerce is running, check if we should be displaying the Breadcrumbs
-	if( ephemeris_is_woocommerce_active() && !get_theme_mod( 'woocommerce_breadcrumbs', $defaults['woocommerce_breadcrumbs'] ) ) {
+	if( ephemeris_is_plugin_active( 'woocommerce' ) && !get_theme_mod( 'woocommerce_breadcrumbs', $defaults['woocommerce_breadcrumbs'] ) ) {
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 	}
 
@@ -516,7 +516,7 @@ if ( ! function_exists( 'ephemeris_widgets_init' ) ) {
 			)
 		);
 
-		if ( ephemeris_is_woocommerce_active() ) {
+		if ( ephemeris_is_plugin_active( 'woocommerce' ) ) {
 			register_sidebar( array(
 					'name' => esc_html__( 'WooCommerce Sidebar', 'ephemeris' ),
 					'id' => 'sidebar-shop',
@@ -818,7 +818,7 @@ add_action( 'comment_form_default_fields', 'ephemeris_comment_form_default_field
  */
 if ( ! function_exists( 'ephemeris_comment_form_field_comment' ) ) {
 	function ephemeris_comment_form_field_comment( $field ) {
-		if ( !ephemeris_is_woocommerce_active() || ( ephemeris_is_woocommerce_active() && !is_product() ) ) {
+		if ( !ephemeris_is_plugin_active( 'woocommerce' ) || ( ephemeris_is_plugin_active( 'woocommerce' ) && !is_product() ) ) {
 			$field = '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun', 'ephemeris' ) . ' <span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>';
 		}
 		return $field;
@@ -998,6 +998,30 @@ if ( ! function_exists( 'ephemeris_auto_excerpt_more' ) ) {
 add_filter( 'excerpt_more', 'ephemeris_auto_excerpt_more' );
 
 /**
+ * Extend the user contact methods to include Twitter, Facebook and Google+
+ *
+ * @since Ephemeris 1.0
+ *
+ * @param array List of user contact methods
+ * @return array The filtered list of updated user contact methods
+ */
+if ( ! function_exists( 'ephemeris_new_contactmethods' ) ) {
+	function ephemeris_new_contactmethods( $contactmethods ) {
+		// Add Twitter
+		$contactmethods['twitter'] = 'Twitter';
+
+		//add Facebook
+		$contactmethods['facebook'] = 'Facebook';
+
+		//add Google Plus
+		$contactmethods['googleplus'] = 'Google+';
+
+		return $contactmethods;
+	}
+}
+add_filter( 'user_contactmethods', 'ephemeris_new_contactmethods', 10, 1 );
+
+/**
  * Return a string containing the default footer credits & link
  *
  * @since Ephemeris 1.0
@@ -1059,17 +1083,67 @@ if ( ! function_exists( 'ephemeris_add_search_menu_item' ) ) {
 add_filter( 'wp_nav_menu_items', 'ephemeris_add_search_menu_item', 10, 2 );
 
 /**
- * Check if WooCommerce is active
+ * Check if certain plugins are active
  *
  * @since Ephemeris 1.0
  *
+ * @param string Plugin name to check
  * @return boolean
  */
-function ephemeris_is_woocommerce_active() {
-	if ( class_exists( 'woocommerce' ) ) {
-		return true;
+function ephemeris_is_plugin_active( $plugin ) {
+	$return_val = false;
+
+	switch ( strtolower( $plugin ) ) {
+		case 'woocommerce':
+			if ( class_exists( 'WooCommerce' ) ) {
+				$return_val = true;
+			}
+			break;
+
+		case 'elementor':
+			if ( class_exists( 'Elementor\Plugin' ) ) {
+				$return_val = true;
+			}
+			break;
+
+		case 'beaverbuilder':
+			if ( class_exists( 'FLBuilderLoader' ) ) {
+				$return_val = true;
+			}
+			break;
+
+		case 'divibuilder':
+			if ( class_exists( 'ET_Builder_Plugin' ) ) {
+				$return_val = true;
+			}
+			break;
+
+		default:
+			$return_val = false;
 	}
-	return false;
+
+	return $return_val;
+}
+
+/**
+ * Check if any Page Builders are active and if so, whether they should replace the theme header or footer
+ *
+ * @since Ephemeris 1.0
+ *
+ * @param string The theme section to check. Either 'header' or 'footer'
+ * @return boolean
+ */
+if ( ! function_exists( 'ephemeris_has_pagebuilder_template' ) ) {
+	function ephemeris_has_pagebuilder_template( $section ) {
+		$defaults = ephemeris_generate_defaults();
+		$return_val = false;
+		$template = 'elementor_' . strtolower( $section ) . '_template';
+
+		if ( ephemeris_is_plugin_active( 'elementor' ) && get_theme_mod( $template, $defaults[$template] ) ) {
+			$return_val = true;
+		}
+		return $return_val;
+	}
 }
 
 /**
@@ -1407,6 +1481,8 @@ if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 			'woocommerce_product_sidebar' => 0,
 			'woocommerce_breadcrumbs' => 1,
 			'woocommerce_shop_products' => 12,
+			'elementor_header_template' => 0,
+			'elementor_footer_template' => 0,
 		);
 
 		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );
@@ -1421,7 +1497,7 @@ include_once trailingslashit( dirname(__FILE__) ) . 'inc/customizer.php';
 /**
  * Debug function to show the name of the current template being used
  */
-// function show_template() {
+//function show_template() {
 // 	global $template;
 // 	echo '<div style="background-color:#000;color:#fff">';
 // 	//print_r(get_templates_data());
@@ -1434,5 +1510,8 @@ include_once trailingslashit( dirname(__FILE__) ) . 'inc/customizer.php';
 // 	echo $templates[0]->ID . ' - ' . $templates[0]->post_title;
 // 	echo '</div>';
 // 	echo do_shortcode( '[elementor-template id="' . $templates[0]->ID . '"]' );
+//
+// 	$plugin = 'woocommerce';
+// 	if ( ephemeris_is_plugin_active($plugin) ) { echo $plugin . ' ON';} else { echo $plugin . ' OFF';}
 // }
 // add_action('wp_head', 'show_template');
