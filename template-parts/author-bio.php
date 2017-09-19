@@ -3,13 +3,13 @@
  * The template for displaying Author bios.
  *
  * @package Ephemeris
- * @since Ephemeris 1.2.5
+ * @since Ephemeris 1.0
  */
 ?>
 
 <div class="author-info">
 	<div class="author-avatar">
-		<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'ephemeris_author_bio_avatar_size', 68 ) ); ?>
+		<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'ephemeris_author_bio_avatar_size', 96 ) ); ?>
 	</div> <!-- /.author-avatar -->
 	<div class="author-description">
 		<h2><?php printf( esc_html__( 'About %s', 'ephemeris' ), get_the_author() ); ?></h2>
@@ -30,9 +30,9 @@
 		</p>
 		<div class="author-link">
 			<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-				<?php printf( wp_kses( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'ephemeris' ), array( 
-					'span' => array( 
-						'class' => array() ) 
+				<?php printf( wp_kses( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'ephemeris' ), array(
+					'span' => array(
+						'class' => array() )
 				) ), get_the_author() ); ?>
 			</a>
 		</div> <!-- /.author-link	-->
