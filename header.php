@@ -35,7 +35,6 @@
 			<div class="grid-100 tablet-grid-100 social-header">
 				<?php echo ephemeris_get_social_media(); ?>
 			</div>
-
 		</div>
 	</div>
 
