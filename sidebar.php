@@ -12,7 +12,7 @@
 			<?php
 			do_action( 'ephemeris_before_sidebar' );
 
-			if ( ephemeris_is_woocommerce_active() && is_active_sidebar( 'sidebar-shop' ) && ( is_woocommerce() || is_cart() || is_checkout() ) ) {
+			if ( ephemeris_is_plugin_active( 'woocommerce' ) && is_active_sidebar( 'sidebar-shop' ) && ( is_woocommerce() || is_cart() || is_checkout() ) ) {
 				dynamic_sidebar( 'sidebar-shop' );
 			}
 			else {
