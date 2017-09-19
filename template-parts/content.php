@@ -73,7 +73,7 @@
 		<?php edit_post_link( esc_html__( 'Edit', 'ephemeris' ) . ' <i class="fa fa-angle-right" aria-hidden="true"></i>', '<div class="edit-link">', '</div>' ); ?>
 		<?php if ( is_singular() && get_the_author_meta( 'description' ) && is_multi_author() ) {
 			// If a user has filled out their description and this is a multi-author blog, show their bio
-			get_template_part( 'author-bio' );
+			get_template_part( 'template-parts/author', 'bio' );
 		} ?>
 	</footer> <!-- /.entry-meta -->
 	<?php do_action( 'ephemeris_after_entry_content' ); ?>
