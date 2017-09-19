@@ -41,10 +41,11 @@ class ephemeris_initialise_customizer_settings {
 		// Register our search controls
 		add_action( 'customize_register', array( $this, 'ephemeris_register_footer_controls' ) );
 
-		// Register our WooCommerce controls, only if WooCommerce is active
-		if( ephemeris_is_woocommerce_active() ) {
-			add_action( 'customize_register', array( $this, 'ephemeris_register_woocommerce_controls' ) );
-		}
+		// Register our WooCommerce controls. Callback will only display these controls if WooCommerce is active
+		add_action( 'customize_register', array( $this, 'ephemeris_register_woocommerce_controls' ) );
+
+		// Register our Elementor controls. Callback will only display these controls if Elementor is active
+		add_action( 'customize_register', array( $this, 'ephemeris_register_elementor_controls' ) );
 	}
 
 	/**
@@ -118,7 +119,7 @@ class ephemeris_initialise_customizer_settings {
 		);
 
 		/**
-		 * Add our Body Headers Section
+		 * Add our Body Text Section
 		 */
 		$wp_customize->add_section( 'color_body_text_section',
 			array(
@@ -191,8 +192,20 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'title' => __( 'WooCommerce Layout', 'ephemeris' ),
 				'description' => esc_html__( 'Adjust the layout of your WooCommerce shop.', 'ephemeris' ),
-				'active_callback' => 'ephemeris_is_woocommerce_active',
+				'active_callback' => function () { return ephemeris_is_plugin_active( 'woocommerce' ); },
 				'priority' => 160,
+			)
+		);
+
+		/**
+		 * Add our Elementor Section, only if Elementor is active
+		 */
+		$wp_customize->add_section( 'elementor_section',
+			array(
+				'title' => __( 'Elementor', 'ephemeris' ),
+				'description' => esc_html__( 'If you wish to replace the default theme Header &amp; Footer with your own custom Elementor templates, select them below. You have the option to replace just one, or you can replace both.', 'ephemeris' ),
+				'active_callback' => function () { return ephemeris_is_plugin_active( 'elementor' ); },
+				'priority' => 165,
 			)
 		);
 	}
@@ -821,6 +834,91 @@ class ephemeris_initialise_customizer_settings {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Register our Elementor controls
+	 */
+	public function ephemeris_register_elementor_controls( $wp_customize ) {
+		$template_library_posts = '';
+		$template = '';
+		$elementor_templates = array();
+		$elementor_choices = array();
+
+		// Retrieve the list of Elementor library templates
+		$template_library_posts = get_posts(
+			array(
+				'sort_order' => 'DESC',
+				'post_type' => 'elementor_library',
+			)
+		);
+
+		if ( !empty( $template_library_posts ) ) {
+
+			foreach ($template_library_posts as $template ) {
+				$elementor_templates[$template->ID] = $template->post_title;
+			}
+
+			// Add our default header selection
+			$elementor_choices[$this->defaults['elementor_header_template']] = __( 'Select your Header template', 'ephemeris' );
+			$elementor_choices  = array_merge( $elementor_choices, $elementor_templates );
+
+			// Add our Select setting and control for selecting the header template to use
+			$wp_customize->add_setting( 'elementor_header_template',
+				array(
+					'default' => $this->defaults['elementor_header_template'],
+					'transport' => 'refresh',
+					'sanitize_callback' => 'skyrocket_radio_sanitization'
+				)
+			);
+			$wp_customize->add_control( 'elementor_header_template',
+				array(
+					'label' => __( 'Header Template', 'ephemeris' ),
+					'section' => 'elementor_section',
+					'type' => 'select',
+					'choices' => $elementor_choices,
+				)
+			);
+
+			// Add our default footer selection
+			$elementor_choices = array();
+			$elementor_choices[$this->defaults['elementor_footer_template']] = __( 'Select your Footer template', 'ephemeris' );
+			$elementor_choices = array_merge( $elementor_choices, $elementor_templates );
+
+			// Add our Select setting and control for selecting the footer template to use
+			$wp_customize->add_setting( 'elementor_footer_template',
+				array(
+					'default' => $this->defaults['elementor_footer_template'],
+					'transport' => 'refresh',
+					'sanitize_callback' => 'skyrocket_radio_sanitization'
+				)
+			);
+			$wp_customize->add_control( 'elementor_footer_template',
+				array(
+					'label' => __( 'Footer Template', 'ephemeris' ),
+					'section' => 'elementor_section',
+					'type' => 'select',
+					'choices' => $elementor_choices,
+				)
+			);
+		}
+		else {
+			// Add our Simple Notice setting and control for when there are no templates to select
+			$wp_customize->add_setting( 'elementor_templates_notice',
+				array(
+					'default' => '',
+					'transport' => 'postMessage',
+					'sanitize_callback' => 'skyrocket_text_sanitization'
+				)
+			);
+			$wp_customize->add_control( new Skyrocket_Simple_Notice_Custom_control( $wp_customize, 'elementor_templates_notice',
+				array(
+					'label' => __( 'Templates unavailable!', 'ephemeris' ),
+					'description' => __( 'You haven\'t ceated any Elementor Templates yet. You need to add a template to your Elementor Template Library if you wish to replace the default theme Header &amp; Footer.', 'ephemeris' ),
+					'section' => 'elementor_section'
+				)
+			) );
+		}
 	}
 }
 
