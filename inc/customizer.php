@@ -852,16 +852,36 @@ class ephemeris_initialise_customizer_settings {
 				'post_type' => 'elementor_library',
 			)
 		);
+		wp_reset_postdata();
 
 		if ( !empty( $template_library_posts ) ) {
+
+			// Add our Simple Notice setting and control for when there are no templates to select
+			$wp_customize->add_setting( 'elementor_templates_notice',
+				array(
+					'default' => '',
+					'transport' => 'postMessage',
+					'sanitize_callback' => 'skyrocket_text_sanitization'
+				)
+			);
+			$wp_customize->add_control( new Skyrocket_Simple_Notice_Custom_control( $wp_customize, 'elementor_templates_notice',
+				array(
+					'label' => __( 'Please Note:', 'ephemeris' ),
+					'description' => __( 'By replacing the default theme header, you will also disable the themes default mobile menu so please ensure your template includes its own mobile navigation.', 'ephemeris' ),
+					'section' => 'elementor_section'
+				)
+			) );
 
 			foreach ($template_library_posts as $template ) {
 				$elementor_templates[$template->ID] = $template->post_title;
 			}
 
-			// Add our default header selection
-			$elementor_choices[$this->defaults['elementor_header_template']] = __( 'Select your Header template', 'ephemeris' );
-			$elementor_choices  = array_merge( $elementor_choices, $elementor_templates );
+			// Add our default header selection to our list of choices
+			$elementor_choices[$this->defaults['elementor_header_template']] = __( 'Use default theme header', 'ephemeris' );
+			// Add our Elementor templates to our list of choices
+			foreach ($elementor_templates as $key => $value) {
+				$elementor_choices[$key] = $value;
+			}
 
 			// Add our Select setting and control for selecting the header template to use
 			$wp_customize->add_setting( 'elementor_header_template',
@@ -880,10 +900,13 @@ class ephemeris_initialise_customizer_settings {
 				)
 			);
 
-			// Add our default footer selection
 			$elementor_choices = array();
-			$elementor_choices[$this->defaults['elementor_footer_template']] = __( 'Select your Footer template', 'ephemeris' );
-			$elementor_choices = array_merge( $elementor_choices, $elementor_templates );
+			// Add our default footer selection to our list of choices
+			$elementor_choices[$this->defaults['elementor_footer_template']] = __( 'Use default theme footer', 'ephemeris' );
+			// Add our Elementor templates to our list of choices
+			foreach ($elementor_templates as $key => $value) {
+				$elementor_choices[$key] = $value;
+			}
 
 			// Add our Select setting and control for selecting the footer template to use
 			$wp_customize->add_setting( 'elementor_footer_template',
