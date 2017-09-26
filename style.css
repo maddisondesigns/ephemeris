@@ -1292,8 +1292,8 @@ article.sticky {
 
 .author-avatar {
 	float: left;
-	margin-top: 8px;
-	margin-top: 0.5rem;
+	margin: 8px 0;
+	margin: 0.5rem 0;
 }
 
 .author-description {
@@ -2671,32 +2671,46 @@ h1.page-title {
    ========================================================================== */
 
 /* Divi Builder - Resize rows to match Ephemeris */
-.page-template-page-builderfullwidth.et_divi_builder #et_builder_outer_content .et_pb_section .et_pb_row,
+/*.page-template-page-builderfullwidth.et_divi_builder #et_builder_outer_content .et_pb_section .et_pb_row,
 .page-template-page-builderblank.et_divi_builder #et_builder_outer_content .et_pb_section .et_pb_row,
 .page-template-page-builderboxed.et_divi_builder #et_builder_outer_content .et_pb_section .et_pb_row {
 	max-width: 1180px;
 	padding-left: 10px;
 	padding-right: 10px;
-}
+}*/
 
 /* Visual Composer - Remove the negative margin when using the full-width page builder template */
-.page-template-page-builderfullwidth.wpb-js-composer .vc_row,
+/*.page-template-page-builderfullwidth.wpb-js-composer .vc_row,
 .page-template-page-builderblank.wpb-js-composer .vc_row {
 	margin-left: 0;
 	margin-right: 0;
-}
+}*/
 
 /* SiteOrigin Page Builder - Ensure the grid only extends 100% */
-.page-template-page-builderfullwidth.siteorigin-panels .panel-grid,
+/*.page-template-page-builderfullwidth.siteorigin-panels .panel-grid,
 .page-template-page-builderblank.siteorigin-panels .panel-grid {
 	margin-left: 0 !important;
 	margin-right: 0 !important;
-}
+}*/
 
 /* Elementor Page Builder - Ensure the grid only extends 100% */
-.page-template-page-builderfullwidth.elementor-page .elementor-section.elementor-section-boxed > .elementor-container,
+/*.page-template-page-builderfullwidth.elementor-page .elementor-section.elementor-section-boxed > .elementor-container,
 .page-template-page-builderblank.elementor-page .elementor-section.elementor-section-boxed > .elementor-container {
 	max-width: 1180px;
+}*/
+
+/* ==========================================================================
+   Hooks
+   ========================================================================== */
+.ephemeris_hook {
+	background-color: #2c7dbe;
+	color: #fff;
+	font-size: 75%;
+	font-weight: bold;
+	text-align: center;
+	padding: 4px 0;
+	padding: .25rem 0;
+	overflow: auto;
 }
 
 /* ==========================================================================
@@ -2785,6 +2799,18 @@ h1.page-title {
 	.main-small-navigation .nav-menu ul {
 		padding-left: 16px;
 		padding-left: 1rem;
+	}
+}
+
+@media only screen and (max-width: 599px) {
+	.author-info {
+		text-align: center;
+	}
+	.author-avatar, .author-description {
+		float: none;
+	}
+	.author-description {
+		width: 100%;
 	}
 }
 
