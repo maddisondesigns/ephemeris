@@ -35,12 +35,8 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		$defaults = ephemeris_generate_defaults();
 		$featured_img_width = 806;
 
-		/**
-		 * Make theme available for translation
-		 * Translations can be filed in the /languages/ directory
-		 * If you're building a theme based on Ephemeris, use a find and replace
-		 * to change 'ephemeris' to the name of your theme in all the template files
-		 */
+		// Make theme available for translation
+		// If you're building a theme based on Ephemeris, use a find and replace tool to change 'ephemeris' to the name of your theme in all the template files
 		load_theme_textdomain( 'ephemeris', trailingslashit( get_template_directory() ) . 'languages' );
 
 		// This theme styles the visual editor with editor-style.css to match the theme style.
@@ -126,12 +122,8 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 			)
 		);
 
-		/*
-		 * Let WordPress manage the document title.
-		 * By adding theme support, we declare that this theme does not use a
-		 * hard-coded <title> tag in the document head, and expect WordPress to
-		 * provide it for us.
-		 */
+		// Let WordPress manage the document title.
+		// By adding theme support, we declare that this theme does not use a hard-coded <title> tag in the document head, and expect WordPress to provide it for us.
 		add_theme_support( 'title-tag' );
 
 		// Enable support for WooCommerce & WooCommerce product galleries
@@ -139,6 +131,14 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		add_theme_support( 'wc-product-gallery-lightbox' );
 		add_theme_support( 'wc-product-gallery-slider' );
 
+		// Display a handy map of where all the theme hooks reside
+		// Only used when WP_EPHEMERIS_HOOKS is defined as true in wp-config.php
+		if ( defined( 'WP_EPHEMERIS_HOOKS') && WP_EPHEMERIS_HOOKS ) {
+			$ephemeris_hooks = ephemeris_get_hooks();
+			foreach ( $ephemeris_hooks as $hook ) {
+				add_action( $hook, 'ephemeris_display_hook' );
+			}
+		}
 	}
 }
 add_action( 'after_setup_theme', 'ephemeris_setup' );
@@ -276,8 +276,19 @@ function ephemeris_template_redirect() {
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 	}
 
-	add_action( 'ephemeris_header_content', 'ephemeris_logo_grid' );
-	add_action( 'ephemeris_header_content', 'ephemeris_nav_grid' );
+	// Check whether we are replacing the default Header
+	if ( ephemeris_has_pagebuilder_template( 'elementor', 'header' ) ) {
+		add_action( 'ephemeris_before_header', 'ephemeris_display_elementor_header' );
+	}
+	else {
+		add_action( 'ephemeris_header_content', 'ephemeris_logo_grid' );
+		add_action( 'ephemeris_header_content', 'ephemeris_nav_grid' );
+	}
+
+	// Check whether we are replacing the default footer
+	if ( ephemeris_has_pagebuilder_template( 'elementor', 'footer' ) ) {
+		add_action( 'ephemeris_after_footer', 'ephemeris_display_elementor_footer' );
+	}
 
 	if ( has_header_image() ) {
 		add_action( 'ephemeris_before_main_content', 'ephemeris_header_image' );
@@ -330,6 +341,32 @@ if ( ! function_exists( 'ephemeris_nav_grid' ) ) {
 
 		echo $nav_grid;
 	}
+}
+
+/**
+ * Display the elementor header template.
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return void
+ */
+function ephemeris_display_elementor_header() {
+	$defaults = ephemeris_generate_defaults();
+
+	echo do_shortcode( '[elementor-template id="' . get_theme_mod( 'elementor_header_template', $defaults['elementor_header_template'] ) . '"]' );
+}
+
+/**
+ * Display the elementor footer template.
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return void
+ */
+function ephemeris_display_elementor_footer() {
+	$defaults = ephemeris_generate_defaults();
+
+	echo do_shortcode( '[elementor-template id="' . get_theme_mod( 'elementor_footer_template', $defaults['elementor_footer_template'] ) . '"]' );
 }
 
 /**
@@ -1130,18 +1167,34 @@ function ephemeris_is_plugin_active( $plugin ) {
  *
  * @since Ephemeris 1.0
  *
+ * @param string The page builder to check.
  * @param string The theme section to check. Either 'header' or 'footer'
  * @return boolean
  */
 if ( ! function_exists( 'ephemeris_has_pagebuilder_template' ) ) {
-	function ephemeris_has_pagebuilder_template( $section ) {
+	function ephemeris_has_pagebuilder_template( $pagebuilder, $section ) {
 		$defaults = ephemeris_generate_defaults();
 		$return_val = false;
-		$template = 'elementor_' . strtolower( $section ) . '_template';
+		$template = '';
 
-		if ( ephemeris_is_plugin_active( 'elementor' ) && get_theme_mod( $template, $defaults[$template] ) ) {
-			$return_val = true;
+		switch ( strtolower( $pagebuilder ) ) {
+			case 'elementor':
+				if ( in_array( strtolower( $section ), array( 'header', 'footer' ) ) ) {
+					$template = 'elementor_' . strtolower( $section ) . '_template';
+				}
+				break;
+
+			default:
+				$return_val = false;
+				break;
 		}
+
+		if ( !empty( $template ) ) {
+			if ( ephemeris_is_plugin_active( strtolower( $pagebuilder ) ) && get_theme_mod( $template, $defaults[$template] ) ) {
+				$return_val = true;
+			}
+		}
+
 		return $return_val;
 	}
 }
@@ -1449,8 +1502,63 @@ function ephemeris_customizer_css_styles() {
 add_action( 'wp_head', 'ephemeris_customizer_css_styles' );
 
 /**
-* Set our Customizer default options
-*/
+ * Get a complete list of Ephemeris hooks
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return array	List of Ephemeris theme hooks
+ */
+function ephemeris_get_hooks() {
+	$ephemeris_hooks = array(
+		'ephemeris_before_main_content',
+		'ephemeris_after_main_content',
+		'ephemeris_before_content',
+		'ephemeris_after_content',
+		'ephemeris_before_entry_title',
+		'ephemeris_after_entry_title',
+		'ephemeris_before_sidebar',
+		'ephemeris_after_sidebar',
+		'ephemeris_before_main_grid',
+		'ephemeris_after_main_grid',
+		'ephemeris_before_entry_header',
+		'ephemeris_after_entry_header',
+		'ephemeris_after_entry_content',
+		'ephemeris_before_footer_content',
+		'ephemeris_after_footer_content',
+		'ephemeris_header_content',
+		'ephemeris_before_header_content',
+		'ephemeris_after_header_content',
+		'ephemeris_before_header',
+		'ephemeris_after_footer',
+		);
+
+	return $ephemeris_hooks;
+}
+
+/**
+ * Will display a container with the specified hook name. Used for providing and handy map of where all the theme hooks reside.
+ * Only used when WP_EPHEMERIS_HOOKS is defined as true in wp-config.php.
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return void
+ */
+function ephemeris_display_hook() {
+	$current_filter = current_filter();
+
+	printf( '<div class="ephemeris_hook %1$s">%2$s</div>',
+		$current_filter,
+		$current_filter
+	);
+}
+
+/**
+ * Set our Customizer default options
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return array	Customizer defaults
+ */
 if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 	function ephemeris_generate_defaults() {
 		$customizer_defaults = array(
@@ -1493,25 +1601,3 @@ if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 * Load all our Customizer options
 */
 include_once trailingslashit( dirname(__FILE__) ) . 'inc/customizer.php';
-
-/**
- * Debug function to show the name of the current template being used
- */
-//function show_template() {
-// 	global $template;
-// 	echo '<div style="background-color:#000;color:#fff">';
-// 	//print_r(get_templates_data());
-// 	$templates = get_posts(
-// 		array(
-// 			'sort_order' => 'DESC',
-// 			'post_type' => 'elementor_library',
-// 		)
-// 	);
-// 	echo $templates[0]->ID . ' - ' . $templates[0]->post_title;
-// 	echo '</div>';
-// 	echo do_shortcode( '[elementor-template id="' . $templates[0]->ID . '"]' );
-//
-// 	$plugin = 'woocommerce';
-// 	if ( ephemeris_is_plugin_active($plugin) ) { echo $plugin . ' ON';} else { echo $plugin . ' OFF';}
-// }
-// add_action('wp_head', 'show_template');
