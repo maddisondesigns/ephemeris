@@ -30,21 +30,23 @@
 	<div class="visuallyhidden skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to main content', 'ephemeris' ); ?>"><?php esc_html_e( 'Skip to main content', 'ephemeris' ); ?></a></div>
 
 	<?php	do_action( 'ephemeris_before_header' ); ?>
-	<div class="top-header">
-		<div class="header-social-icons grid-container">
-			<div class="grid-100 tablet-grid-100 social-header">
-				<?php echo ephemeris_get_social_media(); ?>
+	<?php if ( !ephemeris_has_pagebuilder_template( 'elementor', 'header' ) ) { ?>
+		<div class="top-header">
+			<div class="header-social-icons grid-container">
+				<div class="grid-100 tablet-grid-100 social-header">
+					<?php echo ephemeris_get_social_media(); ?>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div id="headercontainer">
-		<?php	do_action( 'ephemeris_before_header_content' ); ?>
+		<div id="headercontainer">
+			<?php	do_action( 'ephemeris_before_header_content' ); ?>
 
-		<header id="masthead" class="grid-container site-header" role="banner">
-			<?php	do_action( 'ephemeris_header_content' ); ?>
-		</header> <!-- /#masthead.grid-container.site-header -->
+			<header id="masthead" class="grid-container site-header" role="banner">
+				<?php	do_action( 'ephemeris_header_content' ); ?>
+			</header> <!-- /#masthead.grid-container.site-header -->
 
-		<?php	do_action( 'ephemeris_after_header_content' ); ?>
-	</div> <!-- /#headercontainer -->
-	<?php	do_action( 'ephemeris_before_main_content' ); ?>
+			<?php	do_action( 'ephemeris_after_header_content' ); ?>
+		</div> <!-- /#headercontainer -->
+		<?php	do_action( 'ephemeris_before_main_content' ); ?>
+	<?php } ?>
