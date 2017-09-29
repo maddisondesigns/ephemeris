@@ -270,6 +270,7 @@ add_action( 'customize_controls_enqueue_scripts', 'ephemeris_customize_controls_
  */
 function ephemeris_template_redirect() {
 	$defaults = ephemeris_generate_defaults();
+	$template = '';
 
 	// If WooCommerce is running, check if we should be displaying the Breadcrumbs
 	if( ephemeris_is_plugin_active( 'woocommerce' ) && !get_theme_mod( 'woocommerce_breadcrumbs', $defaults['woocommerce_breadcrumbs'] ) ) {
@@ -277,8 +278,9 @@ function ephemeris_template_redirect() {
 	}
 
 	// Check whether we are replacing the default Header
-	if ( ephemeris_has_pagebuilder_template( 'elementor', 'header' ) ) {
-		add_action( 'ephemeris_before_header', 'ephemeris_display_elementor_header' );
+	$template = ephemeris_has_pagebuilder_template( 'header' );
+	if ( !empty( $template ) ) {
+		add_action( 'ephemeris_before_header', 'ephemeris_display_' . $template . '_header' );
 	}
 	else {
 		add_action( 'ephemeris_header_content', 'ephemeris_logo_grid' );
@@ -286,8 +288,9 @@ function ephemeris_template_redirect() {
 	}
 
 	// Check whether we are replacing the default footer
-	if ( ephemeris_has_pagebuilder_template( 'elementor', 'footer' ) ) {
-		add_action( 'ephemeris_after_footer', 'ephemeris_display_elementor_footer' );
+	$template = ephemeris_has_pagebuilder_template( 'footer' );
+	if ( !empty( $template ) ) {
+		add_action( 'ephemeris_after_footer', 'ephemeris_display_' . $template . '_footer' );
 	}
 
 	if ( has_header_image() ) {
@@ -1094,9 +1097,26 @@ if ( ! function_exists( 'ephemeris_get_credits' ) ) {
 		$defaults = ephemeris_generate_defaults();
 
 		// wpautop this so that it acts like a the new visual text widget, since we're using the same TinyMCE control
-		return wpautop( get_theme_mod( 'footer_credits', $defaults['footer_credits'] ) );
+		return wpautop( apply_filters( 'ephemeris_footer_credits', get_theme_mod( 'footer_credits', $defaults['footer_credits'] ) ) );
 	}
 }
+
+/**
+ * Filter the Footer Credits to insert the Current Year and Copyright, Registered & Trademark symbols
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return string Filtered footer credits string
+ */
+function ephemeris_filter_footer_credits( $credits ) {
+	$credits = str_ireplace ( '%currentyear%' , date( 'Y' ) , $credits );
+	$credits = str_ireplace ( '%copy%' , '&copy;' , $credits );
+	$credits = str_ireplace ( '%reg%' , '&reg;' , $credits );
+	$credits = str_ireplace ( '%trade%' , '&trade;' , $credits );
+
+	return $credits;
+}
+add_filter( 'ephemeris_footer_credits', 'ephemeris_filter_footer_credits' );
 
 /**
  * Append a search icon to the primary menu
@@ -1155,6 +1175,12 @@ function ephemeris_is_plugin_active( $plugin ) {
 			}
 			break;
 
+		case 'visualcomposer':
+			if ( class_exists( 'Vc_Manager' ) ) {
+				$return_val = true;
+			}
+			break;
+
 		default:
 			$return_val = false;
 	}
@@ -1163,39 +1189,32 @@ function ephemeris_is_plugin_active( $plugin ) {
 }
 
 /**
- * Check if any Page Builders are active and if so, whether they should replace the theme header or footer
+ * Check if any Page Builders are active and if so, whether they should replace the default theme header and/or footer
  *
  * @since Ephemeris 1.0
  *
- * @param string The page builder to check.
  * @param string The theme section to check. Either 'header' or 'footer'
- * @return boolean
+ * @return boolean Returns false if no Page Builder templates are to be used
+ * @return string Returns name of Page Builder if one is being used to replace the default header and/or footer
  */
 if ( ! function_exists( 'ephemeris_has_pagebuilder_template' ) ) {
-	function ephemeris_has_pagebuilder_template( $pagebuilder, $section ) {
+	function ephemeris_has_pagebuilder_template( $section ) {
 		$defaults = ephemeris_generate_defaults();
-		$return_val = false;
+		$option = '';
 		$template = '';
+		$pagebuilders = array(
+			'elementor',
+		);
 
-		switch ( strtolower( $pagebuilder ) ) {
-			case 'elementor':
-				if ( in_array( strtolower( $section ), array( 'header', 'footer' ) ) ) {
-					$template = 'elementor_' . strtolower( $section ) . '_template';
-				}
+		foreach ( $pagebuilders as $builder ) {
+			$option = $builder . '_' . strtolower( $section ) . '_template';
+			if ( ephemeris_is_plugin_active( strtolower( $builder ) ) && get_theme_mod( $option, $defaults[$option] ) ) {
+				$template = $builder;
 				break;
-
-			default:
-				$return_val = false;
-				break;
-		}
-
-		if ( !empty( $template ) ) {
-			if ( ephemeris_is_plugin_active( strtolower( $pagebuilder ) ) && get_theme_mod( $template, $defaults[$template] ) ) {
-				$return_val = true;
 			}
 		}
 
-		return $return_val;
+		return ( !empty( $template ) ? $template : false );
 	}
 }
 
