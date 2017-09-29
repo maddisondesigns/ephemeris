@@ -24,7 +24,7 @@ Templates
 
 Ephemeris includes a set of your most common theme templates, including templates for Full-Width pages, Left Sidebar, Right Sidebar (default), Front-Page, Tag, Categories, Authors, Search, Posts Archive and 404.
 
-If you're using one of the many page builder plugins that are available, such as Visual Composer, Beaver Builder, Divi Builder, SiteOrigin Page Builder or the Elementor Page Builder, try using the Page Builder Full-Width Template or the Page Builder Boxed Template. The Page Builder Full-Width Template is a true full browser width template while the Page Builder Boxed Template contains your content in a boxed layout. If you want a completely blank full-width page with no header or footer sections, such as for a landing page, then there is also a Page Builder Blank Template. Depending which Page Builder plugin that you're using, you may find that one template provides a better layout than the other.
+If you're using one of the many page builder plugins that are available, such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder or Visual Composer, try using the Page Builder Full-Width Template. The Page Builder Full-Width Template is a true full browser width template. If you want a completely blank full-width page with no header or footer sections, such as for a landing page, then there is also a Page Builder Blank Template.
 
 Post Formats
 
@@ -65,6 +65,10 @@ Using the WordPress Multilingual Plugin (WPML) it's now easy to build multilingu
 WooCommerce Support
 
 WooCommerce is a WordPress eCommerce toolkit that helps you sell anything. Beautifully. Turn your website into a powerful eCommerce site by installing the WooCommerce plugin by WooThemes.
+
+Developers
+
+If you're a developer and you'd like to see a handy map of all the custom theme hooks, simply define WP_EPHEMERIS_HOOKS as true in your wp-config.php file. Doing this will cause Ephemeris to display all the theme hooks so that it's easier for work out where they are all located.
 
 == Installation ==
 
