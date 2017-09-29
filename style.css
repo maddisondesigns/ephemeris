@@ -2693,15 +2693,10 @@ h1.page-title {
 	margin-right: 0 !important;
 }*/
 
-/* Elementor Page Builder - Ensure the grid only extends 100% */
-/*.page-template-page-builderfullwidth.elementor-page .elementor-section.elementor-section-boxed > .elementor-container,
-.page-template-page-builderblank.elementor-page .elementor-section.elementor-section-boxed > .elementor-container {
-	max-width: 1180px;
-}*/
-
 /* ==========================================================================
    Hooks
    ========================================================================== */
+
 .ephemeris_hook {
 	background-color: #2c7dbe;
 	color: #fff;
