@@ -727,6 +727,22 @@ class ephemeris_initialise_customizer_settings {
 				'fallback_refresh' => false,
 			)
 		);
+
+		// Add our Simple Notice setting and control for displaying the credit filters
+		$wp_customize->add_setting( 'footer_filters',
+			array(
+				'default' => '',
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'skyrocket_text_sanitization'
+			)
+		);
+		$wp_customize->add_control( new Skyrocket_Simple_Notice_Custom_control( $wp_customize, 'footer_filters',
+			array(
+				'label' => '',
+				'description' => __( '<code>%currentyear%</code> to insert the current year (auto updates)<br /><code>%copy%</code> to insert the Copyright symbol<br /><code>%reg%</code> to insert the Registered symbol<br /><code>%trade%</code> to insert the Trademark symbol', 'ephemeris' ),
+				'section' => 'footer_section'
+			)
+		) );
 	}
 
 	/**
