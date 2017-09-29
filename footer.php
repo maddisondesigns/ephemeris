@@ -11,7 +11,7 @@
  */
 ?>
 
-	<?php if ( !ephemeris_has_pagebuilder_template( 'elementor', 'footer' ) ) { ?>
+	<?php if ( !ephemeris_has_pagebuilder_template( 'footer' ) ) { ?>
 		<?php	do_action( 'ephemeris_after_main_content' ); ?>
 		<div id="footercontainer">
 			<?php	do_action( 'ephemeris_before_footer_content' ); ?>
@@ -30,7 +30,7 @@
 <?php	do_action( 'ephemeris_after_footer' ); ?>
 </main> <!-- /.hfeed.site -->
 
-<?php if ( !ephemeris_has_pagebuilder_template( 'elementor', 'header' ) ) { ?>
+<?php if ( !ephemeris_has_pagebuilder_template( 'header' ) ) { ?>
 	<a id="mobile-site-navigation" href="#cd-nav" class="mobile-navigation mobile-nav-trigger">
 		<div class="menu-hamburger">
 			<span class="line"></span>

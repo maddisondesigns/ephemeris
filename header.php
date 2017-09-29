@@ -30,7 +30,7 @@
 	<div class="visuallyhidden skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to main content', 'ephemeris' ); ?>"><?php esc_html_e( 'Skip to main content', 'ephemeris' ); ?></a></div>
 
 	<?php	do_action( 'ephemeris_before_header' ); ?>
-	<?php if ( !ephemeris_has_pagebuilder_template( 'elementor', 'header' ) ) { ?>
+	<?php if ( !ephemeris_has_pagebuilder_template( 'header' ) ) { ?>
 		<div class="top-header">
 			<div class="header-social-icons grid-container">
 				<div class="grid-100 tablet-grid-100 social-header">
