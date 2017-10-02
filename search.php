@@ -11,7 +11,7 @@ get_header(); ?>
 <div id="maincontentcontainer">
 	<div id="content" class="grid-container site-content" role="main">
 
-		<div class="grid-70 tablet-grid-70">
+		<div <?php ephemeris_main_class(); ?>>
 
 			<?php if ( have_posts() ) { ?>
 
@@ -35,7 +35,7 @@ get_header(); ?>
 
 			<?php } // end have_posts() ?>
 
-		</div> <!-- /.grid-70 -->
+		</div>
 		<?php get_sidebar(); ?>
 
 	</div> <!-- /#content.grid-container.site-content -->
