@@ -12,7 +12,7 @@ get_header(); ?>
 	<div id="content" class="grid-container site-content" role="main">
 
 			<?php do_action( 'ephemeris_before_main_grid' ); ?>
-			<div class="grid-70 tablet-grid-70">
+			<div <?php ephemeris_main_class(); ?>>
 
 				<?php
 				do_action( 'ephemeris_before_content' );
@@ -32,7 +32,7 @@ get_header(); ?>
 				do_action( 'ephemeris_after_content' );
 				?>
 
-			</div> <!-- /.grid-70 -->
+			</div>
 			<?php get_sidebar(); ?>
 			<?php do_action( 'ephemeris_after_main_grid' ); ?>
 
