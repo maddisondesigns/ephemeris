@@ -1,13 +1,13 @@
 === Ephemeris ===
 Contributors: ahortin
-Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce
-Requires at least: 4.5
-Tested up to: 4.7
+Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
+Requires at least: 4.8
+Tested up to: 4.8.2
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. The Ephemeris theme is WooCommerce compatible, Multilingual Ready (WPML) and translateable. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer.
+The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customize and extend. Ephemeris is WooCommerce compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you’ve created with Elementor, rather than the default theme header and footer, if you so choose. Now that’s pretty cool, eh!
 
 
 == Description ==
@@ -25,6 +25,8 @@ Templates
 Ephemeris includes a set of your most common theme templates, including templates for Full-Width pages, Left Sidebar, Right Sidebar (default), Front-Page, Tag, Categories, Authors, Search, Posts Archive and 404.
 
 If you're using one of the many page builder plugins that are available, such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder or Visual Composer, try using the Page Builder Full-Width Template. The Page Builder Full-Width Template is a true full browser width template. If you want a completely blank full-width page with no header or footer sections, such as for a landing page, then there is also a Page Builder Blank Template.
+
+On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you’ve created with Elementor, rather than the default theme header and footer, if you so choose. Now that’s pretty cool, eh!
 
 Post Formats
 
@@ -68,7 +70,7 @@ WooCommerce is a WordPress eCommerce toolkit that helps you sell anything. Beaut
 
 Developers
 
-If you're a developer and you'd like to see a handy map of all the custom theme hooks, simply define WP_EPHEMERIS_HOOKS as true in your wp-config.php file. Doing this will cause Ephemeris to display all the theme hooks so that it's easier for work out where they are all located.
+If you're a developer and you'd like to see a handy map of all the custom theme hooks, simply define WP_EPHEMERIS_HOOKS as true in your wp-config.php file. Doing this will cause Ephemeris to display all the theme hooks so that it's easier to work out where they are all located.
 
 == Installation ==
 
