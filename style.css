@@ -3,11 +3,11 @@ Theme Name: Ephemeris
 Theme URI: http://skyrocketthemes.com/ephemeris
 Author: ahortin
 Author URI: http://skyrocketthemes.com
-Description: The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. The Ephemeris theme is WooCommerce compatible, Multilingual Ready (WPML) and translateable. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer.
+Description: The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customize and extend. Ephemeris is WooCommerce compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you’ve created with Elementor, rather than the default theme header and footer, if you so choose. Now that’s pretty cool, eh!
 Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce
+Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
 Text Domain: ephemeris
 */
 
@@ -51,8 +51,6 @@ body {
    background-color: #fff;
    text-align: left;
 }
-
-/* Set the default behavior for touch-based browsing in IE10 on devices running Windows 8 */
 
 canvas {
    -ms-touch-action: double-tap-zoom;
@@ -471,7 +469,7 @@ img.wp-smiley, .rsswidget img {
 	position: absolute !important;
 }
 
-.menu-toggle, button, input {
+button, input {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-weight: 400;
@@ -483,12 +481,11 @@ img.wp-smiley, .rsswidget img {
 	vertical-align: middle;
 }
 
-.menu-toggle, button, input {
+button, input {
 	*overflow: visible;
 	line-height: normal;
 }
 
-.menu-toggle::-moz-focus-inner,
 button::-moz-focus-inner,
 input::-moz-focus-inner {
 	padding: 0;
@@ -507,21 +504,19 @@ input[type="button"] {
 	width: auto;
 }
 
-.menu-toggle,
 .btn,
 input[type="submit"] {
 	display: inline-block;
 	*display: inline;
-	padding: 8px 14px;
-	padding: 0.5rem 0.875rem;
+	padding: 9px 14px;
+	padding: 0.59375rem 0.875rem;
 	margin-bottom: 0;
 	*margin-left: .3em;
 	font-size: 16px;
 	font-size: 1rem;
 	line-height: 1.25;
-	color: #3a3a3a3a3a3a;
+	color: #3a3a3a;
 	text-align: center;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
 	vertical-align: middle;
 	cursor: pointer;
 	background-color: #ebe9eb;
@@ -530,17 +525,14 @@ input[type="submit"] {
 	*border: 0;
 	border-color: rgba(0, 0, 0, 0.1);
 	border-color: #e6e6e6 ;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
+	border-radius: 0;
 }
 
-.menu-toggle, a.btn {
+a.btn {
 	color: #3a3a3a3a3a3a;
 	text-decoration: none;
 }
 
-.menu-toggle:hover,
 .btn:hover,
 .btn:active,
 .btn.active,
@@ -554,7 +546,6 @@ input[type="submit"] {
 	*margin-left: 0;
 }
 
-.menu-toggle:hover,
 .btn:hover,
 input[type="submit"]:hover {
 	color: #3a3a3a3a3a3a;
@@ -563,7 +554,6 @@ input[type="submit"]:hover {
 	*background-color: #dad8da; /* Buttons in IE7 don't get borders, so darken on hover */
 }
 
-.menu-toggle:focus,
 .btn:focus,
 input[type="submit"]:focus {
 	outline: thin dotted #3a3a3a;
@@ -571,7 +561,6 @@ input[type="submit"]:focus {
 	outline-offset: -2px;
 }
 
-.menu-toggle:active,
 .btn.active,
 .btn:active,
 input[type="submit"]:active {
@@ -615,9 +604,7 @@ input[type="submit"].btn-large {
 	padding: 0.625rem 0.9375rem;
 	font-size: 20px;
 	font-size: 1.25rem;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	border-radius: 0;
 }
 
 .btn-small,
@@ -639,11 +626,15 @@ textarea {
 	padding: 0.5rem;
 	font-family: inherit;
 	border: 1px solid #ccc;
-	border-radius: 3px;
+	border-radius: 0;
 }
 
 select {
 	max-width: 100%;
+	padding: 5px 0;
+	padding: 0.3125rem 0;
+	border: 1px solid #ccc;
+	border-radius: 0;
 }
 
 /* HTML5 galleries */
@@ -1064,6 +1055,7 @@ article.sticky {
 	padding: 2px 4px;
 	padding: 0.125rem 0.25rem;
 	color: #fff;
+	display: inline-block;
 }
 
 .page-links a {
@@ -1850,6 +1842,10 @@ form label.error {
 	line-height: 2;
 }
 
+.nav-links .page-numbers {
+	display: inline-block;
+}
+
 .nav-links a.page-numbers,
 .nav-links span.page-numbers {
 	color: #3a3a3a;
@@ -1955,7 +1951,7 @@ form label.error {
 .main-navigation li {
 	float: left;
 	position: relative;
-	margin: 0 0 0 20px; /* Margin on the left side of each top level menu item (since it's floated right) */
+	margin: 0 0 0 20px; /* Margin on the left side of each top level menu item */
 	margin: 0 0 0 1.25rem;
 }
 
@@ -2000,6 +1996,14 @@ form label.error {
 	color: #3a3a3a; /* Nav bar link color */
 }
 
+.main-navigation a:visited {
+	color: #3a3a3a; /* Nav bar link visted color */
+}
+
+.main-navigation a:hover {
+	color: #2c7dbe; /* Nav bar link hover color */
+}
+
 .main-navigation ul ul {
 	display: none;
 	position: absolute;
@@ -2017,6 +2021,10 @@ form label.error {
 .main-navigation ul ul a {
 	color: #fff; /* Nav bar dropdown link color */
 	width: 12em; /* Nav bar dropdown width */
+}
+
+.main-navigation ul ul a:visited {
+	color: #fff; /* Nav bar dropdown link visited color */
 }
 
 .main-navigation ul ul li {
@@ -2356,10 +2364,10 @@ main {
 .search-overlay {
    display: none;
    position: fixed;
-   top: 0px;
-   right: 0px;
-   bottom: 0px;
-   left: 0px;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
 	z-index: 9999;
    background-color: #f1f1f1;
 }
@@ -2658,6 +2666,7 @@ h1.page-title {
 	width: 23.5%;
 	margin: 0 2% 10px 0;
 }
+
 .woocommerce div.product div.images ol.flex-control-thumbs li:nth-child(4n+4) {
 	margin-right: 0;
 }
@@ -2670,28 +2679,12 @@ h1.page-title {
    Page Builders
    ========================================================================== */
 
-/* Divi Builder - Resize rows to match Ephemeris */
-/*.page-template-page-builderfullwidth.et_divi_builder #et_builder_outer_content .et_pb_section .et_pb_row,
-.page-template-page-builderblank.et_divi_builder #et_builder_outer_content .et_pb_section .et_pb_row,
-.page-template-page-builderboxed.et_divi_builder #et_builder_outer_content .et_pb_section .et_pb_row {
-	max-width: 1180px;
-	padding-left: 10px;
-	padding-right: 10px;
-}*/
-
-/* Visual Composer - Remove the negative margin when using the full-width page builder template */
-/*.page-template-page-builderfullwidth.wpb-js-composer .vc_row,
-.page-template-page-builderblank.wpb-js-composer .vc_row {
+/* Visual Composer - Remove the negative margin that VC adds for some ridiculous reason */
+.page-template-template-builderfullwidth.wpb-js-composer .vc_row,
+.page-template-template-builderblank.wpb-js-composer .vc_row {
 	margin-left: 0;
 	margin-right: 0;
-}*/
-
-/* SiteOrigin Page Builder - Ensure the grid only extends 100% */
-/*.page-template-page-builderfullwidth.siteorigin-panels .panel-grid,
-.page-template-page-builderblank.siteorigin-panels .panel-grid {
-	margin-left: 0 !important;
-	margin-right: 0 !important;
-}*/
+}
 
 /* ==========================================================================
    Hooks
