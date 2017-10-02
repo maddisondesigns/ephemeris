@@ -7,19 +7,6 @@
  */
 
 /**
- * Sets the content width in pixels, based on the theme's design and stylesheet.
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- *
- * @since Ephemeris 1.0
- */
-function ephemeris_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'ephemeris_content_width', 806 );
-}
-add_action( 'after_setup_theme', 'ephemeris_content_width', 0 );
-
-/**
  * Sets up theme defaults and registers support for various WordPress features.
  *
  * Note that this function is hooked into the after_setup_theme hook, which runs
@@ -33,11 +20,10 @@ add_action( 'after_setup_theme', 'ephemeris_content_width', 0 );
 if ( ! function_exists( 'ephemeris_setup' ) ) {
 	function ephemeris_setup() {
 		$defaults = ephemeris_generate_defaults();
-		$featured_img_width = 806;
+		$contentwidth = 865;
 
 		// Make theme available for translation
-		// If you're building a theme based on Ephemeris, use a find and replace tool to change 'ephemeris' to the name of your theme in all the template files
-		load_theme_textdomain( 'ephemeris', trailingslashit( get_template_directory() ) . 'languages' );
+		load_theme_textdomain( 'ephemeris' );
 
 		// This theme styles the visual editor with editor-style.css to match the theme style.
 		add_editor_style();
@@ -48,11 +34,16 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		// Enable support for Post Thumbnails
 		add_theme_support( 'post-thumbnails' );
 
-		// Calculate the optimal featured image size based on the layout width. Default image width will be 806px with a site layout width of 1200px assuming 70/30 grid layout
+		// Calculate the optimal featured image size based on the layout width.
+		// Default image width will be 865px with a site layout width of 1200px assuming 75/25 grid layout
 		// ( ( site width - 20px padding ) * 70% grid container ) - 20px grid padding
-		$featured_img_width = absint( ( ( get_theme_mod( 'layout_width', $defaults['layout_width'] ) - 20 ) * 0.7 ) - 20 );
+		$contentwidth = absint( ( ( get_theme_mod( 'layout_width', $defaults['layout_width'] ) - 20 ) * 0.75 ) - 20 );
+
 		// Create an extra image size for the Post featured image
-		add_image_size( 'ephemeris_post_feature_full_width', $featured_img_width, 300, true );
+		add_image_size( 'ephemeris_post_feature_full_width', $contentwidth, 500, true );
+
+		// Set the width of our content when using the default template
+		$GLOBALS['content_width'] = $contentwidth;
 
 		// This theme uses wp_nav_menu() in one location
 		register_nav_menus( array(
@@ -277,7 +268,7 @@ function ephemeris_template_redirect() {
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 	}
 
-	// Check whether we are replacing the default Header
+	// Check whether we are replacing the default Header and ensure the builder is actually active
 	$template = ephemeris_has_pagebuilder_template( 'header' );
 	if ( !empty( $template ) ) {
 		add_action( 'ephemeris_before_header', 'ephemeris_display_' . $template . '_header' );
@@ -287,7 +278,7 @@ function ephemeris_template_redirect() {
 		add_action( 'ephemeris_header_content', 'ephemeris_nav_grid' );
 	}
 
-	// Check whether we are replacing the default footer
+	// Check whether we are replacing the default footer and ensure the builder is actually active
 	$template = ephemeris_has_pagebuilder_template( 'footer' );
 	if ( !empty( $template ) ) {
 		add_action( 'ephemeris_after_footer', 'ephemeris_display_' . $template . '_footer' );
@@ -310,7 +301,7 @@ if ( ! function_exists( 'ephemeris_logo_grid' ) ) {
 	function ephemeris_logo_grid() {
 		$logo_grid = '';
 
-		$logo_grid .= '<div class="grid-40 tablet-grid-40  mobile-grid-100 site-title">';
+		$logo_grid .= '<div class="grid-40 tablet-grid-40 mobile-grid-100 site-title' . ( is_rtl() ? ' push-60 tablet-push-60' : '' ) . '">';
 		$logo_grid .= ephemeris_the_custom_logo();
 		$logo_grid .= '</div> <!-- /.grid-40.site-title -->';
 
@@ -329,9 +320,8 @@ if ( ! function_exists( 'ephemeris_nav_grid' ) ) {
 	function ephemeris_nav_grid() {
 		$nav_grid = '';
 
-		$nav_grid .= '<div class="grid-60 tablet-grid-60 mobile-grid-100">';
+		$nav_grid .= '<div class="grid-60 tablet-grid-60 mobile-grid-100' . ( is_rtl() ? ' pull-40 tablet-pull-40' : '' ) . '">';
 		$nav_grid .= '<nav id="site-navigation" class="main-navigation" role="navigation">';
-		$nav_grid .= '<h3 class="menu-toggle assistive-text">' . esc_html( 'Menu', 'ephemeris' ) . '</h3>';
 		$nav_grid .= '<div class="assistive-text skip-link"><a href="#content" title="' . esc_attr( 'Skip to content', 'ephemeris' ) . '">' . esc_html( 'Skip to content', 'ephemeris' ) . '</a></div>';
 		$nav_grid .= wp_nav_menu(
 			array(
@@ -696,6 +686,68 @@ if ( ! function_exists( 'ephemeris_custom_background_cb' ) ) {
 }
 
 /**
+ * Get the classes for the main content container.
+ *
+ * @since Ephemeris 1.0
+ *
+ * @param array Echo on screen or return value
+ * @param array Extra classes to append
+ * @return string Containing list of classes or empty string if echoed to screen
+ */
+if ( ! function_exists( 'ephemeris_main_class' ) ) {
+	function ephemeris_main_class( $echo=true, $addon_classes='' ) {
+		$classes = '';
+
+		if ( is_page_template( 'template-full-width.php' ) || is_404() ) {
+			$classes = 'grid-100' . ( !empty( $addon_classes ) ? ' ' . $addon_classes : '' );
+		} else {
+			$classes = 'grid-75 tablet-grid-75 mobile-grid-100' . ( !empty( $addon_classes ) ? ' ' . $addon_classes : '' );
+		}
+
+		return ephemeris_classes( $echo, $classes );
+	}
+}
+
+/**
+ * Get the classes for the sidebar container.
+ *
+ * @since Ephemeris 1.0
+ *
+ * @param array Echo on screen or return value
+ * @param array Extra classes to append
+ * @return string Containing list of classes or empty string if echoed to screen
+ */
+if ( ! function_exists( 'ephemeris_sidebar_class' ) ) {
+	function ephemeris_sidebar_class( $echo=true, $addon_classes='' ) {
+		$classes = '';
+
+		$classes = 'grid-25 tablet-grid-25 mobile-grid-100' . ( !empty( $addon_classes ) ? ' ' . $addon_classes : '' );
+
+		return ephemeris_classes( $echo, $classes );
+	}
+}
+
+/**
+ * Echo the classes to the screen or return as a string.
+ *
+ * @since Ephemeris 1.0
+ *
+ * @param array Echo on screen or return value
+ * @param array Classes to echo or return
+ * @return string Containing list of classes or empty string if echoed to screen
+ */
+function ephemeris_classes( $echo, $classes ) {
+	$return_val = '';
+
+	if ( $echo ) {
+		echo 'class="' . $classes . '"';
+	} else {
+		$return_val = 'class="' . $classes . '"';
+	}
+	return $return_val;
+}
+
+/**
  * Displays post navigation on single pages.
  *
  * @since Ephemeris 1.0
@@ -703,17 +755,21 @@ if ( ! function_exists( 'ephemeris_custom_background_cb' ) ) {
  * @return void
  */
 if ( ! function_exists( 'ephemeris_single_posts_pagination' ) ) {
-	function ephemeris_single_posts_pagination() { ?>
+	function ephemeris_single_posts_pagination() {
+		printf( '<nav role="navigation" class="navigation pagination nav-single">' );
+			printf( '<h2 class="screen-reader-text">' . esc_html( 'Posts navigation', 'ephemeris' ) . '</h2>' );
 
-		<nav role="navigation" class="navigation pagination nav-single">
-			<h2 class="screen-reader-text"><?php esc_html_e( 'Posts navigation', 'ephemeris' ); ?></h2>
+			$previous_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-right', 'Previous post link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-left', 'Previous post link icon classes', 'ephemeris' ) ) );
+			$next_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-left', 'Next post link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-right', 'Next post link icon classes', 'ephemeris' ) ) );
 
-			<?php
-			previous_post_link( '<div class="nav-previous">%link</div>', '<span class="meta-nav">' . _x( '<i class="fa fa-angle-left" aria-hidden="true"></i>', 'Previous post link', 'ephemeris' ) . '</span> %title' ); next_post_link( '<div class="nav-next">%link</div>', '%title <span class="meta-nav">' . _x( '<i class="fa fa-angle-right" aria-hidden="true"></i>', 'Next post link', 'ephemeris' ) . '</span>' );
-			?>
+			previous_post_link(
+				'<div class="nav-previous">%link</div>',
+				'<span class="meta-nav">' . $previous_post_icon . '</span> %title' );
+			next_post_link(
+				'<div class="nav-next">%link</div>',
+				'%title <span class="meta-nav">' . $next_post_icon . '</span>' );
 
-		</nav><!-- .navigation pagination nav-single -->
-		<?php
+		printf( '</nav><!-- .navigation pagination nav-single -->' );
 	}
 }
 
@@ -726,27 +782,16 @@ if ( ! function_exists( 'ephemeris_single_posts_pagination' ) ) {
  */
 if ( ! function_exists( 'ephemeris_posts_pagination' ) ) {
 	function ephemeris_posts_pagination() {
-		the_posts_pagination( array(
-			'mid_size' => 2,
-			'prev_text' => wp_kses( __( '<i class="fa fa-angle-left" aria-hidden="true"></i> <span>Previous</span>', 'ephemeris' ),
-				array(
-					'i' => array(
-						'class' => array(),
-						'aria-hidden' => array()
-					),
-					'span' => array()
-				)
-			),
-			'next_text' => wp_kses( __( '<span>Next</span> <i class="fa fa-angle-right" aria-hidden="true"></i>', 'ephemeris' ),
-				array(
-					'i' => array(
-						'class' => array(),
-						'aria-hidden' => array()
-					),
-					'span' => array()
-				)
+		$previous_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-right', 'Previous page link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-left', 'Previous page link icon classes', 'ephemeris' ) ) );
+		$next_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-left', 'Next page link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-right', 'Next page link icon classes', 'ephemeris' ) ) );
+
+		the_posts_pagination(
+			array(
+				'mid_size' => 2,
+				'prev_text' => $previous_post_icon . ' <span>' . __( 'Previous', 'ephemeris' ) . '</span>',
+				'next_text' => '<span>' . __( 'Next', 'ephemeris' ) . '</span> ' . $next_post_icon
 			)
-		) );
+		);
 	}
 }
 
@@ -980,9 +1025,14 @@ if ( ! function_exists( 'ephemeris_entry_meta' ) ) {
  */
 if ( ! function_exists( 'ephemeris_content_width' ) ) {
 	function ephemeris_content_width() {
-		if ( is_page_template( 'full-width.php' ) || is_attachment() ) {
-			global $content_width;
-			$content_width = 1160;
+		$defaults = ephemeris_generate_defaults();
+		global $content_width;
+
+		if ( is_page_template( 'template-full-width.php' ) || is_attachment() ) {
+			// Calculate the optimal width based on the layout width.
+			// Default width will be 1160px with a site layout width of 1200px when using the full-width template
+			// site width - 40px padding
+			$content_width = absint( get_theme_mod( 'layout_width', $defaults['layout_width'] ) - 40 );
 		}
 	}
 }
@@ -1239,7 +1289,7 @@ if ( ! function_exists( 'ephemeris_woocommerce_before_main_content' ) ) {
 		do_action( 'ephemeris_before_main_grid' );
 
 		if ( ephemeris_display_woocommerce_sidebar() ) {
-			echo '<div class="grid-70 tablet-grid-70 mobile-grid-100">';
+			echo '<div ' . ephemeris_main_class( false ) . '>';
 		}
 		else {
 			echo '<div class="grid-100">';
@@ -1342,10 +1392,11 @@ add_filter( 'loop_shop_per_page', 'ephemeris_shop_product_count', 20 );
  */
 if ( ! function_exists( 'ephemeris_woocommerce_pagination_args' ) ) {
 	function ephemeris_woocommerce_pagination_args( $paginationargs ) {
-		$paginationargs['prev_text'] = wp_kses( __( '<i class="fa fa-angle-left"></i> Previous', 'ephemeris' ), array( 'i' => array(
-			'class' => array() ) ) );
-		$paginationargs['next_text'] = wp_kses( __( 'Next <i class="fa fa-angle-right"></i>', 'ephemeris' ), array( 'i' => array(
-			'class' => array() ) ) );
+		$previous_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-right', 'WooCommerce previous page link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-left', 'WooCommerce previous page link icon classes', 'ephemeris' ) ) );
+		$next_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-left', 'WooCommerce next page link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-right', 'WooCommerce next page link icon classes', 'ephemeris' ) ) );
+
+		$paginationargs['prev_text'] = $previous_post_icon . ' ' . __( 'Previous', 'ephemeris' );
+		$paginationargs['next_text'] = __( 'Next', 'ephemeris' ) . ' ' . $next_post_icon;
 		return $paginationargs;
 	}
 }
