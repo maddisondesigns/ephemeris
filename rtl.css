@@ -1,0 +1,444 @@
+/*
+Theme Name: Ephemeris
+Theme URI: http://skyrocketthemes.com/ephemeris
+Author: ahortin
+Author URI: http://skyrocketthemes.com
+Description: Adds support for languages written in a Right To Left (RTL) direction.
+*/
+
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+   text-align: right;
+}
+
+ins {
+	background: none repeat scroll 100% 0 #FFF9C0;
+}
+
+.alignleft {
+	float: right;
+	margin: 0 0 16px 20px;
+	margin: 0 0 1rem 1.25rem;
+}
+
+.alignright {
+	float: left;
+	margin: 0 20px 16px 0;
+	margin: 0 1.25rem 1rem 0;
+}
+
+.aligncenter {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+blockquote {
+	border-right: 5px solid #3a3a3a;
+	margin: 0 20px 18px 0;
+	margin: 0 1.25rem 1.125rem 0;
+	padding: 0 16px 0 0;
+	padding: 0 1rem 0 0;
+}
+
+blockquote.pull-right {
+	border-right: 0 none;
+	border-left: 5px solid #3a3a3a;
+	margin: 0 0 18px 20px;
+	margin: 0 0 1.125rem 1.25rem;
+	padding: 0 0 0 16px;
+	padding: 0 0 0 1rem;
+}
+
+blockquote.pull-right p,
+blockquote.pull-right small {
+	text-align: left;
+}
+
+caption,
+th,
+td {
+	text-align: right;
+}
+
+pre {
+	border-width: 1px 11px 1px 1px;
+	margin: 1.7rem 0.3rem 1.7rem 0;
+}
+
+
+.btn,
+input[type="submit"] {
+	*margin-left: 0;
+	*margin-right: .3em;
+}
+
+.btn:first-child {
+	*margin-right: 0;
+}
+
+.screen-reader-text:focus {
+	left: 0;
+	right: 5px;
+}
+
+main {
+	text-align: right;
+}
+
+.social-icons {
+	margin: 4px 0;
+	margin: .25rem 0;
+}
+
+.social-icons.alignleft li {
+	margin-right: 0;
+	margin-left: 8px;
+	margin-left: .5rem;
+}
+
+.social-icons.alignright li {
+	margin-left: 0;
+	margin-right: 8px;
+	margin-right: .5rem;
+}
+
+.social-icons .phone i {
+	margin-right: 0;
+	margin-left: 4px;
+	margin-left: .25rem;
+}
+
+.comments-link {
+	float: left;
+}
+
+.post-categories a,
+.post-tags a {
+	margin: 0 0 0 3px;
+	margin: 0 0 0 0.1875rem;
+}
+
+.entry-header time,
+.entry-header address {
+	margin: 0 0 0 20px;
+	margin: 0 0 0 1.25rem;
+}
+
+.entry-content td,
+.comment-content td {
+	padding: 6px 0 6px 10px;
+	padding: 0.375rem 0 0.375rem 0.625rem;
+}
+
+.entry-content li,
+.comment-content li {
+	margin: 0 28px 4px 0;
+	margin: 0 1.75rem .25rem 0;
+}
+
+.author-avatar {
+	float: right;
+}
+
+.author-description {
+	float: left;
+}
+
+.social-meta a {
+	margin-right: 0;
+	margin-left: 5px;
+	margin-left: 0.3125rem;
+}
+
+/* Status */
+.format-status .entry-content {
+	border-right: 5px solid #ddd;
+	border-left: none;
+	padding: 0 15px 0 0;
+	padding: 0 0.9375rem 0 0;
+}
+
+/* Quote */
+.format-quote .entry-content blockquote:before {
+	left: auto;
+	right: 0;
+}
+
+.format-quote .entry-content blockquote {
+	margin-left: 0;
+	margin-right: 40px;
+	margin-right: 2.5rem;
+}
+
+.comments-area article header img {
+	float: right;
+}
+
+.comments-area article header cite,
+.comments-area article header time {
+	margin-left: 0;
+	margin-right: 84px;
+	margin-right: 5.25rem;
+}
+
+.comments-area article header h4 {
+	right: auto;
+	left: 0;
+}
+
+.comments-area li.bypostauthor cite span {
+	margin-left: 0;
+	margin-right: 6px;
+	margin-right: 0.375rem;
+}
+
+.commentlist .children {
+	margin-left: 0;
+	margin-right: 48px;
+	margin-right: 3rem;
+}
+
+.commentlist {
+	padding-right: 0;
+}
+
+#respond h3#reply-title #cancel-comment-reply-link {
+	margin-left: 0;
+	margin-right: 12px;
+	margin-right: 0.75rem;
+}
+
+form label.error {
+	border-left: none;
+	border-right: 4px solid #bb0504;
+}
+
+.widget-area ul {
+	padding-right: 0;
+}
+
+.widget select {
+	margin-left: 0;
+	margin-right: 1px;
+	margin-right: 0.0625rem;
+}
+
+.widget-area .widget ul ul {
+	margin-left: 0;
+	margin-right: 12px;
+	margin-right: 0.75rem;
+}
+
+.widget_recent_entries .post-date,
+.widget_rss .rss-date {
+	margin-left: 0;
+	margin-right: 12px;
+	margin-right: 0.75rem;
+}
+
+#wp-calendar caption {
+	text-align: right;
+}
+
+#wp-calendar #next {
+	padding-right: 0;
+	padding-left: 24px;
+	padding-left: 1.5rem;
+	text-align: left;
+}
+
+.widget_twitter .timesince {
+	text-align: left;
+}
+
+.nav-previous,
+.previous-image {
+	float: right;
+}
+
+.nav-next,
+.next-image {
+	float: left;
+	text-align: left;
+}
+
+.nav-single + .comments-area,
+#comment-nav-above {
+	margin: 48px 0 48px 48px;
+	margin: 3rem 0 3rem 3rem;
+}
+
+.main-navigation {
+	text-align: right;
+	float: left;
+	clear: left;
+}
+
+.main-navigation li {
+	float: right;
+	margin: 0 20px 0 0; /* Margin on the right side of each top level menu item */
+	margin: 0 1.25rem 0 0;
+}
+
+.main-navigation ul ul {
+	left: auto;
+	right: 0;
+}
+
+.main-navigation ul ul ul {
+	left: auto;
+	right: 100%;
+}
+
+/* Responsive menu for smaller devices */
+.mobile-navigation {
+	right: auto;
+	left: 24px;
+	left: 1.5rem;
+}
+
+.navigation-is-open main {
+	-webkit-transform: translateX(-100%);
+	-moz-transform: translateX(-100%);
+	-ms-transform: translateX(-100%);
+	-o-transform: translateX(-100%);
+	transform: translateX(-100%);
+}
+
+.cd-nav {
+	right: 0;
+}
+
+.cd-nav .cd-navigation-wrapper {
+	-webkit-transform: translateX(50%);
+	-moz-transform: translateX(50%);
+	-ms-transform: translateX(50%);
+	-o-transform: translateX(50%);
+	transform: translateX(50%);
+}
+
+.navigation-is-open .menu-hamburger {
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.menu-hamburger:before {
+	left: auto;
+	right: calc(50% - 35px);
+}
+
+.navigation-is-open .menu-hamburger .line:nth-child(3) {
+	-webkit-transform: translateY(-13px) rotate(-90deg);
+   -ms-transform: translateY(-13px) rotate(-90deg);
+   -o-transform: translateY(-13px) rotate(-90deg);
+   transform: translateY(-13px) rotate(-90deg);
+}
+
+.search-overlay {
+   right: 0;
+	z-index: 9999;
+   background-color: #f1f1f1;
+}
+
+.search-overlay .search-close {
+	right: auto;
+   left: 0.3em;
+}
+
+#lang_sel a,
+#lang_sel a:visited {
+	padding: 5px 10px 5px 0;
+}
+
+.woocommerce div.product div.images ol.flex-control-thumbs li {
+	margin: 0 0 10px 2%;
+}
+
+.woocommerce div.product div.images ol.flex-control-thumbs li:nth-child(4n+4) {
+	margin-left: 0;
+}
+
+/* Visual Composer - Remove the negative margin that VC adds for some ridiculous reason */
+.page-template-template-builderfullwidth.wpb-js-composer .vc_row,
+.page-template-template-builderblank.wpb-js-composer .vc_row {
+	margin-right: 0;
+	margin-left: 0;
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (max-width: 767px) {
+	.main-navigation .nav-menu > li:first-child {
+		margin-right: 0;
+	}
+	.header-meta a {
+		padding: 12px 0 12px 12px;
+		padding: .75rem 0 .75rem .75rem;
+	}
+	.more-link {
+		padding: 12px 0 10px 12px;
+		padding: .75rem 0 .625rem .75rem;
+	}
+	.widget-area a {
+		padding: 12px 0 10px 12px;
+		padding: .75rem 0 .625rem .75rem;
+	}
+	.widget-area li {
+		margin: 12px 0 10px 12px;
+		margin: .75rem 0 .625rem .75rem;
+	}
+}
+
+@media only screen and (max-width: 650px) {
+	.main-small-navigation .nav-menu ul {
+		padding-left: 0;
+		padding-right: 16px;
+		padding-right: 1rem;
+	}
+}
+
+@media only screen and (max-width: 519px) {
+	.main-navigation ul ul li ul {
+		right: 0;
+	}
+	.header-meta .publish-date,
+	.header-meta .publish-author,
+	.header-meta .post-categories,
+	.header-meta .comments-link {
+		float: right;
+	}
+	.header-meta .post-categories {
+		margin-right: 0;
+		margin-left: 8px;
+		margin-left: .5rem;
+	}
+}
+
+@media only screen and (max-width: 420px) {
+	.social-icons .phone {
+		margin-right: 0;
+		margin-left: 0;
+	}
+	.social-icons {
+		margin-left: 0;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	.author-description {
+		float: right;
+	}
+}
+
+/* ==========================================================================
+   Non-semantic helper classes from HTML5 Boilerplate
+   Please define your styles before this section.
+   ========================================================================== */
+
+/* For image replacement */
+.ir { text-align: right; direction: rtl; }
