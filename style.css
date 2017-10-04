@@ -2492,6 +2492,10 @@ main {
 	margin-top: 6px;
 }
 
+#lang_sel_footer.wpml-ls-legacy-list-horizontal.wpml-ls-statics-footer {
+	margin-bottom: 0;
+}
+
 /* ==========================================================================
    WooCommerce
    ========================================================================== */
@@ -2673,6 +2677,11 @@ h1.page-title {
 
 .woocommerce .pswp__caption__center {
 	text-align: center;
+}
+
+.widget-area .woocommerce-product-search input {
+	margin: 5px 0;
+	margin: 0.3125rem 0;
 }
 
 /* ==========================================================================
