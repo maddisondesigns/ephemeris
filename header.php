@@ -32,10 +32,8 @@
 	<?php	do_action( 'ephemeris_before_header' ); ?>
 	<?php if ( !ephemeris_has_pagebuilder_template( 'header' ) ) { ?>
 		<div class="top-header">
-			<div class="header-social-icons grid-container">
-				<div class="grid-100 tablet-grid-100 social-header">
-					<?php echo ephemeris_get_social_media(); ?>
-				</div>
+			<div class="announcement-bar grid-container">
+				<?php	do_action( 'ephemeris_announcement_bar_content' ); ?>
 			</div>
 		</div>
 

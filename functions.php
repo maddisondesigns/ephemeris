@@ -274,6 +274,7 @@ function ephemeris_template_redirect() {
 		add_action( 'ephemeris_before_header', 'ephemeris_display_' . $template . '_header' );
 	}
 	else {
+		add_action( 'ephemeris_announcement_bar_content', 'ephemeris_social_header' );
 		add_action( 'ephemeris_header_content', 'ephemeris_logo_grid' );
 		add_action( 'ephemeris_header_content', 'ephemeris_nav_grid' );
 	}
@@ -289,6 +290,25 @@ function ephemeris_template_redirect() {
 	}
 }
 add_action( 'template_redirect', 'ephemeris_template_redirect' );
+
+/**
+ * Display the social header icons, including its grid container.
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return void
+ */
+if ( ! function_exists( 'ephemeris_social_header' ) ) {
+	function ephemeris_social_header() {
+		$social_header = '';
+
+		$social_header .= '<div class="grid-100 tablet-grid-100 social-header">';
+		$social_header .= ephemeris_get_social_media();
+		$social_header .= '</div> <!-- /.grid-100.social-header -->';
+
+		echo $social_header;
+	}
+}
 
 /**
  * Display the site logo or site title, including its grid container.
@@ -1580,6 +1600,11 @@ add_action( 'wp_head', 'ephemeris_customizer_css_styles' );
  */
 function ephemeris_get_hooks() {
 	$ephemeris_hooks = array(
+		'ephemeris_before_header',
+		'ephemeris_announcement_bar_content',
+		'ephemeris_before_header_content',
+		'ephemeris_after_header_content',
+		'ephemeris_header_content',
 		'ephemeris_before_main_content',
 		'ephemeris_after_main_content',
 		'ephemeris_before_content',
@@ -1595,10 +1620,6 @@ function ephemeris_get_hooks() {
 		'ephemeris_after_entry_content',
 		'ephemeris_before_footer_content',
 		'ephemeris_after_footer_content',
-		'ephemeris_header_content',
-		'ephemeris_before_header_content',
-		'ephemeris_after_header_content',
-		'ephemeris_before_header',
 		'ephemeris_after_footer',
 		);
 
