@@ -2727,12 +2727,10 @@ h1.page-title {
 		font-size: 24px;
 		font-size: 1.5rem;
 	}
-	.main-navigation,
-	.social-navigation {
+	.main-navigation {
 		display: none;
 	}
-	.mobile-navigation,
-	.social-media-icons {
+	.mobile-navigation {
 		display: block;
 	}
 	.search-overlay form input {
@@ -2744,13 +2742,6 @@ h1.page-title {
 }
 
 @media only screen and (max-width: 767px) {
-	header .main-navigation {
-		margin-top: 0;
-		float: none;
-	}
-	.main-navigation .nav-menu > li:first-child {
-		margin-left: 0;
-	}
 	.widget-area {
 		margin-top: 32px;
 		margin-top: 2rem;
@@ -2790,12 +2781,8 @@ h1.page-title {
 }
 
 @media only screen and (max-width: 650px) {
-	.main-small-navigation .nav-menu, .nav-menu ul {
+	.nav-menu ul {
 		padding: 0;
-	}
-	.main-small-navigation .nav-menu ul {
-		padding-left: 16px;
-		padding-left: 1rem;
 	}
 }
 
@@ -2815,26 +2802,20 @@ h1.page-title {
 	.site-title h1 {
 		text-align: center;
 	}
-	.main-small-navigation .nav-menu,
-	.main-small-navigation .nav-menu ul,
 	.nav-menu,
 	.nav-menu ul {
 		padding: 0;
 	}
-	.main-small-navigation,
 	.main-navigation li {
 		width: 100%;
 	}
-	.main-small-navigation {
-		text-align: center;
-	}
-	.main-small-navigation ul li,
 	.main-navigation ul li {
 		background-color: #fff;
 		margin: 5px 0;
 		text-align: center;
 	}
-	.main-navigation ul ul, .main-navigation ul ul li ul {
+	.main-navigation ul ul,
+	.main-navigation ul ul li ul {
 		position: relative;
 	}
 	.main-navigation ul ul li ul {
