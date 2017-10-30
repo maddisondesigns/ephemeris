@@ -7,7 +7,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article itemscope="itemscope" itemtype="http://schema.org/Article" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php do_action( 'ephemeris_before_entry_header' ); ?>
 	<header class="entry-header">
 		<?php do_action( 'ephemeris_after_entry_title' ); ?>

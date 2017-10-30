@@ -23,6 +23,6 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body itemscope="itemscope" itemtype="http://schema.org/CreativeWork" <?php body_class(); ?>>
 
 <div id="wrapper" class="hfeed site">

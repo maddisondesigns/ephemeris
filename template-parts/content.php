@@ -7,7 +7,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article itemscope="itemscope" itemtype="http://schema.org/Article" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php do_action( 'ephemeris_before_entry_header' ); ?>
 	<?php if ( is_sticky() && is_home() && ! is_paged() ) { ?>
 		<div class="featured-post">
