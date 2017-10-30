@@ -38,7 +38,7 @@ class ephemeris_initialise_customizer_settings {
 		// Register our search controls
 		add_action( 'customize_register', array( $this, 'ephemeris_register_search_controls' ) );
 
-		// Register our search controls
+		// Register our footer controls
 		add_action( 'customize_register', array( $this, 'ephemeris_register_footer_controls' ) );
 
 		// Register our WooCommerce controls. Callback will only display these controls if WooCommerce is active
