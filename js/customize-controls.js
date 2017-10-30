@@ -4,7 +4,7 @@
 		section.expanded.bind( function( isExpanded ) {
 			var url;
 			if ( isExpanded ) {
-				url = ephemeris_woocommerce_data.ephemeris_woocommerce_url;
+				url = ephemeris_customizer_data.ephemeris_woocommerce_url;
 				api.previewer.previewUrl.set( url );
 			}
 		} );
