@@ -36,14 +36,14 @@
 			<span class="line"></span>
 			<span class="line"></span>
 			<span class="line"></span>
-			<span class="mobile-nav-title">MENU</span>
+			<span class="mobile-nav-title"><?php _e( 'MENU', 'ephemeris' ) ?></span>
 		</div>
 	</a>
 
 	<div id="cd-nav" class="grid-container cd-nav">
 		<div class="grid-100">
 			<div class="cd-navigation-wrapper">
-				<h2>Navigation</h2>
+				<h2><?php echo apply_filters( 'ephemeris_mobile_navigation_title', __( 'Navigation', 'ephemeris' ) ) ?></h2>
 
 				<nav role="navigation">
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'mobile-menu' ) ); ?>
