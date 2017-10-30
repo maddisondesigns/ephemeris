@@ -169,7 +169,7 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		 */
 		$fonts_url = ephemeris_fonts_url();
 		if ( !empty( $fonts_url ) ) {
-			wp_enqueue_style( 'ephemeris-fonts', esc_url_raw( $fonts_url ), array(), null );
+			wp_enqueue_style( 'ephemeris-fonts', $fonts_url, array(), null );
 		}
 
 		// If using a child theme, auto-load the parent theme style.
@@ -242,7 +242,7 @@ if ( ! function_exists( 'ephemeris_customize_controls_enqueue_scripts' ) ) {
 
 			wp_enqueue_script( 'ephemeriscustomizecontrolsjs', trailingslashit( get_template_directory_uri() ) . 'js/customize-controls.js', array( 'customize-controls' ), '1.0', true );
 
-			wp_localize_script( 'ephemeriscustomizecontrolsjs', 'ephemeris_woocommerce_data',
+			wp_localize_script( 'ephemeriscustomizecontrolsjs', 'ephemeris_customizer_data',
 				array(
 					'ephemeris_woocommerce_url' => $shop_page_url
 				)
@@ -341,7 +341,7 @@ if ( ! function_exists( 'ephemeris_nav_grid' ) ) {
 		$nav_grid = '';
 
 		$nav_grid .= '<div class="grid-60 tablet-grid-60 mobile-grid-100' . ( is_rtl() ? ' pull-40 tablet-pull-40' : '' ) . '">';
-		$nav_grid .= '<nav id="site-navigation" class="main-navigation" role="navigation">';
+		$nav_grid .= '<nav id="site-navigation" class="main-navigation" role="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">';
 		$nav_grid .= '<div class="assistive-text skip-link"><a href="#content" title="' . esc_attr( 'Skip to content', 'ephemeris' ) . '">' . esc_html( 'Skip to content', 'ephemeris' ) . '</a></div>';
 		$nav_grid .= wp_nav_menu(
 			array(
@@ -478,13 +478,13 @@ if ( ! function_exists( 'ephemeris_fonts_url' ) ) {
 				$font_families[] = 'Dosis:700';
 
 			$query_args = array(
-				'family' => implode( '|', $font_families ),
+				'family' => implode( '%7C', $font_families ),
 				'subset' => $subsets,
 			);
 			$fonts_url = add_query_arg( $query_args, "https://fonts.googleapis.com/css" );
 		}
 
-		return $fonts_url;
+		return esc_url_raw( $fonts_url );
 	}
 }
 
@@ -984,7 +984,7 @@ function ephemeris_posted_on() {
 	);
 
 	// Translators: 1: Date link 2: Author title 3: Author
-	$author = sprintf( '<span class="publish-author"><i class="fa fa-pencil" aria-hidden="true"></i> <address class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></address></span>',
+	$author = sprintf( '<address class="publish-author"><i class="fa fa-pencil" aria-hidden="true"></i> <span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author" itemprop="author">%3$s</a></span></address>',
 		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 		esc_attr( sprintf( esc_html__( 'View all posts by %s', 'ephemeris' ), get_the_author() ) ),
 		get_the_author()
