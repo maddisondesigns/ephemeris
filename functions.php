@@ -47,7 +47,7 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 
 		// This theme uses wp_nav_menu() in one location
 		register_nav_menus( array(
-				'primary' => esc_html__( 'Primary Menu', 'ephemeris' )
+				'primary-menu' => esc_html__( 'Primary Menu', 'ephemeris' )
 			)
 		);
 
@@ -345,7 +345,7 @@ if ( ! function_exists( 'ephemeris_nav_grid' ) ) {
 		$nav_grid .= '<div class="assistive-text skip-link"><a href="#content" title="' . esc_attr( 'Skip to content', 'ephemeris' ) . '">' . esc_html( 'Skip to content', 'ephemeris' ) . '</a></div>';
 		$nav_grid .= wp_nav_menu(
 			array(
-				'theme_location' => 'primary',
+				'theme_location' => 'primary-menu',
 				'menu_class' => 'nav-menu',
 				'echo' => false
 			) );
@@ -1200,7 +1200,7 @@ if ( ! function_exists( 'ephemeris_add_search_menu_item' ) ) {
 		$defaults = ephemeris_generate_defaults();
 
 		if( get_theme_mod( 'search_menu_icon', $defaults['search_menu_icon'] ) ) {
-			if( $args->theme_location == 'primary' ) {
+			if( $args->theme_location == 'primary-menu' ) {
 				$items .= '<li class="menu-item menu-item-search"><a href="#" class="nav-search"><i class="fa fa-search"></i></a></li>';
 			}
 		}
