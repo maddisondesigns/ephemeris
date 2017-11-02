@@ -23,6 +23,9 @@ class ephemeris_initialise_customizer_settings {
 		// Register our sections
 		add_action( 'customize_register', array( $this, 'ephemeris_add_customizer_sections' ) );
 
+		// Add Edit Shortcut to primary Navigation
+		add_action( 'customize_register', array( $this, 'ephemeris_add_partial_to_controls' ) );
+
 		// Register our color controls
 		add_action( 'customize_register', array( $this, 'ephemeris_register_color_controls' ) );
 
@@ -52,10 +55,8 @@ class ephemeris_initialise_customizer_settings {
 	 * Register the Customizer panels
 	 */
 	public function ephemeris_add_customizer_panels( $wp_customize ) {
-		/**
-		 * Add our Colors Panel
-		 */
-		 $wp_customize->add_panel( 'colors_panel',
+		// Add our Colors Panel
+		$wp_customize->add_panel( 'colors_panel',
 		 	array(
 				'title' => __( 'Colors', 'ephemeris' ),
 				'description' => esc_html__( 'Set the colors for your site.', 'ephemeris' ),
@@ -63,10 +64,8 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
-		/**
-		 * Add our Header & Navigation Panel
-		 */
-		 $wp_customize->add_panel( 'header_naviation_panel',
+		// Add our Header & Navigation Panel
+		$wp_customize->add_panel( 'header_naviation_panel',
 		 	array(
 				'title' => __( 'Header & Navigation', 'ephemeris' ),
 				'description' => esc_html__( 'Adjust your Header and Navigation sections.', 'ephemeris' ),
@@ -79,24 +78,16 @@ class ephemeris_initialise_customizer_settings {
 	 * Register the Customizer sections
 	 */
 	public function ephemeris_add_customizer_sections( $wp_customize ) {
-		/**
-		 * Rename the default Colors section
-		 */
+		// Rename the default Colors section
 		$wp_customize->get_section( 'colors' )->title = 'Background';
 
-		/**
-		 * Move the default Colors section to our new Colors Panel
-		 */
+		// Move the default Colors section to our new Colors Panel
 		$wp_customize->get_section( 'colors' )->panel = 'colors_panel';
 
-		/**
-		 * Change the Priority of the default Colors section so it's at the top of our Panel
-		 */
+		// Change the Priority of the default Colors section so it's at the top of our Panel
 		$wp_customize->get_section( 'colors' )->priority = 10;
 
-		/**
-		 * Add our Page & Post Headers Section
-		 */
+		// Add our Page & Post Headers Section
 		$wp_customize->add_section( 'color_page_post_headers_section',
 			array(
 				'title' => __( 'Page &amp; Post Headers', 'ephemeris' ),
@@ -106,9 +97,7 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
-		/**
-		 * Add our Body Headers Section
-		 */
+		// Add our Body Headers Section
 		$wp_customize->add_section( 'color_body_headers_section',
 			array(
 				'title' => __( 'Body Headers', 'ephemeris' ),
@@ -118,9 +107,7 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
-		/**
-		 * Add our Body Text Section
-		 */
+		// Add our Body Text Section
 		$wp_customize->add_section( 'color_body_text_section',
 			array(
 				'title' => __( 'Body Text', 'ephemeris' ),
@@ -130,9 +117,7 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
-		/**
-		 * Add our Layout Section
-		 */
+		// Add our Layout Section
 		$wp_customize->add_section( 'layout_section',
 			array(
 				'title' => __( 'Site Layout', 'ephemeris' ),
@@ -141,9 +126,7 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
-		/**
-		 * Add our Social Icons Section
-		 */
+		// Add our Social Icons Section
 		$wp_customize->add_section( 'social_icons_section',
 			array(
 				'title' => __( 'Social Icons', 'ephemeris' ),
@@ -152,9 +135,7 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
-		/**
-		 * Add our Contact Section
-		 */
+		// Add our Contact Section
 		$wp_customize->add_section( 'contact_section',
 			array(
 				'title' => __( 'Contact', 'ephemeris' ),
@@ -163,9 +144,7 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
-		/**
-		 * Add our Search Section
-		 */
+		// Add our Search Section
 		$wp_customize->add_section( 'search_section',
 			array(
 				'title' => __( 'Search', 'ephemeris' ),
@@ -174,9 +153,7 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
-		/**
-		 * Add our Footer Section
-		 */
+		// Add our Footer Section
 		$wp_customize->add_section( 'footer_section',
 			array(
 				'title' => __( 'Footer Layout', 'ephemeris' ),
@@ -185,9 +162,7 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
-		/**
-		 * Add our WooCommerce Layout Section, only if WooCommerce is active
-		 */
+		// Add our WooCommerce Layout Section, only if WooCommerce is active
 		$wp_customize->add_section( 'woocommerce_layout_section',
 			array(
 				'title' => __( 'WooCommerce Layout', 'ephemeris' ),
@@ -197,15 +172,27 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
-		/**
-		 * Add our Elementor Section, only if Elementor is active
-		 */
+		// Add our Elementor Section, only if Elementor is active
 		$wp_customize->add_section( 'elementor_section',
 			array(
 				'title' => __( 'Elementor', 'ephemeris' ),
 				'description' => esc_html__( 'If you wish to replace the default theme Header &amp; Footer with your own custom Elementor templates, select them below. You have the option to replace just one, or you can replace both.', 'ephemeris' ),
 				'active_callback' => function () { return ephemeris_is_plugin_active( 'elementor' ); },
 				'priority' => 165,
+			)
+		);
+	}
+
+	/**
+	 * Manually add the Edit Shortcut to the main navigation as it's not included when wp_nav_menu uses 'echo' => false
+	 */
+	public function ephemeris_add_partial_to_controls( $wp_customize ) {
+		$wp_customize->selective_refresh->add_partial( 'nav_menu_locations[primary-menu]',
+			array(
+				'selector' => '.main-navigation',
+				'container_inclusive' => false,
+				'render_callback' => '__return_false',
+				'fallback_refresh' => true,
 			)
 		);
 	}
