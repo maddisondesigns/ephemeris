@@ -56,7 +56,10 @@ canvas {
    -ms-touch-action: double-tap-zoom;
 }
 /* Make sure videos and embeds fit their containers */
-embed, iframe, object, video {
+embed,
+iframe,
+object,
+video {
 	max-width: 100%;
 }
 
@@ -103,7 +106,12 @@ img.wp-smiley,
 }
 
 /* Header */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-family: 'Dosis', sans-serif;
 	font-style: normal;
 	font-weight: 700;
@@ -168,7 +176,8 @@ hr {
 	margin: 1.5rem;
 }
 
-ol, ul {
+ol,
+ul {
 	list-style: none outside none;
 }
 
@@ -177,7 +186,11 @@ li {
 	margin-bottom: .5rem;
 }
 
-p, ol, ul, dl, address {
+p,
+ol,
+ul,
+dl,
+address {
 	margin: 0 0 24px 0;
 	margin: 0 0 1.5rem 0;
 	font-size: 16px;
@@ -185,7 +198,10 @@ p, ol, ul, dl, address {
 	line-height: 1.5;
 }
 
-ul ul, ul ol, ol ol, ol ul {
+ul ul,
+ul ol,
+ol ol,
+ol ul {
 	margin-bottom: 0;
 }
 
@@ -200,22 +216,15 @@ figure {
 	margin: 16px 0;
 }
 
-b, strong {
+b,
+strong {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	font-style: normal;
 	font-weight: 700;
 }
 
 em {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	font-style: italic;
-	font-weight: 400;
-}
-
-strong em, b em {
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	font-style: italic;
-	font-weight: 700;
 }
 
 ins {
@@ -350,7 +359,8 @@ td {
 	text-align: left;
 }
 
-code, pre {
+code,
+pre {
 	border-radius: 3px;
 	color: #555;
 	font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
@@ -420,7 +430,8 @@ sub {
 	text-align: center;
 }
 
-img.wp-smiley, .rsswidget img {
+img.wp-smiley,
+.rsswidget img {
 	border: 0;
 	border-radius: 0;
 	box-shadow: none;
@@ -469,7 +480,9 @@ img.wp-smiley, .rsswidget img {
 	position: absolute !important;
 }
 
-button, input {
+button,
+input,
+select {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-weight: 400;
@@ -481,7 +494,8 @@ button, input {
 	vertical-align: middle;
 }
 
-button, input {
+button,
+input {
 	*overflow: visible;
 	line-height: normal;
 }

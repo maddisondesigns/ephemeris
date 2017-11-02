@@ -161,14 +161,12 @@ dd {
 
 b, strong {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	font-style: normal;
 	font-weight: 700;
 }
 
 em {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	font-style: italic;
-	font-weight: 400;
 }
 
 cite {
