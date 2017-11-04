@@ -11,7 +11,6 @@ Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, cus
 Text Domain: ephemeris
 */
 
-
 /* ==========================================================================
    Default stylings from HTML5 Boilerplate
    ========================================================================== */
@@ -20,7 +19,7 @@ Text Domain: ephemeris
 html { box-sizing: border-box; overflow-x: hidden; }
 *, *:before, *:after { box-sizing: inherit; }
 
-/* Using rem font sizing (Root em’s) with fallback to px for ie8 and below - http://snook.ca/archives/html_and_css/font-size-with-rem */
+/* Using rem font sizing (Root em's) with fallback to px for ie8 and below - http://snook.ca/archives/html_and_css/font-size-with-rem */
 body { margin: 0; font-size: 16px; font-size: 1rem; line-height: 1.5; overflow-x: hidden; }
 
 ::-webkit-selection { background: #5784FE; color: #fff; text-shadow: none; }
@@ -55,6 +54,7 @@ body {
 canvas {
    -ms-touch-action: double-tap-zoom;
 }
+
 /* Make sure videos and embeds fit their containers */
 embed,
 iframe,
@@ -63,8 +63,9 @@ video {
 	max-width: 100%;
 }
 
+/* Override the Twitter embed fixed width */
 .entry-content .twitter-tweet-rendered {
-	max-width: 100% !important; /* Override the Twitter embed fixed width */
+	max-width: 100% !important;
 }
 
 /* Responsive images */
@@ -75,24 +76,27 @@ img {
 	vertical-align: top;
 }
 
+/* Fluid images for posts, comments, and widgets */
 .entry-content img,
 .comment-content img,
 .widget img {
-	max-width: 100%; /* Fluid images for posts, comments, and widgets */
+	max-width: 100%;
 }
 
+/* Make sure images with WordPress-added height and width attributes are scaled correctly */
 img[class*="align"],
 img[class*="wp-image-"],
 img[class*="attachment-"] {
-	height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
+	height: auto;
 }
 
+/* Make sure images with WordPress-added height and width attributes are scaled correctly */
 img.size-full,
 img.size-large,
 img.header-image,
 img.wp-post-image {
 	max-width: 100%;
-	height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
+	height: auto;
 }
 
 img.wp-smiley,
@@ -142,7 +146,6 @@ h3 {
 	font-size: 1.75rem;
 	line-height: 1.2857;
 }
-
 
 h4 {
 	margin-bottom: 5px;
@@ -411,8 +414,9 @@ sub {
 	bottom: -0.25em;
 }
 
+/* Keep wide captions from overflowing their container. */
 .wp-caption {
-	max-width: 100%; /* Keep wide captions from overflowing their container. */
+	max-width: 100%;
 	padding: 4px;
 	padding: 0.25rem;
 }
@@ -748,7 +752,6 @@ select {
 	width: auto;
 	z-index: 100000; /* Above WP toolbar. */
 }
-
 
 /* ==========================================================================
    Site specific styles
@@ -1737,10 +1740,6 @@ form label.error {
 }
 
 .widget-area .widget {
-	-moz-hyphens: auto;
-	-webkit-hyphens: auto;
-	hyphens: auto;
-	word-wrap: break-word;
 	margin-bottom: 48px;
 	margin-bottom: 3rem;
 }
