@@ -8,13 +8,13 @@
 ?>
 
 <article itemscope="itemscope" itemtype="http://schema.org/WebPage" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php if ( has_post_thumbnail() && !is_search() && !post_password_required() ) { ?>
+	<?php if ( !is_front_page() ) { ?>
 		<?php do_action( 'ephemeris_before_entry_header' ); ?>
 		<header class="entry-header">
-			<?php if ( !is_front_page() ) { ?>
-				<h1 class="entry-title"><?php the_title(); ?></h1>
+			<h1 class="entry-title"><?php the_title(); ?></h1>
+			<?php if ( has_post_thumbnail() && !is_search() && !post_password_required() ) { ?>
+				<?php the_post_thumbnail( 'ephemeris_post_feature_full_width' ); ?>
 			<?php } ?>
-			<?php the_post_thumbnail( 'ephemeris_post_feature_full_width' ); ?>
 		</header>
 	<?php } ?>
 	<?php do_action( 'ephemeris_after_entry_header' ); ?>
