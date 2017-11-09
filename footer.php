@@ -15,15 +15,17 @@
 		<?php	do_action( 'ephemeris_after_main_content' ); ?>
 		<div id="footercontainer">
 			<?php	do_action( 'ephemeris_before_footer_content' ); ?>
-
 			<?php get_sidebar( 'footer' ); ?>
+			<?php	do_action( 'ephemeris_after_footer_content' ); ?>
+		</div> <!-- /.footercontainer -->
+		<div id="footercreditscontainer">
+			<?php	do_action( 'ephemeris_before_credits_content' ); ?>
 			<div class="grid-container site-credits">
 				<div class="grid-100 footer-credits">
 					<?php echo ephemeris_get_credits() ?>
 				</div> <!-- /.grid-100 -->
-			</div> <!-- /.grid-container.smallprint -->
-
-			<?php	do_action( 'ephemeris_after_footer_content' ); ?>
+			</div> <!-- /.grid-container.site-credits -->
+			<?php	do_action( 'ephemeris_after_credits_content' ); ?>
 		</div> <!-- /.footercontainer -->
 	<?php } ?>
 

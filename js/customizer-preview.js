@@ -90,11 +90,12 @@ jQuery( document ).ready(function($) {
 	wp.customize('footer_background_color', function(control) {
 		control.bind(function( controlValue ) {
 			$('#footercontainer').css('background-color', controlValue);
+			$('#footercreditscontainer').css('background-color', controlValue);
 		});
 	});
 
 	// Change the footer font color
-	wp.customize('footer_font_color', function(control) {
+	wp.customize('footer_credits_font_color', function(control) {
 		control.bind(function( controlValue ) {
 			$('.site-credits').css('color', controlValue);
 		});

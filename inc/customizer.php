@@ -660,14 +660,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our Alpha Color Picker setting & control for the footer font colour
-		$wp_customize->add_setting( 'footer_font_color',
+		$wp_customize->add_setting( 'footer_credits_font_color',
 			array(
-				'default' => $this->defaults['footer_font_color'],
+				'default' => $this->defaults['footer_credits_font_color'],
 				'transport' => 'postMessage',
 				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'footer_font_color',
+		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'footer_credits_font_color',
 			array(
 				'label' => __( 'Footer Font Color', 'ephemeris' ),
 				'description' => __( 'Select the font color for the footer.', 'ephemeris' ),

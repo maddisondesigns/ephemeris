@@ -1585,7 +1585,8 @@ function ephemeris_customizer_css_styles() {
 
 	// Footer styles
 	$styles .= '#footercontainer { background-color: ' . get_theme_mod( 'footer_background_color', $defaults['footer_background_color'] ) . '; }';
-	$styles .= '.site-credits { color: ' . get_theme_mod( 'footer_font_color', $defaults['footer_font_color'] ) . '; }';
+	$styles .= '#footercreditscontainer { background-color: ' . get_theme_mod( 'footer_background_color', $defaults['footer_background_color'] ) . '; }';
+	$styles .= '.site-credits { color: ' . get_theme_mod( 'footer_credits_font_color', $defaults['footer_credits_font_color'] ) . '; }';
 
 	echo '<style type="text/css">' . $styles . '</style>';
 }
@@ -1620,6 +1621,8 @@ function ephemeris_get_hooks() {
 		'ephemeris_after_entry_content',
 		'ephemeris_before_footer_content',
 		'ephemeris_after_footer_content',
+		'ephemeris_before_credits_content',
+		'ephemeris_after_credits_content',
 		'ephemeris_after_footer',
 		);
 
@@ -1674,6 +1677,8 @@ if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 			'search_menu_icon' => 0,
 			'footer_background_color' => '#f9f9f9',
 			'footer_font_color' => '#9a9a9a',
+			'footer_credits_background_color' => '#f9f9f9',
+			'footer_credits_font_color' => '#9a9a9a',
 			'footer_credits' => ephemeris_get_credits_default(),
 			'woocommerce_shop_sidebar' => 1,
 			'woocommerce_cattag_sidebar' => 1,
