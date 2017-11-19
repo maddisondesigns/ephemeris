@@ -48,7 +48,7 @@
 				<h2><?php echo apply_filters( 'ephemeris_mobile_navigation_title', __( 'Navigation', 'ephemeris' ) ) ?></h2>
 
 				<nav role="navigation">
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'mobile-menu' ) ); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary-menu', 'menu_class' => 'mobile-menu' ) ); ?>
 				</nav>
 			</div><!-- .cd-navigation-wrapper -->
 		</div> <!-- .grid-100 -->
