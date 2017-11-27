@@ -155,6 +155,8 @@ and also uses the following:
 - Fix weird borders on customizer color controls.
 - Fix alignment of input on default customizer color control
 - Fix position of label and alpha colour customizer control input field
+- Fix height of customizer input fields so they're the same height as select fields
+- Add new Date Time Customizer control sanitization function
 
 = 1.0 =
 - Initial version
