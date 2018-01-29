@@ -167,7 +167,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'title' => __( 'WooCommerce Layout', 'ephemeris' ),
 				'description' => esc_html__( 'Adjust the layout of your WooCommerce shop.', 'ephemeris' ),
-				'active_callback' => function () { return ephemeris_is_plugin_active( 'woocommerce' ); },
+				'active_callback' => 'ephemeris_is_woocommerce_plugin_active_active_callback',
 				'priority' => 160,
 			)
 		);
@@ -177,7 +177,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'title' => __( 'Elementor', 'ephemeris' ),
 				'description' => esc_html__( 'If you wish to replace the default theme Header &amp; Footer with your own custom Elementor templates, select them below. You have the option to replace just one, or you can replace both.', 'ephemeris' ),
-				'active_callback' => function () { return ephemeris_is_plugin_active( 'elementor' ); },
+				'active_callback' => 'ephemeris_is_elementor_plugin_active_active_callback',
 				'priority' => 165,
 			)
 		);
@@ -204,14 +204,14 @@ class ephemeris_initialise_customizer_settings {
 		// Add our Main Page & Post Header colors
 
 		// Add our color setting and control for title header normal color
-		$wp_customize->add_setting( 'color_header_title_normal',
+		$wp_customize->add_setting( 'ephemeris_color_header_title_normal',
 			array(
-				'default' => $this->defaults['color_header_title_normal'],
+				'default' => $this->defaults['ephemeris_color_header_title_normal'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_header_title_normal',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_normal',
 			array(
 				'label' => __( 'Header Color', 'ephemeris' ),
 				'section' => 'color_page_post_headers_section',
@@ -219,14 +219,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our color setting and control for title header link color
-		$wp_customize->add_setting( 'color_header_title_link',
+		$wp_customize->add_setting( 'ephemeris_color_header_title_link',
 			array(
-				'default' => $this->defaults['color_header_title_link'],
+				'default' => $this->defaults['ephemeris_color_header_title_link'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_header_title_link',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_link',
 			array(
 				'label' => __( 'Header Link Color', 'ephemeris' ),
 				'section' => 'color_page_post_headers_section',
@@ -234,14 +234,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our color setting and control for title header hover color
-		$wp_customize->add_setting( 'color_header_title_hover',
+		$wp_customize->add_setting( 'ephemeris_color_header_title_hover',
 			array(
-				'default' => $this->defaults['color_header_title_hover'],
+				'default' => $this->defaults['ephemeris_color_header_title_hover'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_header_title_hover',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_hover',
 			array(
 				'label' => __( 'Header Link Hover Color', 'ephemeris' ),
 				'section' => 'color_page_post_headers_section',
@@ -249,14 +249,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our color setting and control for title header visited color
-		$wp_customize->add_setting( 'color_header_title_visited',
+		$wp_customize->add_setting( 'ephemeris_color_header_title_visited',
 			array(
-				'default' => $this->defaults['color_header_title_visited'],
+				'default' => $this->defaults['ephemeris_color_header_title_visited'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_header_title_visited',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_visited',
 			array(
 				'label' => __( 'Header Link Visited Color', 'ephemeris' ),
 				'section' => 'color_page_post_headers_section',
@@ -266,14 +266,14 @@ class ephemeris_initialise_customizer_settings {
 		// Add our body Header colors
 
 		// Add our color setting and control for body header normal color
-		$wp_customize->add_setting( 'color_header_body_normal',
+		$wp_customize->add_setting( 'ephemeris_color_header_body_normal',
 			array(
-				'default' => $this->defaults['color_header_body_normal'],
+				'default' => $this->defaults['ephemeris_color_header_body_normal'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_header_body_normal',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_normal',
 			array(
 				'label' => __( 'Header Color', 'ephemeris' ),
 				'section' => 'color_body_headers_section',
@@ -281,14 +281,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our color setting and control for body header link color
-		$wp_customize->add_setting( 'color_header_body_link',
+		$wp_customize->add_setting( 'ephemeris_color_header_body_link',
 			array(
-				'default' => $this->defaults['color_header_body_link'],
+				'default' => $this->defaults['ephemeris_color_header_body_link'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_header_body_link',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_link',
 			array(
 				'label' => __( 'Header Link Color', 'ephemeris' ),
 				'section' => 'color_body_headers_section',
@@ -296,14 +296,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our color setting and control for body header hover color
-		$wp_customize->add_setting( 'color_header_body_hover',
+		$wp_customize->add_setting( 'ephemeris_color_header_body_hover',
 			array(
-				'default' => $this->defaults['color_header_body_hover'],
+				'default' => $this->defaults['ephemeris_color_header_body_hover'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_header_body_hover',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_hover',
 			array(
 				'label' => __( 'Header Link Hover Color', 'ephemeris' ),
 				'section' => 'color_body_headers_section',
@@ -311,14 +311,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our color setting and control for body header visited color
-		$wp_customize->add_setting( 'color_header_body_visited',
+		$wp_customize->add_setting( 'ephemeris_color_header_body_visited',
 			array(
-				'default' => $this->defaults['color_header_body_visited'],
+				'default' => $this->defaults['ephemeris_color_header_body_visited'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_header_body_visited',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_visited',
 			array(
 				'label' => __( 'Header Link Visited Color', 'ephemeris' ),
 				'section' => 'color_body_headers_section',
@@ -328,14 +328,14 @@ class ephemeris_initialise_customizer_settings {
 		// Add our body Text colors
 
 		// Add our color setting and control for text normal color
-		$wp_customize->add_setting( 'color_text_normal',
+		$wp_customize->add_setting( 'ephemeris_color_text_normal',
 			array(
-				'default' => $this->defaults['color_text_normal'],
+				'default' => $this->defaults['ephemeris_color_text_normal'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_text_normal',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_normal',
 			array(
 				'label' => __( 'Text Color ', 'ephemeris' ),
 				'section' => 'color_body_text_section',
@@ -343,14 +343,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our color setting and control for text link color
-		$wp_customize->add_setting( 'color_text_link',
+		$wp_customize->add_setting( 'ephemeris_color_text_link',
 			array(
-				'default' => $this->defaults['color_text_link'],
+				'default' => $this->defaults['ephemeris_color_text_link'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_text_link',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_link',
 			array(
 				'label' => __( 'Text Link Color', 'ephemeris' ),
 				'section' => 'color_body_text_section',
@@ -358,14 +358,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our color setting and control for text hover color
-		$wp_customize->add_setting( 'color_text_hover',
+		$wp_customize->add_setting( 'ephemeris_color_text_hover',
 			array(
-				'default' => $this->defaults['color_text_hover'],
+				'default' => $this->defaults['ephemeris_color_text_hover'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_text_hover',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_hover',
 			array(
 				'label' => __( 'Text Link Hover Color', 'ephemeris' ),
 				'section' => 'color_body_text_section',
@@ -373,14 +373,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our color setting and control for text visited color
-		$wp_customize->add_setting( 'color_text_visited',
+		$wp_customize->add_setting( 'ephemeris_color_text_visited',
 			array(
-				'default' => $this->defaults['color_text_visited'],
+				'default' => $this->defaults['ephemeris_color_text_visited'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'color_text_visited',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_visited',
 			array(
 				'label' => __( 'Text Link Visited Color', 'ephemeris' ),
 				'section' => 'color_body_text_section',
@@ -394,14 +394,14 @@ class ephemeris_initialise_customizer_settings {
 	public function ephemeris_register_layout_controls( $wp_customize ) {
 
 		// Add our Slider setting and control for adjusting the width of the main content area
-		$wp_customize->add_setting( 'layout_width',
+		$wp_customize->add_setting( 'ephemeris_layout_width',
 			array(
-				'default' => $this->defaults['layout_width'],
+				'default' => $this->defaults['ephemeris_layout_width'],
 				'transport' => 'postMessage',
 				'sanitize_callback' => 'absint',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Slider_Custom_Control( $wp_customize, 'layout_width',
+		$wp_customize->add_control( new Ephemeris_Slider_Custom_Control( $wp_customize, 'ephemeris_layout_width',
 			array(
 				'label' => __( 'Content Area Width (px)', 'ephemeris' ),
 				'section' => 'layout_section',
@@ -420,39 +420,37 @@ class ephemeris_initialise_customizer_settings {
 	public function ephemeris_register_social_controls( $wp_customize ) {
 
 		// Add our Checkbox switch setting and control for opening URLs in a new tab
-		$wp_customize->add_setting( 'social_newtab',
+		$wp_customize->add_setting( 'ephemeris_social_newtab',
 			array(
-				'default' => $this->defaults['social_newtab'],
+				'default' => $this->defaults['ephemeris_social_newtab'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_switch_sanitization',
+				'sanitize_callback' => 'ephemeris_switch_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'social_newtab',
+		$wp_customize->add_control( new Ephemeris_Toggle_Switch_Custom_control( $wp_customize, 'ephemeris_social_newtab',
 			array(
 				'label' => __( 'Open in new browser tab', 'ephemeris' ),
 				'section' => 'social_icons_section',
 			)
 		) );
-		$wp_customize->selective_refresh->add_partial( 'social_newtab',
+		$wp_customize->selective_refresh->add_partial( 'ephemeris_social_newtab',
 			array(
-				'selector' => '.social-header',
-				'container_inclusive' => false,
-				'render_callback' => function() {
-					echo ephemeris_get_social_media();
-				},
+				'selector' => '.social-icons',
+				'container_inclusive' => true,
+				'render_callback' => 'ephemeris_get_social_media_render_callback',
 				'fallback_refresh' => true,
 			)
 		);
 
 		// Add our Text Radio Button setting and Custom Control for controlling alignment of icons
-		$wp_customize->add_setting( 'social_alignment',
+		$wp_customize->add_setting( 'ephemeris_social_alignment',
 			array(
-				'default' => $this->defaults['social_alignment'],
+				'default' => $this->defaults['ephemeris_social_alignment'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_radio_sanitization',
+				'sanitize_callback' => 'ephemeris_radio_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Text_Radio_Button_Custom_Control( $wp_customize, 'social_alignment',
+		$wp_customize->add_control( new Ephemeris_Text_Radio_Button_Custom_Control( $wp_customize, 'ephemeris_social_alignment',
 			array(
 				'label' => __( 'Alignment', 'ephemeris' ),
 				'description' => esc_html__( 'Choose the alignment for your social icons', 'ephemeris' ),
@@ -463,26 +461,24 @@ class ephemeris_initialise_customizer_settings {
 				),
 			)
 		) );
-		$wp_customize->selective_refresh->add_partial( 'social_alignment',
+		$wp_customize->selective_refresh->add_partial( 'ephemeris_social_alignment',
 			array(
-				'selector' => '.social-header',
-				'container_inclusive' => false,
-				'render_callback' => function() {
-					echo ephemeris_get_social_media();
-				},
+				'selector' => '.social-icons',
+				'container_inclusive' => true,
+				'render_callback' => 'ephemeris_get_social_media_render_callback',
 				'fallback_refresh' => true,
 			)
 		);
 
 		// Add our Sortable Repeater setting and Custom Control for Social media URLs
-		$wp_customize->add_setting( 'social_urls',
+		$wp_customize->add_setting( 'ephemeris_social_urls',
 			array(
-				'default' => $this->defaults['social_urls'],
+				'default' => $this->defaults['ephemeris_social_urls'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_url_sanitization',
+				'sanitize_callback' => 'ephemeris_url_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Sortable_Repeater_Custom_Control( $wp_customize, 'social_urls',
+		$wp_customize->add_control( new Ephemeris_Sortable_Repeater_Custom_Control( $wp_customize, 'ephemeris_social_urls',
 			array(
 				'label' => __( 'Social URLs', 'ephemeris' ),
 				'description' => esc_html__( 'Add your social media links.', 'ephemeris' ),
@@ -492,13 +488,11 @@ class ephemeris_initialise_customizer_settings {
 				),
 			)
 		) );
-		$wp_customize->selective_refresh->add_partial( 'social_urls',
+		$wp_customize->selective_refresh->add_partial( 'ephemeris_social_urls',
 			array(
-				'selector' => '.social-header',
-				'container_inclusive' => false,
-				'render_callback' => function() {
-					echo ephemeris_get_social_media();
-				},
+				'selector' => '.social-icons',
+				'container_inclusive' => true,
+				'render_callback' => 'ephemeris_get_social_media_render_callback',
 				'fallback_refresh' => true,
 			)
 		);
@@ -538,10 +532,10 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => '',
 				'transport' => 'refresh',
-				'sanitize_callback' => 'skyrocket_text_sanitization',
+				'sanitize_callback' => 'ephemeris_text_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Single_Accordion_Custom_Control( $wp_customize, 'social_url_icons',
+		$wp_customize->add_control( new Ephemeris_Single_Accordion_Custom_Control( $wp_customize, 'social_url_icons',
 			array(
 				'label' => __( 'View list of available icons', 'ephemeris' ),
 				'description' => $socialIconsList,
@@ -550,26 +544,24 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our Checkbox switch setting and Custom Control for displaying an RSS icon
-		$wp_customize->add_setting( 'social_rss',
+		$wp_customize->add_setting( 'ephemeris_social_rss',
 			array(
-				'default' => $this->defaults['social_rss'],
+				'default' => $this->defaults['ephemeris_social_rss'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_switch_sanitization',
+				'sanitize_callback' => 'ephemeris_switch_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'social_rss',
+		$wp_customize->add_control( new Ephemeris_Toggle_Switch_Custom_control( $wp_customize, 'ephemeris_social_rss',
 			array(
 				'label' => __( 'Display RSS icon', 'ephemeris' ),
 				'section' => 'social_icons_section',
 			)
 		) );
-		$wp_customize->selective_refresh->add_partial( 'social_rss',
+		$wp_customize->selective_refresh->add_partial( 'ephemeris_social_rss',
 			array(
-				'selector' => '.social-header',
-				'container_inclusive' => false,
-				'render_callback' => function() {
-					echo ephemeris_get_social_media();
-				},
+				'selector' => '.social-icons',
+				'container_inclusive' => true,
+				'render_callback' => 'ephemeris_get_social_media_render_callback',
 				'fallback_refresh' => true,
 			)
 		);
@@ -581,27 +573,25 @@ class ephemeris_initialise_customizer_settings {
 	 */
 	public function ephemeris_register_contact_controls( $wp_customize ) {
 		// Add our Text field setting and Control for displaying the phone number
-		$wp_customize->add_setting( 'contact_phone',
+		$wp_customize->add_setting( 'ephemeris_contact_phone',
 			array(
-				'default' => $this->defaults['contact_phone'],
+				'default' => $this->defaults['ephemeris_contact_phone'],
 				'transport' => 'postMessage',
 				'sanitize_callback' => 'wp_filter_nohtml_kses',
 			)
 		);
-		$wp_customize->add_control( 'contact_phone',
+		$wp_customize->add_control( 'ephemeris_contact_phone',
 			array(
 				'label' => __( 'Display phone number', 'ephemeris' ),
 				'type' => 'text',
 				'section' => 'contact_section',
 			)
 		);
-		$wp_customize->selective_refresh->add_partial( 'contact_phone',
+		$wp_customize->selective_refresh->add_partial( 'ephemeris_contact_phone',
 			array(
-				'selector' => '.social-header',
-				'container_inclusive' => false,
-				'render_callback' => function() {
-					echo ephemeris_get_social_media();
-				},
+				'selector' => '.social-icons',
+				'container_inclusive' => true,
+				'render_callback' => 'ephemeris_get_social_media_render_callback',
 				'fallback_refresh' => true,
 			)
 		);
@@ -613,14 +603,14 @@ class ephemeris_initialise_customizer_settings {
 	 */
 	public function ephemeris_register_search_controls( $wp_customize ) {
 		// Add our Checkbox switch setting and control for opening URLs in a new tab
-		$wp_customize->add_setting( 'search_menu_icon',
+		$wp_customize->add_setting( 'ephemeris_search_menu_icon',
 			array(
-				'default' => $this->defaults['search_menu_icon'],
+				'default' => $this->defaults['ephemeris_search_menu_icon'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_switch_sanitization',
+				'sanitize_callback' => 'ephemeris_switch_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'search_menu_icon',
+		$wp_customize->add_control( new Ephemeris_Toggle_Switch_Custom_control( $wp_customize, 'ephemeris_search_menu_icon',
 			array(
 				'label' => __( 'Display Search Icon', 'ephemeris' ),
 				'section' => 'search_section',
@@ -633,14 +623,14 @@ class ephemeris_initialise_customizer_settings {
 	 */
 	public function ephemeris_register_footer_controls( $wp_customize ) {
 		// Add our Alpha Color Picker setting & control for the footer background colour
-		$wp_customize->add_setting( 'footer_background_color',
+		$wp_customize->add_setting( 'ephemeris_footer_background_color',
 			array(
-				'default' => $this->defaults['footer_background_color'],
+				'default' => $this->defaults['ephemeris_footer_background_color'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'footer_background_color',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_footer_background_color',
 			array(
 				'label' => __( 'Footer Background Color', 'ephemeris' ),
 				'description' => __( 'Select the background color for the footer.', 'ephemeris' ),
@@ -660,14 +650,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our Alpha Color Picker setting & control for the footer font colour
-		$wp_customize->add_setting( 'footer_credits_font_color',
+		$wp_customize->add_setting( 'ephemeris_footer_credits_font_color',
 			array(
-				'default' => $this->defaults['footer_credits_font_color'],
+				'default' => $this->defaults['ephemeris_footer_credits_font_color'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_hex_rgba_sanitization',
+				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Customize_Alpha_Color_Control( $wp_customize, 'footer_credits_font_color',
+		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_footer_credits_font_color',
 			array(
 				'label' => __( 'Footer Font Color', 'ephemeris' ),
 				'description' => __( 'Select the font color for the footer.', 'ephemeris' ),
@@ -687,14 +677,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our TinyMCE Editor setting & control for getting the footer credits
-		$wp_customize->add_setting( 'footer_credits',
+		$wp_customize->add_setting( 'ephemeris_footer_credits',
 			array(
-				'default' => $this->defaults['footer_credits'],
+				'default' => $this->defaults['ephemeris_footer_credits'],
 				'transport' => 'postMessage',
 				'sanitize_callback' => 'wp_kses_post',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_TinyMCE_Custom_control( $wp_customize, 'footer_credits',
+		$wp_customize->add_control( new Ephemeris_TinyMCE_Custom_control( $wp_customize, 'ephemeris_footer_credits',
 			array(
 				'label' => __( 'Footer Content', 'ephemeris' ),
 				'description' => __( 'Enter the text you&#8217;d like to display in the footer.', 'ephemeris' ),
@@ -704,13 +694,11 @@ class ephemeris_initialise_customizer_settings {
 				),
 			)
 		) );
-		$wp_customize->selective_refresh->add_partial( 'footer_credits',
+		$wp_customize->selective_refresh->add_partial( 'ephemeris_footer_credits',
 			array(
 				'selector' => '.footer-credits',
 				'container_inclusive' => false,
-				'render_callback' => function() {
-					echo ephemeris_get_credits();
-				},
+				'render_callback' => 'ephemeris_get_credits_render_callback',
 				'fallback_refresh' => false,
 			)
 		);
@@ -720,13 +708,13 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => '',
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_text_sanitization'
+				'sanitize_callback' => 'ephemeris_text_sanitization'
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Simple_Notice_Custom_control( $wp_customize, 'footer_filters',
+		$wp_customize->add_control( new Ephemeris_Simple_Notice_Custom_control( $wp_customize, 'footer_filters',
 			array(
 				'label' => '',
-				'description' => __( '<code>%currentyear%</code> to insert the current year (auto updates)<br /><code>%copy%</code> to insert the Copyright symbol<br /><code>%reg%</code> to insert the Registered symbol<br /><code>%trade%</code> to insert the Trademark symbol', 'ephemeris' ),
+				'description' => __( '<code>&#37;currentyear&#37;</code> to insert the current year (auto updates)<br /><code>&#37;copy&#37;</code> to insert the Copyright symbol<br /><code>&#37;reg&#37;</code> to insert the Registered symbol<br /><code>&#37;trade&#37;</code> to insert the Trademark symbol', 'ephemeris' ),
 				'section' => 'footer_section'
 			)
 		) );
@@ -738,14 +726,14 @@ class ephemeris_initialise_customizer_settings {
 	public function ephemeris_register_woocommerce_controls( $wp_customize ) {
 
 		// Add our Checkbox switch setting and control for displaying a sidebar on the shop page
-		$wp_customize->add_setting( 'woocommerce_shop_sidebar',
+		$wp_customize->add_setting( 'ephemeris_woocommerce_shop_sidebar',
 			array(
-				'default' => $this->defaults['woocommerce_shop_sidebar'],
+				'default' => $this->defaults['ephemeris_woocommerce_shop_sidebar'],
 				'transport' => 'refresh',
-				'sanitize_callback' => 'skyrocket_switch_sanitization',
+				'sanitize_callback' => 'ephemeris_switch_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'woocommerce_shop_sidebar',
+		$wp_customize->add_control( new Ephemeris_Toggle_Switch_Custom_control( $wp_customize, 'ephemeris_woocommerce_shop_sidebar',
 			array(
 				'label' => __( 'Shop page sidebar', 'ephemeris' ),
 				'section' => 'woocommerce_layout_section',
@@ -753,14 +741,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our Checkbox switch setting and control for displaying a sidebar on the single product page
-		$wp_customize->add_setting( 'woocommerce_product_sidebar',
+		$wp_customize->add_setting( 'ephemeris_woocommerce_product_sidebar',
 			array(
-				'default' => $this->defaults['woocommerce_product_sidebar'],
+				'default' => $this->defaults['ephemeris_woocommerce_product_sidebar'],
 				'transport' => 'refresh',
-				'sanitize_callback' => 'skyrocket_switch_sanitization',
+				'sanitize_callback' => 'ephemeris_switch_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'woocommerce_product_sidebar',
+		$wp_customize->add_control( new Ephemeris_Toggle_Switch_Custom_control( $wp_customize, 'ephemeris_woocommerce_product_sidebar',
 			array(
 				'label' => __( 'Single Product page sidebar', 'ephemeris' ),
 				'section' => 'woocommerce_layout_section',
@@ -768,14 +756,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our Checkbox switch setting and control for displaying a sidebar on the Product Category & Tag page
-		$wp_customize->add_setting( 'woocommerce_cattag_sidebar',
+		$wp_customize->add_setting( 'ephemeris_woocommerce_cattag_sidebar',
 			array(
-				'default' => $this->defaults['woocommerce_cattag_sidebar'],
+				'default' => $this->defaults['ephemeris_woocommerce_cattag_sidebar'],
 				'transport' => 'refresh',
-				'sanitize_callback' => 'skyrocket_switch_sanitization',
+				'sanitize_callback' => 'ephemeris_switch_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'woocommerce_cattag_sidebar',
+		$wp_customize->add_control( new Ephemeris_Toggle_Switch_Custom_control( $wp_customize, 'ephemeris_woocommerce_cattag_sidebar',
 			array(
 				'label' => __( 'Category & Tag sidebar', 'ephemeris' ),
 				'section' => 'woocommerce_layout_section',
@@ -786,10 +774,10 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_setting( 'woocommerce_other_sidebar',
 			array(
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'skyrocket_text_sanitization',
+				'sanitize_callback' => 'ephemeris_text_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Simple_Notice_Custom_control( $wp_customize, 'woocommerce_other_sidebar',
+		$wp_customize->add_control( new Ephemeris_Simple_Notice_Custom_control( $wp_customize, 'woocommerce_other_sidebar',
 			array(
 				'label' => __( 'Cart, Checkout & My Account sidebars', 'ephemeris' ),
 				'description' => esc_html__( 'The Cart, Checkout and My Account pages are displayed using shortcodes. To remove the sidebar from these Pages, simply edit each Page and change the Template (in the Page Attributes Panel) to Full-width Page.', 'ephemeris' ),
@@ -798,14 +786,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our Checkbox switch setting and control for displaying the WooCommerce Breadcrumbs
-		$wp_customize->add_setting( 'woocommerce_breadcrumbs',
+		$wp_customize->add_setting( 'ephemeris_woocommerce_breadcrumbs',
 			array(
-				'default' => $this->defaults['woocommerce_breadcrumbs'],
+				'default' => $this->defaults['ephemeris_woocommerce_breadcrumbs'],
 				'transport' => 'refresh',
-				'sanitize_callback' => 'skyrocket_switch_sanitization',
+				'sanitize_callback' => 'ephemeris_switch_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Skyrocket_Toggle_Switch_Custom_control( $wp_customize, 'woocommerce_breadcrumbs',
+		$wp_customize->add_control( new Ephemeris_Toggle_Switch_Custom_control( $wp_customize, 'ephemeris_woocommerce_breadcrumbs',
 			array(
 				'label' => __( 'Display breadcrumbs', 'ephemeris' ),
 				'section' => 'woocommerce_layout_section',
@@ -813,14 +801,14 @@ class ephemeris_initialise_customizer_settings {
 		) );
 
 		// Add our Select setting and control for selecting the number of products to display on the shop page
-		$wp_customize->add_setting( 'woocommerce_shop_products',
+		$wp_customize->add_setting( 'ephemeris_woocommerce_shop_products',
 			array(
-				'default'=> $this->defaults['woocommerce_shop_products'],
+				'default'=> $this->defaults['ephemeris_woocommerce_shop_products'],
 				'transport' => 'refresh',
-				'sanitize_callback' => 'skyrocket_radio_sanitization',
+				'sanitize_callback' => 'ephemeris_radio_sanitization',
 			)
 		);
-		$wp_customize->add_control( 'woocommerce_shop_products',
+		$wp_customize->add_control( 'ephemeris_woocommerce_shop_products',
 			array(
 				'label' => __( 'Shop Products', 'ephemeris' ),
 				'description' => esc_html__( 'Select the number of products to display on the shop page', 'ephemeris' ),
@@ -864,10 +852,10 @@ class ephemeris_initialise_customizer_settings {
 				array(
 					'default' => '',
 					'transport' => 'postMessage',
-					'sanitize_callback' => 'skyrocket_text_sanitization'
+					'sanitize_callback' => 'ephemeris_text_sanitization'
 				)
 			);
-			$wp_customize->add_control( new Skyrocket_Simple_Notice_Custom_control( $wp_customize, 'elementor_templates_notice',
+			$wp_customize->add_control( new Ephemeris_Simple_Notice_Custom_control( $wp_customize, 'elementor_templates_notice',
 				array(
 					'label' => __( 'Please Note:', 'ephemeris' ),
 					'description' => __( 'By replacing the default theme header, you will also disable the themes default mobile menu so please ensure your template includes its own mobile navigation.', 'ephemeris' ),
@@ -880,21 +868,21 @@ class ephemeris_initialise_customizer_settings {
 			}
 
 			// Add our default header selection to our list of choices
-			$elementor_choices[$this->defaults['elementor_header_template']] = __( 'Use default theme header', 'ephemeris' );
+			$elementor_choices[$this->defaults['ephemeris_elementor_header_template']] = __( 'Use default theme header', 'ephemeris' );
 			// Add our Elementor templates to our list of choices
 			foreach ($elementor_templates as $key => $value) {
 				$elementor_choices[$key] = $value;
 			}
 
 			// Add our Select setting and control for selecting the header template to use
-			$wp_customize->add_setting( 'elementor_header_template',
+			$wp_customize->add_setting( 'ephemeris_elementor_header_template',
 				array(
-					'default' => $this->defaults['elementor_header_template'],
+					'default' => $this->defaults['ephemeris_elementor_header_template'],
 					'transport' => 'refresh',
-					'sanitize_callback' => 'skyrocket_radio_sanitization'
+					'sanitize_callback' => 'ephemeris_radio_sanitization'
 				)
 			);
-			$wp_customize->add_control( 'elementor_header_template',
+			$wp_customize->add_control( 'ephemeris_elementor_header_template',
 				array(
 					'label' => __( 'Header Template', 'ephemeris' ),
 					'section' => 'elementor_section',
@@ -905,21 +893,21 @@ class ephemeris_initialise_customizer_settings {
 
 			$elementor_choices = array();
 			// Add our default footer selection to our list of choices
-			$elementor_choices[$this->defaults['elementor_footer_template']] = __( 'Use default theme footer', 'ephemeris' );
+			$elementor_choices[$this->defaults['ephemeris_elementor_footer_template']] = __( 'Use default theme footer', 'ephemeris' );
 			// Add our Elementor templates to our list of choices
 			foreach ($elementor_templates as $key => $value) {
 				$elementor_choices[$key] = $value;
 			}
 
 			// Add our Select setting and control for selecting the footer template to use
-			$wp_customize->add_setting( 'elementor_footer_template',
+			$wp_customize->add_setting( 'ephemeris_elementor_footer_template',
 				array(
-					'default' => $this->defaults['elementor_footer_template'],
+					'default' => $this->defaults['ephemeris_elementor_footer_template'],
 					'transport' => 'refresh',
-					'sanitize_callback' => 'skyrocket_radio_sanitization'
+					'sanitize_callback' => 'ephemeris_radio_sanitization'
 				)
 			);
-			$wp_customize->add_control( 'elementor_footer_template',
+			$wp_customize->add_control( 'ephemeris_elementor_footer_template',
 				array(
 					'label' => __( 'Footer Template', 'ephemeris' ),
 					'section' => 'elementor_section',
@@ -934,10 +922,10 @@ class ephemeris_initialise_customizer_settings {
 				array(
 					'default' => '',
 					'transport' => 'postMessage',
-					'sanitize_callback' => 'skyrocket_text_sanitization'
+					'sanitize_callback' => 'ephemeris_text_sanitization'
 				)
 			);
-			$wp_customize->add_control( new Skyrocket_Simple_Notice_Custom_control( $wp_customize, 'elementor_templates_notice',
+			$wp_customize->add_control( new Ephemeris_Simple_Notice_Custom_control( $wp_customize, 'elementor_templates_notice',
 				array(
 					'label' => __( 'Templates unavailable!', 'ephemeris' ),
 					'description' => __( 'You haven\'t ceated any Elementor Templates yet. You need to add a template to your Elementor Template Library if you wish to replace the default theme Header &amp; Footer.', 'ephemeris' ),
@@ -949,9 +937,41 @@ class ephemeris_initialise_customizer_settings {
 }
 
 /**
+ * Active Callback for checking if the WooCommerce plugin is active
+ *
+ * @return string	boolean
+ */
+function ephemeris_is_woocommerce_plugin_active_active_callback() {
+	return ephemeris_is_plugin_active( 'woocommerce' );
+}
+
+/**
+ * Active Callback for checking if the Elementor plugin is active
+ *
+ * @return string	boolean
+ */
+function ephemeris_is_elementor_plugin_active_active_callback() {
+	return ephemeris_is_plugin_active( 'elementor' );
+}
+
+/**
+ * Render Callback for displaying the social media icons (which also includes the phone number and rss icons)
+ */
+function ephemeris_get_social_media_render_callback() {
+	echo ephemeris_get_social_media();
+}
+
+/**
+ * Render Callback for displaying the footer credits
+ */
+function ephemeris_get_credits_render_callback() {
+	echo ephemeris_get_credits();
+}
+
+/**
  * Load all our Customizer Custom Controls
  */
-require_once trailingslashit( dirname(__FILE__) ) . 'custom-controls.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/custom-controls.php';
 
 /**
  * Initialise our Customizer settings only when they're required
