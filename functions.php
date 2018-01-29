@@ -26,7 +26,11 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		load_theme_textdomain( 'ephemeris' );
 
 		// This theme styles the visual editor with editor-style.css to match the theme style.
-		add_editor_style();
+		add_editor_style( array(
+			'editor-style.css',
+			'css/font-awesome.min.css'
+			)
+		);
 
 		// Add default posts and comments RSS feed links to head
 		add_theme_support( 'automatic-feed-links' );
@@ -37,7 +41,7 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		// Calculate the optimal featured image size based on the layout width.
 		// Default image width will be 865px with a site layout width of 1200px assuming 75/25 grid layout
 		// ( ( site width - 20px padding ) * 70% grid container ) - 20px grid padding
-		$contentwidth = absint( ( ( get_theme_mod( 'layout_width', $defaults['layout_width'] ) - 20 ) * 0.75 ) - 20 );
+		$contentwidth = absint( ( ( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) - 20 ) * 0.75 ) - 20 );
 
 		// Create an extra image size for the Post featured image
 		add_image_size( 'ephemeris_post_feature_full_width', $contentwidth, 500, true );
@@ -69,7 +73,6 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		add_theme_support( 'html5', array(
 			'comment-list',
 			'comment-form',
-			'search-form',
 			'gallery',
 			'caption'
 			)
@@ -153,10 +156,10 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 
 		// Register and enqueue our icon font
 		// We're using the awesome Font Awesome icon font. http://fortawesome.github.io/Font-Awesome
-		wp_enqueue_style( 'fontawesome', trailingslashit( get_template_directory_uri() ) . 'css/font-awesome.min.css', array( 'normalize' ), '4.7', 'all' );
+		wp_enqueue_style( 'font-awesome', trailingslashit( get_template_directory_uri() ) . 'css/font-awesome.min.css', array( 'normalize' ), '4.7.0', 'all' );
 
 		// Our styles for setting up the grid. We're using Unsemantic. http://unsemantic.com
-		wp_enqueue_style( 'unsemanticgrid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'fontawesome' ), '1.0.0', 'all' );
+		wp_enqueue_style( 'unsemantic-grid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'font-awesome' ), '1.0.0', 'all' );
 
 		/*
 		 * Load our Google Fonts.
@@ -179,7 +182,7 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		}
 
 		// Enqueue the default WordPress stylesheet
-		wp_enqueue_style( 'style', get_stylesheet_uri() );
+		wp_enqueue_style( 'ephemeris-style', get_stylesheet_uri() );
 
 		/**
 		 * Register and enqueue our scripts
@@ -196,10 +199,10 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		// Load jQuery Validation as well as the initialiser to provide client side comment form validation
 		// You can change the validation error messages below
 		if ( is_singular() && comments_open() ) {
-			wp_register_script( 'validate', trailingslashit( get_template_directory_uri() ) . 'js/jquery.validate.min.js', array( 'jquery' ), '1.16.0', true );
-			wp_enqueue_script( 'commentvalidate', trailingslashit( get_template_directory_uri() ) . 'js/comment-form-validation.js', array( 'jquery', 'validate' ), '1.0.0', true );
+			wp_register_script( 'validate', trailingslashit( get_template_directory_uri() ) . 'js/jquery.validate.min.js', array( 'jquery' ), '1.17.0', true );
+			wp_enqueue_script( 'comment-validate', trailingslashit( get_template_directory_uri() ) . 'js/comment-form-validation.js', array( 'jquery', 'validate' ), '1.0.0', true );
 
-			wp_localize_script( 'commentvalidate', 'comments_object', array(
+			wp_localize_script( 'comment-validate', 'comments_object', array(
 				'req' => get_option( 'require_name_email' ),
 				'author'  => esc_html__( 'Please enter your name', 'ephemeris' ),
 				'email'  => esc_html__( 'Please enter a valid email address', 'ephemeris' ),
@@ -208,7 +211,7 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		}
 
 		// Enqueue our common scripts
-		wp_enqueue_script( 'ephemeriscommonjs', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.0', true );
+		wp_enqueue_script( 'ephemeris-common-js', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.0', true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
@@ -222,8 +225,8 @@ add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
  */
 if ( ! function_exists( 'ephemeris_customizer_preview_scripts' ) ) {
 	function ephemeris_customizer_preview_scripts() {
-		wp_enqueue_script( 'ephemeriscustomizerpreviewjs', trailingslashit( get_template_directory_uri() ) . 'js/customizer-preview.js', array( 'customize-preview', 'jquery' ), '1.0', true );
-		wp_enqueue_script( 'ephemeriscommonjs', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '1.0', true );
+		wp_enqueue_script( 'ephemeris-customizer-preview-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer-preview.js', array( 'customize-preview', 'jquery' ), '1.0', true );
+		wp_enqueue_script( 'ephemeris-common-js', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '1.0', true );
 	}
 }
 add_action( 'customize_preview_init', 'ephemeris_customizer_preview_scripts' );
@@ -240,9 +243,9 @@ if ( ! function_exists( 'ephemeris_customize_controls_enqueue_scripts' ) ) {
 		if( ephemeris_is_plugin_active( 'woocommerce' ) ) {
 			$shop_page_url = wc_get_page_permalink( 'shop' );
 
-			wp_enqueue_script( 'ephemeriscustomizecontrolsjs', trailingslashit( get_template_directory_uri() ) . 'js/customize-controls.js', array( 'customize-controls' ), '1.0', true );
+			wp_enqueue_script( 'ephemeris-customize-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customize-controls.js', array( 'customize-controls' ), '1.0', true );
 
-			wp_localize_script( 'ephemeriscustomizecontrolsjs', 'ephemeris_customizer_data',
+			wp_localize_script( 'ephemeris-customize-controls-js', 'ephemeris_customizer_data',
 				array(
 					'ephemeris_woocommerce_url' => $shop_page_url
 				)
@@ -264,7 +267,7 @@ function ephemeris_template_redirect() {
 	$template = '';
 
 	// If WooCommerce is running, check if we should be displaying the Breadcrumbs
-	if( ephemeris_is_plugin_active( 'woocommerce' ) && !get_theme_mod( 'woocommerce_breadcrumbs', $defaults['woocommerce_breadcrumbs'] ) ) {
+	if( ephemeris_is_plugin_active( 'woocommerce' ) && !get_theme_mod( 'ephemeris_woocommerce_breadcrumbs', $defaults['ephemeris_woocommerce_breadcrumbs'] ) ) {
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 	}
 
@@ -342,7 +345,7 @@ if ( ! function_exists( 'ephemeris_nav_grid' ) ) {
 
 		$nav_grid .= '<div class="grid-60 tablet-grid-60 mobile-grid-100' . ( is_rtl() ? ' pull-40 tablet-pull-40' : '' ) . '">';
 		$nav_grid .= '<nav id="site-navigation" class="main-navigation" role="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">';
-		$nav_grid .= '<div class="assistive-text skip-link"><a href="#content" title="' . esc_attr( 'Skip to content', 'ephemeris' ) . '">' . esc_html( 'Skip to content', 'ephemeris' ) . '</a></div>';
+		$nav_grid .= '<div class="assistive-text skip-link"><a href="#content" title="' . esc_attr__( 'Skip to content', 'ephemeris' ) . '">' . esc_html__( 'Skip to content', 'ephemeris' ) . '</a></div>';
 		$nav_grid .= wp_nav_menu(
 			array(
 				'theme_location' => 'primary-menu',
@@ -366,7 +369,7 @@ if ( ! function_exists( 'ephemeris_nav_grid' ) ) {
 function ephemeris_display_elementor_header() {
 	$defaults = ephemeris_generate_defaults();
 
-	echo do_shortcode( '[elementor-template id="' . get_theme_mod( 'elementor_header_template', $defaults['elementor_header_template'] ) . '"]' );
+	echo do_shortcode( '[elementor-template id="' . get_theme_mod( 'ephemeris_elementor_header_template', $defaults['ephemeris_elementor_header_template'] ) . '"]' );
 }
 
 /**
@@ -379,7 +382,7 @@ function ephemeris_display_elementor_header() {
 function ephemeris_display_elementor_footer() {
 	$defaults = ephemeris_generate_defaults();
 
-	echo do_shortcode( '[elementor-template id="' . get_theme_mod( 'elementor_footer_template', $defaults['elementor_footer_template'] ) . '"]' );
+	echo do_shortcode( '[elementor-template id="' . get_theme_mod( 'ephemeris_elementor_footer_template', $defaults['ephemeris_elementor_footer_template'] ) . '"]' );
 }
 
 /**
@@ -777,7 +780,7 @@ function ephemeris_classes( $echo, $classes ) {
 if ( ! function_exists( 'ephemeris_single_posts_pagination' ) ) {
 	function ephemeris_single_posts_pagination() {
 		printf( '<nav role="navigation" class="navigation pagination nav-single">' );
-			printf( '<h2 class="screen-reader-text">' . esc_html( 'Posts navigation', 'ephemeris' ) . '</h2>' );
+			printf( '<h2 class="screen-reader-text">' . esc_html__( 'Posts navigation', 'ephemeris' ) . '</h2>' );
 
 			$previous_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-right', 'Previous post link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-left', 'Previous post link icon classes', 'ephemeris' ) ) );
 			$next_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-left', 'Next post link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-right', 'Next post link icon classes', 'ephemeris' ) ) );
@@ -812,76 +815,6 @@ if ( ! function_exists( 'ephemeris_posts_pagination' ) ) {
 				'next_text' => '<span>' . __( 'Next', 'ephemeris' ) . '</span> ' . $next_post_icon
 			)
 		);
-	}
-}
-
-/**
- * Template for comments and pingbacks.
- *
- * To override this walker in a child theme without modifying the comments template
- * simply create your own ephemeris_comment(), and that function will be used instead.
- *
- * Used as a callback by wp_list_comments() for displaying the comments.
- * (Note the lack of a trailing </li>. WordPress will add it itself once it's done listing any children and whatnot)
- *
- * @since Ephemeris 1.0
- *
- * @param array Comment
- * @param array Arguments
- * @param integer Comment depth
- * @return void
- */
-if ( ! function_exists( 'ephemeris_comment' ) ) {
-	function ephemeris_comment( $comment, $args, $depth ) {
-		$GLOBALS['comment'] = $comment;
-		switch ( $comment->comment_type ) {
-		case 'pingback' :
-		case 'trackback' :
-			// Display trackbacks differently than normal comments ?>
-			<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-				<article id="comment-<?php comment_ID(); ?>" class="pingback">
-					<p><?php esc_html_e( 'Pingback:', 'ephemeris' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( esc_html__( '(Edit)', 'ephemeris' ), '<span class="edit-link">', '</span>' ); ?></p>
-				</article> <!-- #comment-##.pingback -->
-			<?php
-			break;
-		default :
-			// Proceed with normal comments.
-			global $post; ?>
-			<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-				<article id="comment-<?php comment_ID(); ?>" class="comment">
-					<header class="comment-meta comment-author vcard">
-						<?php
-						echo get_avatar( $comment, 44 );
-						printf( '<cite class="fn">%1$s %2$s</cite>',
-							get_comment_author_link(),
-							// If current post author is also comment author, make it known visually.
-							( $comment->user_id === $post->post_author ) ? '<span> ' . esc_html__( 'Post author', 'ephemeris' ) . '</span>' : '' );
-						printf( '<a href="%1$s" title="Posted %2$s"><time itemprop="datePublished" datetime="%3$s">%4$s</time></a>',
-							esc_url( get_comment_link( $comment->comment_ID ) ),
-							sprintf( esc_html__( '%1$s @ %2$s', 'ephemeris' ), esc_html( get_comment_date() ), esc_attr( get_comment_time() ) ),
-							get_comment_time( 'c' ),
-							/* Translators: 1: date, 2: time */
-							sprintf( esc_html__( '%1$s at %2$s', 'ephemeris' ), get_comment_date(), get_comment_time() )
-						);
-						?>
-					</header> <!-- .comment-meta -->
-
-					<?php if ( '0' == $comment->comment_approved ) { ?>
-						<p class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'ephemeris' ); ?></p>
-					<?php } ?>
-
-					<section class="comment-content comment">
-						<?php comment_text(); ?>
-						<?php edit_comment_link( esc_html__( 'Edit', 'ephemeris' ), '<p class="edit-link">', '</p>' ); ?>
-					</section> <!-- .comment-content -->
-
-					<div class="reply">
-						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => wp_kses( __( 'Reply <span>&darr;</span>', 'ephemeris' ), array( 'span' => array() ) ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-					</div> <!-- .reply -->
-				</article> <!-- #comment-## -->
-			<?php
-			break;
-		} // end comment_type check
 	}
 }
 
@@ -975,10 +908,10 @@ function ephemeris_posted_on() {
 	}
 
 	// Translators: 1: Icon 2: Permalink 3: Post date and time 4: Publish date in ISO format 5: Post date
-	$date = sprintf( '<span class="publish-date"><i class="fa %1$s" aria-hidden="true"></i> <a href="%2$s" title="Posted %3$s" rel="bookmark"><time class="entry-date" datetime="%4$s" itemprop="datePublished">%5$s</time></a></span>',
+	$date = sprintf( '<span class="publish-date"><i class="fa %1$s" aria-hidden="true"></i> <a href="%2$s" title="%3$s" rel="bookmark"><time class="entry-date" datetime="%4$s" itemprop="datePublished">%5$s</time></a></span>',
 		$post_icon,
 		esc_url( get_permalink() ),
-		sprintf( esc_html__( '%1$s @ %2$s', 'ephemeris' ), esc_html( get_the_date() ), esc_attr( get_the_time() ) ),
+		sprintf( esc_html__( 'Posted %1$s @ %2$s', 'ephemeris' ), esc_html( get_the_date() ), esc_attr( get_the_time() ) ),
 		esc_attr( get_the_date( 'c' ) ),
 		esc_html( get_the_date() )
 	);
@@ -1052,7 +985,7 @@ if ( ! function_exists( 'ephemeris_content_width' ) ) {
 			// Calculate the optimal width based on the layout width.
 			// Default width will be 1160px with a site layout width of 1200px when using the full-width template
 			// site width - 40px padding
-			$content_width = absint( get_theme_mod( 'layout_width', $defaults['layout_width'] ) - 40 );
+			$content_width = absint( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) - 40 );
 		}
 	}
 }
@@ -1102,34 +1035,14 @@ if ( ! function_exists( 'ephemeris_continue_reading_link' ) ) {
  */
 if ( ! function_exists( 'ephemeris_auto_excerpt_more' ) ) {
 	function ephemeris_auto_excerpt_more( $more ) {
+		if ( is_admin() ) {
+			return $more;
+		}
+
 		return ephemeris_continue_reading_link();
 	}
 }
 add_filter( 'excerpt_more', 'ephemeris_auto_excerpt_more' );
-
-/**
- * Extend the user contact methods to include Twitter, Facebook and Google+
- *
- * @since Ephemeris 1.0
- *
- * @param array List of user contact methods
- * @return array The filtered list of updated user contact methods
- */
-if ( ! function_exists( 'ephemeris_new_contactmethods' ) ) {
-	function ephemeris_new_contactmethods( $contactmethods ) {
-		// Add Twitter
-		$contactmethods['twitter'] = 'Twitter';
-
-		//add Facebook
-		$contactmethods['facebook'] = 'Facebook';
-
-		//add Google Plus
-		$contactmethods['googleplus'] = 'Google+';
-
-		return $contactmethods;
-	}
-}
-add_filter( 'user_contactmethods', 'ephemeris_new_contactmethods', 10, 1 );
 
 /**
  * Return a string containing the default footer credits & link
@@ -1167,7 +1080,7 @@ if ( ! function_exists( 'ephemeris_get_credits' ) ) {
 		$defaults = ephemeris_generate_defaults();
 
 		// wpautop this so that it acts like a the new visual text widget, since we're using the same TinyMCE control
-		return wpautop( apply_filters( 'ephemeris_footer_credits', get_theme_mod( 'footer_credits', $defaults['footer_credits'] ) ) );
+		return wpautop( apply_filters( 'ephemeris_footer_credits', get_theme_mod( 'ephemeris_footer_credits', $defaults['ephemeris_footer_credits'] ) ) );
 	}
 }
 
@@ -1199,7 +1112,7 @@ if ( ! function_exists( 'ephemeris_add_search_menu_item' ) ) {
 	function ephemeris_add_search_menu_item( $items, $args ) {
 		$defaults = ephemeris_generate_defaults();
 
-		if( get_theme_mod( 'search_menu_icon', $defaults['search_menu_icon'] ) ) {
+		if( get_theme_mod( 'ephemeris_search_menu_icon', $defaults['ephemeris_search_menu_icon'] ) ) {
 			if( $args->theme_location == 'primary-menu' ) {
 				$items .= '<li class="menu-item menu-item-search"><a href="#" class="nav-search"><i class="fa fa-search"></i></a></li>';
 			}
@@ -1277,7 +1190,7 @@ if ( ! function_exists( 'ephemeris_has_pagebuilder_template' ) ) {
 		);
 
 		foreach ( $pagebuilders as $builder ) {
-			$option = $builder . '_' . strtolower( $section ) . '_template';
+			$option = 'ephemeris_' . $builder . '_' . strtolower( $section ) . '_template';
 			if ( ephemeris_is_plugin_active( strtolower( $builder ) ) && get_theme_mod( $option, $defaults[$option] ) ) {
 				$template = $builder;
 				break;
@@ -1354,34 +1267,19 @@ function ephemeris_display_woocommerce_sidebar() {
 	$wcsidebar = '';
 
 	if ( is_shop() ) {
-		$wcsidebar = 'woocommerce_shop_sidebar';
+		$wcsidebar = 'ephemeris_woocommerce_shop_sidebar';
 	}
 	elseif ( is_product() ) {
-		$wcsidebar = 'woocommerce_product_sidebar';
+		$wcsidebar = 'ephemeris_woocommerce_product_sidebar';
 	}
 	elseif ( is_product_category() || is_product_tag() ) {
-		$wcsidebar = 'woocommerce_cattag_sidebar';
+		$wcsidebar = 'ephemeris_woocommerce_cattag_sidebar';
 	}
 
-	switch ( $wcsidebar ) {
-		case 'woocommerce_shop_sidebar':
-			if ( get_theme_mod( 'woocommerce_shop_sidebar', $defaults['woocommerce_shop_sidebar'] ) ) {
-				$returnVal = true;
-			}
-			break;
-		case 'woocommerce_product_sidebar':
-			if ( get_theme_mod( 'woocommerce_product_sidebar', $defaults['woocommerce_product_sidebar'] ) ) {
-				$returnVal = true;
-			}
-			break;
-		case 'woocommerce_cattag_sidebar':
-			if ( get_theme_mod( 'woocommerce_cattag_sidebar', $defaults['woocommerce_cattag_sidebar'] ) ) {
-				$returnVal = true;
-			}
-			break;
-		default:
-			$returnVal = false;
-			break;
+	if ( !empty( $wcsidebar ) ) {
+		if ( get_theme_mod( $wcsidebar, $defaults[$wcsidebar] ) ) {
+			$returnVal = true;
+		}
 	}
 
 	return $returnVal;
@@ -1398,7 +1296,7 @@ if ( ! function_exists( 'ephemeris_shop_product_count' ) ) {
 	function ephemeris_shop_product_count( $numprods ) {
 		$defaults = ephemeris_generate_defaults();
 
-		return get_theme_mod( 'woocommerce_shop_products', $defaults['woocommerce_shop_products'] );
+		return get_theme_mod( 'ephemeris_woocommerce_shop_products', $defaults['ephemeris_woocommerce_shop_products'] );
 	}
 }
 add_filter( 'loop_shop_per_page', 'ephemeris_shop_product_count', 20 );
@@ -1442,7 +1340,7 @@ add_filter( 'customizer_widgets_section_args', 'ephemeris_show_all_sidebars_in_c
  *
  * @return array	Social media site urls
  */
-if ( ! function_exists( 'ephemeris_generate_social_urls' ) ) {
+if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 	function ephemeris_generate_social_urls() {
 		$social_icons = array(
 			array( 'url' => 'behance.net', 'icon' => 'fa-behance', 'title' => esc_html__( 'Follow me on Behance', 'ephemeris' ), 'class' => 'behance' ),
@@ -1480,6 +1378,17 @@ if ( ! function_exists( 'ephemeris_generate_social_urls' ) ) {
 }
 
 /**
+ * Return the URL element from the passed array
+ *
+ * @since Ephemeris 1.0
+ *
+ * @return string Social icon URL
+ */
+function ephemeris_get_social_urls( $element ) {
+	return $element['url'];
+}
+
+/**
  * Return an unordered list of linked social media icons, based on the urls provided in the Customizer
  *
  * @since Ephemeris 1.0
@@ -1491,15 +1400,11 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 		$defaults = ephemeris_generate_defaults();
 		$output = '';
 		$social_icons = ephemeris_generate_social_urls();
-		$social_urls = [];
-		$social_newtab = 0;
-		$social_alignment = '';
-		$contact_phone = '';
-
-		$social_urls = explode( ',', get_theme_mod( 'social_urls', $defaults['social_urls'] ) );
-		$social_newtab = get_theme_mod( 'social_newtab', $defaults['social_newtab'] );
-		$social_alignment = get_theme_mod( 'social_alignment', $defaults['social_alignment'] );
-		$contact_phone = get_theme_mod( 'contact_phone', $defaults['contact_phone'] );
+		$social_service_urls = array_map( 'ephemeris_get_social_urls', $social_icons );
+		$social_urls = explode( ',', get_theme_mod( 'ephemeris_social_urls', $defaults['ephemeris_social_urls'] ) );
+		$ephemeris_social_newtab = get_theme_mod( 'ephemeris_social_newtab', $defaults['ephemeris_social_newtab'] );
+		$social_alignment = get_theme_mod( 'ephemeris_social_alignment', $defaults['ephemeris_social_alignment'] );
+		$contact_phone = get_theme_mod( 'ephemeris_contact_phone', $defaults['ephemeris_contact_phone'] );
 
 		if( !empty( $contact_phone ) ) {
 			$output .= sprintf( '<li class="%1$s"><i class="fa %2$s"></i>%3$s</li>',
@@ -1512,13 +1417,13 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 		foreach( $social_urls as $key => $value ) {
 			if ( !empty( $value ) ) {
 				$domain = str_ireplace( 'www.', '', parse_url( $value, PHP_URL_HOST ) );
-				$index = array_search( $domain, array_column( $social_icons, 'url' ) );
+				$index = array_search( $domain, $social_service_urls );
 				if( false !== $index ) {
 					$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="fa %5$s"></i></a></li>',
 						$social_icons[$index]['class'],
 						esc_url( $value ),
 						$social_icons[$index]['title'],
-						( !$social_newtab ? '' : ' target="_blank"' ),
+						( !$ephemeris_social_newtab ? '' : ' target="_blank"' ),
 						$social_icons[$index]['icon']
 					);
 				}
@@ -1526,19 +1431,19 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 					$output .= sprintf( '<li class="nosocial"><a href="%2$s"%3$s><i class="fa %4$s"></i></a></li>',
 						$social_icons[$index]['class'],
 						esc_url( $value ),
-						( !$social_newtab ? '' : ' target="_blank"' ),
+						( !$ephemeris_social_newtab ? '' : ' target="_blank"' ),
 						'fa-globe'
 					);
 				}
 			}
 		}
 
-		if( get_theme_mod( 'social_rss', $defaults['social_rss'] ) ) {
+		if( get_theme_mod( 'ephemeris_social_rss', $defaults['ephemeris_social_rss'] ) ) {
 			$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="fa %5$s"></i></a></li>',
 				'rss',
 				esc_url( home_url( '/feed' ) ),
-				'Subscribe to my RSS feed',
-				( !$social_newtab ? '' : ' target="_blank"' ),
+				__( 'Subscribe to my RSS feed', 'ephemeris' ),
+				( !$ephemeris_social_newtab ? '' : ' target="_blank"' ),
 				'fa-rss'
 			);
 		}
@@ -1563,30 +1468,30 @@ function ephemeris_customizer_css_styles() {
 	$styles = '';
 
 	// Layout styles
-	$styles .= '.grid-container { max-width: ' . get_theme_mod( 'layout_width', $defaults['layout_width'] ) . 'px; }';
+	$styles .= '.grid-container { max-width: ' . esc_attr( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) ) . 'px; }';
 
 	// Page & Post Header color styles
-	$styles .= '.entry-header h1 { color: ' . get_theme_mod( 'color_header_title_normal', $defaults['color_header_title_normal'] ) . '; }';
-	$styles .= '.entry-header h1 a { color: ' . get_theme_mod( 'color_header_title_link', $defaults['color_header_title_link'] ) . '; }';
-	$styles .= '.entry-header h1 a:visited { color: ' . get_theme_mod( 'color_header_title_visited', $defaults['color_header_title_visited'] ) . '; }';
-	$styles .= '.entry-header h1 a:hover, .entry-header h1 a:active { color: ' . get_theme_mod( 'color_header_title_hover', $defaults['color_header_title_hover'] ) . '; }';
+	$styles .= '.entry-header h1 { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_normal', $defaults['ephemeris_color_header_title_normal'] ) ) . '; }';
+	$styles .= '.entry-header h1 a { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_link', $defaults['ephemeris_color_header_title_link'] ) ) . '; }';
+	$styles .= '.entry-header h1 a:visited { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_visited', $defaults['ephemeris_color_header_title_visited'] ) ) . '; }';
+	$styles .= '.entry-header h1 a:hover, .entry-header h1 a:active { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_hover', $defaults['ephemeris_color_header_title_hover'] ) ) . '; }';
 
 	// Body Header color styles
-	$styles .= 'h1, h2, h3, h4, h5, h6 { color: ' . get_theme_mod( 'color_header_body_normal', $defaults['color_header_body_normal'] ) . '; }';
-	$styles .= 'h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: ' . get_theme_mod( 'color_header_body_link', $defaults['color_header_body_link'] ) . '; }';
-	$styles .= 'h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited { color: ' . get_theme_mod( 'color_header_body_visited', $defaults['color_header_body_visited'] ) . '; }';
-	$styles .= 'h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, h1 a:active, h2 a:active, h3 a:active, h4 a:active, h5 a:active, h6 a:active { color: ' . get_theme_mod( 'color_header_body_hover', $defaults['color_header_body_hover'] ) . '; }';
+	$styles .= 'h1, h2, h3, h4, h5, h6 { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_normal', $defaults['ephemeris_color_header_body_normal'] ) ) . '; }';
+	$styles .= 'h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_link', $defaults['ephemeris_color_header_body_link'] ) ) . '; }';
+	$styles .= 'h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_visited', $defaults['ephemeris_color_header_body_visited'] ) ) . '; }';
+	$styles .= 'h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, h1 a:active, h2 a:active, h3 a:active, h4 a:active, h5 a:active, h6 a:active { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_hover', $defaults['ephemeris_color_header_body_hover'] ) ) . '; }';
 
 	// Body Text color styles
-	$styles .= '.site-content, .more-link { color: ' . get_theme_mod( 'color_text_normal', $defaults['color_text_normal'] ) . '; }';
-	$styles .= 'a, .more-link { color: ' . get_theme_mod( 'color_text_link', $defaults['color_text_link'] ) . '; }';
-	$styles .= 'a:visited, .more-link:visited { color: ' . get_theme_mod( 'color_text_visited', $defaults['color_text_visited'] ) . '; }';
-	$styles .= 'a:hover, a:active, .more-link:hover, .more-link:active { color: ' . get_theme_mod( 'color_text_hover', $defaults['color_text_hover'] ) . '; }';
+	$styles .= '.site-content, .more-link { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_normal', $defaults['ephemeris_color_text_normal'] ) ) . '; }';
+	$styles .= 'a, .more-link { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_link', $defaults['ephemeris_color_text_link'] ) ) . '; }';
+	$styles .= 'a:visited, .more-link:visited { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_visited', $defaults['ephemeris_color_text_visited'] ) ) . '; }';
+	$styles .= 'a:hover, a:active, .more-link:hover, .more-link:active { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_hover', $defaults['ephemeris_color_text_hover'] ) ) . '; }';
 
 	// Footer styles
-	$styles .= '#footercontainer { background-color: ' . get_theme_mod( 'footer_background_color', $defaults['footer_background_color'] ) . '; }';
-	$styles .= '#footercreditscontainer { background-color: ' . get_theme_mod( 'footer_background_color', $defaults['footer_background_color'] ) . '; }';
-	$styles .= '.site-credits { color: ' . get_theme_mod( 'footer_credits_font_color', $defaults['footer_credits_font_color'] ) . '; }';
+	$styles .= '#footercontainer { background-color: ' . esc_attr( get_theme_mod( 'ephemeris_footer_background_color', $defaults['ephemeris_footer_background_color'] ) ) . '; }';
+	$styles .= '#footercreditscontainer { background-color: ' . esc_attr( get_theme_mod( 'ephemeris_footer_background_color', $defaults['ephemeris_footer_background_color'] ) ) . '; }';
+	$styles .= '.site-credits { color: ' . esc_attr( get_theme_mod( 'ephemeris_footer_credits_font_color', $defaults['ephemeris_footer_credits_font_color'] ) ) . '; }';
 
 	echo '<style type="text/css">' . $styles . '</style>';
 }
@@ -1656,37 +1561,37 @@ function ephemeris_display_hook() {
 if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 	function ephemeris_generate_defaults() {
 		$customizer_defaults = array(
-			'layout_width' => 1200,
-			'color_header_title_normal' => '#3a3a3a',
-			'color_header_title_link' => '#3a3a3a',
-			'color_header_title_hover' => '#2c7dbe',
-			'color_header_title_visited' => '#3a3a3a',
-			'color_header_body_normal' => '#3a3a3a',
-			'color_header_body_link' => '#2c7dbe',
-			'color_header_body_hover' => '#344860',
-			'color_header_body_visited' => '#2c7dbe',
-			'color_text_normal' => '#3a3a3a',
-			'color_text_link' => '#2c7dbe',
-			'color_text_hover' => '#344860',
-			'color_text_visited' => '#2c7dbe',
-			'social_newtab' => 0,
-			'social_urls' => '',
-			'social_alignment' => 'alignright',
-			'social_rss' => 0,
-			'contact_phone' => '',
-			'search_menu_icon' => 0,
-			'footer_background_color' => '#f9f9f9',
-			'footer_font_color' => '#9a9a9a',
-			'footer_credits_background_color' => '#f9f9f9',
-			'footer_credits_font_color' => '#9a9a9a',
-			'footer_credits' => ephemeris_get_credits_default(),
-			'woocommerce_shop_sidebar' => 1,
-			'woocommerce_cattag_sidebar' => 1,
-			'woocommerce_product_sidebar' => 0,
-			'woocommerce_breadcrumbs' => 1,
-			'woocommerce_shop_products' => 12,
-			'elementor_header_template' => 0,
-			'elementor_footer_template' => 0,
+			'ephemeris_layout_width' => 1200,
+			'ephemeris_color_header_title_normal' => '#3a3a3a',
+			'ephemeris_color_header_title_link' => '#3a3a3a',
+			'ephemeris_color_header_title_hover' => '#2c7dbe',
+			'ephemeris_color_header_title_visited' => '#3a3a3a',
+			'ephemeris_color_header_body_normal' => '#3a3a3a',
+			'ephemeris_color_header_body_link' => '#2c7dbe',
+			'ephemeris_color_header_body_hover' => '#344860',
+			'ephemeris_color_header_body_visited' => '#2c7dbe',
+			'ephemeris_color_text_normal' => '#3a3a3a',
+			'ephemeris_color_text_link' => '#2c7dbe',
+			'ephemeris_color_text_hover' => '#344860',
+			'ephemeris_color_text_visited' => '#2c7dbe',
+			'ephemeris_social_newtab' => 0,
+			'ephemeris_social_urls' => '',
+			'ephemeris_social_alignment' => 'alignright',
+			'ephemeris_social_rss' => 0,
+			'ephemeris_contact_phone' => '',
+			'ephemeris_search_menu_icon' => 0,
+			'ephemeris_footer_background_color' => '#f9f9f9',
+			'ephemeris_footer_font_color' => '#9a9a9a',
+			'ephemeris_footer_credits_background_color' => '#f9f9f9',
+			'ephemeris_footer_credits_font_color' => '#9a9a9a',
+			'ephemeris_footer_credits' => ephemeris_get_credits_default(),
+			'ephemeris_woocommerce_shop_sidebar' => 1,
+			'ephemeris_woocommerce_cattag_sidebar' => 1,
+			'ephemeris_woocommerce_product_sidebar' => 0,
+			'ephemeris_woocommerce_breadcrumbs' => 1,
+			'ephemeris_woocommerce_shop_products' => 12,
+			'ephemeris_elementor_header_template' => 0,
+			'ephemeris_elementor_footer_template' => 0,
 		);
 
 		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );
@@ -1696,4 +1601,4 @@ if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 /**
 * Load all our Customizer options
 */
-include_once trailingslashit( dirname(__FILE__) ) . 'inc/customizer.php';
+include_once trailingslashit( get_template_directory() ) . 'inc/customizer.php';
