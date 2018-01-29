@@ -148,7 +148,7 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_section( 'search_section',
 			array(
 				'title' => __( 'Search', 'ephemeris' ),
-				'description' => esc_html__( 'Add a search icon to your primary naigation menu.', 'ephemeris' ),
+				'description' => esc_html__( 'Add a search icon to your primary navigation menu.', 'ephemeris' ),
 				'panel' => 'header_naviation_panel',
 			)
 		);
