@@ -16,7 +16,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	 class Skyrocket_Image_Checkbox_Custom_Control extends WP_Customize_Control {
+	 class Ephemeris_Image_Checkbox_Custom_Control extends WP_Customize_Control {
  		/**
  		 * The type of control being rendered
  		 */
@@ -25,7 +25,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  		 * Enqueue our scripts and styles
  		 */
   		public function enqueue() {
- 			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+ 			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
   		}
  		/**
  		 * Render the control in the customizer
@@ -61,7 +61,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	 class Skyrocket_Text_Radio_Button_Custom_Control extends WP_Customize_Control {
+	 class Ephemeris_Text_Radio_Button_Custom_Control extends WP_Customize_Control {
  		/**
  		 * The type of control being rendered
  		 */
@@ -70,7 +70,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  		 * Enqueue our scripts and styles
  		 */
   		public function enqueue() {
- 			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+ 			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
   		}
  		/**
  		 * Render the control in the customizer
@@ -107,7 +107,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Skyrocket_Image_Radio_Button_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Image_Radio_Button_Custom_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -116,7 +116,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
  		public function enqueue() {
-			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
  		}
 		/**
 		 * Render the control in the customizer
@@ -151,7 +151,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Skyrocket_Single_Accordion_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Single_Accordion_Custom_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -160,9 +160,9 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
-			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
-			wp_enqueue_style( 'fontawesome', trailingslashit( get_template_directory_uri() ) . 'css/font-awesome.min.css', array(), '4.6.3', 'all' );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_style( 'font-awesome', trailingslashit( get_template_directory_uri() ) . 'css/font-awesome.min.css', array(), '4.7.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -213,7 +213,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Skyrocket_Simple_Notice_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Simple_Notice_Custom_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -262,7 +262,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Skyrocket_Slider_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Slider_Custom_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -271,8 +271,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
-			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -296,7 +296,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Skyrocket_Toggle_Switch_Custom_control extends WP_Customize_Control {
+	class Ephemeris_Toggle_Switch_Custom_control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -305,7 +305,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue(){
-			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -338,7 +338,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Skyrocket_Sortable_Repeater_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Sortable_Repeater_Custom_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -363,8 +363,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
-			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -399,7 +399,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Skyrocket_TinyMCE_Custom_control extends WP_Customize_Control {
+	class Ephemeris_TinyMCE_Custom_control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -408,8 +408,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue(){
-			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
-			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
 			wp_enqueue_editor();
 		}
 		/**
@@ -417,8 +417,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		public function to_json() {
 			parent::to_json();
-			$this->json['skyrockettinymcetoolbar1'] = isset( $this->input_attrs['toolbar1'] ) ? esc_attr( $this->input_attrs['toolbar1'] ) : 'bold italic bullist numlist alignleft aligncenter alignright link';
-			$this->json['skyrockettinymcetoolbar2'] = isset( $this->input_attrs['toolbar2'] ) ? esc_attr( $this->input_attrs['toolbar2'] ) : '';
+			$this->json['ephemeristinymcetoolbar1'] = isset( $this->input_attrs['toolbar1'] ) ? esc_attr( $this->input_attrs['toolbar1'] ) : 'bold italic bullist numlist alignleft aligncenter alignright link';
+			$this->json['ephemeristinymcetoolbar2'] = isset( $this->input_attrs['toolbar2'] ) ? esc_attr( $this->input_attrs['toolbar2'] ) : '';
 		}
 		/**
 		 * Render the control in the customizer
@@ -445,7 +445,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Skyrocket_Google_Font_Select_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Google_Font_Select_Custom_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -457,7 +457,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		/**
 		 * The saved font values decoded from json
 		 */
-		private $fontValues = [];
+		private $fontValues = array();
 		/**
 		 * The index of the saved font within the list of Google fonts
 		 */
@@ -468,25 +468,25 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		public function __construct( $manager, $id, $args = array(), $options = array() ) {
 			parent::__construct( $manager, $id, $args );
 			//Get the list of Google fonts
-			$this->fontList = $this->getGoogleFonts();
+			$this->fontList = $this->ephemeris_getGoogleFonts();
 			// Decode the default json font value
 			$this->fontValues = json_decode( $this->value() );
 			// Find the index of our default font within our list of Google fonts
-			$this->fontListIndex = $this->getFontIndex( $this->fontList, $this->fontValues->font );
+			$this->fontListIndex = $this->ephemeris_getFontIndex( $this->fontList, $this->fontValues->font );
 		}
 		/**
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
-			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
 		}
 		/**
 		 * Export our List of Google Fonts to JavaScript
 		 */
 		public function to_json() {
 			parent::to_json();
-			$this->json['skyrocketfontslist'] = $this->fontList;
+			$this->json['ephemerisfontslist'] = $this->fontList;
 		}
 		/**
 		 * Render the control in the customizer
@@ -534,7 +534,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 									}
 								}
 								if($optionCount == 0) {
-									echo '<option value="">Not Available for this font</option>';
+									echo '<option value="">' . esc_html__( 'Not Available for this font', 'ephemeris' ) . '</option>';
 								}
 							?>
 						</select>
@@ -551,9 +551,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 										$optionCount++;
 									}
 								}
-								// This should never evaluate as there'll always be at least a 'regular' weight
 								if($optionCount == 0) {
-									echo '<option value="">Not Available for this font</option>';
+									echo '<option value="">' . esc_html__( 'Not Available for this font', 'ephemeris' ) . '</option>';
 								}
 							?>
 						</select>
@@ -567,7 +566,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		/**
 		 * Find the index of the saved font in our multidimensional array of Google Fonts
 		 */
-		public function getFontIndex( $haystack, $needle ) {
+		public function ephemeris_getFontIndex( $haystack, $needle ) {
 			foreach( $haystack as $key => $value ) {
 				if( $value->family == $needle ) {
 					return $key;
@@ -579,7 +578,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		/**
 		 * Return the list of Google Fonts from our json file. Unless otherwise specfied, list will be limited to 30 fonts.
 		 */
-		public function getGoogleFonts( $count = 30 ) {
+		public function ephemeris_getGoogleFonts( $count = 30 ) {
 			// Google Fonts json generated from https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=YOUR-API-KEY
 			$fontFile = trailingslashit( get_template_directory_uri() ) . 'inc/google-fonts-popularity.json';
 
@@ -608,7 +607,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  	 * @license http://www.gnu.org/licenses/gpl-3.0.html
  	 * @link https://github.com/BraadMartin/components/tree/master/customizer/alpha-color-picker
  	 */
-	class Skyrocket_Customize_Alpha_Color_Control extends WP_Customize_Control {
+	class Ephemeris_Customize_Alpha_Color_Control extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -627,8 +626,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'skyrocket_custom_controls_js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'wp-color-picker' ), '1.0', true );
-			wp_enqueue_style( 'skyrocket_custom_controls_css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array( 'wp-color-picker' ), '1.0', 'all' );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'wp-color-picker' ), '1.0', true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array( 'wp-color-picker' ), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -669,8 +668,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string	Input to be sanitized (either a string containing a single url or multiple, separated by commas)
 	 * @return string	Sanitized input
 	 */
-	if ( ! function_exists( 'skyrocket_url_sanitization' ) ) {
-		function skyrocket_url_sanitization( $input ) {
+	if ( ! function_exists( 'ephemeris_url_sanitization' ) ) {
+		function ephemeris_url_sanitization( $input ) {
 			if ( strpos( $input, ',' ) !== false) {
 				$input = explode( ',', $input );
 			}
@@ -695,8 +694,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string		Switch value
 	 * @return integer	Sanitized value
 	 */
-	if ( ! function_exists( 'skyrocket_switch_sanitization' ) ) {
-		function skyrocket_switch_sanitization( $input ) {
+	if ( ! function_exists( 'ephemeris_switch_sanitization' ) ) {
+		function ephemeris_switch_sanitization( $input ) {
 			if ( true === $input ) {
 				return 1;
 			} else {
@@ -713,8 +712,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string		Radio Button value
 	 * @return integer	Sanitized value
 	 */
-	if ( ! function_exists( 'skyrocket_radio_sanitization' ) ) {
-		function skyrocket_radio_sanitization( $input, $setting ) {
+	if ( ! function_exists( 'ephemeris_radio_sanitization' ) ) {
+		function ephemeris_radio_sanitization( $input, $setting ) {
 			//get the list of possible radio box or select options
          $choices = $setting->manager->get_control( $setting->id )->choices;
 
@@ -734,8 +733,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string		Input value to check
 	 * @return integer	Returned integer value
 	 */
-	if ( ! function_exists( 'skyrocket_sanitize_integer' ) ) {
-		function skyrocket_sanitize_integer( $input ) {
+	if ( ! function_exists( 'ephemeris_sanitize_integer' ) ) {
+		function ephemeris_sanitize_integer( $input ) {
 			return (int) $input;
 		}
 	}
@@ -748,8 +747,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string	Input to be sanitized (either a string containing a single string or multiple, separated by commas)
 	 * @return string	Sanitized input
 	 */
-	if ( ! function_exists( 'skyrocket_text_sanitization' ) ) {
-		function skyrocket_text_sanitization( $input ) {
+	if ( ! function_exists( 'ephemeris_text_sanitization' ) ) {
+		function ephemeris_text_sanitization( $input ) {
 			if ( strpos( $input, ',' ) !== false) {
 				$input = explode( ',', $input );
 			}
@@ -774,8 +773,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string	Input to be sanitized
 	 * @return string	Sanitized input
 	 */
-	if ( ! function_exists( 'skyrocket_hex_rgba_sanitization' ) ) {
-		function skyrocket_hex_rgba_sanitization( $input, $setting ) {
+	if ( ! function_exists( 'ephemeris_hex_rgba_sanitization' ) ) {
+		function ephemeris_hex_rgba_sanitization( $input, $setting ) {
 			if ( empty( $input ) || is_array( $input ) ) {
 				return $setting->default;
 			}
@@ -787,7 +786,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				// Sanitize as RGBa color
 				$input = str_replace( ' ', '', $input );
 				sscanf( $input, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
-				$input = 'rgba(' . skyrocket_in_range( $red, 0, 255 ) . ',' . skyrocket_in_range( $green, 0, 255 ) . ',' . skyrocket_in_range( $blue, 0, 255 ) . ',' . skyrocket_in_range( $alpha, 0, 1 ) . ')';
+				$input = 'rgba(' . ephemeris_in_range( $red, 0, 255 ) . ',' . ephemeris_in_range( $green, 0, 255 ) . ',' . ephemeris_in_range( $blue, 0, 255 ) . ',' . ephemeris_in_range( $alpha, 0, 1 ) . ')';
 			}
 			return $input;
 		}
@@ -801,8 +800,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  number	Input to be sanitized
 	 * @return number	Sanitized input
 	 */
-	if ( ! function_exists( 'skyrocket_in_range' ) ) {
-		function skyrocket_in_range( $input, $min, $max ){
+	if ( ! function_exists( 'ephemeris_in_range' ) ) {
+		function ephemeris_in_range( $input, $min, $max ){
 			if ( $input < $min ) {
 				$input = $min;
 			}
@@ -821,8 +820,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string	JSON string to be sanitized
 	 * @return string	Sanitized input
 	 */
-	if ( ! function_exists( 'skyrocket_google_font_sanitization' ) ) {
-		function skyrocket_google_font_sanitization( $input ) {
+	if ( ! function_exists( 'ephemeris_google_font_sanitization' ) ) {
+		function ephemeris_google_font_sanitization( $input ) {
 			$val =  json_decode( $input, true );
 			if( is_array( $val ) ) {
 				foreach ( $val as $key => $value ) {
@@ -843,8 +842,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string	Date/Time string to be sanitized
 	 * @return string	Sanitized input
 	 */
-	if ( ! function_exists( 'skyrocket_date_time_sanitization' ) ) {
-		function skyrocket_date_time_sanitization( $input, $setting ) {
+	if ( ! function_exists( 'ephemeris_date_time_sanitization' ) ) {
+		function ephemeris_date_time_sanitization( $input, $setting ) {
 			$datetimeformat = 'Y-m-d';
 			if ( $setting->manager->get_control( $setting->id )->include_time ) {
 				$datetimeformat = 'Y-m-d H:i:s';
