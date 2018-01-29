@@ -2,8 +2,8 @@
 Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
 Requires at least: 4.8
-Tested up to: 4.9
-Stable tag: 1.1
+Tested up to: 4.9.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,11 +127,10 @@ Lastly, update the stylesheet header in style.css and either update or delete th
 
 == License ==
 
-Ephemeris is licensed under the [GNU General Public License version 2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
+Ephemeris WordPress Theme, Copyright 2018 Anthony Hortin
+Ephemeris is distributed under the terms of the GNU GPL
 
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the
-Free Software Foundation; either version 2 of the License, or (at your option) any later version.
-
+[GNU General Public License version 2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 
 == Credits ==
 
@@ -148,8 +147,40 @@ and also uses the following:
 [Open Sans font](https://fonts.google.com/specimen/Open+Sans), which is licensed under Apache License Version 2.0
 [Dosis](https://fonts.google.com/specimen/Dosis), which is licensed under SIL Open Font License 1.1
 
+Screenshot images are all licensed under CC0 1.0 Universal - https://creativecommons.org/publicdomain/zero/1.0/deed.en
+https://pixabay.com/en/lighthouse-glow-evening-clouds-2372461/
+https://pixabay.com/en/action-balancing-boy-extreme-fun-1853289/
+https://pixabay.com/en/stockholm-sweden-city-urban-1970608/
+https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
+
 
 == Changelog ==
+
+= 1.3 =
+- Fix search form placeholder attribute to ensure value is escaped
+- Fix customizer options when outputting to head to ensure values are escaped
+
+= 1.2 =
+- Fix handles on scripts & styles
+- Fix all strings that weren't translated
+- Fix short array syntax for use with php <5.4
+- Fix usage of php array_column() for use with php <5.4
+- Fix usage of anonymous functions in Customizer callbacks as they're not available in php 5.2
+- Update Readme
+- Update Screenshot image
+- Update excerpt_more filter to make sure it doesn't affect admin
+- Removed new contact methods. Plugin Territory
+- Removed search-form from add_theme_support as I customise it
+- Removed @import from editor-style.css
+- Removed usage of get_home_url() and replaced with home_url()
+- Add unique prefixes where required
+- Add translation functions to strings where missing
+- Add unminified versions of scripts & styles to theme
+- Add missing singular placeholder to comments template
+- Add copyright message to Readme
+- Add get_template_directory() when loading non template PHP files
+- Add search query to input value on search form
+- Add license details for images used in screenshot
 
 = 1.1 =
 - Fix weird borders on customizer color controls.
