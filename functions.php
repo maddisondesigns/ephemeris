@@ -121,7 +121,12 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		add_theme_support( 'title-tag' );
 
 		// Enable support for WooCommerce & WooCommerce product galleries
-		add_theme_support( 'woocommerce' );
+		add_theme_support( 'woocommerce', array(
+			'product_grid' => array(
+				'default_rows' => 3,
+				'default_columns' => 4,
+			),
+		) );
 		add_theme_support( 'wc-product-gallery-lightbox' );
 		add_theme_support( 'wc-product-gallery-slider' );
 
@@ -1299,7 +1304,11 @@ if ( ! function_exists( 'ephemeris_shop_product_count' ) ) {
 		return get_theme_mod( 'ephemeris_woocommerce_shop_products', $defaults['ephemeris_woocommerce_shop_products'] );
 	}
 }
-add_filter( 'loop_shop_per_page', 'ephemeris_shop_product_count', 20 );
+if ( ephemeris_is_plugin_active( 'woocommerce' ) && !ephemeris_woocommerce_version_check( '3.3' ) ) {
+	// Only use the loop_shop_per_page filter if WooCommerce is active and it's less than v3.3.
+	// WooCommerce v3.3 now has it's own Customizer option for changing the number of products on display
+	add_filter( 'loop_shop_per_page', 'ephemeris_shop_product_count', 20 );
+}
 
 /**
  * Filter the WooCommerce pagination so that it matches the theme pagination
@@ -1319,6 +1328,24 @@ if ( ! function_exists( 'ephemeris_woocommerce_pagination_args' ) ) {
 	}
 }
 add_filter( 'woocommerce_pagination_args', 'ephemeris_woocommerce_pagination_args', 10 );
+
+/**
+ * Check the version of WooCommerce that is current activated
+ *
+ * @since Ephemeris 1.3.2
+ *
+ * @return boolean
+ */
+function ephemeris_woocommerce_version_check( $version = '3.3' ) {
+	global $woocommerce;
+
+	if ( ephemeris_is_plugin_active( 'woocommerce' ) ) {
+		if ( version_compare( $woocommerce->version, $version, ">=" ) ) {
+			return true;
+		}
+	}
+	return false;
+}
 
 /**
  * Show all the registered Sidebars in the Customizer Widgets Panel all the time
