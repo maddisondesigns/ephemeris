@@ -3,7 +3,7 @@ Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
 Requires at least: 4.8
 Tested up to: 4.9.2
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -155,6 +155,11 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 
 == Changelog ==
+
+= 1.3.2 =
+- Update WooCommerce add_theme_support option to include default number of rows and columns
+- Update WooCommerce Customizer options to only show the Control for selecting the number of products if WooCommerce is less than v3.3
+- Update usage of loop_shop_per_page filter so it's only used if WooCommerce is less than v3.3
 
 = 1.3.1 =
 - Update theme url's to https
