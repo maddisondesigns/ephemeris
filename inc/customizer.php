@@ -800,31 +800,34 @@ class ephemeris_initialise_customizer_settings {
 			)
 		) );
 
-		// Add our Select setting and control for selecting the number of products to display on the shop page
-		$wp_customize->add_setting( 'ephemeris_woocommerce_shop_products',
-			array(
-				'default'=> $this->defaults['ephemeris_woocommerce_shop_products'],
-				'transport' => 'refresh',
-				'sanitize_callback' => 'ephemeris_radio_sanitization',
-			)
-		);
-		$wp_customize->add_control( 'ephemeris_woocommerce_shop_products',
-			array(
-				'label' => __( 'Shop Products', 'ephemeris' ),
-				'description' => esc_html__( 'Select the number of products to display on the shop page', 'ephemeris' ),
-				'section' => 'woocommerce_layout_section',
-				'type' => 'select',
-				'choices' => array(
-					'4' => __( '4 Products', 'ephemeris' ),
-					'8' => __( '8 Products', 'ephemeris' ),
-					'12' => __( '12 Products', 'ephemeris' ),
-					'16' => __( '16 Products', 'ephemeris' ),
-					'20' => __( '20 Products', 'ephemeris' ),
-					'24' => __( '24 Products', 'ephemeris' ),
-					'28' => __( '28 Products', 'ephemeris' ),
-				),
-			)
-		);
+		// Only add a Setting and Control for the number of WooCommerce products if WooCommerce is less than v3.3
+		if ( !ephemeris_woocommerce_version_check( '3.3' ) ) {
+			// Add our Select setting and control for selecting the number of products to display on the shop page
+			$wp_customize->add_setting( 'ephemeris_woocommerce_shop_products',
+				array(
+					'default'=> $this->defaults['ephemeris_woocommerce_shop_products'],
+					'transport' => 'refresh',
+					'sanitize_callback' => 'ephemeris_radio_sanitization',
+				)
+			);
+			$wp_customize->add_control( 'ephemeris_woocommerce_shop_products',
+				array(
+					'label' => __( 'Shop Products', 'ephemeris' ),
+					'description' => esc_html__( 'Select the number of products to display on the shop page', 'ephemeris' ),
+					'section' => 'woocommerce_layout_section',
+					'type' => 'select',
+					'choices' => array(
+						'4' => __( '4 Products', 'ephemeris' ),
+						'8' => __( '8 Products', 'ephemeris' ),
+						'12' => __( '12 Products', 'ephemeris' ),
+						'16' => __( '16 Products', 'ephemeris' ),
+						'20' => __( '20 Products', 'ephemeris' ),
+						'24' => __( '24 Products', 'ephemeris' ),
+						'28' => __( '28 Products', 'ephemeris' ),
+					),
+				)
+			);
+		}
 	}
 
 	/**
