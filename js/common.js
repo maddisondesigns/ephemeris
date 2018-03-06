@@ -1,5 +1,8 @@
 jQuery( document ).ready( function( $ ){
 
+	// Since we're no longer using Modernizr, manually check for js and update the no-js class
+	document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
 	/**
 	 * Responsive menu
 	 */

@@ -162,7 +162,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		public function enqueue() {
 			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
 			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
-			wp_enqueue_style( 'font-awesome', trailingslashit( get_template_directory_uri() ) . 'css/font-awesome.min.css', array(), '4.7.0', 'all' );
+			wp_enqueue_style( 'font-awesome-5', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array(), '4.7.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer

@@ -4,7 +4,7 @@ Theme URI: https://skyrocketthemes.com/themes/ephemeris-wordpress-theme
 Author: ahortin
 Author URI: https://maddisondesigns.com
 Description: The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customise and extend. Ephemeris is WooCommerce compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Now that's pretty cool, eh!
-Version: 1.3.2
+Version: 1.3.3
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
@@ -1386,9 +1386,13 @@ article.sticky {
 
 /* Quote */
 .format-quote .entry-content blockquote:before {
-	font-family: 'FontAwesome';
-	font-weight: normal;
+	font-family: 'Font Awesome 5 Free';
+	display: inline-block;
+	font-weight: 900;
 	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
 	speak: none;
 	vertical-align: top;
 	font-size: 40px;
@@ -1975,26 +1979,38 @@ form label.error {
 
 /* If you don't want the arrows on the top level drop down, simply remove this style */
 .main-navigation li.menu-item-has-children > a:after {
-	font-family: 'FontAwesome';
-	font-weight: normal;
+	font-family: 'Font Awesome 5 Free';
+	display: inline-block;
+	font-weight: 900;
 	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
 	speak: none;
 	vertical-align: middle;
-	font-size: 9px;
-	font-size: 0.5625rem;
-	content: " \f078";
+	font-size: 12px;
+	font-size: 0.75rem;
+	content: "\f078";
+	margin-left: 4px;
+	margin-left: 0.25rem;
 }
 
 /* If you don't want the arrows on the sub-menu options, simply remove this style */
 .main-navigation ul li li.menu-item-has-children > a:after {
-	font-family: 'FontAwesome';
-	font-weight: normal;
+	font-family: 'Font Awesome 5 Free';
+	display: inline-block;
+	font-weight: 900;
 	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
 	speak: none;
 	vertical-align: middle;
-	font-size: 9px;
-	font-size: 0.5625rem;
-	content: " \f054";
+	font-size: 12px;
+	font-size: 0.75rem;
+	content: "\f054";
+	margin-left: 4px;
+	margin-left: 0.25rem;
 }
 
 .main-navigation ul ul a {
@@ -2786,7 +2802,13 @@ p.demo_store {
 }
 
 .demo_store:before {
-	font-family: FontAwesome;
+	font-family: 'Font Awesome 5 Free';
+	display: inline-block;
+	font-weight: 900;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
 	content: "\f05a";
 	margin-right: 4px;
 	margin-right: .25rem;
@@ -2806,7 +2828,13 @@ p.demo_store {
 
 .demo_store a:before {
 	display: inline-block;
-	font-family: FontAwesome;
+	font-family: 'Font Awesome 5 Free';
+	display: inline-block;
+	font-weight: 900;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
 	content: "\f057";
 	margin-right: 4px;
 	margin-right: .25rem;

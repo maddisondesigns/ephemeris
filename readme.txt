@@ -3,7 +3,7 @@ Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
 Requires at least: 4.8
 Tested up to: 4.9.2
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ The Ephemeris theme is a clean, fast and simple platform for creating beautiful,
 
 If you do decide to use a child theme with Ephemeris, there's no need to use CSS @import or even enqueue the parent stylesheet. Ephemeris will automatically enqueue the parent stylesheet for you. Cool eh!
 
-Ephemeris uses [Normalize](https://github.com/necolas/normalize.css) to make sure that browsers render all elements more consistently and [Modernizr](http://modernizr.com) for detecting HTML5 and CSS3 browser capabilities along with some default stylings from HTML5 Boilerplate. It also incorporates the gorgeous [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icon font by Dave Gandy.
+Ephemeris uses [Normalize](https://github.com/necolas/normalize.css) to make sure that browsers render all elements more consistently along with some default stylings from HTML5 Boilerplate. It also incorporates the gorgeous [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icon font by Dave Gandy.
 
 If you're looking to build an eCommerce website, Ephemeris supports the excellent WooCommerce plugin, straight out of the box.
 
@@ -137,7 +137,6 @@ Ephemeris is distributed under the terms of the GNU GPL
 Ephemeris includes the following awesomeness:
 
 [Unsemantic](http://unsemantic.com), which is licensed under GPL and MIT license
-[Modernizr](http://modernizr.com), which is licensed under the MIT license
 [Normalize.css](https://github.com/necolas/normalize.css), which is licensed under the MIT license
 [jQuery Validation](http://bassistance.de/jquery-plugins/jquery-plugin-validation) which is dual licensed under the MIT license and GPL licenses
 [Font Awesome](http://fortawesome.github.io/Font-Awesome) icon font, which is licensed under SIL Open Font License and MIT License
@@ -155,6 +154,10 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 
 == Changelog ==
+
+= 1.3.3 =
+- Removed Modernizr script as it's better to load it only when you actually want to make use of it
+- Update Font Awesome to version 5.0.8
 
 = 1.3.2 =
 - Update WooCommerce add_theme_support option to include default number of rows and columns

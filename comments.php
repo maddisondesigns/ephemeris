@@ -51,7 +51,7 @@ if ( post_password_required() )
 					'avatar_size' => 100,
 					'style'       => 'ol',
 					'short_ping'  => true,
-					'reply_text'  => '<i class="fa fa-reply" aria-hidden="true"></i> ' . __( 'Reply', 'ephemeris' ),
+					'reply_text'  => '<i class="fas fa-reply" aria-hidden="true"></i> ' . __( 'Reply', 'ephemeris' ),
 				) );
 			?>
 		</ol> <!-- /.commentlist -->
