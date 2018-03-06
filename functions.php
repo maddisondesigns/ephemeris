@@ -28,7 +28,7 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		// This theme styles the visual editor with editor-style.css to match the theme style.
 		add_editor_style( array(
 			'editor-style.css',
-			'css/font-awesome.min.css'
+			'css/fontawesome-all.min.css'
 			)
 		);
 
@@ -160,11 +160,11 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		wp_enqueue_style( 'normalize', trailingslashit( get_template_directory_uri() ) . 'css/normalize.css', array(), '7.0.0', 'all' );
 
 		// Register and enqueue our icon font
-		// We're using the awesome Font Awesome icon font. http://fortawesome.github.io/Font-Awesome
-		wp_enqueue_style( 'font-awesome', trailingslashit( get_template_directory_uri() ) . 'css/font-awesome.min.css', array( 'normalize' ), '4.7.0', 'all' );
+		// We're using the awesome Font Awesome icon font. https://fontawesome.com
+		wp_enqueue_style( 'font-awesome-5', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array( 'normalize' ), '5.0.8', 'all' );
 
 		// Our styles for setting up the grid. We're using Unsemantic. http://unsemantic.com
-		wp_enqueue_style( 'unsemantic-grid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'font-awesome' ), '1.0.0', 'all' );
+		wp_enqueue_style( 'unsemantic-grid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'font-awesome-5' ), '1.0.0', 'all' );
 
 		/*
 		 * Load our Google Fonts.
@@ -193,9 +193,6 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		 * Register and enqueue our scripts
 		 */
 
-		// Load Modernizr at the top of the document, which enables HTML5 elements and feature detects
-		wp_enqueue_script( 'modernizr', trailingslashit( get_template_directory_uri() ) . 'js/modernizr-min.js', array(), '3.5.0', false );
-
 		// Adds JavaScript to pages with the comment form to support sites with threaded comments (when in use)
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
@@ -216,7 +213,7 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		}
 
 		// Enqueue our common scripts
-		wp_enqueue_script( 'ephemeris-common-js', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.0', true );
+		wp_enqueue_script( 'ephemeris-common-js', trailingslashit( get_template_directory_uri() ) . 'js/common.js', array( 'jquery' ), '0.1.1', true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
@@ -787,8 +784,8 @@ if ( ! function_exists( 'ephemeris_single_posts_pagination' ) ) {
 		printf( '<nav role="navigation" class="navigation pagination nav-single">' );
 			printf( '<h2 class="screen-reader-text">' . esc_html__( 'Posts navigation', 'ephemeris' ) . '</h2>' );
 
-			$previous_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-right', 'Previous post link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-left', 'Previous post link icon classes', 'ephemeris' ) ) );
-			$next_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-left', 'Next post link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-right', 'Next post link icon classes', 'ephemeris' ) ) );
+			$previous_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fas fa-angle-right', 'Previous post link icon classes', 'ephemeris' ) : _x( 'fas fa-angle-left', 'Previous post link icon classes', 'ephemeris' ) ) );
+			$next_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fas fa-angle-left', 'Next post link icon classes', 'ephemeris' ) : _x( 'fas fa-angle-right', 'Next post link icon classes', 'ephemeris' ) ) );
 
 			previous_post_link(
 				'<div class="nav-previous">%link</div>',
@@ -810,8 +807,8 @@ if ( ! function_exists( 'ephemeris_single_posts_pagination' ) ) {
  */
 if ( ! function_exists( 'ephemeris_posts_pagination' ) ) {
 	function ephemeris_posts_pagination() {
-		$previous_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-right', 'Previous page link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-left', 'Previous page link icon classes', 'ephemeris' ) ) );
-		$next_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-left', 'Next page link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-right', 'Next page link icon classes', 'ephemeris' ) ) );
+		$previous_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fas fa-angle-right', 'Previous page link icon classes', 'ephemeris' ) : _x( 'fas fa-angle-left', 'Previous page link icon classes', 'ephemeris' ) ) );
+		$next_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fas fa-angle-left', 'Next page link icon classes', 'ephemeris' ) : _x( 'fas fa-angle-right', 'Next page link icon classes', 'ephemeris' ) ) );
 
 		the_posts_pagination(
 			array(
@@ -881,39 +878,39 @@ function ephemeris_posted_on() {
 	$post_icon = '';
 	switch ( get_post_format() ) {
 		case 'aside':
-			$post_icon = 'fa-file-o';
+			$post_icon = 'far fa-file';
 			break;
 		case 'audio':
-			$post_icon = 'fa-volume-up';
+			$post_icon = 'fas fa-volume-up';
 			break;
 		case 'chat':
-			$post_icon = 'fa-comment';
+			$post_icon = 'fas fa-comment';
 			break;
 		case 'gallery':
-			$post_icon = 'fa-camera';
+			$post_icon = 'far fa-images';
 			break;
 		case 'image':
-			$post_icon = 'fa-picture-o';
+			$post_icon = 'far fa-image';
 			break;
 		case 'link':
-			$post_icon = 'fa-link';
+			$post_icon = 'fas fa-link';
 			break;
 		case 'quote':
-			$post_icon = 'fa-quote-left';
+			$post_icon = 'fas fa-quote-left';
 			break;
 		case 'status':
-			$post_icon = 'fa-user';
+			$post_icon = 'fas fa-user';
 			break;
 		case 'video':
-			$post_icon = 'fa-video-camera';
+			$post_icon = 'fas fa-video';
 			break;
 		default:
-			$post_icon = 'fa-calendar';
+			$post_icon = 'far fa-calendar-alt';
 			break;
 	}
 
 	// Translators: 1: Icon 2: Permalink 3: Post date and time 4: Publish date in ISO format 5: Post date
-	$date = sprintf( '<span class="publish-date"><i class="fa %1$s" aria-hidden="true"></i> <a href="%2$s" title="%3$s" rel="bookmark"><time class="entry-date" datetime="%4$s" itemprop="datePublished">%5$s</time></a></span>',
+	$date = sprintf( '<span class="publish-date"><i class="%1$s" aria-hidden="true"></i> <a href="%2$s" title="%3$s" rel="bookmark"><time class="entry-date" datetime="%4$s" itemprop="datePublished">%5$s</time></a></span>',
 		$post_icon,
 		esc_url( get_permalink() ),
 		sprintf( esc_html__( 'Posted %1$s @ %2$s', 'ephemeris' ), esc_html( get_the_date() ), esc_attr( get_the_time() ) ),
@@ -922,7 +919,7 @@ function ephemeris_posted_on() {
 	);
 
 	// Translators: 1: Date link 2: Author title 3: Author
-	$author = sprintf( '<address class="publish-author"><i class="fa fa-pencil" aria-hidden="true"></i> <span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author" itemprop="author">%3$s</a></span></address>',
+	$author = sprintf( '<address class="publish-author"><i class="fas fa-pencil-alt" aria-hidden="true"></i> <span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author" itemprop="author">%3$s</a></span></address>',
 		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 		esc_attr( sprintf( esc_html__( 'View all posts by %s', 'ephemeris' ), get_the_author() ) ),
 		get_the_author()
@@ -932,7 +929,7 @@ function ephemeris_posted_on() {
 	$categories_list = get_the_category_list( esc_html__( ' ', 'ephemeris' ) );
 
 	// Translators: 1: Permalink 2: Title 3: No. of Comments
-	$comments = sprintf( '<span class="comments-link"><i class="fa fa-comment" aria-hidden="true"></i> <a href="%1$s" title="%2$s">%3$s</a></span>',
+	$comments = sprintf( '<span class="comments-link"><i class="fas fa-comment" aria-hidden="true"></i> <a href="%1$s" title="%2$s">%3$s</a></span>',
 		esc_url( get_comments_link() ),
 		esc_attr( esc_html__( 'Comment on ' , 'ephemeris' ) . the_title_attribute( 'echo=0' ) ),
 		( get_comments_number() > 0 ? sprintf( _n( '%1$s Comment', '%1$s Comments', get_comments_number(), 'ephemeris' ), get_comments_number() ) : esc_html__( 'No Comments', 'ephemeris' ) )
@@ -969,7 +966,7 @@ if ( ! function_exists( 'ephemeris_entry_meta' ) ) {
 
 		// Translators: 1: Tag list
 		if ( $tag_list ) {
-			printf( wp_kses( __( '<i class="fa fa-tag" aria-hidden="true"></i> %1$s', 'ephemeris' ), array( 'i' => array( 'class' => array() ) ) ), $tag_list );
+			printf( wp_kses( __( '<i class="fas fa-tag" aria-hidden="true"></i> %1$s', 'ephemeris' ), array( 'i' => array( 'class' => array() ) ) ), $tag_list );
 		}
 	}
 }
@@ -1119,7 +1116,7 @@ if ( ! function_exists( 'ephemeris_add_search_menu_item' ) ) {
 
 		if( get_theme_mod( 'ephemeris_search_menu_icon', $defaults['ephemeris_search_menu_icon'] ) ) {
 			if( $args->theme_location == 'primary-menu' ) {
-				$items .= '<li class="menu-item menu-item-search"><a href="#" class="nav-search"><i class="fa fa-search"></i></a></li>';
+				$items .= '<li class="menu-item menu-item-search"><a href="#" class="nav-search"><i class="fas fa-search"></i></a></li>';
 			}
 		}
 		return $items;
@@ -1319,8 +1316,8 @@ if ( ephemeris_is_plugin_active( 'woocommerce' ) && !ephemeris_woocommerce_versi
  */
 if ( ! function_exists( 'ephemeris_woocommerce_pagination_args' ) ) {
 	function ephemeris_woocommerce_pagination_args( $paginationargs ) {
-		$previous_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-right', 'WooCommerce previous page link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-left', 'WooCommerce previous page link icon classes', 'ephemeris' ) ) );
-		$next_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fa fa-angle-left', 'WooCommerce next page link icon classes', 'ephemeris' ) : _x( 'fa fa-angle-right', 'WooCommerce next page link icon classes', 'ephemeris' ) ) );
+		$previous_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fas fa-angle-right', 'WooCommerce previous page link icon classes', 'ephemeris' ) : _x( 'fas fa-angle-left', 'WooCommerce previous page link icon classes', 'ephemeris' ) ) );
+		$next_post_icon = sprintf( '<i class="%1$s" aria-hidden="true"></i>', ( is_rtl() ? _x( 'fas fa-angle-left', 'WooCommerce next page link icon classes', 'ephemeris' ) : _x( 'fas fa-angle-right', 'WooCommerce next page link icon classes', 'ephemeris' ) ) );
 
 		$paginationargs['prev_text'] = $previous_post_icon . ' ' . __( 'Previous', 'ephemeris' );
 		$paginationargs['next_text'] = __( 'Next', 'ephemeris' ) . ' ' . $next_post_icon;
@@ -1370,34 +1367,34 @@ add_filter( 'customizer_widgets_section_args', 'ephemeris_show_all_sidebars_in_c
 if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 	function ephemeris_generate_social_urls() {
 		$social_icons = array(
-			array( 'url' => 'behance.net', 'icon' => 'fa-behance', 'title' => esc_html__( 'Follow me on Behance', 'ephemeris' ), 'class' => 'behance' ),
-			array( 'url' => 'bitbucket.org', 'icon' => 'fa-bitbucket', 'title' => esc_html__( 'Fork me on Bitbucket', 'ephemeris' ), 'class' => 'bitbucket' ),
-			array( 'url' => 'codepen.io', 'icon' => 'fa-codepen', 'title' => esc_html__( 'Follow me on CodePen', 'ephemeris' ), 'class' => 'codepen' ),
-			array( 'url' => 'deviantart.com', 'icon' => 'fa-deviantart', 'title' => esc_html__( 'Watch me on DeviantArt', 'ephemeris' ), 'class' => 'deviantart' ),
-			array( 'url' => 'dribbble.com', 'icon' => 'fa-dribbble', 'title' => esc_html__( 'Follow me on Dribbble', 'ephemeris' ), 'class' => 'dribbble' ),
-			array( 'url' => 'etsy.com', 'icon' => 'fa-etsy', 'title' => esc_html__( 'favorite me on Etsy', 'ephemeris' ), 'class' => 'etsy' ),
-			array( 'url' => 'facebook.com', 'icon' => 'fa-facebook', 'title' => esc_html__( 'Like me on Facebook', 'ephemeris' ), 'class' => 'facebook' ),
-			array( 'url' => 'flickr.com', 'icon' => 'fa-flickr', 'title' => esc_html__( 'Connect with me on Flickr', 'ephemeris' ), 'class' => 'flickr' ),
-			array( 'url' => 'foursquare.com', 'icon' => 'fa-foursquare', 'title' => esc_html__( 'Follow me on Foursquare', 'ephemeris' ), 'class' => 'foursquare' ),
-			array( 'url' => 'github.com', 'icon' => 'fa-github', 'title' => esc_html__( 'Fork me on GitHub', 'ephemeris' ), 'class' => 'github' ),
-			array( 'url' => 'instagram.com', 'icon' => 'fa-instagram', 'title' => esc_html__( 'Follow me on Instagram', 'ephemeris' ), 'class' => 'instagram' ),
-			array( 'url' => 'last.fm', 'icon' => 'fa-lastfm', 'title' => esc_html__( 'Follow me on Last.fm', 'ephemeris' ), 'class' => 'lastfm' ),
-			array( 'url' => 'linkedin.com', 'icon' => 'fa-linkedin', 'title' => esc_html__( 'Connect with me on LinkedIn', 'ephemeris' ), 'class' => 'linkedin' ),
-			array( 'url' => 'medium.com', 'icon' => 'fa-medium', 'title' => esc_html__( 'Follow me on Medium', 'ephemeris' ), 'class' => 'medium' ),
-			array( 'url' => 'pinterest.com', 'icon' => 'fa-pinterest', 'title' => esc_html__( 'Follow me on Pinterest', 'ephemeris' ), 'class' => 'pinterest' ),
-			array( 'url' => 'plus.google.com', 'icon' => 'fa-google-plus', 'title' => esc_html__( 'Connect with me on Google+', 'ephemeris' ), 'class' => 'googleplus' ),
-			array( 'url' => 'reddit.com', 'icon' => 'fa-reddit', 'title' => esc_html__( 'Join me on Reddit', 'ephemeris' ), 'class' => 'reddit' ),
-			array( 'url' => 'slack.com', 'icon' => 'fa-slack', 'title' => esc_html__( 'Join me on Slack', 'ephemeris' ), 'class' => 'slack.' ),
-			array( 'url' => 'slideshare.net', 'icon' => 'fa-slideshare', 'title' => esc_html__( 'Follow me on SlideShare', 'ephemeris' ), 'class' => 'slideshare' ),
-			array( 'url' => 'snapchat.com', 'icon' => 'fa-snapchat', 'title' => esc_html__( 'Add me on Snapchat', 'ephemeris' ), 'class' => 'snapchat' ),
-			array( 'url' => 'soundcloud.com', 'icon' => 'fa-soundcloud', 'title' => esc_html__( 'Follow me on SoundCloud', 'ephemeris' ), 'class' => 'soundcloud' ),
-			array( 'url' => 'spotify.com', 'icon' => 'fa-spotify', 'title' => esc_html__( 'Follow me on Spotify', 'ephemeris' ), 'class' => 'spotify' ),
-			array( 'url' => 'stackoverflow.com', 'icon' => 'fa-stack-overflow', 'title' => esc_html__( 'Join me on Stack Overflow', 'ephemeris' ), 'class' => 'stackoverflow' ),
-			array( 'url' => 'tumblr.com', 'icon' => 'fa-tumblr', 'title' => esc_html__( 'Follow me on Tumblr', 'ephemeris' ), 'class' => 'tumblr' ),
-			array( 'url' => 'twitch.tv', 'icon' => 'fa-twitch', 'title' => esc_html__( 'Follow me on Twitch', 'ephemeris' ), 'class' => 'twitch' ),
-			array( 'url' => 'twitter.com', 'icon' => 'fa-twitter', 'title' => esc_html__( 'Follow me on Twitter', 'ephemeris' ), 'class' => 'twitter' ),
-			array( 'url' => 'vimeo.com', 'icon' => 'fa-vimeo', 'title' => esc_html__( 'Follow me on Vimeo', 'ephemeris' ), 'class' => 'vimeo' ),
-			array( 'url' => 'youtube.com', 'icon' => 'fa-youtube', 'title' => esc_html__( 'Subscribe to me on YouTube', 'ephemeris' ), 'class' => 'youtube' ),
+			array( 'url' => 'behance.net', 'icon' => 'fab fa-behance', 'title' => esc_html__( 'Follow me on Behance', 'ephemeris' ), 'class' => 'behance' ),
+			array( 'url' => 'bitbucket.org', 'icon' => 'fab fa-bitbucket', 'title' => esc_html__( 'Fork me on Bitbucket', 'ephemeris' ), 'class' => 'bitbucket' ),
+			array( 'url' => 'codepen.io', 'icon' => 'fab fa-codepen', 'title' => esc_html__( 'Follow me on CodePen', 'ephemeris' ), 'class' => 'codepen' ),
+			array( 'url' => 'deviantart.com', 'icon' => 'fab fa-deviantart', 'title' => esc_html__( 'Watch me on DeviantArt', 'ephemeris' ), 'class' => 'deviantart' ),
+			array( 'url' => 'dribbble.com', 'icon' => 'fab fa-dribbble', 'title' => esc_html__( 'Follow me on Dribbble', 'ephemeris' ), 'class' => 'dribbble' ),
+			array( 'url' => 'etsy.com', 'icon' => 'fab fa-etsy', 'title' => esc_html__( 'favorite me on Etsy', 'ephemeris' ), 'class' => 'etsy' ),
+			array( 'url' => 'facebook.com', 'icon' => 'fab fa-facebook-f', 'title' => esc_html__( 'Like me on Facebook', 'ephemeris' ), 'class' => 'facebook' ),
+			array( 'url' => 'flickr.com', 'icon' => 'fab fa-flickr', 'title' => esc_html__( 'Connect with me on Flickr', 'ephemeris' ), 'class' => 'flickr' ),
+			array( 'url' => 'foursquare.com', 'icon' => 'fab fa-foursquare', 'title' => esc_html__( 'Follow me on Foursquare', 'ephemeris' ), 'class' => 'foursquare' ),
+			array( 'url' => 'github.com', 'icon' => 'fab fa-github', 'title' => esc_html__( 'Fork me on GitHub', 'ephemeris' ), 'class' => 'github' ),
+			array( 'url' => 'instagram.com', 'icon' => 'fab fa-instagram', 'title' => esc_html__( 'Follow me on Instagram', 'ephemeris' ), 'class' => 'instagram' ),
+			array( 'url' => 'last.fm', 'icon' => 'fab fa-lastfm', 'title' => esc_html__( 'Follow me on Last.fm', 'ephemeris' ), 'class' => 'lastfm' ),
+			array( 'url' => 'linkedin.com', 'icon' => 'fab fa-linkedin-in', 'title' => esc_html__( 'Connect with me on LinkedIn', 'ephemeris' ), 'class' => 'linkedin' ),
+			array( 'url' => 'medium.com', 'icon' => 'fab fa-medium-m', 'title' => esc_html__( 'Follow me on Medium', 'ephemeris' ), 'class' => 'medium' ),
+			array( 'url' => 'pinterest.com', 'icon' => 'fab fa-pinterest-p', 'title' => esc_html__( 'Follow me on Pinterest', 'ephemeris' ), 'class' => 'pinterest' ),
+			array( 'url' => 'plus.google.com', 'icon' => 'fab fa-google-plus-g', 'title' => esc_html__( 'Connect with me on Google+', 'ephemeris' ), 'class' => 'googleplus' ),
+			array( 'url' => 'reddit.com', 'icon' => 'fab fa-reddit-alien', 'title' => esc_html__( 'Join me on Reddit', 'ephemeris' ), 'class' => 'reddit' ),
+			array( 'url' => 'slack.com', 'icon' => 'fab fa-slack-hash', 'title' => esc_html__( 'Join me on Slack', 'ephemeris' ), 'class' => 'slack.' ),
+			array( 'url' => 'slideshare.net', 'icon' => 'fab fa-slideshare', 'title' => esc_html__( 'Follow me on SlideShare', 'ephemeris' ), 'class' => 'slideshare' ),
+			array( 'url' => 'snapchat.com', 'icon' => 'fab fa-snapchat-ghost', 'title' => esc_html__( 'Add me on Snapchat', 'ephemeris' ), 'class' => 'snapchat' ),
+			array( 'url' => 'soundcloud.com', 'icon' => 'fab fa-soundcloud', 'title' => esc_html__( 'Follow me on SoundCloud', 'ephemeris' ), 'class' => 'soundcloud' ),
+			array( 'url' => 'spotify.com', 'icon' => 'fab fa-spotify', 'title' => esc_html__( 'Follow me on Spotify', 'ephemeris' ), 'class' => 'spotify' ),
+			array( 'url' => 'stackoverflow.com', 'icon' => 'fab fa-stack-overflow', 'title' => esc_html__( 'Join me on Stack Overflow', 'ephemeris' ), 'class' => 'stackoverflow' ),
+			array( 'url' => 'tumblr.com', 'icon' => 'fab fa-tumblr', 'title' => esc_html__( 'Follow me on Tumblr', 'ephemeris' ), 'class' => 'tumblr' ),
+			array( 'url' => 'twitch.tv', 'icon' => 'fab fa-twitch', 'title' => esc_html__( 'Follow me on Twitch', 'ephemeris' ), 'class' => 'twitch' ),
+			array( 'url' => 'twitter.com', 'icon' => 'fab fa-twitter', 'title' => esc_html__( 'Follow me on Twitter', 'ephemeris' ), 'class' => 'twitter' ),
+			array( 'url' => 'vimeo.com', 'icon' => 'fab fa-vimeo-v', 'title' => esc_html__( 'Follow me on Vimeo', 'ephemeris' ), 'class' => 'vimeo' ),
+			array( 'url' => 'youtube.com', 'icon' => 'fab fa-youtube', 'title' => esc_html__( 'Subscribe to me on YouTube', 'ephemeris' ), 'class' => 'youtube' ),
 		);
 
 		return apply_filters( 'ephemeris_social_icons', $social_icons );
@@ -1434,9 +1431,9 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 		$contact_phone = get_theme_mod( 'ephemeris_contact_phone', $defaults['ephemeris_contact_phone'] );
 
 		if( !empty( $contact_phone ) ) {
-			$output .= sprintf( '<li class="%1$s"><i class="fa %2$s"></i>%3$s</li>',
+			$output .= sprintf( '<li class="%1$s"><i class="%2$s"></i>%3$s</li>',
 				'phone',
-				'fa-phone',
+				'fas fa-phone fa-flip-horizontal',
 				$contact_phone
 			);
 		}
@@ -1446,7 +1443,7 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 				$domain = str_ireplace( 'www.', '', parse_url( $value, PHP_URL_HOST ) );
 				$index = array_search( $domain, $social_service_urls );
 				if( false !== $index ) {
-					$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="fa %5$s"></i></a></li>',
+					$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="%5$s"></i></a></li>',
 						$social_icons[$index]['class'],
 						esc_url( $value ),
 						$social_icons[$index]['title'],
@@ -1455,23 +1452,23 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 					);
 				}
 				else {
-					$output .= sprintf( '<li class="nosocial"><a href="%2$s"%3$s><i class="fa %4$s"></i></a></li>',
+					$output .= sprintf( '<li class="nosocial"><a href="%2$s"%3$s><i class="%4$s"></i></a></li>',
 						$social_icons[$index]['class'],
 						esc_url( $value ),
 						( !$ephemeris_social_newtab ? '' : ' target="_blank"' ),
-						'fa-globe'
+						'fas fa-globe'
 					);
 				}
 			}
 		}
 
 		if( get_theme_mod( 'ephemeris_social_rss', $defaults['ephemeris_social_rss'] ) ) {
-			$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="fa %5$s"></i></a></li>',
+			$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="%5$s"></i></a></li>',
 				'rss',
 				esc_url( home_url( '/feed' ) ),
 				__( 'Subscribe to my RSS feed', 'ephemeris' ),
 				( !$ephemeris_social_newtab ? '' : ' target="_blank"' ),
-				'fa-rss'
+				'fas fa-rss'
 			);
 		}
 
