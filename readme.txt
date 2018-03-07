@@ -158,6 +158,8 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 = 1.3.3 =
 - Removed Modernizr script as it's better to load it only when you actually want to make use of it
 - Update Font Awesome to version 5.0.8
+- Update table styles to remove bottom border
+- Update blockquote style to add more padding above and below
 
 = 1.3.2 =
 - Update WooCommerce add_theme_support option to include default number of rows and columns

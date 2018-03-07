@@ -307,8 +307,8 @@ blockquote {
 	border-left: 5px solid #3a3a3a;
 	margin: 0 0 18px 20px;
 	margin: 0 0 1.125rem 1.25rem;
-	padding: 0 0 0 16px;
-	padding: 0 0 0 1rem;
+	padding: 16px 0 16px 16px;
+	padding: 1rem 0 1rem 1rem;
 }
 
 blockquote.pull-right {
@@ -336,7 +336,9 @@ blockquote.pull-right small {
 }
 
 blockquote cite:before {
-	content: "\2014 ";
+	content: "\2014";
+	margin-right: 4px;
+	margin-right: .25rem;
 }
 
 blockquote cite {
@@ -1178,7 +1180,6 @@ article.sticky {
 
 .entry-content table,
 .comment-content table {
-	border-bottom: 1px solid #ccc;
 	font-size: 14px;
 	font-size: 0.875rem;
 	line-height: 2;
