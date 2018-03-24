@@ -29,7 +29,7 @@ class ephemeris_initialise_customizer_settings {
 		// Register our color controls
 		add_action( 'customize_register', array( $this, 'ephemeris_register_color_controls' ) );
 
-		// Register our layout controls
+		// Register our site layout controls
 		add_action( 'customize_register', array( $this, 'ephemeris_register_layout_controls' ) );
 
 		// Register our social media controls
@@ -78,6 +78,9 @@ class ephemeris_initialise_customizer_settings {
 	 * Register the Customizer sections
 	 */
 	public function ephemeris_add_customizer_sections( $wp_customize ) {
+		$woocommerce_section_panel = '';
+		$woocommerce_section_title = __( 'WooCommerce Layout', 'ephemeris' );
+
 		// Rename the default Colors section
 		$wp_customize->get_section( 'colors' )->title = 'Background';
 
@@ -117,7 +120,7 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
-		// Add our Layout Section
+		// Add our Site Layout Section
 		$wp_customize->add_section( 'layout_section',
 			array(
 				'title' => __( 'Site Layout', 'ephemeris' ),
@@ -162,13 +165,19 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
+		// Determine where the WooCommerce Panel should be added and its title
+		if ( ephemeris_woocommerce_version_check( '3.3' ) ) {
+			$woocommerce_section_panel = 'woocommerce';
+			$woocommerce_section_title = __( 'Layout', 'ephemeris' );
+		}
 		// Add our WooCommerce Layout Section, only if WooCommerce is active
 		$wp_customize->add_section( 'woocommerce_layout_section',
 			array(
-				'title' => __( 'WooCommerce Layout', 'ephemeris' ),
+				'title' => $woocommerce_section_title,
 				'description' => esc_html__( 'Adjust the layout of your WooCommerce shop.', 'ephemeris' ),
 				'active_callback' => 'ephemeris_is_woocommerce_plugin_active_active_callback',
 				'priority' => 160,
+				'panel' => $woocommerce_section_panel,
 			)
 		);
 
@@ -389,7 +398,7 @@ class ephemeris_initialise_customizer_settings {
 	}
 
 	/**
-	 * Register our layout controls
+	 * Register our site layout controls
 	 */
 	public function ephemeris_register_layout_controls( $wp_customize ) {
 
@@ -708,14 +717,14 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => '',
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'ephemeris_text_sanitization'
+				'sanitize_callback' => 'ephemeris_text_sanitization',
 			)
 		);
 		$wp_customize->add_control( new Ephemeris_Simple_Notice_Custom_control( $wp_customize, 'footer_filters',
 			array(
 				'label' => '',
 				'description' => __( '<code>&#37;currentyear&#37;</code> to insert the current year (auto updates)<br /><code>&#37;copy&#37;</code> to insert the Copyright symbol<br /><code>&#37;reg&#37;</code> to insert the Registered symbol<br /><code>&#37;trade&#37;</code> to insert the Trademark symbol', 'ephemeris' ),
-				'section' => 'footer_section'
+				'section' => 'footer_section',
 			)
 		) );
 	}
@@ -724,7 +733,6 @@ class ephemeris_initialise_customizer_settings {
 	 * Register our WooCommerce Layout controls
 	 */
 	public function ephemeris_register_woocommerce_controls( $wp_customize ) {
-
 		// Add our Checkbox switch setting and control for displaying a sidebar on the shop page
 		$wp_customize->add_setting( 'ephemeris_woocommerce_shop_sidebar',
 			array(
