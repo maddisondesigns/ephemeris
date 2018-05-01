@@ -2,7 +2,7 @@
 Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
 Requires at least: 4.8
-Tested up to: 4.9.4
+Tested up to: 4.9.5
 Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -47,6 +47,10 @@ Footer Widget 1: Appears in the footer in column 1
 Footer Widget 2: Appears in the footer in column 2
 Footer Widget 3: Appears in the footer in column 3
 Footer Widget 4: Appears in the footer in column 4
+
+Menus
+
+Ephemeris supports all your standard WordPress menus. On top of that, it's super easy to create a simple mega menu by just adding the 'mega-menu' class (without the quotes) to your top-level menu item where you want the mega menu to appear. You can also use the 'menu-header' class to add a slighty stylised header into your menu and the 'menu-divider' class to add a horizontal divider line between your menu items.
 
 Custom Logo
 
@@ -157,6 +161,8 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 = 1.3.4 =
 - Move the WooCommerce Layout Customizer section to the WooCommerce panel if WC >=v3.3
+- Add styles creating simple mega menus
+- Update styles for menu headers and menu dividers
 
 = 1.3.3 =
 - Removed Modernizr script as it's better to load it only when you actually want to make use of it
