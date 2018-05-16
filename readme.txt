@@ -161,6 +161,7 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 = 1.3.5 =
 - Update styles for cookie consent on comment form
+- Add assistive text containing link title to social media icons
 
 = 1.3.4 =
 - Move the WooCommerce Layout Customizer section to the WooCommerce panel if WC >=v3.3

@@ -1443,7 +1443,7 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 				$domain = str_ireplace( 'www.', '', parse_url( $value, PHP_URL_HOST ) );
 				$index = array_search( $domain, $social_service_urls );
 				if( false !== $index ) {
-					$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="%5$s"></i></a></li>',
+					$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="%5$s"></i><span class="assistive-text">%3$s</span></a></li>',
 						$social_icons[$index]['class'],
 						esc_url( $value ),
 						$social_icons[$index]['title'],
@@ -1463,7 +1463,7 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 		}
 
 		if( get_theme_mod( 'ephemeris_social_rss', $defaults['ephemeris_social_rss'] ) ) {
-			$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="%5$s"></i></a></li>',
+			$output .= sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="%5$s"></i><span class="assistive-text">%3$s</span></a></li>',
 				'rss',
 				esc_url( home_url( '/feed' ) ),
 				__( 'Subscribe to my RSS feed', 'ephemeris' ),
