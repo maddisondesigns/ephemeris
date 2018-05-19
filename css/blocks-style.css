@@ -1,0 +1,258 @@
+/*
+Theme Name: Ephemeris
+Description: Used to style the Block Editor (Gutenberg)
+*/
+
+/* Paragraph Block */
+.edit-post-visual-editor p {
+   font: 16px/1.5 'Open Sans', Helvetica, Arial, sans-serif;
+   font-size: 1rem;
+   font-style: normal;
+   font-weight: 400;
+   color: #3a3a3a;
+}
+
+/* Header */
+.edit-post-visual-editor .editor-post-title textarea.editor-post-title__input,
+.edit-post-visual-editor h1,
+.edit-post-visual-editor h2,
+.edit-post-visual-editor h3,
+.edit-post-visual-editor h4,
+.edit-post-visual-editor h5,
+.edit-post-visual-editor h6 {
+	font-family: 'Dosis', sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	color: #3a3a3a;
+	margin-top: 0;
+}
+
+.edit-post-visual-editor .editor-post-title textarea.editor-post-title__input,
+.edit-post-visual-editor h1.blocks-rich-text__tinymce {
+	margin-bottom: 10px;
+	margin-bottom: 0.625rem;
+	font-size: 48px;
+	font-size: 3rem;
+	line-height: 1.25;
+}
+
+.edit-post-visual-editor h2.blocks-rich-text__tinymce {
+	margin-bottom: 8px;
+	margin-bottom: .5rem;
+	font-size: 36px;
+	font-size: 2.25rem;
+	line-height: 1.1666;
+}
+
+.edit-post-visual-editor h3.blocks-rich-text__tinymce {
+	margin-bottom: 6px;
+	margin-bottom: 0.375rem;
+	font-size: 28px;
+	font-size: 1.75rem;
+	line-height: 1.2857;
+}
+
+.edit-post-visual-editor h4.blocks-rich-text__tinymce {
+	margin-bottom: 5px;
+	margin-bottom: 0.3125rem;
+	font-size: 24px;
+	font-size: 1.5rem;
+	line-height: 1.25;
+}
+
+.edit-post-visual-editor h5.blocks-rich-text__tinymce {
+	margin-bottom: 5px;
+	margin-bottom: 0.3125rem;
+	font-size: 16px;
+	font-size: 1rem;
+	line-height: 1.25;
+}
+
+.edit-post-visual-editor h6.blocks-rich-text__tinymce {
+	margin-bottom: 5px;
+	margin-bottom: 0.3125rem;
+	font-size: 14px;
+	font-size: .875rem;
+	line-height: 1.2142;
+}
+
+/* Image Block */
+.edit-post-visual-editor .wp-block-image > div > div {
+	max-width: 100% !important;
+	max-height: none !important;
+}
+
+/* Cover Image block */
+.edit-post-visual-editor .wp-block-cover-image {
+	height: 100vh;
+}
+
+/* Cover Image Block Header */
+.edit-post-visual-editor .wp-block-cover-image h1.blocks-rich-text__tinymce,
+.edit-post-visual-editor .wp-block-cover-image h2.blocks-rich-text__tinymce,
+.edit-post-visual-editor .wp-block-cover-image h3.blocks-rich-text__tinymce,
+.edit-post-visual-editor .wp-block-cover-image h4.blocks-rich-text__tinymce,
+.edit-post-visual-editor .wp-block-cover-image h5.blocks-rich-text__tinymce,
+.edit-post-visual-editor .wp-block-cover-image h6.blocks-rich-text__tinymce {
+	font-family: 'Dosis', sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	color: #3a3a3a;
+	margin-top: 0;
+	color: #fff;
+}
+
+.edit-post-visual-editor .wp-block-cover-image h1.blocks-rich-text__tinymce {
+	margin-bottom: 10px;
+	margin-bottom: 0.625rem;
+	font-size: 48px;
+	font-size: 3rem;
+	line-height: 1.25;
+}
+
+.edit-post-visual-editor .wp-block-cover-image h2.blocks-rich-text__tinymce {
+	margin-bottom: 8px;
+	margin-bottom: .5rem;
+	font-size: 36px;
+	font-size: 2.25rem;
+	line-height: 1.1666;
+}
+
+.edit-post-visual-editor .wp-block-cover-image h3.blocks-rich-text__tinymce {
+	margin-bottom: 6px;
+	margin-bottom: 0.375rem;
+	font-size: 28px;
+	font-size: 1.75rem;
+	line-height: 1.2857;
+}
+
+.edit-post-visual-editor .wp-block-cover-image h4.blocks-rich-text__tinymce {
+	margin-bottom: 5px;
+	margin-bottom: 0.3125rem;
+	font-size: 24px;
+	font-size: 1.5rem;
+	line-height: 1.25;
+}
+
+.edit-post-visual-editor .wp-block-cover-image h5.blocks-rich-text__tinymce {
+	margin-bottom: 5px;
+	margin-bottom: 0.3125rem;
+	font-size: 16px;
+	font-size: 1rem;
+	line-height: 1.25;
+}
+
+.edit-post-visual-editor .wp-block-cover-image h6.blocks-rich-text__tinymce {
+	margin-bottom: 5px;
+	margin-bottom: 0.3125rem;
+	font-size: 14px;
+	font-size: .875rem;
+	line-height: 1.2142;
+}
+
+/* Blockquote block */
+.edit-post-visual-editor .wp-block-quote {
+	border-top: none;
+	border-bottom: none;
+	margin: 0 0 18px 20px;
+	margin: 0 0 1.125rem 1.25rem;
+	padding: 16px 0 16px 16px;
+	padding: 1rem 0 1rem 1rem;
+	text-align: left;
+}
+
+/* Pullquote block */
+.edit-post-visual-editor .wp-block-pullquote {
+	border-top: 5px solid #3a3a3a;
+	border-bottom: 5px solid #3a3a3a;
+	border-left: none;
+	margin: 0 0 18px 0;
+	margin: 0 0 1.125rem 0;
+	padding: 32px 0;
+	padding: 2rem 0;
+	text-align: center;
+}
+
+/* Blockquote & Pullquote block */
+.edit-post-visual-editor .wp-block-quote p,
+.edit-post-visual-editor .wp-block-pullquote p {
+	font-style: italic;
+	font-weight: 400;
+	font-size: 24px;
+	font-size: 1.5rem;
+}
+
+.edit-post-visual-editor .wp-block-quote cite,
+.edit-post-visual-editor .wp-block-pullquote cite {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	font-size: 0.875rem;
+	line-height: 1.125;
+	color: #999;
+	text-transform: none;
+}
+
+/* Video block */
+.edit-post-visual-editor .wp-block-video {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/* Audio block */
+.edit-post-visual-editor .wp-block-audio {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.edit-post-visual-editor .wp-block-audio audio {
+	width: 100%;
+}
+
+/* Button block */
+.edit-post-visual-editor .wp-block-button .wp-block-button__link {
+	display: inline-block;
+	*display: inline;
+	padding: 9px 14px;
+	padding: 0.59375rem 0.875rem;
+	margin-bottom: 0;
+	*margin-left: .3em;
+	font-size: 16px;
+	font-size: 1rem;
+	line-height: 1.25;
+	color: #fff;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: #2e7bc4;
+	*background-color: #2e7bc4;
+	border: none;
+	border-radius: 0;
+}
+
+.edit-post-visual-editor .wp-block-button .wp-block-button__link:hover {
+	background-color: #344860;
+	*background-color: #344860;
+}
+
+/* Seperator block */
+.edit-post-visual-editor hr {
+	background-color: inherit;
+}
+
+.edit-post-visual-editor .wp-block-separator {
+	border-bottom: 1px solid #999;
+	max-width: 500px;
+}
+
+/* Columns block */
+/*.edit-post-visual-editor .wp-block-columns {
+	width: 100%;
+}
+
+.edit-post-visual-editor .wp-block-columns [class*="layout-column-"] {
+	margin-left: 12px;
+	margin-left: .75rem;
+	margin-right: 12px;
+	margin-right: .75rem;
+}*/

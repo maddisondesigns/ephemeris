@@ -130,6 +130,9 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		add_theme_support( 'wc-product-gallery-lightbox' );
 		add_theme_support( 'wc-product-gallery-slider' );
 
+		// Add support for Wide and Full blocks in the Block Editor (Gutenberg)
+		add_theme_support( 'align-wide' );
+
 		// Display a handy map of where all the theme hooks reside
 		// Only used when WP_EPHEMERIS_HOOKS is defined as true in wp-config.php
 		if ( defined( 'WP_EPHEMERIS_HOOKS') && WP_EPHEMERIS_HOOKS ) {
@@ -217,6 +220,73 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
+
+/**
+ * Load our Block Editor styles to style the Editor like the front-end
+ *
+ * @since Ephemeris 1.4
+ *
+ * @return string	css styles
+ */
+if ( ! function_exists( 'ephemeris_block_editor_styles' ) ) {
+	function ephemeris_block_editor_styles() {
+		wp_enqueue_style( 'ephemeris-blocks-style', trailingslashit( get_stylesheet_directory_uri() ) . 'css/blocks-style.css', array(), '1.0.0', 'all' );
+	}
+}
+add_action( 'enqueue_block_editor_assets', 'ephemeris_block_editor_styles' );
+
+/**
+ * Output Block styles in the site header based on Customizer settings
+ *
+ * @since Ephemeris 1.4
+ *
+ * @return string	css styles
+ */
+if ( ! function_exists( 'ephemeris_dynamic_block_editor_styles' ) ) {
+	function ephemeris_dynamic_block_editor_styles() {
+		$defaults = ephemeris_generate_defaults();
+		$styles = '';
+
+		// Layout styles
+		$styles .= '@media only screen and (max-width: ' . esc_attr( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) + 400 ) . 'px) {';
+		$styles .= '.page-template-template-full-width .site-content .alignwide {margin-left: 0;margin-right: 0;}';
+		$styles .= '}';
+
+		echo '<style type="text/css">' . $styles . '</style>';
+	}
+}
+add_action( 'wp_head', 'ephemeris_dynamic_block_editor_styles' );
+
+/**
+ * Increased the width of the Block Editor blocks to match the site width from the Customizer
+ *
+ * @since Ephemeris 1.4
+ *
+ * @return string	css styles
+ */
+if ( ! function_exists( 'ephemeris_block_editor_width_styles' ) ) {
+	function ephemeris_block_editor_width_styles() {
+		$defaults = ephemeris_generate_defaults();
+		$ephemeris_layout_width = get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] );
+		$styles = '';
+
+		// Increase width of Title
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title {max-width: ' . esc_attr( $ephemeris_layout_width + 98 ) . 'px;}';
+
+		// Increase width of all Blocks & Block Appender
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width + 28 ) . 'px;}';
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-default-block-appender {max-width: ' . esc_attr( $ephemeris_layout_width + 28 ) . 'px;}';
+
+		// Increase width of Wide blocks
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width + 28 + 400 ) . 'px;}';
+
+		// Remove max-width on Full blocks
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="full"] {max-width: none;}';
+
+		echo '<style type="text/css">' . $styles . '</style>';
+	}
+}
+add_action( 'enqueue_block_editor_assets', 'ephemeris_block_editor_width_styles' );
 
 /**
  * Enqueue scripts for our Customizer preview
