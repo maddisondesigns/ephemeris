@@ -271,7 +271,7 @@ if ( ! function_exists( 'ephemeris_block_editor_width_styles' ) ) {
 		$styles = '';
 
 		// Increase width of Title
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title {max-width: ' . esc_attr( $ephemeris_layout_width + 98 ) . 'px;}';
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title {max-width: ' . esc_attr( $ephemeris_layout_width + 28 ) . 'px;}';
 
 		// Increase width of all Blocks & Block Appender
 		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width + 28 ) . 'px;}';
