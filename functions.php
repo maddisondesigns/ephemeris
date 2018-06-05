@@ -230,7 +230,7 @@ add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
  */
 if ( ! function_exists( 'ephemeris_block_editor_styles' ) ) {
 	function ephemeris_block_editor_styles() {
-		wp_enqueue_style( 'ephemeris-blocks-style', trailingslashit( get_stylesheet_directory_uri() ) . 'css/blocks-style.css', array(), '1.0.0', 'all' );
+		wp_enqueue_style( 'ephemeris-blocks-style', trailingslashit( get_template_directory_uri() ) . 'css/blocks-style.css', array(), '1.0.0', 'all' );
 	}
 }
 add_action( 'enqueue_block_editor_assets', 'ephemeris_block_editor_styles' );
@@ -271,7 +271,7 @@ if ( ! function_exists( 'ephemeris_block_editor_width_styles' ) ) {
 		$styles = '';
 
 		// Increase width of Title
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title {max-width: ' . esc_attr( $ephemeris_layout_width + 28 ) . 'px;}';
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title .editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width + 28 ) . 'px;}';
 
 		// Increase width of all Blocks & Block Appender
 		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width + 28 ) . 'px;}';
