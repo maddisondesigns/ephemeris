@@ -133,6 +133,54 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		// Add support for Wide and Full blocks in the Block Editor (Gutenberg)
 		add_theme_support( 'align-wide' );
 
+		// Add support for custom colours in the Block Editor (Gutenberg)
+		add_theme_support( 'editor-color-palette',
+			array(
+				'name' => 'Eclipse',
+				'color' => '#3a3a3a',
+			),
+			array(
+				'name' => 'San Juan',
+				'color' => '#334861',
+			),
+			array(
+				'name' => 'Denim',
+				'color' => '#2979c7',
+			),
+			array(
+				'name' => 'Electric Violet',
+				'color' => '#8309e7',
+			),
+			array(
+				'name' => 'Cerise',
+				'color' => '#df49b8',
+			),
+			array(
+				'name' => 'Alizarin',
+				'color' => '#df312c',
+			),
+			array(
+				'name' => 'Pumpkin',
+				'color' => '#FF8228',
+			),
+			array(
+				'name' => 'Titanium Yellow',
+				'color' => '#eef000',
+			),
+			array(
+				'name' => 'Atlantis',
+				'color' => '#7ed934',
+			),
+			array(
+				'name' => 'White Smoke',
+				'color' => '#eee',
+			),
+			array(
+				'name' => 'White',
+				'color' => '#fff',
+			)
+		);
+
 		// Display a handy map of where all the theme hooks reside
 		// Only used when WP_EPHEMERIS_HOOKS is defined as true in wp-config.php
 		if ( defined( 'WP_EPHEMERIS_HOOKS') && WP_EPHEMERIS_HOOKS ) {
@@ -271,14 +319,14 @@ if ( ! function_exists( 'ephemeris_block_editor_width_styles' ) ) {
 		$styles = '';
 
 		// Increase width of Title
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title .editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width + 28 ) . 'px;}';
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title .editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
 
 		// Increase width of all Blocks & Block Appender
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width + 28 ) . 'px;}';
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-default-block-appender {max-width: ' . esc_attr( $ephemeris_layout_width + 28 ) . 'px;}';
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-default-block-appender {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
 
 		// Increase width of Wide blocks
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width + 28 + 400 ) . 'px;}';
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width - 10 + 400 ) . 'px;}';
 
 		// Remove max-width on Full blocks
 		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="full"] {max-width: none;}';
