@@ -2986,6 +2986,106 @@ p.demo_store {
    Block Editor (Gutenberg)
    ========================================================================== */
 
+/* Custom Colours */
+/* Eclipse */
+.has-eclipse-background-color {
+	background-color: #3a3a3a;
+}
+
+.has-eclipse-color {
+	color: #3a3a3a;
+}
+
+/* San Juan */
+.has-san-juan-background-color {
+	background-color: #334861;
+}
+
+.has-san-juan-color {
+	color: #334861;
+}
+
+/* Denim */
+.has-denim-background-color {
+	background-color: #2979c7;
+}
+
+.has-denim-color {
+	color: #2979c7;
+}
+
+/* Electric Violet */
+.has-electric-violet-background-color {
+	background-color: #8309e7;
+}
+
+.has-electric-violet-color {
+	color: #8309e7;
+}
+
+/* Cerise */
+.has-cerise-background-color {
+	background-color: #df49b8;
+}
+
+.has-cerise-color {
+	color: #df49b8;
+}
+
+/* Alizarin */
+.has-alizarin-background-color {
+	background-color: #df312c;
+}
+
+.has-alizarin-color {
+	color: #df312c;
+}
+
+/* Pumpkin */
+.has-pumpkin-background-color {
+	background-color: #FF8228;
+}
+
+.has-pumpkin-color {
+	color: #FF8228;
+}
+
+/* Titanium Yellow */
+.has-titanium-yellow-background-color {
+	background-color: #eef000;
+}
+
+.has-titanium-yellow-color {
+	color: #eef000;
+}
+
+/* Atlantis */
+.has-atlantis-background-color {
+	background-color: #7ed934;
+}
+
+.has-atlantis-color {
+	color: #7ed934;
+}
+
+/* Denim */
+.has-white-smoke-background-color {
+	background-color: #eee;
+}
+
+.has-white-smoke-color {
+	color: #eee;
+}
+
+/* White */
+.has-white-background-color {
+	background-color: #fff;
+}
+
+.has-white-color {
+	color: #fff;
+}
+
 /* Image & Table Width Alignment */
 .page-template-template-full-width .site-content .alignwide {
 	margin-left: -200px;

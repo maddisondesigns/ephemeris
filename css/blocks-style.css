@@ -3,6 +3,106 @@ Theme Name: Ephemeris
 Description: Used to style the Block Editor (Gutenberg)
 */
 
+/* Custom Colours */
+/* Eclipse */
+.edit-post-visual-editor .has-eclipse-background-color {
+	background-color: #3a3a3a;
+}
+
+.edit-post-visual-editor .has-eclipse-color {
+	color: #3a3a3a;
+}
+
+/* San Juan */
+.edit-post-visual-editor .has-san-juan-background-color {
+	background-color: #334861;
+}
+
+.edit-post-visual-editor .has-san-juan-color {
+	color: #334861;
+}
+
+/* Denim */
+.edit-post-visual-editor .has-denim-background-color {
+	background-color: #2979c7;
+}
+
+.edit-post-visual-editor .has-denim-color {
+	color: #2979c7;
+}
+
+/* Electric Violet */
+.edit-post-visual-editor .has-electric-violet-background-color {
+	background-color: #8309e7;
+}
+
+.edit-post-visual-editor .has-electric-violet-color {
+	color: #8309e7;
+}
+
+/* Cerise */
+.edit-post-visual-editor .has-cerise-background-color {
+	background-color: #df49b8;
+}
+
+.edit-post-visual-editor .has-cerise-color {
+	color: #df49b8;
+}
+
+/* Alizarin */
+.edit-post-visual-editor .has-alizarin-background-color {
+	background-color: #df312c;
+}
+
+.edit-post-visual-editor .has-alizarin-color {
+	color: #df312c;
+}
+
+/* Pumpkin */
+.edit-post-visual-editor .has-pumpkin-background-color {
+	background-color: #FF8228;
+}
+
+.edit-post-visual-editor .has-pumpkin-color {
+	color: #FF8228;
+}
+
+/* Titanium Yellow */
+.edit-post-visual-editor .has-titanium-yellow-background-color {
+	background-color: #eef000;
+}
+
+.edit-post-visual-editor .has-titanium-yellow-color {
+	color: #eef000;
+}
+
+/* Atlantis */
+.edit-post-visual-editor .has-atlantis-background-color {
+	background-color: #7ed934;
+}
+
+.edit-post-visual-editor .has-atlantis-color {
+	color: #7ed934;
+}
+
+/* Denim */
+.edit-post-visual-editor .has-white-smoke-background-color {
+	background-color: #eee;
+}
+
+.edit-post-visual-editor .has-white-smoke-color {
+	color: #eee;
+}
+
+/* White */
+.edit-post-visual-editor .has-white-background-color {
+	background-color: #fff;
+}
+
+.edit-post-visual-editor .has-white-color {
+	color: #fff;
+}
+
 /* Paragraph Block */
 .edit-post-visual-editor p {
    font: 16px/1.5 'Open Sans', Helvetica, Arial, sans-serif;
