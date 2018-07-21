@@ -162,7 +162,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		public function enqueue() {
 			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
 			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
-			wp_enqueue_style( 'font-awesome-5', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array(), '4.7.0', 'all' );
+			wp_enqueue_style( 'font-awesome-5', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array(), '5.0.8', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -391,6 +391,153 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	}
 
 	/**
+	 * Dropdown Select2 Custom Control
+	 *
+	 * @since Ephemeris 1.4
+	 *
+	 * @author Anthony Hortin <http://maddisondesigns.com>
+	 * @license http://www.gnu.org/licenses/gpl-2.0.html
+	 * @link https://github.com/maddisondesigns
+	 */
+	class Ephemeris_Dropdown_Select2_Custom_Control extends WP_Customize_Control {
+		/**
+		 * The type of control being rendered
+		 */
+		public $type = 'dropdown_select2';
+		/**
+		 * The type of Select2 Dropwdown to display. Can be either a single select dropdown or a multi-select dropdown. Either false for true. Default = false
+		 */
+		private $multiselect = false;
+		/**
+		 * The Placeholder value to display. Select2 requires a Placeholder value to be set when using the clearall option. Default = 'Please select...'
+		 */
+		private $placeholder = 'Please select...';
+		/**
+		 * Constructor
+		 */
+		public function __construct( $manager, $id, $args = array(), $options = array() ) {
+			parent::__construct( $manager, $id, $args );
+			// Check if this is a multi-select field
+			if ( isset( $this->input_attrs['multiselect'] ) && $this->input_attrs['multiselect'] ) {
+				$this->multiselect = true;
+			}
+			// Check if a placeholder string has been specified
+			if ( isset( $this->input_attrs['placeholder'] ) && $this->input_attrs['placeholder'] ) {
+				$this->placeholder = $this->input_attrs['placeholder'];
+			}
+		}
+		/**
+		 * Enqueue our scripts and styles
+		 */
+		public function enqueue() {
+			wp_enqueue_script( 'ephemeris-select2-js', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), '4.0.6', true );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'ephemeris-select2-js' ), '1.0', true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.1', 'all' );
+			wp_enqueue_style( 'ephemeris-select2-css', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', array(), '4.0.6', 'all' );
+		}
+		/**
+		 * Render the control in the customizer
+		 */
+		public function render_content() {
+			$defaultValue = $this->value();
+			if ( $this->multiselect ) {
+				$defaultValue = explode( ',', $this->value() );
+			}
+		?>
+			<div class="dropdown_select2_control">
+				<?php if( !empty( $this->label ) ) { ?>
+					<label for="<?php echo esc_attr( $this->id ); ?>" class="customize-control-title">
+						<?php echo esc_html( $this->label ); ?>
+					</label>
+				<?php } ?>
+				<?php if( !empty( $this->description ) ) { ?>
+					<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+				<?php } ?>
+				<input type="hidden" id="<?php echo esc_attr( $this->id ); ?>" class="customize-control-dropdown-select2" value="<?php echo esc_attr( $this->value() ); ?>" name="<?php echo esc_attr( $this->id ); ?>" <?php $this->link(); ?> />
+				<select name="select2-list-<?php echo ( $this->multiselect ? 'multi[]' : 'single' ); ?>" class="customize-control-select2" data-placeholder="<?php echo $this->placeholder; ?>" <?php echo ( $this->multiselect ? 'multiple="multiple" ' : '' ); ?>>
+					<?php
+						if ( !$this->multiselect ) {
+							// When using Select2 for single selection, the Placeholder needs an empty <option> at the top of the list for it to work (multi-selects dont need this)
+							echo '<option></option>';
+						}
+						foreach ( $this->choices as $key => $value ) {
+							if ( is_array( $value ) ) {
+								echo '<optgroup label="' . esc_attr( $key ) . '">';
+								foreach ( $value as $optgroupkey => $optgroupvalue ) {
+									echo '<option value="' . esc_attr( $optgroupkey ) . '" ' . ( in_array( esc_attr( $optgroupkey ), $defaultValue ) ? 'selected="selected"' : '' ) . '>' . esc_attr( $optgroupvalue ) . '</option>';
+								}
+								echo '</optgroup>';
+							}
+							else {
+								echo '<option value="' . esc_attr( $key ) . '" ' . selected( esc_attr( $key ), $defaultValue, false )  . '>' . esc_attr( $value ) . '</option>';
+							}
+	 					}
+	 				?>
+				</select>
+			</div>
+		<?php
+		}
+	}
+
+	/**
+	 * Dropdown Posts Custom Control
+	 *
+	 * @since Ephemeris 1.4
+	 *
+	 * @author Anthony Hortin <http://maddisondesigns.com>
+	 * @license http://www.gnu.org/licenses/gpl-2.0.html
+	 * @link https://github.com/maddisondesigns
+	 */
+	class Ephemeris_Dropdown_Posts_Custom_Control extends WP_Customize_Control {
+		/**
+		 * The type of control being rendered
+		 */
+		public $type = 'dropdown_posts';
+		/**
+		 * Posts
+		 */
+		private $posts = array();
+		/**
+		 * Constructor
+		 */
+		public function __construct( $manager, $id, $args = array(), $options = array() ) {
+			parent::__construct( $manager, $id, $args );
+			// Get our Posts
+			$this->posts = get_posts( $this->input_attrs );
+		}
+		/**
+		 * Render the control in the customizer
+		 */
+		public function render_content() {
+		?>
+			<div class="dropdown_posts_control">
+				<?php if( !empty( $this->label ) ) { ?>
+					<label for="<?php echo esc_attr( $this->id ); ?>" class="customize-control-title">
+						<?php echo esc_html( $this->label ); ?>
+					</label>
+				<?php } ?>
+				<?php if( !empty( $this->description ) ) { ?>
+					<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+				<?php } ?>
+				<select name="<?php echo $this->id; ?>" id="<?php echo $this->id; ?>" <?php $this->link(); ?>>
+					<?php
+						if( !empty( $this->posts ) ) {
+							foreach ( $this->posts as $post ) {
+								printf( '<option value="%s" %s>%s</option>',
+									$post->ID,
+									selected( $this->value(), $post->ID, false ),
+									$post->post_title
+								);
+							}
+						}
+					?>
+				</select>
+			</div>
+		<?php
+		}
+	}
+
+	/**
 	 * TinyMCE Custom Control (requires WP 4.8+)
 	 *
 	 * @since Ephemeris 1.0
@@ -463,12 +610,29 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		private $fontListIndex = 0;
 		/**
+		 * The number of fonts to display from the json file. Either positive integer or 'all'. Default = 'all'
+		 */
+		private $fontCount = 'all';
+		/**
+		 * The font list sort order. Either 'alpha' or 'popular'. Default = 'alpha'
+		 */
+		private $fontOrderBy = 'alpha';
+		/**
 		 * Get our list of fonts from the json file
 		 */
 		public function __construct( $manager, $id, $args = array(), $options = array() ) {
 			parent::__construct( $manager, $id, $args );
-			//Get the list of Google fonts
-			$this->fontList = $this->ephemeris_getGoogleFonts();
+			// Get the font sort order
+			if ( isset( $this->input_attrs['orderby'] ) && strtolower( $this->input_attrs['orderby'] ) === 'popular' ) {
+				$this->fontOrderBy = 'popular';
+			}
+			// Get the list of Google fonts
+			if ( isset( $this->input_attrs['font_count'] ) ) {
+				if ( 'all' != strtolower( $this->input_attrs['font_count'] ) ) {
+					$this->fontCount = ( abs( (int) $this->input_attrs['font_count'] ) > 0 ? abs( (int) $this->input_attrs['font_count'] ) : 'all' );
+				}
+			}
+			$this->fontList = $this->ephemeris_getGoogleFonts( 'all' );
 			// Decode the default json font value
 			$this->fontValues = json_decode( $this->value() );
 			// Find the index of our default font within our list of Google fonts
@@ -478,8 +642,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.0', true );
-			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'ephemeris-select2-js', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), '4.0.6', true );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'ephemeris-select2-js' ), '1.0', true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.1', 'all' );
+			wp_enqueue_style( 'ephemeris-select2-css', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', array(), '4.0.6', 'all' );
 		}
 		/**
 		 * Export our List of Google Fonts to JavaScript
@@ -492,6 +658,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Render the control in the customizer
 		 */
 		public function render_content() {
+			$fontCounter = 0;
+			$isFontInList = false;
+			$fontListStr = '';
+
 			if( !empty($this->fontList) ) {
 				?>
 				<div class="google_fonts_select_control">
@@ -506,8 +676,21 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 						<select class="google-fonts-list" control-name="<?php echo esc_attr( $this->id ); ?>">
 							<?php
 								foreach( $this->fontList as $key => $value ) {
-									echo '<option value="' . $value->family . '" ' . selected( $this->fontValues->font, $value->family, false ) . '>' . $value->family . '</option>';
+									$fontCounter++;
+									$fontListStr .= '<option value="' . $value->family . '" ' . selected( $this->fontValues->font, $value->family, false ) . '>' . $value->family . '</option>';
+									if ( $this->fontValues->font === $value->family ) {
+										$isFontInList = true;
+									}
+									if ( is_int( $this->fontCount ) && $fontCounter === $this->fontCount ) {
+										break;
+									}
 								}
+								if ( !$isFontInList && $this->fontListIndex ) {
+									// If the default or saved font value isn't in the list of displayed fonts, add it to the top of the list as the default font
+									$fontListStr = '<option value="' . $this->fontList[$this->fontListIndex]->family . '" ' . selected( $this->fontValues->font, $this->fontList[$this->fontListIndex]->family, false ) . '>' . $this->fontList[$this->fontListIndex]->family . ' (default)</option>' . $fontListStr;
+								}
+								// Display our list of font options
+								echo $fontListStr;
 							?>
 						</select>
 					</div>
@@ -533,7 +716,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 										$optionCount++;
 									}
 								}
-								if($optionCount == 0) {
+								if( $optionCount == 0 ) {
 									echo '<option value="">' . esc_html__( 'Not Available for this font', 'ephemeris' ) . '</option>';
 								}
 							?>
@@ -580,7 +763,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		public function ephemeris_getGoogleFonts( $count = 30 ) {
 			// Google Fonts json generated from https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=YOUR-API-KEY
-			$fontFile = trailingslashit( get_template_directory_uri() ) . 'inc/google-fonts-popularity.json';
+			$fontFile = trailingslashit( get_template_directory_uri() ) . 'inc/google-fonts-alphabetical.json';
+			if ( $this->fontOrderBy === 'popular' ) {
+				$fontFile = trailingslashit( get_template_directory_uri() ) . 'inc/google-fonts-popularity.json';
+			}
 
 			$request = wp_remote_get( $fontFile );
 			if( is_wp_error( $request ) ) {
@@ -596,7 +782,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				return array_slice( $content->items, 0, $count );
 			}
 		}
-   }
+	}
 
 	/**
  	 * Alpha Color Picker Custom Control
@@ -760,6 +946,28 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			}
 			else {
 				$input = sanitize_text_field( $input );
+			}
+			return $input;
+		}
+	}
+
+	/**
+	 * Array sanitization
+	 *
+	 * @since Ephemeris 1.4
+	 *
+	 * @param  array	Input to be sanitized
+	 * @return array	Sanitized input
+	 */
+	if ( ! function_exists( 'ephemeris_array_sanitization' ) ) {
+		function ephemeris_array_sanitization( $input ) {
+			if( is_array( $input ) ) {
+				foreach ( $input as $key => $value ) {
+					$input[$key] = sanitize_text_field( $value );
+				}
+			}
+			else {
+				$input = '';
 			}
 			return $input;
 		}
