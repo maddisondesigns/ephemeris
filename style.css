@@ -3086,6 +3086,17 @@ p.demo_store {
 	color: #fff;
 }
 
+/* Block alignment */
+.site-content [class*="wp-block"].alignleft {
+	margin: 0 20px 16px 0;
+	margin: 0 1.25rem 1rem 0;
+}
+
+.site-content [class*="wp-block"].alignright {
+	margin: 0 0 16px 20px;
+	margin: 0 0 1rem 1.25rem;
+}
+
 /* Image & Table Width Alignment */
 .page-template-template-full-width .site-content .alignwide {
 	margin-left: -200px;
@@ -3294,6 +3305,37 @@ p.demo_store {
 	border-bottom: 1px solid #ccc;
 }
 
+/* Columns Block */
+.wp-block-columns {
+	justify-content: space-between;
+	word-break: break-all;
+}
+
+.wp-block-column {
+	flex: 0 1 auto;
+	padding: 10px;
+}
+
+.has-2-columns .wp-block-column {
+	width: 49%;
+}
+
+.has-3-columns .wp-block-column {
+	width: 32%;
+}
+
+.has-4-columns .wp-block-column {
+	width: 23.5%;
+}
+
+.has-5-columns .wp-block-column {
+	width: 18.5%;
+}
+
+.has-6-columns .wp-block-column {
+	width: 15%;
+}
+
 /* ==========================================================================
    Hooks
    ========================================================================== */
@@ -3376,6 +3418,16 @@ p.demo_store {
 	.widget-area li {
 		margin: 12px 12px 10px 0;
 		margin: .75rem .75rem .625rem 0;
+	}
+	.wp-block-columns {
+		display: block;
+	}
+	.has-2-columns .wp-block-column,
+	.has-3-columns .wp-block-column,
+	.has-4-columns .wp-block-column,
+	.has-5-columns .wp-block-column,
+	.has-6-columns .wp-block-column {
+		width: 100%;
 	}
 }
 
