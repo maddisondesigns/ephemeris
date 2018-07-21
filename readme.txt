@@ -160,7 +160,9 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 == Changelog ==
 
 = 1.4 =
-- Add styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes.
+- Updated Customizer Custom Controls
+- Add front-end styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes.
+- Add Dashboard editor styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes.
 
 = 1.3.5 =
 - Update styles for cookie consent on comment form
