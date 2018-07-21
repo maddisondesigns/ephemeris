@@ -134,52 +134,63 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		add_theme_support( 'align-wide' );
 
 		// Add support for custom colours in the Block Editor (Gutenberg)
-		add_theme_support( 'editor-color-palette',
+		add_theme_support( 'editor-color-palette', array(
 			array(
 				'name' => 'Eclipse',
+				'slug' => 'eclipse',
 				'color' => '#3a3a3a',
 			),
 			array(
 				'name' => 'San Juan',
+				'slug' => 'san-juan',
 				'color' => '#334861',
 			),
 			array(
 				'name' => 'Denim',
+				'slug' => 'denim',
 				'color' => '#2979c7',
 			),
 			array(
 				'name' => 'Electric Violet',
+				'slug' => 'electric-violet',
 				'color' => '#8309e7',
 			),
 			array(
 				'name' => 'Cerise',
+				'slug' => 'cerise',
 				'color' => '#df49b8',
 			),
 			array(
 				'name' => 'Alizarin',
+				'slug' => 'alizarin',
 				'color' => '#df312c',
 			),
 			array(
 				'name' => 'Pumpkin',
+				'slug' => 'pumpkin',
 				'color' => '#FF8228',
 			),
 			array(
 				'name' => 'Titanium Yellow',
+				'slug' => 'titanium-yellow',
 				'color' => '#eef000',
 			),
 			array(
 				'name' => 'Atlantis',
+				'slug' => 'atlantis',
 				'color' => '#7ed934',
 			),
 			array(
 				'name' => 'White Smoke',
+				'slug' => 'white-smoke',
 				'color' => '#eee',
 			),
 			array(
 				'name' => 'White',
+				'slug' => 'white',
 				'color' => '#fff',
 			)
-		);
+		) );
 
 		// Display a handy map of where all the theme hooks reside
 		// Only used when WP_EPHEMERIS_HOOKS is defined as true in wp-config.php
