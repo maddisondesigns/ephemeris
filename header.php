@@ -33,18 +33,18 @@
 	<?php if ( !ephemeris_has_pagebuilder_template( 'header' ) ) { ?>
 		<div class="top-header">
 			<div class="announcement-bar grid-container">
-				<?php	do_action( 'ephemeris_announcement_bar_content' ); ?>
+				<?php do_action( 'ephemeris_announcement_bar_content' ); ?>
 			</div>
 		</div>
 
 		<div id="headercontainer">
-			<?php	do_action( 'ephemeris_before_header_content' ); ?>
+			<?php do_action( 'ephemeris_before_header_content' ); ?>
 
 			<header id="masthead" class="grid-container site-header" role="banner">
-				<?php	do_action( 'ephemeris_header_content' ); ?>
+				<?php do_action( 'ephemeris_header_content' ); ?>
 			</header> <!-- /#masthead.grid-container.site-header -->
 
-			<?php	do_action( 'ephemeris_after_header_content' ); ?>
+			<?php do_action( 'ephemeris_after_header_content' ); ?>
 		</div> <!-- /#headercontainer -->
-		<?php	do_action( 'ephemeris_before_main_content' ); ?>
+		<?php do_action( 'ephemeris_before_main_content' ); ?>
 	<?php } ?>
