@@ -5,6 +5,12 @@
  * @package Ephemeris
  * @since Ephemeris 1.0
  */
+
+// Get our default settings 
+$defaults = ephemeris_generate_defaults();
+// Check the Customizer setting for sidebar placement
+$post_sidebar_layout = strtolower( get_theme_mod( 'ephemeris_post_template_default', $defaults['ephemeris_post_template_default'] ) );
+$post_archive_sidebar_layout = strtolower( get_theme_mod( 'ephemeris_post_archive_template_default', $defaults['ephemeris_post_archive_template_default'] ) );
 ?>
 
 <article itemscope="itemscope" itemtype="http://schema.org/Article" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -27,11 +33,23 @@
 		<?php do_action( 'ephemeris_after_entry_title' ); ?>
 		<?php if ( has_post_thumbnail() && !is_search() ) {
 			if ( is_single() ) {
-				the_post_thumbnail( 'ephemeris_post_feature_full_width' );
+				if ( $post_sidebar_layout === 'none' ) {
+					the_post_thumbnail( 'ephemeris_nosidebar_feature_image_width' );
+				}
+				else {
+					the_post_thumbnail( 'ephemeris_post_feature_full_width' );
+				}
 			}
 			else { ?>
 				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( esc_html__( 'Permalink to ', 'ephemeris' ) . '%s', the_title_attribute( 'echo=0' ) ) ); ?>">
-					<?php the_post_thumbnail( 'ephemeris_post_feature_full_width' ); ?>
+					<?php
+					if ( $post_archive_sidebar_layout === 'none' ) {
+						the_post_thumbnail( 'ephemeris_nosidebar_feature_image_width' );
+					}
+					else {
+						the_post_thumbnail( 'ephemeris_post_feature_full_width' );
+					}
+					?>
 				</a>
 			<?php }
 		} // has_post_thumbnail() && !is_search() ?>

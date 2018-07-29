@@ -32,6 +32,9 @@ class ephemeris_initialise_customizer_settings {
 		// Register our site layout controls
 		add_action( 'customize_register', array( $this, 'ephemeris_register_layout_controls' ) );
 
+		// Register our site layout controls
+		add_action( 'customize_register', array( $this, 'ephemeris_register_template_default_controls' ) );
+
 		// Register our social media controls
 		add_action( 'customize_register', array( $this, 'ephemeris_register_social_controls' ) );
 
@@ -55,6 +58,15 @@ class ephemeris_initialise_customizer_settings {
 	 * Register the Customizer panels
 	 */
 	public function ephemeris_add_customizer_panels( $wp_customize ) {
+		// Add our Colors Panel
+		$wp_customize->add_panel( 'site_layout_panel',
+		 	array(
+				'title' => __( 'Site Layout', 'ephemeris' ),
+				'description' => esc_html__( 'Adjust the overall layout for your site.', 'ephemeris' ),
+				'priority' => 30,
+			)
+		);
+
 		// Add our Colors Panel
 		$wp_customize->add_panel( 'colors_panel',
 		 	array(
@@ -121,11 +133,20 @@ class ephemeris_initialise_customizer_settings {
 		);
 
 		// Add our Site Layout Section
-		$wp_customize->add_section( 'layout_section',
+		$wp_customize->add_section( 'content_width_section',
 			array(
-				'title' => __( 'Site Layout', 'ephemeris' ),
+				'title' => __( 'Content Width', 'ephemeris' ),
 				'description' => esc_html__( 'Adjust the layout of your site. After adjusting the width, the correct Featured Image width will be calculated for all new images that are uploaded. For all your previously uploaded images, you should consider regenerating your thumbnails.', 'ephemeris' ),
-				'priority' => 30,
+				'panel' => 'site_layout_panel',
+			)
+		);
+
+		// Add our Default Sidebars Section
+		$wp_customize->add_section( 'template_default_section',
+			array(
+				'title' => __( 'Template Defaults', 'ephemeris' ),
+				'description' => esc_html__( 'Select the layout of the default template for the various content types on your site. After changing the template defaults, the correct Featured Image width will be calculated for all new images that are uploaded. For all your previously uploaded images, you should consider regenerating your thumbnails.', 'ephemeris' ),
+				'panel' => 'site_layout_panel',
 			)
 		);
 
@@ -413,12 +434,108 @@ class ephemeris_initialise_customizer_settings {
 		$wp_customize->add_control( new Ephemeris_Slider_Custom_Control( $wp_customize, 'ephemeris_layout_width',
 			array(
 				'label' => __( 'Content Area Width (px)', 'ephemeris' ),
-				'section' => 'layout_section',
+				'section' => 'content_width_section',
 				'input_attrs' => array(
 					'min' => 800,
 					'max' => 2000,
 					'step' => 5,
 				),
+			)
+		) );
+	}
+
+	/**
+	 * Register our template default controls
+	 */
+	public function ephemeris_register_template_default_controls( $wp_customize ) {
+
+		// Add our Image Radio Button setting and control for setting the default layout for Pages
+		$wp_customize->add_setting( 'ephemeris_page_template_default',
+			array(
+				'default' => $this->defaults['ephemeris_page_template_default'],
+				'transport' => 'refresh',
+				'sanitize_callback' => 'ephemeris_radio_sanitization'
+			)
+		);
+		$wp_customize->add_control( new Ephemeris_Image_Radio_Button_Custom_Control( $wp_customize, 'ephemeris_page_template_default',
+			array(
+				'label' => __( 'Page Default', 'ephemeris' ),
+				'description' => esc_html__( 'Select the default template layout for Pages', 'ephemeris' ),
+				'section' => 'template_default_section',
+				'choices' => array(
+					'left' => array(
+						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-left.png',
+						'name' => __( 'Left Sidebar', 'ephemeris' )
+					),
+					'none' => array(
+						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-none.png',
+						'name' => __( 'No Sidebar', 'ephemeris' )
+					),
+					'right' => array(
+						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-right.png',
+						'name' => __( 'Right Sidebar', 'ephemeris' )
+					)
+				)
+			)
+		) );
+
+		// Add our Image Radio Button setting and control for setting the default layout for Posts
+		$wp_customize->add_setting( 'ephemeris_post_template_default',
+			array(
+				'default' => $this->defaults['ephemeris_post_template_default'],
+				'transport' => 'refresh',
+				'sanitize_callback' => 'ephemeris_radio_sanitization'
+			)
+		);
+		$wp_customize->add_control( new Ephemeris_Image_Radio_Button_Custom_Control( $wp_customize, 'ephemeris_post_template_default',
+			array(
+				'label' => __( 'Post Default', 'ephemeris' ),
+				'description' => esc_html__( 'Select the default template layout for single Posts', 'ephemeris' ),
+				'section' => 'template_default_section',
+				'choices' => array(
+					'left' => array(
+						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-left.png',
+						'name' => __( 'Left Sidebar', 'ephemeris' )
+					),
+					'none' => array(
+						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-none.png',
+						'name' => __( 'No Sidebar', 'ephemeris' )
+					),
+					'right' => array(
+						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-right.png',
+						'name' => __( 'Right Sidebar', 'ephemeris' )
+					)
+				)
+			)
+		) );
+
+		// Add our Image Radio Button setting and control for setting the default layout for Post Archives
+		$wp_customize->add_setting( 'ephemeris_post_archive_template_default',
+			array(
+				'default' => $this->defaults['ephemeris_post_archive_template_default'],
+				'transport' => 'refresh',
+				'sanitize_callback' => 'ephemeris_radio_sanitization'
+			)
+		);
+		$wp_customize->add_control( new Ephemeris_Image_Radio_Button_Custom_Control( $wp_customize, 'ephemeris_post_archive_template_default',
+			array(
+				'label' => __( 'Post Archive Default (i.e. Blog)', 'ephemeris' ),
+				'description' => esc_html__( 'Select the default template layout for Post Archives', 'ephemeris' ),
+				'section' => 'template_default_section',
+				'choices' => array(
+					'left' => array(
+						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-left.png',
+						'name' => __( 'Left Sidebar', 'ephemeris' )
+					),
+					'none' => array(
+						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-none.png',
+						'name' => __( 'No Sidebar', 'ephemeris' )
+					),
+					'right' => array(
+						'image' => trailingslashit( get_template_directory_uri() ) . 'images/sidebar-right.png',
+						'name' => __( 'Right Sidebar', 'ephemeris' )
+					)
+				)
 			)
 		) );
 	}

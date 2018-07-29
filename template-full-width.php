@@ -14,7 +14,7 @@ get_header(); ?>
 	<div id="content" class="grid-container site-content" role="main">
 
 		<?php do_action( 'ephemeris_before_main_grid' ); ?>
-		<div <?php ephemeris_main_class(); ?>>
+		<div class="grid-100">
 
 			<?php
 			do_action( 'ephemeris_before_content' );

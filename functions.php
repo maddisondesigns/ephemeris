@@ -20,7 +20,8 @@
 if ( ! function_exists( 'ephemeris_setup' ) ) {
 	function ephemeris_setup() {
 		$defaults = ephemeris_generate_defaults();
-		$contentwidth = 865;
+		$sidebar_content_width = 865;
+		$nosidebar_content_width = 1160;
 
 		// Make theme available for translation
 		load_theme_textdomain( 'ephemeris' );
@@ -40,14 +41,17 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 
 		// Calculate the optimal featured image size based on the layout width.
 		// Default image width will be 865px with a site layout width of 1200px assuming 75/25 grid layout
-		// ( ( site width - 20px padding ) * 70% grid container ) - 20px grid padding
-		$contentwidth = absint( ( ( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) - 20 ) * 0.75 ) - 20 );
+		// $sidebar_content_width = ( ( site width - 20px padding ) * 75% grid container ) - 20px grid padding
+		// $nosidebar_content_width = site width - 20px padding - 20px grid padding
+		$sidebar_content_width = absint( ( ( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) - 20 ) * 0.75 ) - 20 );
+		$nosidebar_content_width = absint( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) - 20 - 20 );
 
-		// Create an extra image size for the Post featured image
-		add_image_size( 'ephemeris_post_feature_full_width', $contentwidth, 500, true );
+		// Create extra image sizes for the Post & Page featured images
+		add_image_size( 'ephemeris_post_feature_full_width', $sidebar_content_width, 500, true );
+		add_image_size( 'ephemeris_nosidebar_feature_image_width', $nosidebar_content_width, 500, true );
 
 		// Set the width of our content when using the default template
-		$GLOBALS['content_width'] = $contentwidth;
+		$GLOBALS['content_width'] = $sidebar_content_width;
 
 		// This theme uses wp_nav_menu() in one location
 		register_nav_menus( array(
@@ -850,10 +854,37 @@ if ( ! function_exists( 'ephemeris_custom_background_cb' ) ) {
  */
 if ( ! function_exists( 'ephemeris_main_class' ) ) {
 	function ephemeris_main_class( $echo=true, $addon_classes='' ) {
+		$defaults = ephemeris_generate_defaults();
+		$sidebar_layout = '';
 		$classes = '';
 
-		if ( is_page_template( 'template-full-width.php' ) || is_404() ) {
-			$classes = 'grid-100' . ( !empty( $addon_classes ) ? ' ' . $addon_classes : '' );
+		if ( is_page() ) {
+			$sidebar_layout = strtolower( get_theme_mod( 'ephemeris_page_template_default', $defaults['ephemeris_page_template_default'] ) );
+		} elseif ( is_singular( 'post' ) ) {
+			$sidebar_layout = strtolower( get_theme_mod( 'ephemeris_post_template_default', $defaults['ephemeris_post_template_default'] ) );
+		} elseif ( is_home() ) {
+			$sidebar_layout = strtolower( get_theme_mod( 'ephemeris_post_archive_template_default', $defaults['ephemeris_post_archive_template_default'] ) );
+		}
+
+
+		if ( !empty( $sidebar_layout ) ) {
+			switch ( $sidebar_layout ) {
+				case 'left':
+					$classes = 'grid-75 tablet-grid-75 mobile-grid-100 push-25 tablet-push-25';
+					break;
+				
+				case 'right':
+					$classes = 'grid-75 tablet-grid-75 mobile-grid-100';
+					break;
+				
+				case 'none':
+					$classes = 'grid-100';
+					break;
+				
+				default:
+					$classes = 'grid-75 tablet-grid-75 mobile-grid-100';
+					break;
+			}
 		} else {
 			$classes = 'grid-75 tablet-grid-75 mobile-grid-100' . ( !empty( $addon_classes ) ? ' ' . $addon_classes : '' );
 		}
@@ -1745,6 +1776,9 @@ if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 			'ephemeris_woocommerce_shop_products' => 12,
 			'ephemeris_elementor_header_template' => 0,
 			'ephemeris_elementor_footer_template' => 0,
+			'ephemeris_page_template_default' => 'right',
+			'ephemeris_post_template_default' => 'right',
+			'ephemeris_post_archive_template_default' => 'right',
 		);
 
 		return apply_filters( 'ephemeris_customizer_defaults', $customizer_defaults );

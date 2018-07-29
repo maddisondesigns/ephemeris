@@ -1,20 +1,23 @@
 <?php
 /**
- * Template Name: Left Sidebar Page
- *
- * Description: Displays a page with a left hand sidebar.
+ * The Template for displaying the blog posts archive.
  *
  * @package Ephemeris
- * @since Ephemeris 1.0
+ * @since Ephemeris 1.4
  */
 
-get_header(); ?>
+get_header();
+// Get our default settings 
+$defaults = ephemeris_generate_defaults();
+// Check the Customizer setting for sidebar placement
+$post_archive_sidebar_layout = strtolower( get_theme_mod( 'ephemeris_post_archive_template_default', $defaults['ephemeris_post_archive_template_default'] ) );
+?>
 
 <div id="maincontentcontainer">
 	<div id="content" class="grid-container site-content" role="main">
 
 		<?php do_action( 'ephemeris_before_main_grid' ); ?>
-		<div class="grid-75 tablet-grid-75 mobile-grid-100 push-25 tablet-push-25">
+		<div <?php ephemeris_main_class(); ?>>
 
 			<?php
 			do_action( 'ephemeris_before_content' );
@@ -23,13 +26,7 @@ get_header(); ?>
 				// Start the Loop
 				while ( have_posts() ) {
 					the_post();
-					get_template_part( 'template-parts/content', 'page' );
-
-					// If comments are open or we have at least one comment, load up the comment template
-					if ( comments_open() || '0' != get_comments_number() ) {
-						comments_template( '', true );
-					}
-
+					get_template_part( 'template-parts/content', get_post_format() ); // Include the Post-Format-specific template for the content
 				} // end of the loop
 
 				ephemeris_posts_pagination();
@@ -43,7 +40,11 @@ get_header(); ?>
 			?>
 
 		</div>
-		<?php get_sidebar( 'left' ); ?>
+		<?php
+		if ( $post_archive_sidebar_layout !== 'none' ) {
+			get_sidebar( ( $post_archive_sidebar_layout === 'left' ? 'left' : '' ) );
+		}
+		?>
 		<?php do_action( 'ephemeris_after_main_grid' ); ?>
 
 	</div> <!-- /#content.grid-container.site-content -->

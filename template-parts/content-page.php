@@ -5,6 +5,11 @@
  * @package Ephemeris
  * @since Ephemeris 1.0
  */
+
+// Get our default settings 
+$defaults = ephemeris_generate_defaults();
+// Check the Customizer setting for sidebar placement
+$page_sidebar_layout = strtolower( get_theme_mod( 'ephemeris_page_template_default', $defaults['ephemeris_page_template_default'] ) );
 ?>
 
 <article itemscope="itemscope" itemtype="http://schema.org/WebPage" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -12,9 +17,15 @@
 		<?php do_action( 'ephemeris_before_entry_header' ); ?>
 		<header class="entry-header">
 			<h1 class="entry-title"><?php the_title(); ?></h1>
-			<?php if ( has_post_thumbnail() && !is_search() && !post_password_required() ) { ?>
-				<?php the_post_thumbnail( 'ephemeris_post_feature_full_width' ); ?>
-			<?php } ?>
+			<?php if ( has_post_thumbnail() && !is_search() && !post_password_required() ) {
+				$page_template = strtolower( get_page_template_slug( get_the_ID() ) );
+				if ( $page_sidebar_layout === 'none' && !( $page_template === 'template-left-sidebar.php' || $page_template === 'template-right-sidebar.php' ) ) {
+					the_post_thumbnail( 'ephemeris_nosidebar_feature_image_width' );
+				}
+				else {
+					the_post_thumbnail( 'ephemeris_post_feature_full_width' );
+				}
+			} ?>
 		</header>
 	<?php } ?>
 	<?php do_action( 'ephemeris_after_entry_header' ); ?>

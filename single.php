@@ -6,7 +6,13 @@
  * @since Ephemeris 1.0
  */
 
-get_header(); ?>
+get_header();
+// Get our default settings 
+$defaults = ephemeris_generate_defaults();
+// Check the Customizer setting for sidebar placement
+$post_sidebar_layout = strtolower( get_theme_mod( 'ephemeris_post_template_default', $defaults['ephemeris_post_template_default'] ) );
+?>
+
 
 <div id="maincontentcontainer">
 	<div id="content" class="grid-container site-content" role="main">
@@ -33,7 +39,11 @@ get_header(); ?>
 				?>
 
 			</div>
-			<?php get_sidebar(); ?>
+			<?php
+			if ( $post_sidebar_layout !== 'none' ) {
+				get_sidebar( ( $post_sidebar_layout === 'left' ? 'left' : '' ) );
+			}
+			?>
 			<?php do_action( 'ephemeris_after_main_grid' ); ?>
 
 	</div> <!-- /#content.grid-container.site-content -->

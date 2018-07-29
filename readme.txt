@@ -163,6 +163,8 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 - Updated Customizer Custom Controls
 - Add front-end styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes.
 - Add Dashboard editor styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes.
+- Add ability to select the default template layout for Pages, Posts and Posts Archive (i.e. Blog). You can select from Left Sidebar, Right Sidebar or No Sidebar. If you decide to change this option from the default settings you may want to consider regenerating your thumbnails for any existing images you've uploaded to ensure they dispay corrrectly.
+- Add new Home and Right Sidebar templates to help with setting the default temnplate layouts.
 
 = 1.3.5 =
 - Update styles for cookie consent on comment form

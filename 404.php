@@ -11,7 +11,7 @@ get_header(); ?>
 <div id="maincontentcontainer">
 	<div id="content" class="grid-container site-content" role="main">
 
-		<div <?php ephemeris_main_class(); ?>>
+		<div class="grid-100">
 
 			<article id="post-0" class="post error404 no-results not-found">
 				<header class="entry-header">
