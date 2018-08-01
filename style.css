@@ -2172,6 +2172,10 @@ main {
 	overflow-y: scroll;
 }
 
+.hide_on_load {
+	display: none;
+}
+
 .cd-nav .cd-navigation-wrapper {
 	/* all navigation content */
 	height: 100%;
@@ -2997,93 +3001,118 @@ p.demo_store {
 }
 
 /* San Juan */
-.has-san-juan-background-color {
+.site-content .has-san-juan-background-color {
 	background-color: #334861;
 }
 
-.has-san-juan-color {
+.site-content .has-san-juan-color {
 	color: #334861;
 }
 
 /* Denim */
-.has-denim-background-color {
+.site-content .has-denim-background-color {
 	background-color: #2979c7;
 }
 
-.has-denim-color {
+.site-content .has-denim-color {
 	color: #2979c7;
 }
 
 /* Electric Violet */
-.has-electric-violet-background-color {
+.site-content .has-electric-violet-background-color {
 	background-color: #8309e7;
 }
 
-.has-electric-violet-color {
+.site-content .has-electric-violet-color {
 	color: #8309e7;
 }
 
 /* Cerise */
-.has-cerise-background-color {
+.site-content .has-cerise-background-color {
 	background-color: #df49b8;
 }
 
-.has-cerise-color {
+.site-content .has-cerise-color {
 	color: #df49b8;
 }
 
 /* Alizarin */
-.has-alizarin-background-color {
+.site-content .has-alizarin-background-color {
 	background-color: #df312c;
 }
 
-.has-alizarin-color {
+.site-content .has-alizarin-color {
 	color: #df312c;
 }
 
 /* Pumpkin */
-.has-pumpkin-background-color {
+.site-content .has-pumpkin-background-color {
 	background-color: #FF8228;
 }
 
-.has-pumpkin-color {
+.site-content .has-pumpkin-color {
 	color: #FF8228;
 }
 
 /* Titanium Yellow */
-.has-titanium-yellow-background-color {
+.site-content .has-titanium-yellow-background-color {
 	background-color: #eef000;
 }
 
-.has-titanium-yellow-color {
+.site-content .has-titanium-yellow-color {
 	color: #eef000;
 }
 
 /* Atlantis */
-.has-atlantis-background-color {
+.site-content .has-atlantis-background-color {
 	background-color: #7ed934;
 }
 
-.has-atlantis-color {
+.site-content .has-atlantis-color {
 	color: #7ed934;
 }
 
 /* Denim */
-.has-white-smoke-background-color {
+.site-content .has-white-smoke-background-color {
 	background-color: #eee;
 }
 
-.has-white-smoke-color {
+.site-content .has-white-smoke-color {
 	color: #eee;
 }
 
 /* White */
-.has-white-background-color {
+.site-content .has-white-background-color {
 	background-color: #fff;
 }
 
-.has-white-color {
+.site-content .has-white-color {
 	color: #fff;
+}
+
+/* Custom Font Sizes */
+/* Small */
+.site-content p.has-small-font-size {
+	font-size: 13px;
+	font-size: .8125rem;
+}
+
+/* Medium */
+.site-content p.has-regular-font-size {
+	font-size: 16px;
+	font-size: 1rem;
+}
+
+/* Large */
+.site-content p.has-large-font-size {
+	font-size: 24px;
+	font-size: 1.5rem;
+}
+
+/* Extra Large */
+.site-content p.has-extralarge-font-size {
+	font-size: 36px;
+	font-size: 2.25rem;
 }
 
 /* Block alignment */
@@ -3254,10 +3283,13 @@ p.demo_store {
 	text-align: center;
 	vertical-align: middle;
 	cursor: pointer;
-	background-color: #2e7bc4;
-	*background-color: #2e7bc4;
 	border: none;
 	border-radius: 0;
+}
+
+.wp-block-button__link:not(.has-background) {
+	background-color: #2e7bc4;
+	*background-color: #2e7bc4;
 }
 
 .site-content .wp-block-button .wp-block-button__link:hover {

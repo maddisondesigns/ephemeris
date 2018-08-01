@@ -196,6 +196,34 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 			)
 		) );
 
+		// Add support for custom font sizes in the Block Editor (Gutenberg)
+		add_theme_support( 'editor-font-sizes', array(
+			array(
+				'name' => __( 'small', 'ephemeris' ),
+				'shortName' => __( 'S', 'ephemeris' ),
+				'size' => 13,
+				'slug' => 'small'
+			),
+			array(
+				'name' => __( 'regular', 'ephemeris' ),
+				'shortName' => __( 'M', 'ephemeris' ),
+				'size' => 16,
+				'slug' => 'regular'
+			),
+			array(
+				'name' => __( 'large', 'ephemeris' ),
+				'shortName' => __( 'L', 'ephemeris' ),
+				'size' => 24,
+				'slug' => 'large'
+			),
+			array(
+				'name' => __( 'extralarge', 'ephemeris' ),
+				'shortName' => __( 'XL', 'ephemeris' ),
+				'size' => 36,
+				'slug' => 'extralarge'
+			)
+		) );
+
 		// Display a handy map of where all the theme hooks reside
 		// Only used when WP_EPHEMERIS_HOOKS is defined as true in wp-config.php
 		if ( defined( 'WP_EPHEMERIS_HOOKS') && WP_EPHEMERIS_HOOKS ) {
