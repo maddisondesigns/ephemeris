@@ -42,7 +42,7 @@
 		</div>
 	</a>
 
-	<div id="cd-nav" class="grid-container cd-nav">
+	<div id="cd-nav" class="grid-container cd-nav hide_on_load">
 		<div class="grid-100">
 			<div class="cd-navigation-wrapper">
 				<h2><?php echo apply_filters( 'ephemeris_mobile_navigation_title', __( 'Navigation', 'ephemeris' ) ) ?></h2>

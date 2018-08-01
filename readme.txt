@@ -7,7 +7,7 @@ Stable tag: 1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customise and extend. Ephemeris is WooCommerce compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Now that's pretty cool, eh!
+The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customise and extend. Ephemeris is WooCommerce compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Ephemeris also supports the new WordPress Block Editor (Gutenberg). Now that's pretty cool, eh!
 
 
 == Description ==
@@ -27,6 +27,8 @@ Ephemeris includes a set of your most common theme templates, including template
 If you're using one of the many page builder plugins that are available, such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder or Visual Composer, try using the Page Builder Full-Width Template. The Page Builder Full-Width Template is a true full browser width template. If you want a completely blank full-width page with no header or footer sections, such as for a landing page, then there is also a Page Builder Blank Template.
 
 On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Now that's pretty cool, eh!
+
+Ephemeris also supports the soon-to-be-released new WordPress Block Editor (Gutenberg). Along with support for all the standard Gutenberg Blocks, full-width pages support the 'Wide Width' and 'Full Width' controls on blocks where those controls are available.
 
 Post Formats
 
@@ -160,6 +162,7 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 == Changelog ==
 
 = 1.4 =
+- Fix mobile menu from displaying in background on really short pages, while page is loading
 - Updated Customizer Custom Controls
 - Add front-end styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes.
 - Add Dashboard editor styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes.

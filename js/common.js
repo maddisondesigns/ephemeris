@@ -3,6 +3,9 @@ jQuery( document ).ready( function( $ ){
 	// Since we're no longer using Modernizr, manually check for js and update the no-js class
 	document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
 
+	// Remove the class that hides our menu on page load. Hiding it ensures it doesn't display in the background on really short pages
+	$( '#cd-nav' ).toggleClass( 'hide_on_load' );
+
 	/**
 	 * Responsive menu
 	 */
