@@ -347,24 +347,21 @@ Description: Used to style the Block Editor (Gutenberg)
 /* Seperator block */
 .edit-post-visual-editor hr {
 	background-color: inherit;
-}
-
-.edit-post-visual-editor .wp-block-separator {
 	border-bottom: 1px solid #999;
 	max-width: 500px;
 }
 
-/* Columns block */
-/*.edit-post-visual-editor .wp-block-columns {
-	width: 100%;
+.edit-post-visual-editor hr.is-style-wide {
+	max-width: 850px;
 }
 
-.edit-post-visual-editor .wp-block-columns [class*="layout-column-"] {
-	margin-left: 12px;
-	margin-left: .75rem;
-	margin-right: 12px;
-	margin-right: .75rem;
-}*/
+.edit-post-visual-editor hr.is-style-dots {
+	border: none;
+}
+
+.edit-post-visual-editor hr.is-style-dots::before {
+	content: "\00b7 \00b7 \00b7 \00b7 \00b7 \00b7";
+}
 
 
 @media only screen and (min-width: 1300px) {
