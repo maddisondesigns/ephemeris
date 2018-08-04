@@ -18,13 +18,7 @@ $page_sidebar_layout = strtolower( get_theme_mod( 'ephemeris_page_template_defau
 		<header class="entry-header">
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 			<?php if ( has_post_thumbnail() && !is_search() && !post_password_required() ) {
-				$page_template = strtolower( get_page_template_slug( get_the_ID() ) );
-				if ( $page_sidebar_layout === 'none' && !( $page_template === 'template-left-sidebar.php' || $page_template === 'template-right-sidebar.php' ) ) {
-					the_post_thumbnail( 'ephemeris_nosidebar_feature_image_width' );
-				}
-				else {
-					the_post_thumbnail( 'ephemeris_post_feature_full_width' );
-				}
+				ephemeris_get_featured_image( $page_sidebar_layout );
 			} ?>
 		</header>
 	<?php } ?>

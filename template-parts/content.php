@@ -33,23 +33,11 @@ $post_archive_sidebar_layout = strtolower( get_theme_mod( 'ephemeris_post_archiv
 		<?php do_action( 'ephemeris_after_entry_title' ); ?>
 		<?php if ( has_post_thumbnail() && !is_search() ) {
 			if ( is_single() ) {
-				if ( $post_sidebar_layout === 'none' ) {
-					the_post_thumbnail( 'ephemeris_nosidebar_feature_image_width' );
-				}
-				else {
-					the_post_thumbnail( 'ephemeris_post_feature_full_width' );
-				}
+				ephemeris_get_featured_image( $post_sidebar_layout );
 			}
 			else { ?>
 				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( esc_html__( 'Permalink to ', 'ephemeris' ) . '%s', the_title_attribute( 'echo=0' ) ) ); ?>">
-					<?php
-					if ( $post_archive_sidebar_layout === 'none' ) {
-						the_post_thumbnail( 'ephemeris_nosidebar_feature_image_width' );
-					}
-					else {
-						the_post_thumbnail( 'ephemeris_post_feature_full_width' );
-					}
-					?>
+					<?php ephemeris_get_featured_image( $post_archive_sidebar_layout ); ?>
 				</a>
 			<?php }
 		} // has_post_thumbnail() && !is_search() ?>
