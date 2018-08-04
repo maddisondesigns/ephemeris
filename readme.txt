@@ -2,7 +2,7 @@
 Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
 Requires at least: 4.8
-Tested up to: 4.9.6
+Tested up to: 4.9.8
 Stable tag: 1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -22,13 +22,13 @@ If you're looking to build an eCommerce website, Ephemeris supports the excellen
 
 Templates
 
-Ephemeris includes a set of your most common theme templates, including templates for Full-Width pages, Left Sidebar, Right Sidebar (default), Front-Page, Tag, Categories, Authors, Search, Posts Archive and 404.
+Ephemeris includes a set of your most common theme templates, including templates for Full-Width pages, Left Sidebar, Right Sidebar (default), Front-Page, Tag, Categories, Authors, Search, Posts Archive and 404. Templates like the Full-Width, Left Sidebar and Right Sidebar template will work on both Pages and Posts, for maximum flexibility.
 
 If you're using one of the many page builder plugins that are available, such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder or Visual Composer, try using the Page Builder Full-Width Template. The Page Builder Full-Width Template is a true full browser width template. If you want a completely blank full-width page with no header or footer sections, such as for a landing page, then there is also a Page Builder Blank Template.
 
 On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Now that's pretty cool, eh!
 
-Ephemeris also supports the soon-to-be-released new WordPress Block Editor (Gutenberg). Along with support for all the standard Gutenberg Blocks, full-width pages support the 'Wide Width' and 'Full Width' controls on blocks where those controls are available.
+Ephemeris also supports the new WordPress Block Editor (Gutenberg). Along with support for all the standard Gutenberg Blocks, full-width pages support the 'Wide Width' and 'Full Width' controls that are available on certain blocks.
 
 Post Formats
 
@@ -168,6 +168,7 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 - Add Dashboard editor styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes.
 - Add ability to select the default template layout for Pages, Posts and Posts Archive (i.e. Blog). You can select from Left Sidebar, Right Sidebar or No Sidebar. If you decide to change this option from the default settings you may want to consider regenerating your thumbnails for any existing images you've uploaded to ensure they dispay corrrectly.
 - Add new Home and Right Sidebar templates to help with setting the default temnplate layouts.
+- Add ability to select templates on Posts
 
 = 1.3.5 =
 - Update styles for cookie consent on comment form
