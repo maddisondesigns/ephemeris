@@ -3305,6 +3305,20 @@ p.demo_store {
 .site-content .wp-block-separator {
 	border-bottom: 1px solid #999;
 	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.site-content .wp-block-separator.is-style-wide {
+	max-width: 850px;
+}
+
+.site-content .wp-block-separator.is-style-dots {
+	border: none;
+}
+
+.site-content .wp-block-separator.is-style-dots::before {
+	content: "\00b7 \00b7 \00b7 \00b7 \00b7 \00b7";
 }
 
 /* Table Block */
