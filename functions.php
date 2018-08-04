@@ -949,15 +949,59 @@ if ( ! function_exists( 'ephemeris_sidebar_class' ) ) {
  * @param array Classes to echo or return
  * @return string Containing list of classes or empty string if echoed to screen
  */
-function ephemeris_classes( $echo, $classes ) {
-	$return_val = '';
+if ( ! function_exists( 'ephemeris_classes' ) ) {
+	function ephemeris_classes( $echo, $classes ) {
+		$return_val = '';
 
-	if ( $echo ) {
-		echo 'class="' . $classes . '"';
-	} else {
-		$return_val = 'class="' . $classes . '"';
+		if ( $echo ) {
+			echo 'class="' . $classes . '"';
+		} else {
+			$return_val = 'class="' . $classes . '"';
+		}
+		return $return_val;
 	}
-	return $return_val;
+}
+
+/**
+ * Echo the correct sized featured image on the screen
+ *
+ * @since Ephemeris 1.4
+ *
+ * @param array The type of page to display the sidebar for
+ * @return null
+ */
+if ( ! function_exists( 'ephemeris_get_featured_image' ) ) {
+	function ephemeris_get_featured_image( $layout ) {
+		$page_template = '';
+
+		if ( !is_home() && !is_archive() ) {
+			$page_template = strtolower( get_page_template_slug( get_the_ID() ) );
+		}
+
+		switch ( $page_template ) {
+			case 'template-left-sidebar.php':
+				the_post_thumbnail( 'ephemeris_post_feature_full_width' );
+				break;
+			
+			case 'template-right-sidebar.php':
+				the_post_thumbnail( 'ephemeris_post_feature_full_width' );
+				break;
+			
+			case 'template-full-width.php':
+				the_post_thumbnail( 'ephemeris_nosidebar_feature_image_width' );
+				break;
+			
+			default:
+				if ( $layout === 'none' ) {
+					the_post_thumbnail( 'ephemeris_nosidebar_feature_image_width' );
+				}
+				else {
+					the_post_thumbnail( 'ephemeris_post_feature_full_width' );
+				}
+				break;
+		}
+
+	}
 }
 
 /**
