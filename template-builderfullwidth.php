@@ -1,6 +1,7 @@
 <?php
 /**
  * Template Name: Page Builder Full-Width
+ * Template Post Type: page, post
  *
  * Description: Displays a browser full-width page for use with page builders like Elementor, Beaver Builder,  Divi Builder, and Visual Composer.
  *

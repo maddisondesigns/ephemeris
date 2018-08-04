@@ -1,6 +1,7 @@
 <?php
 /**
  * Template Name: Page Builder Blank
+ * Template Post Type: page, post
  *
  * Description: Displays a browser full-width blank page for use with page builders like Elementor, Beaver Builder,  Divi Builder, and Visual Composer. This template also removes the default header and footer sections.
  *

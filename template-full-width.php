@@ -1,6 +1,7 @@
 <?php
 /**
  * Template Name: Full-width Page
+ * Template Post Type: page, post
  *
  * Description: Displays a full-width page, with no sidebar. This template is great for pages containing large amounts of content.
  *
@@ -23,7 +24,12 @@ get_header(); ?>
 				// Start the Loop
 				while ( have_posts() ) {
 					the_post();
-					get_template_part( 'template-parts/content', 'page' );
+					if ( is_singular( 'post' ) ) {
+						get_template_part( 'template-parts/content', get_post_format() );
+					}
+					else {
+						get_template_part( 'template-parts/content', 'page' );
+					}
 
 					// If comments are open or we have at least one comment, load up the comment template
 					if ( comments_open() || '0' != get_comments_number() ) {
@@ -31,6 +37,14 @@ get_header(); ?>
 					}
 
 				} // end of the loop
+
+				if ( is_singular( 'post' ) ) {
+					ephemeris_single_posts_pagination();
+				}
+
+			} else {
+
+				get_template_part( 'template-parts/no', 'results' ); // Include the template that displays a message that posts cannot be found
 
 			} // end have_posts()
 			do_action( 'ephemeris_after_content' );

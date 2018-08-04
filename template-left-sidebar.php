@@ -1,6 +1,7 @@
 <?php
 /**
  * Template Name: Left Sidebar Page
+ * Template Post Type: page, post
  *
  * Description: Displays a page with a left hand sidebar.
  *
@@ -23,7 +24,12 @@ get_header(); ?>
 				// Start the Loop
 				while ( have_posts() ) {
 					the_post();
-					get_template_part( 'template-parts/content', 'page' );
+					if ( is_singular( 'post' ) ) {
+						get_template_part( 'template-parts/content', get_post_format() );
+					}
+					else {
+						get_template_part( 'template-parts/content', 'page' );
+					}
 
 					// If comments are open or we have at least one comment, load up the comment template
 					if ( comments_open() || '0' != get_comments_number() ) {
@@ -32,7 +38,9 @@ get_header(); ?>
 
 				} // end of the loop
 
-				ephemeris_posts_pagination();
+				if ( is_singular( 'post' ) ) {
+					ephemeris_single_posts_pagination();
+				}
 
 			} else {
 
