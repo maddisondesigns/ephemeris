@@ -3127,27 +3127,32 @@ p.demo_store {
 }
 
 /* Image & Table Width Alignment */
+.post-template-template-full-width .site-content .alignwide,
 .page-template-template-full-width .site-content .alignwide {
 	margin-left: -200px;
 	margin-right: -200px;
 }
 
+.post-template-template-full-width .site-content .alignfull,
 .page-template-template-full-width .site-content .alignfull {
 	margin-left: calc(50% - 50vw);
 	margin-right: calc(50% - 50vw);
 }
 
+.post-template-template-full-width .site-content .wp-block-table.alignfull,
 .page-template-template-full-width .site-content .wp-block-table.alignfull {
 	padding-left: 20px;
 	padding-right: 20px;
 }
 
 /* Cover Image block */
+.post-template-template-full-width .site-content .wp-block-cover-image,
 .page-template-template-full-width .site-content .wp-block-cover-image {
 	height: 100vh;
 	width: auto;
 }
 
+.post-template-template-full-width .site-content .wp-block-cover-image h2,
 .page-template-template-full-width .site-content .wp-block-cover-image h2 {
 	max-width: inherit;
 }

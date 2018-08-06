@@ -340,7 +340,7 @@ if ( ! function_exists( 'ephemeris_dynamic_block_editor_styles' ) ) {
 
 		// Layout styles
 		$styles .= '@media only screen and (max-width: ' . esc_attr( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) + 400 ) . 'px) {';
-		$styles .= '.page-template-template-full-width .site-content .alignwide {margin-left: 0;margin-right: 0;}';
+		$styles .= '.post-template-template-full-width .site-content .alignwide, .page-template-template-full-width .site-content .alignwide {margin-left: 0;margin-right: 0;}';
 		$styles .= '}';
 
 		echo '<style type="text/css">' . $styles . '</style>';
