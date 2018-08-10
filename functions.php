@@ -293,17 +293,17 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 		}
 
 		// Load jQuery Validation as well as the initialiser to provide client side comment form validation
-		// You can change the validation error messages below
+		// You can change the validation error messages below or by using the corresponding filter
 		if ( is_singular() && comments_open() ) {
 			wp_register_script( 'validate', trailingslashit( get_template_directory_uri() ) . 'js/jquery.validate.min.js', array( 'jquery' ), '1.17.0', true );
 			wp_enqueue_script( 'comment-validate', trailingslashit( get_template_directory_uri() ) . 'js/comment-form-validation.js', array( 'jquery', 'validate' ), '1.0.0', true );
 
 			wp_localize_script( 'comment-validate', 'comments_object', array(
 				'req' => get_option( 'require_name_email' ),
-				'author'  => esc_html__( 'Please enter your name', 'ephemeris' ),
-				'email'  => esc_html__( 'Please enter a valid email address', 'ephemeris' ),
-				'comment' => esc_html__( 'Please add a comment', 'ephemeris' ) )
-			);
+				'author'  => apply_filters( 'ephemeris_comment_form_author_validation_error', esc_html__( 'Please enter your name', 'ephemeris' ) ),
+				'email'  => apply_filters( 'ephemeris_comment_form_email_validation_error', esc_html__( 'Please enter a valid email address', 'ephemeris' ) ),
+				'comment' => apply_filters( 'ephemeris_comment_form_comment_validation_error', esc_html__( 'Please add a comment', 'ephemeris' ) )
+			) );
 		}
 
 		// Enqueue our common scripts
@@ -313,7 +313,8 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
 
 /**
- * Load our Block Editor styles to style the Editor like the front-end
+ * Load our Block Editor styles to style the Editor like the front-end.
+ * Increased the width of the Block Editor blocks to match the site width from the Customizer by dynamically loading our styles into the <head>
  *
  * @since Ephemeris 1.4
  *
@@ -321,6 +322,27 @@ add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
  */
 if ( ! function_exists( 'ephemeris_block_editor_styles' ) ) {
 	function ephemeris_block_editor_styles() {
+		$defaults = ephemeris_generate_defaults();
+		$ephemeris_layout_width = get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] );
+		$styles = '';
+
+		// Increase width of Title
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title .editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
+
+		// Increase width of all Blocks & Block Appender
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-default-block-appender {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
+
+		// Increase width of Wide blocks
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width - 10 + 400 ) . 'px;}';
+
+		// Remove max-width on Full blocks
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="full"] {max-width: none;}';
+
+		// Output our styles into the <head>
+		echo '<style type="text/css">' . $styles . '</style>';
+
+		// Enqueue our seperate Block Editor stylesheet with the rest of our styles
 		wp_enqueue_style( 'ephemeris-blocks-style', trailingslashit( get_template_directory_uri() ) . 'css/blocks-style.css', array(), '1.0.0', 'all' );
 	}
 }
@@ -347,37 +369,6 @@ if ( ! function_exists( 'ephemeris_dynamic_block_editor_styles' ) ) {
 	}
 }
 add_action( 'wp_head', 'ephemeris_dynamic_block_editor_styles' );
-
-/**
- * Increased the width of the Block Editor blocks to match the site width from the Customizer
- *
- * @since Ephemeris 1.4
- *
- * @return string	css styles
- */
-if ( ! function_exists( 'ephemeris_block_editor_width_styles' ) ) {
-	function ephemeris_block_editor_width_styles() {
-		$defaults = ephemeris_generate_defaults();
-		$ephemeris_layout_width = get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] );
-		$styles = '';
-
-		// Increase width of Title
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title .editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-
-		// Increase width of all Blocks & Block Appender
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-default-block-appender {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-
-		// Increase width of Wide blocks
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width - 10 + 400 ) . 'px;}';
-
-		// Remove max-width on Full blocks
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="full"] {max-width: none;}';
-
-		echo '<style type="text/css">' . $styles . '</style>';
-	}
-}
-add_action( 'enqueue_block_editor_assets', 'ephemeris_block_editor_width_styles' );
 
 /**
  * Enqueue scripts for our Customizer preview
