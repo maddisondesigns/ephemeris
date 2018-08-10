@@ -2992,11 +2992,11 @@ p.demo_store {
 
 /* Custom Colours */
 /* Eclipse */
-.has-eclipse-background-color {
+.site-content .has-eclipse-background-color {
 	background-color: #3a3a3a;
 }
 
-.has-eclipse-color {
+.site-content .has-eclipse-color {
 	color: #3a3a3a;
 }
 
@@ -3145,6 +3145,12 @@ p.demo_store {
 	padding-right: 20px;
 }
 
+/* Image block */
+.post-template-template-full-width .site-content .wp-block-image,
+.page-template-template-full-width .site-content .wp-block-image {
+	max-width: none;
+}
+
 /* Cover Image block */
 .post-template-template-full-width .site-content .wp-block-cover-image,
 .page-template-template-full-width .site-content .wp-block-cover-image {
@@ -3284,7 +3290,6 @@ p.demo_store {
 	font-size: 16px;
 	font-size: 1rem;
 	line-height: 1.25;
-	color: #fff;
 	text-align: center;
 	vertical-align: middle;
 	cursor: pointer;
@@ -3293,6 +3298,7 @@ p.demo_store {
 }
 
 .wp-block-button__link:not(.has-background) {
+	color: #fff;
 	background-color: #2e7bc4;
 	*background-color: #2e7bc4;
 }
