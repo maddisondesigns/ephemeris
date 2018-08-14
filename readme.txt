@@ -3,7 +3,7 @@ Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
 Requires at least: 4.8
 Tested up to: 4.9.8
-Stable tag: 1.4
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -160,6 +160,9 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 
 == Changelog ==
+
+= 1.4.1 =
+- Update description in default stylesheet
 
 = 1.4 =
 - Fix mobile menu from displaying in background on really short pages, while page is loading
