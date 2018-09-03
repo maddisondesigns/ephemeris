@@ -163,6 +163,8 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 = 1.4.1 =
 - Update description in default stylesheet
+- Update default Block Editor (Gutenberg) styles to make Custom Meta Boxes more visible
+- Fix issue with attachment page sidebar not displaying properly
 
 = 1.4 =
 - Fix mobile menu from displaying in background on really short pages, while page is loading
