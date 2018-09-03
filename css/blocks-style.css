@@ -363,6 +363,26 @@ Description: Used to style the Block Editor (Gutenberg)
 	content: "\00b7 \00b7 \00b7 \00b7 \00b7 \00b7";
 }
 
+/* Override some of the Block Editor styles to make Custom Meta Boxes more visible */
+.edit-post-meta-boxes-area #poststuff h2.hndle {
+	background-color: #f9f9f9;
+	border-bottom: none;
+}
+
+.edit-post-meta-boxes-area .postbox > .inside {
+	border-bottom: none;
+}
+
+.edit-post-meta-boxes-area #poststuff .toggle-indicator {
+	z-index: 99;
+	position: absolute;
+	top: 12px;
+	right: 15px;
+}
+
+.edit-post-meta-boxes-area #poststuff .meta-box-sortables .postbox {
+	margin-bottom: 20px;
+}
 
 @media only screen and (min-width: 1300px) {
 	/* Increase the size of the block inserter to something more useful */
