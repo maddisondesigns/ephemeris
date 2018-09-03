@@ -879,7 +879,7 @@ if ( ! function_exists( 'ephemeris_main_class' ) ) {
 
 		if ( is_page() ) {
 			$sidebar_layout = strtolower( get_theme_mod( 'ephemeris_page_template_default', $defaults['ephemeris_page_template_default'] ) );
-		} elseif ( is_singular( 'post' ) ) {
+		} elseif ( is_singular( 'post' ) || is_attachment() ) {
 			$sidebar_layout = strtolower( get_theme_mod( 'ephemeris_post_template_default', $defaults['ephemeris_post_template_default'] ) );
 		} elseif ( is_home() ) {
 			$sidebar_layout = strtolower( get_theme_mod( 'ephemeris_post_archive_template_default', $defaults['ephemeris_post_archive_template_default'] ) );
