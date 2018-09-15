@@ -389,15 +389,15 @@ Description: Used to style the Block Editor (Gutenberg)
 	.editor-inserter__popover .editor-inserter__menu {
 		width: 700px;
 	}
-	.editor-inserter__popover .editor-block-types-list__item {
-		width: calc(16.6% - 8px);
+	.editor-inserter__popover .editor-block-types-list__list-item {
+		width: 16.6%;
 	}
 	/* Increase the size of the block inserter icons so they're more readable */
-	.editor-inserter__popover .editor-block-types-list__item-icon {
-		padding: 10px 15px;
-	}
-	.editor-inserter__popover .editor-block-types-list__item-icon svg {
+	.editor-inserter__popover .editor-block-icon svg {
 		width: 30px;
 		height: 30px;
+	}
+	.editor-inserter__popover .editor-block-types-list__item-icon {
+		padding: 12px 20px;
 	}
 }
