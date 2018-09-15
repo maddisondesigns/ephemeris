@@ -363,6 +363,7 @@ if ( ! function_exists( 'ephemeris_dynamic_block_editor_styles' ) ) {
 		// Layout styles
 		$styles .= '@media only screen and (max-width: ' . esc_attr( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) + 400 ) . 'px) {';
 		$styles .= '.post-template-template-full-width .site-content .alignwide, .page-template-template-full-width .site-content .alignwide {margin-left: 0;margin-right: 0;}';
+		$styles .= '.post-template-template-full-width .site-content .wp-block-table.alignwide, .page-template-template-full-width .site-content .wp-block-table.alignwide {width: 100%;}';
 		$styles .= '}';
 
 		echo '<style type="text/css">' . $styles . '</style>';
@@ -728,6 +729,19 @@ if ( ! function_exists( 'ephemeris_widgets_init' ) ) {
 					'name' => esc_html__( 'WooCommerce Sidebar', 'ephemeris' ),
 					'id' => 'sidebar-shop',
 					'description' => esc_html__( 'Appears in the sidebar on WooCommerce pages only', 'ephemeris' ),
+					'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+					'after_widget' => '</aside>',
+					'before_title' => '<h3 class="widget-title">',
+					'after_title' => '</h3>'
+				)
+			);
+		}
+
+		if ( ephemeris_is_plugin_active( 'bbpress' ) ) {
+			register_sidebar( array(
+					'name' => esc_html__( 'bbPress Sidebar', 'ephemeris' ),
+					'id' => 'sidebar-bbpress',
+					'description' => esc_html__( 'Appears in the sidebar on bbPress Forum pages only', 'ephemeris' ),
 					'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 					'after_widget' => '</aside>',
 					'before_title' => '<h3 class="widget-title">',
@@ -1385,6 +1399,12 @@ function ephemeris_is_plugin_active( $plugin ) {
 
 		case 'visualcomposer':
 			if ( class_exists( 'Vc_Manager' ) ) {
+				$return_val = true;
+			}
+			break;
+
+		case 'bbpress':
+			if ( class_exists( 'bbPress' ) ) {
 				$return_val = true;
 			}
 			break;
