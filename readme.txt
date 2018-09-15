@@ -7,7 +7,7 @@ Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customise and extend. Ephemeris is WooCommerce compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Ephemeris also supports the new WordPress Block Editor (Gutenberg). Now that's pretty cool, eh!
+The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customise and extend. Ephemeris is WooCommerce and bbPress compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Ephemeris also supports the new WordPress Block Editor (Gutenberg). Now that's pretty cool, eh!
 
 
 == Description ==
@@ -30,6 +30,8 @@ On top of that, if Elementor is your Page Builder of choice, then you also get t
 
 Ephemeris also supports the new WordPress Block Editor (Gutenberg). Along with support for all the standard Gutenberg Blocks, full-width pages support the 'Wide Width' and 'Full Width' controls that are available on certain blocks.
 
+For maximum flexibility, you can specify the layout for the Default Template. The Default Template will show a right-hand sidebar by default. Using the Site Layout > Template Defaults option in the Customizer you can change the Default Template to be Full-Width or show a left-hand sidebar instead. The Default Template can be modified for Pages, Posts and the Post Archive (i.e. Blog).
+
 Post Formats
 
 All the standard WordPress Post Formats are supported. These include; Aside, Gallery, Link, Image, Quote, Status, Video, Audio, Chat and of course, your standard post.
@@ -43,6 +45,7 @@ Blog Sidebar: Appears in the sidebar on the blog and archive pages only
 Single Post Sidebar: Appears in the sidebar on single posts only
 Page Sidebar: Appears in the sidebar on pages only
 WooCommerce Sidebar: Appears in the sidebar on WooCommerce pages only
+bbPress Sidebar: Appears in the sidebar on bbPress pages only
 
 The Footer Widget areas are dynamic! You can use up to four of these and they'll magically space themselves out evenly. For example, if you only add widgets into the First Footer Widget Area, then it will expand the full width of the page. However, if you add widgets to all four Footer Widget Areas, they'll magically space themselves out over four equal columns.
 Footer Widget 1: Appears in the footer in column 1
@@ -164,15 +167,18 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 = 1.4.1 =
 - Update description in default stylesheet
 - Update default Block Editor (Gutenberg) styles to make Custom Meta Boxes more visible
+- Update Block Inserter styles in the Block Editor (Gutenberg) as it now uses flexbox. On larger screen sizes the Block Inserter will be wider, contain more blocks per row and increase the icon size to improve visibility
 - Fix issue with attachment page sidebar not displaying properly
+- Add new template (forum.php) for bbPress pages. This template will display a right-hand sidebar
+- Add new bbPress sidebar. This sidebar will appear on bbPress forum pages if it contains widgets, otherwsise the standard sidebar (Main Sidebar) will appear. The bbPress sidebar is only available if the bbPress plugin is activated
 
 = 1.4 =
 - Fix mobile menu from displaying in background on really short pages, while page is loading
 - Updated Customizer Custom Controls
-- Add front-end styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes.
-- Add Dashboard editor styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes.
-- Add ability to select the default template layout for Pages, Posts and Posts Archive (i.e. Blog). You can select from Left Sidebar, Right Sidebar or No Sidebar. If you decide to change this option from the default settings you may want to consider regenerating your thumbnails for any existing images you've uploaded to ensure they display correctly.
-- Add new Home and Right Sidebar templates to help with setting the default template layouts.
+- Add front-end styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes
+- Add Dashboard editor styles for the new Block Editor (Gutenberg) compatibility. As the Block Editor is still under development, be aware these styles will most likely change as the Block Editor changes
+- Add ability to select the default template layout for Pages, Posts and Posts Archive (i.e. Blog). You can select from Left Sidebar, Right Sidebar or No Sidebar. If you decide to change this option from the default settings you may want to consider regenerating your thumbnails for any existing images you've uploaded to ensure they display correctly
+- Add new Home and Right Sidebar templates to help with setting the default template layouts
 - Add ability to select templates on Posts
 - Add filters to make it easier to change the comment form validation error messages
 
