@@ -327,7 +327,8 @@ blockquote p {
 	font-weight: 400;
 	font-size: 24px;
 	font-size: 1.5rem;
-	margin-bottom: 0;
+	margin-bottom: 8px;
+	margin-bottom: .5rem;
 }
 
 blockquote.pull-right p,
@@ -3151,6 +3152,14 @@ p.demo_store {
 	max-width: none;
 }
 
+/* gallery block */
+.wp-block-gallery .blocks-gallery-image figcaption,
+.wp-block-gallery .blocks-gallery-item figcaption {
+	padding: 10px;
+	color: #000;
+	background: rgba(255, 255, 255, .7);
+}
+
 /* Cover Image block */
 .post-template-template-full-width .site-content .wp-block-cover-image,
 .page-template-template-full-width .site-content .wp-block-cover-image {
@@ -3249,6 +3258,13 @@ p.demo_store {
 	text-align: center;
 }
 
+.site-content .wp-block-pullquote blockquote {
+	margin: 0;
+	border: none;
+	padding: 16px;
+	padding: 1rem;
+}
+
 /* Blockquote & Pullquote block */
 .site-content .wp-block-quote p,
 .site-content .wp-block-pullquote p {
@@ -3256,6 +3272,8 @@ p.demo_store {
 	font-weight: 400;
 	font-size: 24px;
 	font-size: 1.5rem;
+	margin: 0 0 8px;
+	margin: 0 0 .5rem;
 }
 
 .site-content .wp-block-quote cite,

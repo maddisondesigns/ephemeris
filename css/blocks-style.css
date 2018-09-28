@@ -116,6 +116,11 @@ Description: Used to style the Block Editor (Gutenberg)
 	color: #3a3a3a;
 }
 
+.edit-post-visual-editor .editor-block-list__block {
+	color: #3a3a3a;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
 /* Inline Images in Paragraph Block */
 .edit-post-visual-editor .wp-block-paragraph img {
 	vertical-align: top;
@@ -282,6 +287,13 @@ Description: Used to style the Block Editor (Gutenberg)
 	text-align: center;
 }
 
+.edit-post-visual-editor .wp-block-pullquote blockquote {
+	margin: 0;
+	border: none;
+	padding: 16px;
+	padding: 1rem;
+}
+
 /* Blockquote & Pullquote block */
 .edit-post-visual-editor .wp-block-quote p,
 .edit-post-visual-editor .wp-block-pullquote p {
@@ -289,10 +301,12 @@ Description: Used to style the Block Editor (Gutenberg)
 	font-weight: 400;
 	font-size: 24px;
 	font-size: 1.5rem;
+	margin: 0 0 8px;
+	margin: 0 0 .5rem;
 }
 
-.edit-post-visual-editor .wp-block-quote cite,
-.edit-post-visual-editor .wp-block-pullquote cite {
+.edit-post-visual-editor .wp-block-quote .wp-block-quote__citation,
+.edit-post-visual-editor .wp-block-pullquote .wp-block-pullquote__citation {
 	font-style: normal;
 	font-weight: 400;
 	font-size: 14px;
@@ -300,6 +314,13 @@ Description: Used to style the Block Editor (Gutenberg)
 	line-height: 1.125;
 	color: #999;
 	text-transform: none;
+}
+
+.edit-post-visual-editor .wp-block-quote .wp-block-quote__citation::before,
+.edit-post-visual-editor .wp-block-pullquote .wp-block-pullquote__citation::before {
+	content: "\2014";
+	margin-right: 4px;
+	margin-right: .25rem;
 }
 
 /* Video block */
@@ -361,6 +382,14 @@ Description: Used to style the Block Editor (Gutenberg)
 
 .edit-post-visual-editor hr.is-style-dots::before {
 	content: "\00b7 \00b7 \00b7 \00b7 \00b7 \00b7";
+}
+
+/* gallery block */
+.edit-post-visual-editor .wp-block-gallery .blocks-gallery-image figcaption,
+.edit-post-visual-editor .wp-block-gallery .blocks-gallery-item figcaption {
+	padding: 10px;
+	color: #000;
+	background: rgba(255, 255, 255, .7);
 }
 
 /* Override some of the Block Editor styles to make Custom Meta Boxes more visible */
