@@ -3,7 +3,7 @@ Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
 Requires at least: 4.8
 Tested up to: 4.9.8
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -163,6 +163,10 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 
 == Changelog ==
+
+= 1.4.2 =
+- Update Blockquote and Pull Quote styles for the Block Editor (Gutenberg) to make them more consistent between the editor and the front-end.
+- Update default gradient background for image/gallery captions in the Block Editor (Gutenberg) and replace with simple white opaque background.
 
 = 1.4.1 =
 - Update description in default stylesheet
