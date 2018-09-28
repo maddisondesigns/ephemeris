@@ -168,6 +168,7 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 - Update Blockquote and Pull Quote styles for the Block Editor (Gutenberg) to make them more consistent between the editor and the front-end
 - Update default gradient background for image/gallery captions in the Block Editor (Gutenberg) and replace with simple white opaque background
 - Update the Block Editor (Gutenberg) control styles to make them look consistent with the rest of the WordPress Dashboard
+- Fix alignwide and alignfull block widths. Widths needs to be adjusted based on the containing grid rather than template due to new functionality in v1.4 allowing selection of default template layouts
 
 = 1.4.1 =
 - Update description in default stylesheet
