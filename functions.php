@@ -326,24 +326,24 @@ if ( ! function_exists( 'ephemeris_block_editor_styles' ) ) {
 		$ephemeris_layout_width = get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] );
 		$styles = '';
 
-		// Increase width of Title
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title .editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-
-		// Increase width of all Blocks & Block Appender
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-default-block-appender {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-
-		// Increase width of Wide blocks
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width - 10 + 400 ) . 'px;}';
-
-		// Remove max-width on Full blocks
-		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="full"] {max-width: none;}';
-
-		// Output our styles into the <head>
-		echo '<style type="text/css">' . $styles . '</style>';
-
 		// Enqueue our seperate Block Editor stylesheet with the rest of our styles
 		wp_enqueue_style( 'ephemeris-blocks-style', trailingslashit( get_template_directory_uri() ) . 'css/blocks-style.css', array(), '1.0.0', 'all' );
+
+		// Increase width of Title
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-post-title .editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
+
+		// Increase width of all Blocks & Block Appender
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-default-block-appender {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
+
+		// Increase width of Wide blocks
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width - 10 + 400 ) . 'px;}';
+
+		// Remove max-width on Full blocks
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="full"] {max-width: none;}';
+
+		// Output our styles into the <head> whenever our block styles are enqueued
+		wp_add_inline_style( 'ephemeris-blocks-style', $styles );
 	}
 }
 add_action( 'enqueue_block_editor_assets', 'ephemeris_block_editor_styles' );
