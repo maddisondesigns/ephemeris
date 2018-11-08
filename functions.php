@@ -199,28 +199,34 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		// Add support for custom font sizes in the Block Editor (Gutenberg)
 		add_theme_support( 'editor-font-sizes', array(
 			array(
-				'name' => __( 'small', 'ephemeris' ),
+				'name' => __( 'Small', 'ephemeris' ),
 				'shortName' => __( 'S', 'ephemeris' ),
 				'size' => 13,
 				'slug' => 'small'
 			),
 			array(
-				'name' => __( 'regular', 'ephemeris' ),
-				'shortName' => __( 'M', 'ephemeris' ),
+				'name' => __( 'Normal', 'ephemeris' ),
+				'shortName' => __( 'N', 'ephemeris' ),
 				'size' => 16,
-				'slug' => 'regular'
+				'slug' => 'normal'
 			),
 			array(
-				'name' => __( 'large', 'ephemeris' ),
-				'shortName' => __( 'L', 'ephemeris' ),
+				'name' => __( 'Medium', 'ephemeris' ),
+				'shortName' => __( 'M', 'ephemeris' ),
 				'size' => 24,
+				'slug' => 'medium'
+			),
+			array(
+				'name' => __( 'Large', 'ephemeris' ),
+				'shortName' => __( 'L', 'ephemeris' ),
+				'size' => 36,
 				'slug' => 'large'
 			),
 			array(
-				'name' => __( 'extralarge', 'ephemeris' ),
-				'shortName' => __( 'XL', 'ephemeris' ),
-				'size' => 36,
-				'slug' => 'extralarge'
+				'name' => __( 'Huge', 'ephemeris' ),
+				'shortName' => __( 'H', 'ephemeris' ),
+				'size' => 48,
+				'slug' => 'huge'
 			)
 		) );
 
