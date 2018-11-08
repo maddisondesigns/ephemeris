@@ -170,6 +170,7 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 - Update the Block Editor (Gutenberg) control styles to make them look consistent with the rest of the WordPress Dashboard
 - Update body class for Block Editor (Gutenberg) dashboard editor styles
 - Update how Block Editor (Gutenberg) styles are injected into head when in the dashboard editor
+- Update Block Editor (Gutenberg) Font Style definitions and styles
 - Fix alignwide and alignfull block widths. Widths needs to be adjusted based on the containing grid rather than template due to new functionality in v1.4 allowing selection of default template layouts
 
 = 1.4.1 =
