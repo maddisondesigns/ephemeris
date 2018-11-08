@@ -3096,22 +3096,28 @@ p.demo_store {
 	font-size: .8125rem;
 }
 
-/* Medium */
-.site-content p.has-regular-font-size {
+/* Normal */
+.site-content p.has-normal-font-size {
 	font-size: 16px;
 	font-size: 1rem;
 }
 
-/* Large */
-.site-content p.has-large-font-size {
+/* Medium */
+.site-content p.has-medium-font-size {
 	font-size: 24px;
 	font-size: 1.5rem;
 }
 
-/* Extra Large */
-.site-content p.has-extralarge-font-size {
+/* Large */
+.site-content p.has-large-font-size {
 	font-size: 36px;
 	font-size: 2.25rem;
+}
+
+/* Huge */
+.site-content p.has-huge-font-size {
+	font-size: 48px;
+	font-size: 3rem;
 }
 
 /* Block alignment */
@@ -3155,22 +3161,22 @@ p.demo_store {
 }
 
 /* Cover Image block */
-.site-content .grid-100 .wp-block-cover-image {
+.site-content .grid-100 .wp-block-cover {
 	height: 100vh;
 	width: auto;
 }
 
-.site-content .grid-100 .wp-block-cover-image h2 {
+.site-content .grid-100 .wp-block-cover h2 {
 	max-width: inherit;
 }
 
 /* Cover Image Block Header */
-.wp-block-cover-image h1,
-.wp-block-cover-image h2,
-.wp-block-cover-image h3,
-.wp-block-cover-image h4,
-.wp-block-cover-image h5,
-.wp-block-cover-image h6 {
+.wp-block-cover h1,
+.wp-block-cover h2,
+.wp-block-cover h3,
+.wp-block-cover h4,
+.wp-block-cover h5,
+.wp-block-cover h6 {
 	font-family: 'Dosis', sans-serif;
 	font-style: normal;
 	font-weight: 700;
@@ -3179,7 +3185,7 @@ p.demo_store {
 	color: #fff;
 }
 
-.wp-block-cover-image h1 {
+.wp-block-cover h1 {
 	margin-bottom: 10px;
 	margin-bottom: 0.625rem;
 	font-size: 48px;
@@ -3187,7 +3193,7 @@ p.demo_store {
 	line-height: 1.25;
 }
 
-.wp-block-cover-image h2 {
+.wp-block-cover h2 {
 	margin-bottom: 8px;
 	margin-bottom: .5rem;
 	font-size: 36px;
@@ -3195,7 +3201,7 @@ p.demo_store {
 	line-height: 1.1666;
 }
 
-.wp-block-cover-image h3 {
+.wp-block-cover h3 {
 	margin-bottom: 6px;
 	margin-bottom: 0.375rem;
 	font-size: 28px;
@@ -3203,7 +3209,7 @@ p.demo_store {
 	line-height: 1.2857;
 }
 
-.wp-block-cover-image h4 {
+.wp-block-cover h4 {
 	margin-bottom: 5px;
 	margin-bottom: 0.3125rem;
 	font-size: 24px;
@@ -3211,7 +3217,7 @@ p.demo_store {
 	line-height: 1.25;
 }
 
-.wp-block-cover-image h5 {
+.wp-block-cover h5 {
 	margin-bottom: 5px;
 	margin-bottom: 0.3125rem;
 	font-size: 16px;
@@ -3219,7 +3225,7 @@ p.demo_store {
 	line-height: 1.25;
 }
 
-.wp-block-cover-image h6 {
+.wp-block-cover h6 {
 	margin-bottom: 5px;
 	margin-bottom: 0.3125rem;
 	font-size: 14px;
