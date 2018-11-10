@@ -147,8 +147,8 @@ Ephemeris includes the following awesomeness:
 
 [Unsemantic](http://unsemantic.com), which is licensed under GPL and MIT license
 [Normalize.css](https://github.com/necolas/normalize.css), which is licensed under the MIT license
-[jQuery Validation](http://bassistance.de/jquery-plugins/jquery-plugin-validation) which is dual licensed under the MIT license and GPL licenses
-[Font Awesome](http://fortawesome.github.io/Font-Awesome) icon font, which is licensed under SIL Open Font License and MIT License
+[jQuery Validation](https://jqueryvalidation.org) which is dual licensed under the MIT license and GPL licenses
+[Font Awesome](https://fontawesome.com) icon font, which is licensed under SIL Open Font License and MIT License
 
 and also uses the following:
 
@@ -171,6 +171,8 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 - Update body class for Block Editor (Gutenberg) dashboard editor styles
 - Update how Block Editor (Gutenberg) styles are injected into head when in the dashboard editor
 - Update Block Editor (Gutenberg) Font Style definitions and styles
+- Update Normalize to v8.0.1
+- Update Font Awesome to v5.5.0
 - Fix alignwide and alignfull block widths. Widths needs to be adjusted based on the containing grid rather than template due to new functionality in v1.4 allowing selection of default template layouts
 
 = 1.4.1 =
