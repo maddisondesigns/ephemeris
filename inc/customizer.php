@@ -428,7 +428,7 @@ class ephemeris_initialise_customizer_settings {
 			array(
 				'default' => $this->defaults['ephemeris_layout_width'],
 				'transport' => 'postMessage',
-				'sanitize_callback' => 'absint',
+				'sanitize_callback' => 'ephemeris_range_sanitization',
 			)
 		);
 		$wp_customize->add_control( new Ephemeris_Slider_Custom_Control( $wp_customize, 'ephemeris_layout_width',
