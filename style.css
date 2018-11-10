@@ -1865,7 +1865,7 @@ form label.error {
 	padding: 0;
 	margin: 0;
 	text-align: center;
-	line-height: 2;
+	line-height: 1.5;
 }
 
 .nav-links .page-numbers {
@@ -1875,8 +1875,8 @@ form label.error {
 .nav-links a.page-numbers,
 .nav-links span.page-numbers {
 	color: #3a3a3a;
-	padding: 5px;
-	padding: 0.3125rem;
+	padding: 8px 5px;
+	padding: .5rem .3125rem;
 	text-decoration: none;
 }
 
@@ -3481,7 +3481,7 @@ p.demo_store {
 		padding: .3125rem;
 	}
 	.nav-links .page-numbers {
-		line-height: 3;
+		line-height: 2;
 	}
 	.nav-links a.page-numbers,
 	.nav-links span.page-numbers {
