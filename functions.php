@@ -370,6 +370,7 @@ if ( ! function_exists( 'ephemeris_dynamic_block_editor_styles' ) ) {
 		$styles .= '@media only screen and (max-width: ' . esc_attr( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) + 400 ) . 'px) {';
 		$styles .= '.site-content .grid-100 .alignwide {margin-left: 0;margin-right: 0;}';
 		$styles .= '.site-content .grid-100 .wp-block-table.alignwide {width: 100%;}';
+		$styles .= '.site-content .grid-100 figure.alignwide.wp-block-embed.is-type-video {width: 100%;}';
 		$styles .= '}';
 
 		echo '<style type="text/css">' . $styles . '</style>';
