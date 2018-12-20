@@ -147,6 +147,10 @@ Description: Used to style the Block Editor (Gutenberg)
 	color: #3a3a3a;
 }
 
+.edit-post-visual-editor.editor-styles-wrapper .mce-content-body {
+	line-height: 1.5;
+}
+
 .edit-post-visual-editor .editor-block-list__block {
 	color: #3a3a3a;
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
