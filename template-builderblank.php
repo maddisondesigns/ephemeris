@@ -9,9 +9,8 @@
  * @since Ephemeris 1.0
  */
 
-get_header( 'blank' ); ?>
+get_header( 'blank' );
 
-	<?php
 	if ( have_posts() ) {
 
 		// Start the Loop
@@ -22,6 +21,5 @@ get_header( 'blank' ); ?>
 		} // end of the loop
 
 	} // end have_posts()
-	?>
 
-<?php get_footer( 'blank' ); ?>
+get_footer( 'blank' );
