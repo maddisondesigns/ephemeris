@@ -637,14 +637,15 @@ if ( ! function_exists( 'ephemeris_fonts_url' ) ) {
 			$font_families = array();
 
 			if ( 'off' !== $bodyFont )
-				$font_families[] = 'Open+Sans:400,400i,700,700i';
+				$font_families[] = 'Open Sans:400,400i,700,700i';
 
 			if ( 'off' !== $headerFont )
 				$font_families[] = 'Dosis:700';
 
 			$query_args = array(
-				'family' => implode( '%7C', $font_families ),
-				'subset' => $subsets,
+				'family' => urlencode( implode( '|', $font_families ) ),
+				'subset' => urlencode( $subsets ),
+				'display' => urlencode( 'fallback' ),
 			);
 			$fonts_url = add_query_arg( $query_args, "https://fonts.googleapis.com/css" );
 		}
