@@ -166,6 +166,8 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 = 1.4.4 =
 - Fix new line-height style that the Block Editor has added into edit screen which changes the line-height of Paragraph blocks after they're selected
+- Update ephemeris_get_social_media() to store output as array rather than string to make it easier for filtering
+- Added new filter (ephemeris_social_icons_list) for filtering social media icons list array
 - Added new social icons to Customizer Control (Discord, Kickstarter, Patreon, Weibo)
 
 = 1.4.3 =
