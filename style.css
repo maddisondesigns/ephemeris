@@ -3180,7 +3180,6 @@ p.demo_store {
 	font-family: 'Dosis', sans-serif;
 	font-style: normal;
 	font-weight: 700;
-	color: #3a3a3a;
 	margin-top: 0;
 	color: #fff;
 }
@@ -3231,6 +3230,21 @@ p.demo_store {
 	font-size: 14px;
 	font-size: .875rem;
 	line-height: 1.2142;
+}
+
+.wp-block-cover p {
+	font-style: normal;
+	font-weight: 400;
+	margin-top: 0;
+	color: #fff;
+}
+
+.wp-block-cover p {
+	margin-bottom: 8px;
+	margin-bottom: .5rem;
+	font-size: 32px;
+	font-size: 2rem;
+	line-height: 1.1666;
 }
 
 /* Blockquote block */
