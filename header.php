@@ -24,7 +24,10 @@
 </head>
 
 <body itemscope="itemscope" itemtype="http://schema.org/CreativeWork" <?php body_class(); ?>>
-
+<?php	if ( function_exists( 'wp_body_open' ) ) {
+		// Add support for new wp_body_open Hook in WP 5.2+
+		wp_body_open();
+	} ?>
 <main class="hfeed site" role="main">
 
 	<div class="visuallyhidden skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to main content', 'ephemeris' ); ?>"><?php esc_html_e( 'Skip to main content', 'ephemeris' ); ?></a></div>
