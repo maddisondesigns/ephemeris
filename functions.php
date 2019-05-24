@@ -26,10 +26,14 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		// Make theme available for translation
 		load_theme_textdomain( 'ephemeris' );
 
+		// Add support for editor styles.
+		add_theme_support( 'editor-styles' );
+
 		// This theme styles the visual editor with editor-style.css to match the theme style.
 		add_editor_style( array(
 			'editor-style.css',
-			'css/fontawesome-all.min.css'
+			'css/fontawesome-all.min.css',
+			ephemeris_fonts_url()
 			)
 		);
 
