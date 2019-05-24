@@ -5,6 +5,6 @@
  * @package Ephemeris
  * @since Ephemeris 1.0
  */
-?>
 
-	<?php the_content(); ?>
+
+the_content();
