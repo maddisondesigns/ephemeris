@@ -487,6 +487,14 @@ Description: Used to style the Block Editor (Gutenberg)
 	margin-bottom: 20px;
 }
 
+.edit-post-layout__metaboxes:not(:empty) .edit-post-meta-boxes-area {
+	margin: 0;
+}
+
+.edit-post-meta-boxes-area .acf-postbox > .hndle .acf-hndle-cog {
+	right: 20px;
+}
+
 /* Override the Block Editor control styles to make them look consistent with the rest of the WordPress Dashboard */
 .components-navigate-regions .components-popover .input-control,
 .components-navigate-regions .components-popover input[type="checkbox"],
