@@ -2985,6 +2985,11 @@ p.demo_store {
 	margin-right: 0;
 }
 
+/* Let Elementor's classes override the font size */
+.elementor p {
+	font-size: inherit;
+}
+
 /* ==========================================================================
    Block Editor (Gutenberg)
    ========================================================================== */
