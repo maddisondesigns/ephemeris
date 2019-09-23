@@ -659,31 +659,6 @@ if ( ! function_exists( 'ephemeris_fonts_url' ) ) {
 }
 
 /**
- * Adds additional stylesheets to the TinyMCE editor if needed.
- *
- * @since Ephemeris 1.0
- *
- * @param string $mce_css CSS path to load in TinyMCE.
- * @return string The filtered CSS paths list.
- */
-function ephemeris_mce_css( $mce_css ) {
-	$fonts_url = ephemeris_fonts_url();
-
-	if ( empty( $fonts_url ) ) {
-		return $mce_css;
-	}
-
-	if ( !empty( $mce_css ) ) {
-		$mce_css .= ',';
-	}
-
-	$mce_css .= esc_url_raw( str_replace( ',', '%2C', $fonts_url ) );
-
-	return $mce_css;
-}
-add_filter( 'mce_css', 'ephemeris_mce_css' );
-
-/**
  * Register widgetized areas
  *
  * @since Ephemeris 1.0
