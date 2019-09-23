@@ -166,6 +166,7 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 = 1.4.5 =
 - Tweak the Custom Meta Box Styles in the Block Editor so they look better
+- Update Font Awesome to v5.11.1
 
 = 1.4.4 =
 - Fix new line-height style that the Block Editor has added into edit screen which changes the line-height of Paragraph blocks after they're selected
