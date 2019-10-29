@@ -165,8 +165,11 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 == Changelog ==
 
 = 1.4.5 =
-- Tweak the Custom Meta Box Styles in the Block Editor so they look better
-- Update Font Awesome to v5.11.1
+- Fix image captions and column styles which caused layout issues due to changes in the Block Editor in 5.3
+- Update the Custom Meta Box Styles in the Block Editor so they look better
+- Update Font Awesome to v5.11.2
+- Add new filter (ephemeris_social_icons_plurality) so you can filter the plurality of the social icon titles. e.g change 'me' to 'us' so icon title reads as 'follow us on..'
+- Add new social icons to Customizer Control (500px, ArtStation)
 
 = 1.4.4 =
 - Fix new line-height style that the Block Editor has added into edit screen which changes the line-height of Paragraph blocks after they're selected
