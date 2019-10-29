@@ -348,9 +348,11 @@ if ( ! function_exists( 'ephemeris_block_editor_styles' ) ) {
 
 		// Increase width of Wide blocks
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width - 10 + 400 ) . 'px;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .block-editor-block-list__block[data-align="wide"] .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 + 400 ) . 'px;}';
 
 		// Remove max-width on Full blocks
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="full"] {max-width: none;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .block-editor-block-list__block[data-align="full"] .editor-block-list__block  {max-width: none;}';
 
 		// Output our styles into the <head> whenever our block styles are enqueued
 		wp_add_inline_style( 'ephemeris-blocks-style', $styles );
@@ -1596,39 +1598,43 @@ add_filter( 'customizer_widgets_section_args', 'ephemeris_show_all_sidebars_in_c
  */
 if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 	function ephemeris_generate_social_urls() {
+		$plurality = apply_filters( 'ephemeris_social_icons_plurality', _x( 'me', 'First-person pronoun for Social Icon titles', 'ephemeris' ) );
+
 		$social_icons = array(
-			array( 'url' => 'behance.net', 'icon' => 'fab fa-behance', 'title' => esc_html__( 'Follow me on Behance', 'ephemeris' ), 'class' => 'behance' ),
-			array( 'url' => 'bitbucket.org', 'icon' => 'fab fa-bitbucket', 'title' => esc_html__( 'Fork me on Bitbucket', 'ephemeris' ), 'class' => 'bitbucket' ),
-			array( 'url' => 'codepen.io', 'icon' => 'fab fa-codepen', 'title' => esc_html__( 'Follow me on CodePen', 'ephemeris' ), 'class' => 'codepen' ),
-			array( 'url' => 'deviantart.com', 'icon' => 'fab fa-deviantart', 'title' => esc_html__( 'Watch me on DeviantArt', 'ephemeris' ), 'class' => 'deviantart' ),
-			array( 'url' => 'discord.gg', 'icon' => 'fab fa-discord', 'title' => esc_html__( 'Join me on Discord', 'ephemeris' ), 'class' => 'discord' ),
-			array( 'url' => 'dribbble.com', 'icon' => 'fab fa-dribbble', 'title' => esc_html__( 'Follow me on Dribbble', 'ephemeris' ), 'class' => 'dribbble' ),
-			array( 'url' => 'etsy.com', 'icon' => 'fab fa-etsy', 'title' => esc_html__( 'favorite me on Etsy', 'ephemeris' ), 'class' => 'etsy' ),
-			array( 'url' => 'facebook.com', 'icon' => 'fab fa-facebook-f', 'title' => esc_html__( 'Like me on Facebook', 'ephemeris' ), 'class' => 'facebook' ),
-			array( 'url' => 'flickr.com', 'icon' => 'fab fa-flickr', 'title' => esc_html__( 'Connect with me on Flickr', 'ephemeris' ), 'class' => 'flickr' ),
-			array( 'url' => 'foursquare.com', 'icon' => 'fab fa-foursquare', 'title' => esc_html__( 'Follow me on Foursquare', 'ephemeris' ), 'class' => 'foursquare' ),
-			array( 'url' => 'github.com', 'icon' => 'fab fa-github', 'title' => esc_html__( 'Fork me on GitHub', 'ephemeris' ), 'class' => 'github' ),
-			array( 'url' => 'instagram.com', 'icon' => 'fab fa-instagram', 'title' => esc_html__( 'Follow me on Instagram', 'ephemeris' ), 'class' => 'instagram' ),
-			array( 'url' => 'kickstarter.com', 'icon' => 'fab fa-kickstarter-k', 'title' => esc_html__( 'Back me on Kickstarter', 'ephemeris' ), 'class' => 'kickstarter' ),
-			array( 'url' => 'last.fm', 'icon' => 'fab fa-lastfm', 'title' => esc_html__( 'Follow me on Last.fm', 'ephemeris' ), 'class' => 'lastfm' ),
-			array( 'url' => 'linkedin.com', 'icon' => 'fab fa-linkedin-in', 'title' => esc_html__( 'Connect with me on LinkedIn', 'ephemeris' ), 'class' => 'linkedin' ),
-			array( 'url' => 'medium.com', 'icon' => 'fab fa-medium-m', 'title' => esc_html__( 'Follow me on Medium', 'ephemeris' ), 'class' => 'medium' ),
-			array( 'url' => 'patreon.com', 'icon' => 'fab fa-patreon', 'title' => esc_html__( 'Support me on Patreon', 'ephemeris' ), 'class' => 'patreon' ),
-			array( 'url' => 'pinterest.com', 'icon' => 'fab fa-pinterest-p', 'title' => esc_html__( 'Follow me on Pinterest', 'ephemeris' ), 'class' => 'pinterest' ),
-			array( 'url' => 'plus.google.com', 'icon' => 'fab fa-google-plus-g', 'title' => esc_html__( 'Connect with me on Google+', 'ephemeris' ), 'class' => 'googleplus' ),
-			array( 'url' => 'reddit.com', 'icon' => 'fab fa-reddit-alien', 'title' => esc_html__( 'Join me on Reddit', 'ephemeris' ), 'class' => 'reddit' ),
-			array( 'url' => 'slack.com', 'icon' => 'fab fa-slack-hash', 'title' => esc_html__( 'Join me on Slack', 'ephemeris' ), 'class' => 'slack.' ),
-			array( 'url' => 'slideshare.net', 'icon' => 'fab fa-slideshare', 'title' => esc_html__( 'Follow me on SlideShare', 'ephemeris' ), 'class' => 'slideshare' ),
-			array( 'url' => 'snapchat.com', 'icon' => 'fab fa-snapchat-ghost', 'title' => esc_html__( 'Add me on Snapchat', 'ephemeris' ), 'class' => 'snapchat' ),
-			array( 'url' => 'soundcloud.com', 'icon' => 'fab fa-soundcloud', 'title' => esc_html__( 'Follow me on SoundCloud', 'ephemeris' ), 'class' => 'soundcloud' ),
-			array( 'url' => 'spotify.com', 'icon' => 'fab fa-spotify', 'title' => esc_html__( 'Follow me on Spotify', 'ephemeris' ), 'class' => 'spotify' ),
-			array( 'url' => 'stackoverflow.com', 'icon' => 'fab fa-stack-overflow', 'title' => esc_html__( 'Join me on Stack Overflow', 'ephemeris' ), 'class' => 'stackoverflow' ),
-			array( 'url' => 'tumblr.com', 'icon' => 'fab fa-tumblr', 'title' => esc_html__( 'Follow me on Tumblr', 'ephemeris' ), 'class' => 'tumblr' ),
-			array( 'url' => 'twitch.tv', 'icon' => 'fab fa-twitch', 'title' => esc_html__( 'Follow me on Twitch', 'ephemeris' ), 'class' => 'twitch' ),
-			array( 'url' => 'twitter.com', 'icon' => 'fab fa-twitter', 'title' => esc_html__( 'Follow me on Twitter', 'ephemeris' ), 'class' => 'twitter' ),
-			array( 'url' => 'vimeo.com', 'icon' => 'fab fa-vimeo-v', 'title' => esc_html__( 'Follow me on Vimeo', 'ephemeris' ), 'class' => 'vimeo' ),
-			array( 'url' => 'weibo.com', 'icon' => 'fab fa-weibo', 'title' => esc_html__( 'Follow me on weibo', 'ephemeris' ), 'class' => 'weibo' ),
-			array( 'url' => 'youtube.com', 'icon' => 'fab fa-youtube', 'title' => esc_html__( 'Subscribe to me on YouTube', 'ephemeris' ), 'class' => 'youtube' ),
+			array( 'url' => '500px.com', 'icon' => 'fab fa-500px', 'title' => sprintf( __( 'Follow %s on 500px', 'ephemeris' ), $plurality ), 'class' => 'fivehundredpx' ),
+			array( 'url' => 'artstation.com', 'icon' => 'fab fa-artstation', 'title' => sprintf( __( 'Follow %s on ArtStation', 'ephemeris' ), $plurality ), 'class' => 'artstation' ),
+			array( 'url' => 'behance.net', 'icon' => 'fab fa-behance', 'title' => sprintf( __( 'Follow %s on Behance', 'ephemeris' ), $plurality ), 'class' => 'behance' ),
+			array( 'url' => 'bitbucket.org', 'icon' => 'fab fa-bitbucket', 'title' => sprintf( __( 'Fork %s on Bitbucket', 'ephemeris' ), $plurality ), 'class' => 'bitbucket' ),
+			array( 'url' => 'codepen.io', 'icon' => 'fab fa-codepen', 'title' => sprintf( __( 'Follow %s on CodePen', 'ephemeris' ), $plurality ), 'class' => 'codepen' ),
+			array( 'url' => 'deviantart.com', 'icon' => 'fab fa-deviantart', 'title' => sprintf( __( 'Watch %s on DeviantArt', 'ephemeris' ), $plurality ), 'class' => 'deviantart' ),
+			array( 'url' => 'discord.gg', 'icon' => 'fab fa-discord', 'title' => sprintf( __( 'Join %s on Discord', 'ephemeris' ), $plurality ), 'class' => 'discord' ),
+			array( 'url' => 'dribbble.com', 'icon' => 'fab fa-dribbble', 'title' => sprintf( __( 'Follow %s on Dribbble', 'ephemeris' ), $plurality ), 'class' => 'dribbble' ),
+			array( 'url' => 'etsy.com', 'icon' => 'fab fa-etsy', 'title' => sprintf( __( 'favorite %s on Etsy', 'ephemeris' ), $plurality ), 'class' => 'etsy' ),
+			array( 'url' => 'facebook.com', 'icon' => 'fab fa-facebook-f', 'title' => sprintf( __( 'Like %s on Facebook', 'ephemeris' ), $plurality ), 'class' => 'facebook' ),
+			array( 'url' => 'flickr.com', 'icon' => 'fab fa-flickr', 'title' => sprintf( __( 'Connect with %s on Flickr', 'ephemeris' ), $plurality ), 'class' => 'flickr' ),
+			array( 'url' => 'foursquare.com', 'icon' => 'fab fa-foursquare', 'title' => sprintf( __( 'Follow %s on Foursquare', 'ephemeris' ), $plurality ), 'class' => 'foursquare' ),
+			array( 'url' => 'github.com', 'icon' => 'fab fa-github', 'title' => sprintf( __( 'Fork %s on GitHub', 'ephemeris' ), $plurality ), 'class' => 'github' ),
+			array( 'url' => 'instagram.com', 'icon' => 'fab fa-instagram', 'title' => sprintf( __( 'Follow %s on Instagram', 'ephemeris' ), $plurality ), 'class' => 'instagram' ),
+			array( 'url' => 'kickstarter.com', 'icon' => 'fab fa-kickstarter-k', 'title' => sprintf( __( 'Back %s on Kickstarter', 'ephemeris' ), $plurality ), 'class' => 'kickstarter' ),
+			array( 'url' => 'last.fm', 'icon' => 'fab fa-lastfm', 'title' => sprintf( __( 'Follow %s on Last.fm', 'ephemeris' ), $plurality ), 'class' => 'lastfm' ),
+			array( 'url' => 'linkedin.com', 'icon' => 'fab fa-linkedin-in', 'title' => sprintf( __( 'Connect with %s on LinkedIn', 'ephemeris' ), $plurality ), 'class' => 'linkedin' ),
+			array( 'url' => 'medium.com', 'icon' => 'fab fa-medium-m', 'title' => sprintf( __( 'Follow %s on Medium', 'ephemeris' ), $plurality ), 'class' => 'medium' ),
+			array( 'url' => 'patreon.com', 'icon' => 'fab fa-patreon', 'title' => sprintf( __( 'Support %s on Patreon', 'ephemeris' ), $plurality ), 'class' => 'patreon' ),
+			array( 'url' => 'pinterest.com', 'icon' => 'fab fa-pinterest-p', 'title' => sprintf( __( 'Follow %s on Pinterest', 'ephemeris' ), $plurality ), 'class' => 'pinterest' ),
+			array( 'url' => 'plus.google.com', 'icon' => 'fab fa-google-plus-g', 'title' => sprintf( __( 'Connect with %s on Google+', 'ephemeris' ), $plurality ), 'class' => 'googleplus' ),
+			array( 'url' => 'reddit.com', 'icon' => 'fab fa-reddit-alien', 'title' => sprintf( __( 'Join %s on Reddit', 'ephemeris' ), $plurality ), 'class' => 'reddit' ),
+			array( 'url' => 'slack.com', 'icon' => 'fab fa-slack-hash', 'title' => sprintf( __( 'Join %s on Slack', 'ephemeris' ), $plurality ), 'class' => 'slack.' ),
+			array( 'url' => 'slideshare.net', 'icon' => 'fab fa-slideshare', 'title' => sprintf( __( 'Follow %s on SlideShare', 'ephemeris' ), $plurality ), 'class' => 'slideshare' ),
+			array( 'url' => 'snapchat.com', 'icon' => 'fab fa-snapchat-ghost', 'title' => sprintf( __( 'Add %s on Snapchat', 'ephemeris' ), $plurality ), 'class' => 'snapchat' ),
+			array( 'url' => 'soundcloud.com', 'icon' => 'fab fa-soundcloud', 'title' => sprintf( __( 'Follow %s on SoundCloud', 'ephemeris' ), $plurality ), 'class' => 'soundcloud' ),
+			array( 'url' => 'spotify.com', 'icon' => 'fab fa-spotify', 'title' => sprintf( __( 'Follow %s on Spotify', 'ephemeris' ), $plurality ), 'class' => 'spotify' ),
+			array( 'url' => 'stackoverflow.com', 'icon' => 'fab fa-stack-overflow', 'title' => sprintf( __( 'Join %s on Stack Overflow', 'ephemeris' ), $plurality ), 'class' => 'stackoverflow' ),
+			array( 'url' => 'tumblr.com', 'icon' => 'fab fa-tumblr', 'title' => sprintf( __( 'Follow %s on Tumblr', 'ephemeris' ), $plurality ), 'class' => 'tumblr' ),
+			array( 'url' => 'twitch.tv', 'icon' => 'fab fa-twitch', 'title' => sprintf( __( 'Follow %s on Twitch', 'ephemeris' ), $plurality ), 'class' => 'twitch' ),
+			array( 'url' => 'twitter.com', 'icon' => 'fab fa-twitter', 'title' => sprintf( __( 'Follow %s on Twitter', 'ephemeris' ), $plurality ), 'class' => 'twitter' ),
+			array( 'url' => 'vimeo.com', 'icon' => 'fab fa-vimeo-v', 'title' => sprintf( __( 'Follow %s on Vimeo', 'ephemeris' ), $plurality ), 'class' => 'vimeo' ),
+			array( 'url' => 'weibo.com', 'icon' => 'fab fa-weibo', 'title' => sprintf( __( 'Follow %s on weibo', 'ephemeris' ), $plurality ), 'class' => 'weibo' ),
+			array( 'url' => 'youtube.com', 'icon' => 'fab fa-youtube', 'title' => sprintf( __( 'Subscribe to %s on YouTube', 'ephemeris' ), $plurality ), 'class' => 'youtube' ),
 		);
 
 		return apply_filters( 'ephemeris_social_icons', $social_icons );
@@ -1680,7 +1686,7 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 					$output[] = sprintf( '<li class="%1$s"><a href="%2$s" title="%3$s"%4$s><i class="%5$s"></i><span class="assistive-text">%3$s</span></a></li>',
 						$social_icons[$index]['class'],
 						esc_url( $value ),
-						$social_icons[$index]['title'],
+						esc_html( $social_icons[$index]['title'] ),
 						( !$ephemeris_social_newtab ? '' : ' target="_blank"' ),
 						$social_icons[$index]['icon']
 					);
