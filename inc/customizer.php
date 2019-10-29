@@ -625,6 +625,8 @@ class ephemeris_initialise_customizer_settings {
 
 		// Add our Single Accordion setting and Custom Control to list the available Social Media icons
 		$socialIconsList = array(
+			'500px' => __( '<i class="fab fa-500px"></i>', 'ephemeris' ),
+			'ArtStation' => __( '<i class="fab fa-artstation"></i>', 'ephemeris' ),
 			'Behance' => __( '<i class="fab fa-behance"></i>', 'ephemeris' ),
 			'Bitbucket' => __( '<i class="fab fa-bitbucket"></i>', 'ephemeris' ),
 			'CodePen' => __( '<i class="fab fa-codepen"></i>', 'ephemeris' ),
