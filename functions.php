@@ -430,34 +430,36 @@ add_action( 'customize_controls_enqueue_scripts', 'ephemeris_customize_controls_
  *
  * @return void
  */
-function ephemeris_template_redirect() {
-	$defaults = ephemeris_generate_defaults();
-	$template = '';
+if ( ! function_exists( 'ephemeris_template_redirect' ) ) {
+	function ephemeris_template_redirect() {
+		$defaults = ephemeris_generate_defaults();
+		$template = '';
 
-	// If WooCommerce is running, check if we should be displaying the Breadcrumbs
-	if( ephemeris_is_plugin_active( 'woocommerce' ) && !get_theme_mod( 'ephemeris_woocommerce_breadcrumbs', $defaults['ephemeris_woocommerce_breadcrumbs'] ) ) {
-		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
-	}
+		// If WooCommerce is running, check if we should be displaying the Breadcrumbs
+		if( ephemeris_is_plugin_active( 'woocommerce' ) && !get_theme_mod( 'ephemeris_woocommerce_breadcrumbs', $defaults['ephemeris_woocommerce_breadcrumbs'] ) ) {
+			remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+		}
 
-	// Check whether we are replacing the default Header and ensure the builder is actually active
-	$template = ephemeris_has_pagebuilder_template( 'header' );
-	if ( !empty( $template ) ) {
-		add_action( 'ephemeris_before_header', 'ephemeris_display_' . $template . '_header' );
-	}
-	else {
-		add_action( 'ephemeris_announcement_bar_content', 'ephemeris_social_header' );
-		add_action( 'ephemeris_header_content', 'ephemeris_logo_grid' );
-		add_action( 'ephemeris_header_content', 'ephemeris_nav_grid' );
-	}
+		// Check whether we are replacing the default Header and ensure the builder is actually active
+		$template = ephemeris_has_pagebuilder_template( 'header' );
+		if ( !empty( $template ) ) {
+			add_action( 'ephemeris_before_header', 'ephemeris_display_' . $template . '_header' );
+		}
+		else {
+			add_action( 'ephemeris_announcement_bar_content', 'ephemeris_social_header' );
+			add_action( 'ephemeris_header_content', 'ephemeris_logo_grid' );
+			add_action( 'ephemeris_header_content', 'ephemeris_nav_grid' );
+		}
 
-	// Check whether we are replacing the default footer and ensure the builder is actually active
-	$template = ephemeris_has_pagebuilder_template( 'footer' );
-	if ( !empty( $template ) ) {
-		add_action( 'ephemeris_after_footer', 'ephemeris_display_' . $template . '_footer' );
-	}
+		// Check whether we are replacing the default footer and ensure the builder is actually active
+		$template = ephemeris_has_pagebuilder_template( 'footer' );
+		if ( !empty( $template ) ) {
+			add_action( 'ephemeris_after_footer', 'ephemeris_display_' . $template . '_footer' );
+		}
 
-	if ( has_header_image() ) {
-		add_action( 'ephemeris_before_main_content', 'ephemeris_header_image' );
+		if ( has_header_image() ) {
+			add_action( 'ephemeris_before_main_content', 'ephemeris_header_image' );
+		}
 	}
 }
 add_action( 'template_redirect', 'ephemeris_template_redirect' );
@@ -534,10 +536,12 @@ if ( ! function_exists( 'ephemeris_nav_grid' ) ) {
  *
  * @return void
  */
-function ephemeris_display_elementor_header() {
-	$defaults = ephemeris_generate_defaults();
+if ( ! function_exists( 'ephemeris_display_elementor_header' ) ) {
+	function ephemeris_display_elementor_header() {
+		$defaults = ephemeris_generate_defaults();
 
-	echo do_shortcode( '[elementor-template id="' . get_theme_mod( 'ephemeris_elementor_header_template', $defaults['ephemeris_elementor_header_template'] ) . '"]' );
+		echo do_shortcode( '[elementor-template id="' . get_theme_mod( 'ephemeris_elementor_header_template', $defaults['ephemeris_elementor_header_template'] ) . '"]' );
+	}
 }
 
 /**
@@ -547,10 +551,12 @@ function ephemeris_display_elementor_header() {
  *
  * @return void
  */
-function ephemeris_display_elementor_footer() {
-	$defaults = ephemeris_generate_defaults();
+if ( ! function_exists( 'ephemeris_display_elementor_footer' ) ) {
+	function ephemeris_display_elementor_footer() {
+		$defaults = ephemeris_generate_defaults();
 
-	echo do_shortcode( '[elementor-template id="' . get_theme_mod( 'ephemeris_elementor_footer_template', $defaults['ephemeris_elementor_footer_template'] ) . '"]' );
+		echo do_shortcode( '[elementor-template id="' . get_theme_mod( 'ephemeris_elementor_footer_template', $defaults['ephemeris_elementor_footer_template'] ) . '"]' );
+	}
 }
 
 /**
@@ -1358,51 +1364,53 @@ add_filter( 'wp_nav_menu_items', 'ephemeris_add_search_menu_item', 10, 2 );
  * @param string Plugin name to check
  * @return boolean
  */
-function ephemeris_is_plugin_active( $plugin ) {
-	$return_val = false;
+if ( ! function_exists( 'ephemeris_is_plugin_active' ) ) {
+	function ephemeris_is_plugin_active( $plugin ) {
+		$return_val = false;
 
-	switch ( strtolower( $plugin ) ) {
-		case 'woocommerce':
-			if ( class_exists( 'WooCommerce' ) ) {
-				$return_val = true;
-			}
-			break;
+		switch ( strtolower( $plugin ) ) {
+			case 'woocommerce':
+				if ( class_exists( 'WooCommerce' ) ) {
+					$return_val = true;
+				}
+				break;
 
-		case 'elementor':
-			if ( class_exists( 'Elementor\Plugin' ) ) {
-				$return_val = true;
-			}
-			break;
+			case 'elementor':
+				if ( class_exists( 'Elementor\Plugin' ) ) {
+					$return_val = true;
+				}
+				break;
 
-		case 'beaverbuilder':
-			if ( class_exists( 'FLBuilderLoader' ) ) {
-				$return_val = true;
-			}
-			break;
+			case 'beaverbuilder':
+				if ( class_exists( 'FLBuilderLoader' ) ) {
+					$return_val = true;
+				}
+				break;
 
-		case 'divibuilder':
-			if ( class_exists( 'ET_Builder_Plugin' ) ) {
-				$return_val = true;
-			}
-			break;
+			case 'divibuilder':
+				if ( class_exists( 'ET_Builder_Plugin' ) ) {
+					$return_val = true;
+				}
+				break;
 
-		case 'visualcomposer':
-			if ( class_exists( 'Vc_Manager' ) ) {
-				$return_val = true;
-			}
-			break;
+			case 'visualcomposer':
+				if ( class_exists( 'Vc_Manager' ) ) {
+					$return_val = true;
+				}
+				break;
 
-		case 'bbpress':
-			if ( class_exists( 'bbPress' ) ) {
-				$return_val = true;
-			}
-			break;
+			case 'bbpress':
+				if ( class_exists( 'bbPress' ) ) {
+					$return_val = true;
+				}
+				break;
 
-		default:
-			$return_val = false;
+			default:
+				$return_val = false;
+		}
+
+		return $return_val;
 	}
-
-	return $return_val;
 }
 
 /**
@@ -1495,28 +1503,30 @@ add_action( 'woocommerce_after_main_content', 'ephemeris_woocommerce_after_main_
  *
  * @return boolean
  */
-function ephemeris_display_woocommerce_sidebar() {
-	$defaults = ephemeris_generate_defaults();
-	$returnVal = false;
-	$wcsidebar = '';
+if ( ! function_exists( 'ephemeris_display_woocommerce_sidebar' ) ) {
+	function ephemeris_display_woocommerce_sidebar() {
+		$defaults = ephemeris_generate_defaults();
+		$returnVal = false;
+		$wcsidebar = '';
 
-	if ( is_shop() ) {
-		$wcsidebar = 'ephemeris_woocommerce_shop_sidebar';
-	}
-	elseif ( is_product() ) {
-		$wcsidebar = 'ephemeris_woocommerce_product_sidebar';
-	}
-	elseif ( is_product_category() || is_product_tag() ) {
-		$wcsidebar = 'ephemeris_woocommerce_cattag_sidebar';
-	}
-
-	if ( !empty( $wcsidebar ) ) {
-		if ( get_theme_mod( $wcsidebar, $defaults[$wcsidebar] ) ) {
-			$returnVal = true;
+		if ( is_shop() ) {
+			$wcsidebar = 'ephemeris_woocommerce_shop_sidebar';
 		}
-	}
+		elseif ( is_product() ) {
+			$wcsidebar = 'ephemeris_woocommerce_product_sidebar';
+		}
+		elseif ( is_product_category() || is_product_tag() ) {
+			$wcsidebar = 'ephemeris_woocommerce_cattag_sidebar';
+		}
 
-	return $returnVal;
+		if ( !empty( $wcsidebar ) ) {
+			if ( get_theme_mod( $wcsidebar, $defaults[$wcsidebar] ) ) {
+				$returnVal = true;
+			}
+		}
+
+		return $returnVal;
+	}
 }
 
 /**
@@ -1729,37 +1739,39 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
  *
  * @return string	css styles
  */
-function ephemeris_customizer_css_styles() {
-	$defaults = ephemeris_generate_defaults();
-	$styles = '';
+if ( ! function_exists( 'ephemeris_customizer_css_styles' ) ) {
+	function ephemeris_customizer_css_styles() {
+		$defaults = ephemeris_generate_defaults();
+		$styles = '';
 
-	// Layout styles
-	$styles .= '.grid-container { max-width: ' . esc_attr( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) ) . 'px; }';
+		// Layout styles
+		$styles .= '.grid-container { max-width: ' . esc_attr( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) ) . 'px; }';
 
-	// Page & Post Header color styles
-	$styles .= '.entry-header h1 { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_normal', $defaults['ephemeris_color_header_title_normal'] ) ) . '; }';
-	$styles .= '.entry-header h1 a { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_link', $defaults['ephemeris_color_header_title_link'] ) ) . '; }';
-	$styles .= '.entry-header h1 a:visited { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_visited', $defaults['ephemeris_color_header_title_visited'] ) ) . '; }';
-	$styles .= '.entry-header h1 a:hover, .entry-header h1 a:active { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_hover', $defaults['ephemeris_color_header_title_hover'] ) ) . '; }';
+		// Page & Post Header color styles
+		$styles .= '.entry-header h1 { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_normal', $defaults['ephemeris_color_header_title_normal'] ) ) . '; }';
+		$styles .= '.entry-header h1 a { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_link', $defaults['ephemeris_color_header_title_link'] ) ) . '; }';
+		$styles .= '.entry-header h1 a:visited { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_visited', $defaults['ephemeris_color_header_title_visited'] ) ) . '; }';
+		$styles .= '.entry-header h1 a:hover, .entry-header h1 a:active { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_title_hover', $defaults['ephemeris_color_header_title_hover'] ) ) . '; }';
 
-	// Body Header color styles
-	$styles .= 'h1, h2, h3, h4, h5, h6 { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_normal', $defaults['ephemeris_color_header_body_normal'] ) ) . '; }';
-	$styles .= 'h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_link', $defaults['ephemeris_color_header_body_link'] ) ) . '; }';
-	$styles .= 'h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_visited', $defaults['ephemeris_color_header_body_visited'] ) ) . '; }';
-	$styles .= 'h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, h1 a:active, h2 a:active, h3 a:active, h4 a:active, h5 a:active, h6 a:active { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_hover', $defaults['ephemeris_color_header_body_hover'] ) ) . '; }';
+		// Body Header color styles
+		$styles .= 'h1, h2, h3, h4, h5, h6 { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_normal', $defaults['ephemeris_color_header_body_normal'] ) ) . '; }';
+		$styles .= 'h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_link', $defaults['ephemeris_color_header_body_link'] ) ) . '; }';
+		$styles .= 'h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_visited', $defaults['ephemeris_color_header_body_visited'] ) ) . '; }';
+		$styles .= 'h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, h1 a:active, h2 a:active, h3 a:active, h4 a:active, h5 a:active, h6 a:active { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_header_body_hover', $defaults['ephemeris_color_header_body_hover'] ) ) . '; }';
 
-	// Body Text color styles
-	$styles .= '.site-content, .more-link { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_normal', $defaults['ephemeris_color_text_normal'] ) ) . '; }';
-	$styles .= 'a, .more-link { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_link', $defaults['ephemeris_color_text_link'] ) ) . '; }';
-	$styles .= 'a:visited, .more-link:visited { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_visited', $defaults['ephemeris_color_text_visited'] ) ) . '; }';
-	$styles .= 'a:hover, a:active, .more-link:hover, .more-link:active { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_hover', $defaults['ephemeris_color_text_hover'] ) ) . '; }';
+		// Body Text color styles
+		$styles .= '.site-content, .more-link { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_normal', $defaults['ephemeris_color_text_normal'] ) ) . '; }';
+		$styles .= 'a, .more-link { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_link', $defaults['ephemeris_color_text_link'] ) ) . '; }';
+		$styles .= 'a:visited, .more-link:visited { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_visited', $defaults['ephemeris_color_text_visited'] ) ) . '; }';
+		$styles .= 'a:hover, a:active, .more-link:hover, .more-link:active { color: ' . esc_attr( get_theme_mod( 'ephemeris_color_text_hover', $defaults['ephemeris_color_text_hover'] ) ) . '; }';
 
-	// Footer styles
-	$styles .= '#footercontainer { background-color: ' . esc_attr( get_theme_mod( 'ephemeris_footer_background_color', $defaults['ephemeris_footer_background_color'] ) ) . '; }';
-	$styles .= '#footercreditscontainer { background-color: ' . esc_attr( get_theme_mod( 'ephemeris_footer_background_color', $defaults['ephemeris_footer_background_color'] ) ) . '; }';
-	$styles .= '.site-credits { color: ' . esc_attr( get_theme_mod( 'ephemeris_footer_credits_font_color', $defaults['ephemeris_footer_credits_font_color'] ) ) . '; }';
+		// Footer styles
+		$styles .= '#footercontainer { background-color: ' . esc_attr( get_theme_mod( 'ephemeris_footer_background_color', $defaults['ephemeris_footer_background_color'] ) ) . '; }';
+		$styles .= '#footercreditscontainer { background-color: ' . esc_attr( get_theme_mod( 'ephemeris_footer_background_color', $defaults['ephemeris_footer_background_color'] ) ) . '; }';
+		$styles .= '.site-credits { color: ' . esc_attr( get_theme_mod( 'ephemeris_footer_credits_font_color', $defaults['ephemeris_footer_credits_font_color'] ) ) . '; }';
 
-	echo '<style type="text/css">' . $styles . '</style>';
+		echo '<style type="text/css">' . $styles . '</style>';
+	}
 }
 add_action( 'wp_head', 'ephemeris_customizer_css_styles' );
 
