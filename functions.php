@@ -1680,6 +1680,13 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 		$social_alignment = get_theme_mod( 'ephemeris_social_alignment', $defaults['ephemeris_social_alignment'] );
 		$contact_phone = get_theme_mod( 'ephemeris_contact_phone', $defaults['ephemeris_contact_phone'] );
 
+		if( get_theme_mod( 'ephemeris_contact_phone_link', $defaults['ephemeris_contact_phone_link'] ) ) {
+			$contact_phone = sprintf( '<a href="%1$s" title="%2$s %3$s" rel="nofollow">%3$s</a>',
+				esc_url( 'tel:' . ephemeris_phone_word_to_number( $contact_phone ) ),
+				_x( 'Call', 'To dial a telephone', 'ephemeris' ),
+				$contact_phone
+			);
+		}
 		if( !empty( $contact_phone ) ) {
 			$output[] = sprintf( '<li class="%1$s"><i class="%2$s"></i>%3$s</li>',
 				'phone',
@@ -1729,6 +1736,56 @@ if ( ! function_exists( 'ephemeris_get_social_media' ) ) {
 		}
 
 		return implode( '', $output );
+	}
+}
+
+/**
+ * Convert a phone number containing words, to a plain number. e.g. '1800 CALLME' == '1800225563'
+ *
+ * @since Ephemeris 1.4.5
+ *
+ * @return string Phone number containing only digits
+ */
+if ( ! function_exists( 'ephemeris_phone_word_to_number' ) ) {
+	function ephemeris_phone_word_to_number( $phone_number ) {
+		$phone_word_pattern = array(
+			_x( 'a', 'Alphabetic character on telephone keypad number 2', 'ephemeris' ) => '2',
+			_x( 'b', 'Alphabetic character on telephone keypad number 2', 'ephemeris' ) => '2',
+			_x( 'c', 'Alphabetic character on telephone keypad number 2', 'ephemeris' ) => '2',
+			_x( 'd', 'Alphabetic character on telephone keypad number 3', 'ephemeris' ) => '3',
+			_x( 'e', 'Alphabetic character on telephone keypad number 3', 'ephemeris' ) => '3',
+			_x( 'f', 'Alphabetic character on telephone keypad number 3', 'ephemeris' ) => '3',
+			_x( 'g', 'Alphabetic character on telephone keypad number 4', 'ephemeris' ) => '4',
+			_x( 'h', 'Alphabetic character on telephone keypad number 4', 'ephemeris' ) => '4',
+			_x( 'i', 'Alphabetic character on telephone keypad number 4', 'ephemeris' ) => '4',
+			_x( 'j', 'Alphabetic character on telephone keypad number 5', 'ephemeris' ) => '5',
+			_x( 'k', 'Alphabetic character on telephone keypad number 5', 'ephemeris' ) => '5',
+			_x( 'l', 'Alphabetic character on telephone keypad number 5', 'ephemeris' ) => '5',
+			_x( 'm', 'Alphabetic character on telephone keypad number 6', 'ephemeris' ) => '6',
+			_x( 'n', 'Alphabetic character on telephone keypad number 6', 'ephemeris' ) => '6',
+			_x( 'o', 'Alphabetic character on telephone keypad number 6', 'ephemeris' ) => '6',
+			_x( 'p', 'Alphabetic character on telephone keypad number 7', 'ephemeris' ) => '7',
+			_x( 'q', 'Alphabetic character on telephone keypad number 7', 'ephemeris' ) => '7',
+			_x( 'r', 'Alphabetic character on telephone keypad number 7', 'ephemeris' ) => '7',
+			_x( 's', 'Alphabetic character on telephone keypad number 7', 'ephemeris' ) => '7',
+			_x( 't', 'Alphabetic character on telephone keypad number 8', 'ephemeris' ) => '8',
+			_x( 'u', 'Alphabetic character on telephone keypad number 8', 'ephemeris' ) => '8',
+			_x( 'v', 'Alphabetic character on telephone keypad number 8', 'ephemeris' ) => '8',
+			_x( 'w', 'Alphabetic character on telephone keypad number 9', 'ephemeris' ) => '9',
+			_x( 'x', 'Alphabetic character on telephone keypad number 9', 'ephemeris' ) => '9',
+			_x( 'y', 'Alphabetic character on telephone keypad number 9', 'ephemeris' ) => '9',
+			_x( 'z', 'Alphabetic character on telephone keypad number 9', 'ephemeris' ) => '9',
+			__( ' ', 'ephemeris' ) => '',
+			__( '-', 'ephemeris' ) => '',
+			__( '(', 'ephemeris' ) => '',
+			__( ')', 'ephemeris' ) => '',
+			__( '[', 'ephemeris' ) => '',
+			__( ']', 'ephemeris' ) => '',
+		);
+		if( !empty( $phone_number ) ) {
+			return str_ireplace( array_keys( $phone_word_pattern ), array_values( $phone_word_pattern ), $phone_number );
+		}
+		return false;
 	}
 }
 
@@ -1857,6 +1914,7 @@ if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 			'ephemeris_social_alignment' => 'alignright',
 			'ephemeris_social_rss' => 0,
 			'ephemeris_contact_phone' => '',
+			'ephemeris_contact_phone_link' => 0,
 			'ephemeris_search_menu_icon' => 0,
 			'ephemeris_footer_background_color' => '#f9f9f9',
 			'ephemeris_footer_font_color' => '#9a9a9a',

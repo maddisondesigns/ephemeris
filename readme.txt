@@ -170,6 +170,7 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 - Update Font Awesome to v5.11.2
 - Add new filter (ephemeris_social_icons_plurality) so you can filter the plurality of the social icon titles. e.g change 'me' to 'us' so icon title reads as 'follow us on..'
 - Add new social icons to Customizer Control (500px, ArtStation)
+- Add Customizer option to add a link on the phone number in the social icon bar
 
 = 1.4.4 =
 - Fix new line-height style that the Block Editor has added into edit screen which changes the line-height of Paragraph blocks after they're selected

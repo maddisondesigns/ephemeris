@@ -728,6 +728,29 @@ class ephemeris_initialise_customizer_settings {
 			)
 		);
 
+		// Add our Checkbox switch setting and control for adding a link to the phone number
+		$wp_customize->add_setting( 'ephemeris_contact_phone_link',
+			array(
+				'default' => $this->defaults['ephemeris_contact_phone_link'],
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'ephemeris_switch_sanitization',
+			)
+		);
+		$wp_customize->add_control( new Ephemeris_Toggle_Switch_Custom_control( $wp_customize, 'ephemeris_contact_phone_link',
+			array(
+				'label' => __( 'Add link to Phone Number', 'ephemeris' ),
+				'section' => 'contact_section',
+			)
+		) );
+		$wp_customize->selective_refresh->add_partial( 'ephemeris_contact_phone_link',
+			array(
+				'selector' => '.social-icons',
+				'container_inclusive' => true,
+				'render_callback' => 'ephemeris_get_social_media_render_callback',
+				'fallback_refresh' => true,
+			)
+		);
+
 	}
 
 	/**

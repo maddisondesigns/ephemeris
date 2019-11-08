@@ -887,6 +887,12 @@ main {
 	font-size: 1.25rem;
 }
 
+.social-icons .phone a {
+	text-decoration: none;
+	padding: 0 4px;
+	padding: 0 .25rem;
+}
+
 .social-icons .phone i {
 	margin-right: 4px;
 	margin-right: .25rem;
