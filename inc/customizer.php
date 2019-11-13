@@ -738,7 +738,7 @@ class ephemeris_initialise_customizer_settings {
 		);
 		$wp_customize->add_control( new Ephemeris_Toggle_Switch_Custom_control( $wp_customize, 'ephemeris_contact_phone_link',
 			array(
-				'label' => __( 'Add link to Phone Number', 'ephemeris' ),
+				'label' => __( 'Add link to phone number', 'ephemeris' ),
 				'section' => 'contact_section',
 			)
 		) );
