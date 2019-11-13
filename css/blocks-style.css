@@ -105,33 +105,39 @@ Description: Used to style the Block Editor (Gutenberg)
 
 /* Custom Font Sizes */
 /* Small */
-.site-content p.has-small-font-size {
+.edit-post-visual-editor p.has-small-font-size {
 	font-size: 13px;
 	font-size: .8125rem;
 }
 
 /* Normal */
-.site-content p.has-normal-font-size {
+.edit-post-visual-editor p.has-normal-font-size {
 	font-size: 16px;
 	font-size: 1rem;
 }
 
 /* Medium */
-.site-content p.has-medium-font-size {
+.edit-post-visual-editor p.has-medium-font-size {
 	font-size: 24px;
 	font-size: 1.5rem;
 }
 
 /* Large */
-.site-content p.has-large-font-size {
+.edit-post-visual-editor p.has-large-font-size {
 	font-size: 36px;
 	font-size: 2.25rem;
 }
 
 /* Huge */
-.site-content p.has-huge-font-size {
+.edit-post-visual-editor p.has-huge-font-size {
 	font-size: 48px;
 	font-size: 3rem;
+}
+
+/* Background */
+.edit-post-visual-editor .has-background {
+	padding: 24px 32px;
+	padding: 1.5rem 2rem;
 }
 
 /* Paragraph Block, Classic Block and all default text */
@@ -359,6 +365,34 @@ Description: Used to style the Block Editor (Gutenberg)
 	text-align: left;
 }
 
+.edit-post-visual-editor .wp-block-quote.has-text-align-right {
+	border-left: none;
+	border-right: 5px solid #3a3a3a;
+	margin: 0 20px 0 18px 0;
+	margin: 0 1.25rem 1.125rem 0;
+	padding: 16px 16px 16px 0;
+	padding: 1rem 16px 1rem 0;
+	text-align: right;
+}
+
+.edit-post-visual-editor .wp-block-quote.has-text-align-center {
+	border: none;
+	margin: 0 20px 18px 20px;
+	margin: 0 1.25rem 1.125rem 1.25rem;
+	padding: 16px 16px 16px 16px;
+	padding: 1rem 16px 1rem 16px;
+	text-align: center;
+}
+
+.edit-post-visual-editor .wp-block-quote.is-style-large {
+	border: none;
+	text-align: center;
+}
+
+.edit-post-visual-editor .wp-block-quote.is-style-large .wp-block-quote__citation {
+	text-align: center;
+}
+
 /* Pullquote block */
 .edit-post-visual-editor .wp-block-pullquote {
 	border-top: 5px solid #3a3a3a;
@@ -405,6 +439,16 @@ Description: Used to style the Block Editor (Gutenberg)
 	content: "\2014";
 	margin-right: 4px;
 	margin-right: .25rem;
+}
+
+.edit-post-visual-editor .wp-block-quote.is-style-large .wp-block-quote__citation::before {
+	content: none;
+}
+
+.edit-post-visual-editor .wp-block-quote.is-style-large p {
+	font-weight: 400;
+	font-size: 32px;
+	font-size: 2rem;
 }
 
 /* Video block */
