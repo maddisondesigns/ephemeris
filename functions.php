@@ -1106,78 +1106,80 @@ add_action( 'comment_form_field_comment', 'ephemeris_comment_form_field_comment'
  *
  * @return void
  */
-function ephemeris_posted_on() {
-	$post_icon = '';
-	switch ( get_post_format() ) {
-		case 'aside':
-			$post_icon = 'far fa-file';
-			break;
-		case 'audio':
-			$post_icon = 'fas fa-volume-up';
-			break;
-		case 'chat':
-			$post_icon = 'fas fa-comment';
-			break;
-		case 'gallery':
-			$post_icon = 'far fa-images';
-			break;
-		case 'image':
-			$post_icon = 'far fa-image';
-			break;
-		case 'link':
-			$post_icon = 'fas fa-link';
-			break;
-		case 'quote':
-			$post_icon = 'fas fa-quote-left';
-			break;
-		case 'status':
-			$post_icon = 'fas fa-user';
-			break;
-		case 'video':
-			$post_icon = 'fas fa-video';
-			break;
-		default:
-			$post_icon = 'far fa-calendar-alt';
-			break;
+if ( ! function_exists( 'ephemeris_posted_on' ) ) {
+	function ephemeris_posted_on() {
+		$post_icon = '';
+		switch ( get_post_format() ) {
+			case 'aside':
+				$post_icon = 'far fa-file';
+				break;
+			case 'audio':
+				$post_icon = 'fas fa-volume-up';
+				break;
+			case 'chat':
+				$post_icon = 'fas fa-comment';
+				break;
+			case 'gallery':
+				$post_icon = 'far fa-images';
+				break;
+			case 'image':
+				$post_icon = 'far fa-image';
+				break;
+			case 'link':
+				$post_icon = 'fas fa-link';
+				break;
+			case 'quote':
+				$post_icon = 'fas fa-quote-left';
+				break;
+			case 'status':
+				$post_icon = 'fas fa-user';
+				break;
+			case 'video':
+				$post_icon = 'fas fa-video';
+				break;
+			default:
+				$post_icon = 'far fa-calendar-alt';
+				break;
+		}
+
+		// Translators: 1: Icon 2: Permalink 3: Post date and time 4: Publish date in ISO format 5: Post date
+		$date = sprintf( '<span class="publish-date"><i class="%1$s" aria-hidden="true"></i> <a href="%2$s" title="%3$s" rel="bookmark"><time class="entry-date" datetime="%4$s" itemprop="datePublished">%5$s</time></a></span>',
+			$post_icon,
+			esc_url( get_permalink() ),
+			sprintf( esc_html__( 'Posted %1$s @ %2$s', 'ephemeris' ), esc_html( get_the_date() ), esc_attr( get_the_time() ) ),
+			esc_attr( get_the_date( 'c' ) ),
+			esc_html( get_the_date() )
+		);
+
+		// Translators: 1: Date link 2: Author title 3: Author
+		$author = sprintf( '<address class="publish-author"><i class="fas fa-pencil-alt" aria-hidden="true"></i> <span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author" itemprop="author">%3$s</a></span></address>',
+			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+			esc_attr( sprintf( esc_html__( 'View all posts by %s', 'ephemeris' ), get_the_author() ) ),
+			get_the_author()
+		);
+
+		// Return the Categories as a list
+		$categories_list = get_the_category_list( esc_html__( ' ', 'ephemeris' ) );
+
+		// Translators: 1: Permalink 2: Title 3: No. of Comments
+		$comments = sprintf( '<span class="comments-link"><i class="fas fa-comment" aria-hidden="true"></i> <a href="%1$s" title="%2$s">%3$s</a></span>',
+			esc_url( get_comments_link() ),
+			esc_attr( esc_html__( 'Comment on ' , 'ephemeris' ) . the_title_attribute( 'echo=0' ) ),
+			( get_comments_number() > 0 ? sprintf( _n( '%1$s Comment', '%1$s Comments', get_comments_number(), 'ephemeris' ), get_comments_number() ) : esc_html__( 'No Comments', 'ephemeris' ) )
+		);
+
+		// Translators: 1: Date 2: Author 3: Categories 4: Comments
+		printf( wp_kses( __( '<div class="header-meta">%1$s%2$s<span class="post-categories">%3$s</span>%4$s</div>', 'ephemeris' ), array(
+			'div' => array (
+				'class' => array() ),
+			'span' => array(
+				'class' => array() ) ) ),
+			$date,
+			$author,
+			$categories_list,
+			( is_search() ? '' : $comments )
+		);
 	}
-
-	// Translators: 1: Icon 2: Permalink 3: Post date and time 4: Publish date in ISO format 5: Post date
-	$date = sprintf( '<span class="publish-date"><i class="%1$s" aria-hidden="true"></i> <a href="%2$s" title="%3$s" rel="bookmark"><time class="entry-date" datetime="%4$s" itemprop="datePublished">%5$s</time></a></span>',
-		$post_icon,
-		esc_url( get_permalink() ),
-		sprintf( esc_html__( 'Posted %1$s @ %2$s', 'ephemeris' ), esc_html( get_the_date() ), esc_attr( get_the_time() ) ),
-		esc_attr( get_the_date( 'c' ) ),
-		esc_html( get_the_date() )
-	);
-
-	// Translators: 1: Date link 2: Author title 3: Author
-	$author = sprintf( '<address class="publish-author"><i class="fas fa-pencil-alt" aria-hidden="true"></i> <span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author" itemprop="author">%3$s</a></span></address>',
-		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-		esc_attr( sprintf( esc_html__( 'View all posts by %s', 'ephemeris' ), get_the_author() ) ),
-		get_the_author()
-	);
-
-	// Return the Categories as a list
-	$categories_list = get_the_category_list( esc_html__( ' ', 'ephemeris' ) );
-
-	// Translators: 1: Permalink 2: Title 3: No. of Comments
-	$comments = sprintf( '<span class="comments-link"><i class="fas fa-comment" aria-hidden="true"></i> <a href="%1$s" title="%2$s">%3$s</a></span>',
-		esc_url( get_comments_link() ),
-		esc_attr( esc_html__( 'Comment on ' , 'ephemeris' ) . the_title_attribute( 'echo=0' ) ),
-		( get_comments_number() > 0 ? sprintf( _n( '%1$s Comment', '%1$s Comments', get_comments_number(), 'ephemeris' ), get_comments_number() ) : esc_html__( 'No Comments', 'ephemeris' ) )
-	);
-
-	// Translators: 1: Date 2: Author 3: Categories 4: Comments
-	printf( wp_kses( __( '<div class="header-meta">%1$s%2$s<span class="post-categories">%3$s</span>%4$s</div>', 'ephemeris' ), array(
-		'div' => array (
-			'class' => array() ),
-		'span' => array(
-			'class' => array() ) ) ),
-		$date,
-		$author,
-		$categories_list,
-		( is_search() ? '' : $comments )
-	);
 }
 add_action( 'ephemeris_after_entry_title', 'ephemeris_posted_on' );
 

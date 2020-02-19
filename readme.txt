@@ -3,7 +3,7 @@ Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
 Requires at least: 4.8
 Tested up to: 5.3
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -163,6 +163,10 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 
 == Changelog ==
+
+= 1.4.6 =
+- Update some css styles. Nothing too significant
+- Add in extra function_exists() checks for easier overriding
 
 = 1.4.5 =
 - Fix image captions and column styles which caused layout issues due to changes in the Block Editor in 5.3
