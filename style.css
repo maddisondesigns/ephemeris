@@ -1815,6 +1815,27 @@ form label.error {
 	text-align: right;
 }
 
+.wp-calendar-nav .wp-calendar-nav-prev {
+	padding-left: 0;
+}
+
+.wp-calendar-nav .wp-calendar-nav-next {
+	padding-right: 0;
+	float: right;
+}
+
+.wp-calendar-nav:before,
+.wp-calendar-nav:after {
+	content: "";
+	display: table;
+}
+.wp-calendar-nav:after {
+	clear: both;
+}
+.wp-calendar-nav {
+	*zoom: 1;
+}
+
 .widget_search label {
 	font-size: 14px;
 	font-size: 0.875rem;
@@ -3008,6 +3029,18 @@ p.demo_store {
 	color: #3a3a3a;
 }
 
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-eclipse-background-color {
+	background-color: transparent;
+	border: 2px solid #3a3a3a;
+	color: #3a3a3a;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-eclipse-background-color:hover {
+	background-color: #3a3a3a;
+	*background-color: #3a3a3a;
+	color: #fff;
+}
+
 /* San Juan */
 .site-content .has-san-juan-background-color {
 	background-color: #334861;
@@ -3015,6 +3048,18 @@ p.demo_store {
 
 .site-content .has-san-juan-color {
 	color: #334861;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-san-juan-background-color {
+	background-color: transparent;
+	border: 2px solid #334861;
+	color: #334861;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-san-juan-background-color:hover {
+	background-color: #334861;
+	*background-color: #334861;
+	color: #fff;
 }
 
 /* Denim */
@@ -3026,6 +3071,18 @@ p.demo_store {
 	color: #2979c7;
 }
 
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-denim-background-color {
+	background-color: transparent;
+	border: 2px solid #2979c7;
+	color: #2979c7;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-denim-background-color:hover {
+	background-color: #2979c7;
+	*background-color: #2979c7;
+	color: #fff;
+}
+
 /* Electric Violet */
 .site-content .has-electric-violet-background-color {
 	background-color: #8309e7;
@@ -3033,6 +3090,18 @@ p.demo_store {
 
 .site-content .has-electric-violet-color {
 	color: #8309e7;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-electric-violet-background-color {
+	background-color: transparent;
+	border: 2px solid #8309e7;
+	color: #8309e7;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-electric-violet-background-color:hover {
+	background-color: #8309e7;
+	*background-color: #8309e7;
+	color: #fff;
 }
 
 /* Cerise */
@@ -3044,6 +3113,18 @@ p.demo_store {
 	color: #df49b8;
 }
 
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-cerise-background-color {
+	background-color: transparent;
+	border: 2px solid #df49b8;
+	color: #df49b8;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-cerise-background-color:hover {
+	background-color: #df49b8;
+	*background-color: #df49b8;
+	color: #fff;
+}
+
 /* Alizarin */
 .site-content .has-alizarin-background-color {
 	background-color: #df312c;
@@ -3053,13 +3134,37 @@ p.demo_store {
 	color: #df312c;
 }
 
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-alizarin-background-color {
+	background-color: transparent;
+	border: 2px solid #df312c;
+	color: #df312c;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-alizarin-background-color:hover {
+	background-color: #df312c;
+	*background-color: #df312c;
+	color: #fff;
+}
+
 /* Pumpkin */
 .site-content .has-pumpkin-background-color {
-	background-color: #FF8228;
+	background-color: #ff8228;
 }
 
 .site-content .has-pumpkin-color {
-	color: #FF8228;
+	color: #ff8228;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-pumpkin-background-color {
+	background-color: transparent;
+	border: 2px solid #ff8228;
+	color: #ff8228;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-pumpkin-background-color:hover {
+	background-color: #ff8228;
+	*background-color: #ff8228;
+	color: #fff;
 }
 
 /* Titanium Yellow */
@@ -3071,6 +3176,18 @@ p.demo_store {
 	color: #eef000;
 }
 
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-titanium-yellow-background-color {
+	background-color: transparent;
+	border: 2px solid #eef000;
+	color: #eef000;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-titanium-yellow-background-color:hover {
+	background-color: #eef000;
+	*background-color: #eef000;
+	color: #3a3a3a;
+}
+
 /* Atlantis */
 .site-content .has-atlantis-background-color {
 	background-color: #7ed934;
@@ -3080,13 +3197,37 @@ p.demo_store {
 	color: #7ed934;
 }
 
-/* Denim */
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-atlantis-background-color {
+	background-color: transparent;
+	border: 2px solid #7ed934;
+	color: #7ed934;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-atlantis-background-color:hover {
+	background-color: #7ed934;
+	*background-color: #7ed934;
+	color: #3a3a3a;
+}
+
+/* White Smoke */
 .site-content .has-white-smoke-background-color {
 	background-color: #eee;
 }
 
 .site-content .has-white-smoke-color {
 	color: #eee;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-white-smoke-background-color {
+	background-color: transparent;
+	border: 2px solid #eee;
+	color: #eee;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-white-smoke-background-color:hover {
+	background-color: #eee;
+	*background-color: #eee;
+	color: #3a3a3a;
 }
 
 /* White */
@@ -3096,6 +3237,18 @@ p.demo_store {
 
 .site-content .has-white-color {
 	color: #fff;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-white-background-color {
+	background-color: transparent;
+	border: 2px solid #fff;
+	color: #fff;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link.has-white-background-color:hover {
+	background-color: #fff;
+	*background-color: #fff;
+	color: #3a3a3a;
 }
 
 /* Custom Font Sizes */
@@ -3389,7 +3542,7 @@ p.demo_store {
 	border-radius: 0;
 }
 
-.wp-block-button__link:not(.has-background) {
+.wp-block-button__link {
 	color: #fff;
 	background-color: #2e7bc4;
 	*background-color: #2e7bc4;
@@ -3398,6 +3551,18 @@ p.demo_store {
 .site-content .wp-block-button .wp-block-button__link:hover {
 	background-color: #344860;
 	*background-color: #344860;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link:hover {
+	background-color: #2e7bc4;
+	*background-color: #2e7bc4;
+	color: #fff;
+}
+
+.site-content .wp-block-button.is-style-outline .wp-block-button__link {
+	background-color: transparent;
+	border: 2px solid #2e7bc4;
+	color: #2e7bc4;
 }
 
 /* Seperator block */
@@ -3550,6 +3715,12 @@ p.demo_store {
 .site-content .wp-block-group.alignwide,
 .site-content .wp-block-group.alignfull {
 	padding: 20px 30px;
+}
+
+/* Social Links */
+.wp-block-social-links .wp-social-link {
+	margin: 0 20px 0 0;
+	margin: 0 1.25rem 0 0;
 }
 
 /* ==========================================================================
