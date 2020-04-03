@@ -3,7 +3,7 @@ Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support
 Requires at least: 4.8
 Tested up to: 5.4
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -163,6 +163,9 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 
 == Changelog ==
+
+= 1.4.7 =
+- Update Select2 component to load from theme rather than CDN as per Theme Review Guidelines
 
 = 1.4.6 =
 - Fix Block Editor styles due to Core breaking backwards compatibility with their renaming of `editor-` classes
