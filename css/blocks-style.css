@@ -13,6 +13,18 @@ Description: Used to style the Block Editor (Gutenberg)
 	color: #3a3a3a;
 }
 
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-eclipse-background-color {
+	background-color: transparent !important;
+	border: 2px solid #3a3a3a;
+	color: #3a3a3a;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-eclipse-background-color:hover {
+	background-color: #3a3a3a !important;
+	*background-color: #3a3a3a !important;
+	color: #fff;
+}
+
 /* San Juan */
 .edit-post-visual-editor .has-san-juan-background-color {
 	background-color: #334861;
@@ -20,6 +32,18 @@ Description: Used to style the Block Editor (Gutenberg)
 
 .edit-post-visual-editor .has-san-juan-color {
 	color: #334861;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-san-juan-background-color {
+	background-color: transparent !important;
+	border: 2px solid #334861;
+	color: #334861;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-san-juan-background-color:hover {
+	background-color: #334861 !important;
+	*background-color: #334861 !important;
+	color: #fff;
 }
 
 /* Denim */
@@ -31,6 +55,18 @@ Description: Used to style the Block Editor (Gutenberg)
 	color: #2979c7;
 }
 
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-denim-background-color {
+	background-color: transparent !important;
+	border: 2px solid #2979c7;
+	color: #2979c7;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-denim-background-color:hover {
+	background-color: #2979c7 !important;
+	*background-color: #2979c7 !important;
+	color: #fff;
+}
+
 /* Electric Violet */
 .edit-post-visual-editor .has-electric-violet-background-color {
 	background-color: #8309e7;
@@ -38,6 +74,18 @@ Description: Used to style the Block Editor (Gutenberg)
 
 .edit-post-visual-editor .has-electric-violet-color {
 	color: #8309e7;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-electric-violet-background-color {
+	background-color: transparent !important;
+	border: 2px solid #8309e7;
+	color: #8309e7;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-electric-violet-background-color:hover {
+	background-color: #8309e7 !important;
+	*background-color: #8309e7 !important;
+	color: #fff;
 }
 
 /* Cerise */
@@ -49,6 +97,18 @@ Description: Used to style the Block Editor (Gutenberg)
 	color: #df49b8;
 }
 
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-cerise-background-color {
+	background-color: transparent !important;
+	border: 2px solid #df49b8;
+	color: #df49b8;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-cerise-background-color:hover {
+	background-color: #df49b8 !important;
+	*background-color: #df49b8 !important;
+	color: #fff;
+}
+
 /* Alizarin */
 .edit-post-visual-editor .has-alizarin-background-color {
 	background-color: #df312c;
@@ -58,13 +118,37 @@ Description: Used to style the Block Editor (Gutenberg)
 	color: #df312c;
 }
 
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-alizarin-background-color {
+	background-color: transparent !important;
+	border: 2px solid #df312c;
+	color: #df312c;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-alizarin-background-color:hover {
+	background-color: #df312c !important;
+	*background-color: #df312c !important;
+	color: #fff;
+}
+
 /* Pumpkin */
 .edit-post-visual-editor .has-pumpkin-background-color {
-	background-color: #FF8228;
+	background-color: #ff8228;
 }
 
 .edit-post-visual-editor .has-pumpkin-color {
-	color: #FF8228;
+	color: #ff8228;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-pumpkin-background-color {
+	background-color: transparent !important;
+	border: 2px solid #ff8228;
+	color: #ff8228;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-pumpkin-background-color:hover {
+	background-color: #ff8228 !important;
+	*background-color: #ff8228 !important;
+	color: #fff;
 }
 
 /* Titanium Yellow */
@@ -76,6 +160,18 @@ Description: Used to style the Block Editor (Gutenberg)
 	color: #eef000;
 }
 
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-titanium-yellow-background-color {
+	background-color: transparent !important;
+	border: 2px solid #eef000;
+	color: #eef000;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-titanium-yellow-background-color:hover {
+	background-color: #eef000 !important;
+	*background-color: #eef000 !important;
+	color: #fff;
+}
+
 /* Atlantis */
 .edit-post-visual-editor .has-atlantis-background-color {
 	background-color: #7ed934;
@@ -83,6 +179,18 @@ Description: Used to style the Block Editor (Gutenberg)
 
 .edit-post-visual-editor .has-atlantis-color {
 	color: #7ed934;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-atlantis-background-color {
+	background-color: transparent !important;
+	border: 2px solid #7ed934;
+	color: #7ed934;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-atlantis-background-color:hover {
+	background-color: #7ed934 !important;
+	*background-color: #7ed934 !important;
+	color: #fff;
 }
 
 /* Denim */
@@ -94,12 +202,36 @@ Description: Used to style the Block Editor (Gutenberg)
 	color: #eee;
 }
 
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-white-smoke-background-color {
+	background-color: transparent !important;
+	border: 2px solid #eee;
+	color: #eee;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-white-smoke-background-color:hover {
+	background-color: #eee !important;
+	*background-color: #eee !important;
+	color: #fff;
+}
+
 /* White */
 .edit-post-visual-editor .has-white-background-color {
 	background-color: #fff;
 }
 
 .edit-post-visual-editor .has-white-color {
+	color: #fff;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-white-background-color {
+	background-color: transparent !important;
+	border: 2px solid #fff;
+	color: #fff;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link.has-white-background-color:hover {
+	background-color: #fff !important;
+	*background-color: #fff !important;
 	color: #fff;
 }
 
@@ -493,6 +625,22 @@ Description: Used to style the Block Editor (Gutenberg)
 	*background-color: #344860;
 }
 
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link:hover {
+	background-color: #2e7bc4 !important;
+	*background-color: #2e7bc4 !important;
+	color: #fff;
+}
+
+.edit-post-visual-editor .wp-block-button.is-style-outline .wp-block-button__link {
+	background-color: transparent !important;
+	border: 2px solid #2e7bc4;
+	color: #2e7bc4;
+}
+
+.edit-post-sidebar .wp-block-button .wp-block-button__link {
+	border-radius: 0;
+}
+
 /* Seperator block */
 .edit-post-visual-editor hr {
 	background-color: inherit;
@@ -520,6 +668,166 @@ Description: Used to style the Block Editor (Gutenberg)
 	background: rgba(255, 255, 255, .7);
 }
 
+/* Social Links */
+.edit-post-visual-editor .wp-block-social-links .wp-social-link {
+	margin: 0 20px 0 0;
+	margin: 0 1.25rem 0 0;
+}
+
+.edit-post-visual-editor .wp-block-social-links .wp-social-link:hover {
+	transform: scale(1.1);
+}
+
+.edit-post-visual-editor .wp-block-social-links .components-button:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	box-shadow: none;
+}
+
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-amazon:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #f90;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-bandcamp:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #1ea0c3;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-behance:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #0757fe;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-codepen:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #1e1f26;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-deviantart:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #02e49b;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-dribbble:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #e94c89;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-dropbox:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #4280ff;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-etsy:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #f45800;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-facebook:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #1977f2;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-fivehundredpx:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #000;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-flickr:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #0461dd;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-foursquare:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #e65678;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-github:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #24292d;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-goodreads:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #eceadd;
+	color: #382110;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-google:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #ea4434;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-instagram:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #f00075;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-lastfm:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #e21b24;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-linkedin:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #0577b5;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-mastodon:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #3288d4;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-medium:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #02ab6c;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-meetup:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #f6405f;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-pinterest:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #e60122;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-pocket:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #ef4155;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-reddit:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #fe4500;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-skype:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #0478d7;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-snapchat:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #fefc00;
+	color: #fff;;
+ stroke:#000
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-soundcloud:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #ff5600;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-spotify:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #1bd760;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-tumblr:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #011835;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-twitch:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #6440a4;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-twitter:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #21a1f3;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-vimeo:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #1eb7ea;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-vk:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #4680c2;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-wordpress:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #3499cd;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-yelp:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #d32422;
+	color: #fff;
+}
+.edit-post-visual-editor .wp-block-social-links:not(.is-style-logos-only) .components-button.wp-social-link-youtube:not(:disabled):not([aria-disabled="true"]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
+	background-color: #ff0100;
+	color: #fff;
+}
+
 /* Override some of the Block Editor styles to make Custom Meta Boxes more visible */
 .edit-post-meta-boxes-area #poststuff h2.hndle {
 	background-color: #f9f9f9;
@@ -530,23 +838,12 @@ Description: Used to style the Block Editor (Gutenberg)
 	border-bottom: none;
 }
 
-.edit-post-meta-boxes-area #poststuff .toggle-indicator {
-	z-index: 99;
-	position: absolute;
-	top: 12px;
-	right: 15px;
-}
-
 .edit-post-meta-boxes-area #poststuff .meta-box-sortables .postbox {
 	margin-bottom: 20px;
 }
 
 .edit-post-layout__metaboxes:not(:empty) .edit-post-meta-boxes-area {
 	margin: 0;
-}
-
-.edit-post-meta-boxes-area .acf-postbox > .hndle .acf-hndle-cog {
-	right: 20px;
 }
 
 .components-font-size-picker__buttons .components-font-size-picker__selector:hover {
