@@ -166,6 +166,7 @@ https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
 
 = 1.4.7 =
 - Update Select2 component to load from theme rather than CDN as per Theme Review Guidelines
+- Fix Block Editor styles due to Core breaking backwards compatibility again
 
 = 1.4.6 =
 - Fix Block Editor styles due to Core breaking backwards compatibility with their renaming of `editor-` classes

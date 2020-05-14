@@ -326,7 +326,7 @@ add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
  * Load our Block Editor styles to style the Editor like the front-end.
  * Increased the width of the Block Editor blocks to match the site width from the Customizer by dynamically loading our styles into the <head>
  *
- * Styles are duplicated for editor-post-title__block/block-editor-post-title__block because Core Devs broke backwards compatibility
+ * Some styles are duplicated (with different classes) because Core Devs ignore backwards compatibility
  *
  * @since Ephemeris 1.4
  *
@@ -344,6 +344,7 @@ if ( ! function_exists( 'ephemeris_block_editor_styles' ) ) {
 		// Increase width of Title
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-post-title .editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-post-title .block-editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
 
 
 		// Increase width of all Blocks & Block Appender
