@@ -1,9 +1,10 @@
 === Ephemeris ===
 Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support, block-styles, wide-blocks
-Requires at least: 4.8
-Tested up to: 5.4
 Stable tag: 1.4.7
+Requires at least: 4.8
+Tested up to: 5.5
+Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -156,17 +157,20 @@ and also uses the following:
 [Dosis](https://fonts.google.com/specimen/Dosis), which is licensed under SIL Open Font License 1.1
 
 Screenshot images are all licensed under CC0 1.0 Universal - https://creativecommons.org/publicdomain/zero/1.0/deed.en
-https://pixabay.com/en/lighthouse-glow-evening-clouds-2372461/
-https://pixabay.com/en/action-balancing-boy-extreme-fun-1853289/
-https://pixabay.com/en/stockholm-sweden-city-urban-1970608/
-https://pixabay.com/en/beautiful-blond-blonde-field-1869583/
+https://www.pexels.com/photo/lighthouse-1532771
+https://www.pexels.com/photo/low-angle-shot-of-a-man-on-a-skateboard-in-mid-air-3039185
+https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-1263986
+https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-1263986
 
 
 == Changelog ==
 
 = 1.4.7 =
-- Update Select2 component to load from theme rather than CDN as per Theme Review Guidelines
 - Fix Block Editor styles due to Core breaking backwards compatibility again
+- Fix escaping in cutomizer controls and Author Bio template
+- Update Select2 component to load from theme rather than CDN as per Theme Review Guidelines
+- Update custom logo style as core no longer outputs a link around a custom logo image on the homepage
+- Add Requires PHP tag to stylesheet header
 
 = 1.4.6 =
 - Fix Block Editor styles due to Core breaking backwards compatibility with their renaming of `editor-` classes
