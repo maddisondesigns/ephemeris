@@ -234,6 +234,10 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 			)
 		) );
 
+		// Add support for Custom Line Heights and Custom Units
+		add_theme_support( 'custom-line-height' );
+		add_theme_support( 'custom-units' );
+
 		// Display a handy map of where all the theme hooks reside
 		// Only used when WP_EPHEMERIS_HOOKS is defined as true in wp-config.php
 		if ( defined( 'WP_EPHEMERIS_HOOKS') && WP_EPHEMERIS_HOOKS ) {
