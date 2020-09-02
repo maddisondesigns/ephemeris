@@ -170,7 +170,9 @@ https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-12639
 - Fix escaping in cutomizer controls and Author Bio template
 - Update Select2 component to load from theme rather than CDN as per Theme Review Guidelines
 - Update custom logo style as core no longer outputs a link around a custom logo image on the homepage
+- Update Font Awesome to v5.14.0
 - Add Requires PHP tag to stylesheet header
+- Add TikTok and Unsplash social icons
 
 = 1.4.6 =
 - Fix Block Editor styles due to Core breaking backwards compatibility with their renaming of `editor-` classes
