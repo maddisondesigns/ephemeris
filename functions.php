@@ -269,7 +269,7 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 
 		// Register and enqueue our icon font
 		// We're using the awesome Font Awesome icon font. https://fontawesome.com
-		wp_enqueue_style( 'font-awesome-5', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array( 'normalize' ), '5.13.0', 'all' );
+		wp_enqueue_style( 'font-awesome-5', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array( 'normalize' ), '5.14.0', 'all' );
 
 		// Our styles for setting up the grid. We're using Unsemantic. http://unsemantic.com
 		wp_enqueue_style( 'unsemantic-grid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'font-awesome-5' ), '1.0.0', 'all' );
@@ -1661,9 +1661,11 @@ if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 			array( 'url' => 'soundcloud.com', 'icon' => 'fab fa-soundcloud', 'title' => sprintf( __( 'Follow %s on SoundCloud', 'ephemeris' ), $plurality ), 'class' => 'soundcloud' ),
 			array( 'url' => 'spotify.com', 'icon' => 'fab fa-spotify', 'title' => sprintf( __( 'Follow %s on Spotify', 'ephemeris' ), $plurality ), 'class' => 'spotify' ),
 			array( 'url' => 'stackoverflow.com', 'icon' => 'fab fa-stack-overflow', 'title' => sprintf( __( 'Join %s on Stack Overflow', 'ephemeris' ), $plurality ), 'class' => 'stackoverflow' ),
+			array( 'url' => 'tiktok.com', 'icon' => 'fab fa-tiktok', 'title' => sprintf( __( 'Follow %s on TikTok', 'ephemeris' ), $plurality ), 'class' => 'tiktok' ),
 			array( 'url' => 'tumblr.com', 'icon' => 'fab fa-tumblr', 'title' => sprintf( __( 'Follow %s on Tumblr', 'ephemeris' ), $plurality ), 'class' => 'tumblr' ),
 			array( 'url' => 'twitch.tv', 'icon' => 'fab fa-twitch', 'title' => sprintf( __( 'Follow %s on Twitch', 'ephemeris' ), $plurality ), 'class' => 'twitch' ),
 			array( 'url' => 'twitter.com', 'icon' => 'fab fa-twitter', 'title' => sprintf( __( 'Follow %s on Twitter', 'ephemeris' ), $plurality ), 'class' => 'twitter' ),
+			array( 'url' => 'unsplash.com', 'icon' => 'fab fa-unsplash', 'title' => sprintf( __( 'Follow %s on Unsplash', 'ephemeris' ), $plurality ), 'class' => 'unsplash' ),
 			array( 'url' => 'vimeo.com', 'icon' => 'fab fa-vimeo-v', 'title' => sprintf( __( 'Follow %s on Vimeo', 'ephemeris' ), $plurality ), 'class' => 'vimeo' ),
 			array( 'url' => 'weibo.com', 'icon' => 'fab fa-weibo', 'title' => sprintf( __( 'Follow %s on weibo', 'ephemeris' ), $plurality ), 'class' => 'weibo' ),
 			array( 'url' => 'youtube.com', 'icon' => 'fab fa-youtube', 'title' => sprintf( __( 'Subscribe to %s on YouTube', 'ephemeris' ), $plurality ), 'class' => 'youtube' ),
