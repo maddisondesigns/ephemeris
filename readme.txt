@@ -1,7 +1,7 @@
 === Ephemeris ===
 Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support, block-styles, wide-blocks
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 Requires at least: 4.8
 Tested up to: 5.5
 Requires PHP: 5.6
@@ -134,13 +134,16 @@ Search for: Ephemeris
 
 Lastly, update the stylesheet header in style.css and either update or delete this readme.txt file.
 
-
-== License ==
+== Copyright ==
 
 Ephemeris WordPress Theme, Copyright 2018 Anthony Hortin
 Ephemeris is distributed under the terms of the GNU GPL
 
-[GNU General Public License version 2](https://www.gnu.org/licenses/gpl-2.0.html)
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 == Credits ==
 
@@ -164,6 +167,10 @@ https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-12639
 
 
 == Changelog ==
+
+= 1.4.8 =
+- Fix accessibility on dropdown menus so they can be tabbed onto
+- Update strings to remove translation function when it's only a space as per Theme Review Guidelines
 
 = 1.4.7 =
 - Fix Block Editor styles due to Core breaking backwards compatibility again
