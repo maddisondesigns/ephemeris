@@ -1179,7 +1179,7 @@ if ( ! function_exists( 'ephemeris_posted_on' ) ) {
 		);
 
 		// Return the Categories as a list
-		$categories_list = get_the_category_list( esc_html__( ' ', 'ephemeris' ) );
+		$categories_list = get_the_category_list( ' ' );
 
 		// Translators: 1: Permalink 2: Title 3: No. of Comments
 		$comments = sprintf( '<span class="comments-link"><i class="fas fa-comment" aria-hidden="true"></i> <a href="%1$s" title="%2$s">%3$s</a></span>',
@@ -1215,7 +1215,7 @@ if ( ! function_exists( 'ephemeris_entry_meta' ) ) {
 		// Return the Tags as a list
 		$tag_list = "";
 		if ( get_the_tag_list() ) {
-			$tag_list = get_the_tag_list( '<span class="post-tags">', esc_html__( ' ', 'ephemeris' ), '</span>' );
+			$tag_list = get_the_tag_list( '<span class="post-tags">', ' ', '</span>' );
 		}
 
 		// Translators: 1: Tag list
@@ -1799,12 +1799,12 @@ if ( ! function_exists( 'ephemeris_phone_word_to_number' ) ) {
 			_x( 'x', 'Alphabetic character on telephone keypad number 9', 'ephemeris' ) => '9',
 			_x( 'y', 'Alphabetic character on telephone keypad number 9', 'ephemeris' ) => '9',
 			_x( 'z', 'Alphabetic character on telephone keypad number 9', 'ephemeris' ) => '9',
-			__( ' ', 'ephemeris' ) => '',
-			__( '-', 'ephemeris' ) => '',
-			__( '(', 'ephemeris' ) => '',
-			__( ')', 'ephemeris' ) => '',
-			__( '[', 'ephemeris' ) => '',
-			__( ']', 'ephemeris' ) => '',
+			' ' => '',
+			'-' => '',
+			'(' => '',
+			')' => '',
+			'[' => '',
+			']' => '',
 		);
 		if( !empty( $phone_number ) ) {
 			return str_ireplace( array_keys( $phone_word_pattern ), array_values( $phone_word_pattern ), $phone_number );
