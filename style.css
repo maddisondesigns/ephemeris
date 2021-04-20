@@ -4,9 +4,9 @@ Theme URI: https://skyrocketthemes.com/themes/ephemeris-wordpress-theme
 Author: ahortin
 Author URI: https://maddisondesigns.com
 Description: The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customise and extend. Ephemeris is WooCommerce and bbPress compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Ephemeris also supports the new WordPress Block Editor (Gutenberg). Now that's pretty cool, eh!
-Version: 1.4.7
+Version: 1.4.9
 Requires at least: 4.8
-Tested up to: 5.5
+Tested up to: 5.6
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -2103,7 +2103,8 @@ form label.error {
 .main-navigation ul ul li {
 }
 
-.main-navigation ul ul :hover > a {
+.main-navigation ul ul :hover > a,
+.main-navigation ul ul :focus-within > a {
 	color: #bec3c7; /* Nav bar dropdown level 2 link color on level 3 hover */
 	background-color: #344860; /* Nav bar dropdown link background color on hover */
 }
@@ -2112,11 +2113,13 @@ form label.error {
 	color: #2c7dbe; /* Nav bar link color on hover */
 }
 
-.main-navigation ul ul a:hover {
+.main-navigation ul ul a:hover,
+.main-navigation ul ul a:focus-within {
 	color: #fff; /* Nav bar dropdown link color on hover */
 }
 
-.main-navigation ul li:hover > ul {
+.main-navigation ul li:hover > ul,
+.main-navigation ul li:focus-within > ul {
 	display: block;
 }
 
@@ -3682,13 +3685,7 @@ p.demo_store {
 	width: auto;
 }
 
-.site-content figure.wp-block-embed.is-type-video:before {
-	content: "";
-	display: block;
-	padding-top: 100%;
-}
-
-.site-content figure.wp-block-embed.is-type-video iframe {
+.wp-embed-responsive .site-content .wp-has-aspect-ratio iframe {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -3696,26 +3693,6 @@ p.demo_store {
 	bottom: 0;
 	width: 100%;
 	height: 100%;
-}
-
-.site-content figure.wp-block-embed.is-type-video.wp-embed-aspect-21-9:before {
-	padding-top: 42.85%;
-}
-
-.site-content figure.wp-block-embed.is-type-video.wp-embed-aspect-16-9:before {
-	padding-top: 56.25%;
-}
-
-.site-content figure.wp-block-embed.is-type-video.wp-embed-aspect-2-1:before {
-	padding-top: 50%;
-}
-
-.site-content figure.wp-block-embed.is-type-video.wp-embed-aspect-4-3:before {
-	padding-top: 75%;
-}
-
-.site-content figure.wp-block-embed.is-type-video.wp-embed-aspect-1-2:before {
-	padding-top: 200%;
 }
 
 /* Group Block */
@@ -3953,7 +3930,7 @@ p.demo_store {
 
 /* ==========================================================================
    Non-semantic helper classes from HTML5 Boilerplate
-   Please define your styles before this section.
+   https://html5boilerplate.com
    ========================================================================== */
 
 /* For image replacement */
@@ -3979,20 +3956,19 @@ p.demo_store {
 
 /* ==========================================================================
    Print styles from HTML5 Boilerplate
-   Inlined to avoid required HTTP connection: h5bp.com/r
+   https://html5boilerplate.com
    ========================================================================== */
 
 @media print {
-  * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
-  a, a:visited { text-decoration: underline; }
-  a[href]:after { content: " (" attr(href) ")"; }
-  abbr[title]:after { content: " (" attr(title) ")"; }
-  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
-  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
-  thead { display: table-header-group; } /* h5bp.com/t */
-  tr, img { page-break-inside: avoid; }
-  img { max-width: 100% !important; }
-  @page { margin: 0.5cm; }
-  p, h2, h3 { orphans: 3; widows: 3; }
-  h2, h3 { page-break-after: avoid; }
+	*,*::before,*::after {background: #fff !important;color: #000 !important;box-shadow: none !important;text-shadow: none !important;}
+	a,a:visited {text-decoration: underline;}
+	a[href]::after {content: " (" attr(href) ")";}
+	abbr[title]::after {content: " (" attr(title) ")";}
+	a[href^="#"]::after,a[href^="javascript:"]::after {content: "";}
+	pre {white-space: pre-wrap !important;}
+	pre,blockquote {border: 1px solid #999;page-break-inside: avoid;}
+	thead {display: table-header-group;}
+	tr,img {page-break-inside: avoid;}
+	p,h2,h3 {orphans: 3;widows: 3;}
+	h2,h3 {page-break-after: avoid;}
 }

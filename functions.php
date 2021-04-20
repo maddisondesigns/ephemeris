@@ -116,10 +116,10 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 
 		// Enable support for Theme Logos
 		add_theme_support( 'custom-logo', array(
-			'width'       => 300,
-			'height'      => 80,
+			'width' => 300,
+			'height' => 80,
 			'flex-height' => true,
-			'flex-width'  => true,
+			'flex-width' => true,
 			'header-text' => array( 'site-title', 'site-description' ),
 			)
 		);
@@ -237,6 +237,15 @@ if ( ! function_exists( 'ephemeris_setup' ) ) {
 		// Add support for Custom Line Heights and Custom Units
 		add_theme_support( 'custom-line-height' );
 		add_theme_support( 'custom-units' );
+
+		// Add support for loading default block styles on front-end
+		add_theme_support( 'wp-block-styles' );
+
+		// Add support for responsive embeds
+		add_theme_support( 'responsive-embeds' );
+
+		// Add support for padding controls when supported by blocks
+		add_theme_support('custom-spacing');
 
 		// Display a handy map of where all the theme hooks reside
 		// Only used when WP_EPHEMERIS_HOOKS is defined as true in wp-config.php

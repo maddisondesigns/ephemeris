@@ -1,9 +1,9 @@
 === Ephemeris ===
 Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support, block-styles, wide-blocks
-Stable tag: 1.4.8
+Stable tag: 1.4.9
 Requires at least: 4.8
-Tested up to: 5.5
+Tested up to: 5.6
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -167,6 +167,13 @@ https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-12639
 
 
 == Changelog ==
+
+= 1.4.9 =
+- Fix broken YouTube/Vimeo embeds
+- Add wp-block-styles Theme Support
+- Add responsive-embeds Theme Support
+- Update Font Awesome to v5.15.3
+- Update print styles
 
 = 1.4.8 =
 - Fix accessibility on dropdown menus so they can be tabbed onto
