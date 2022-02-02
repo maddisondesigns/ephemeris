@@ -604,6 +604,11 @@ if ( ! function_exists( 'ephemeris_the_custom_logo' ) ) {
 			$logo_title .= '<span class="site-title-link">';
 			$logo_title .= '<a href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" rel="home">';
 			$logo_title .= get_bloginfo( 'name' );
+			if ( !empty( get_bloginfo( 'description' ) ) ) {
+				$logo_title .= '<div class="site-title-tagline">';
+				$logo_title .= get_bloginfo( 'description' );
+				$logo_title .= '</div>';
+			}
 			$logo_title .= '</a>';
 			$logo_title .= '</span>';
 		}
