@@ -998,6 +998,7 @@ class ephemeris_initialise_customizer_settings {
 		// Retrieve the list of Elementor library templates
 		$template_library_posts = get_posts(
 			array(
+				'numberposts' => -1,
 				'sort_order' => 'DESC',
 				'post_type' => 'elementor_library',
 			)
