@@ -1,9 +1,9 @@
 === Ephemeris ===
 Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support, block-styles, wide-blocks
-Stable tag: 1.4.9
+Stable tag: 1.4.10
 Requires at least: 4.8
-Tested up to: 5.6
+Tested up to: 5.9
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -167,6 +167,11 @@ https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-12639
 
 
 == Changelog ==
+
+= 1.4.10 =
+- Fix missing tagline display in Site Title area
+- Fix the Elementor Customizer control so it retrieves all the templates not just the first 5
+- Update Font Awesome to v5.15.4
 
 = 1.4.9 =
 - Fix broken YouTube/Vimeo embeds
