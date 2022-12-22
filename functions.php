@@ -278,10 +278,10 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 
 		// Register and enqueue our icon font
 		// We're using the awesome Font Awesome icon font. https://fontawesome.com
-		wp_enqueue_style( 'font-awesome-5', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array( 'normalize' ), '5.14.0', 'all' );
+		wp_enqueue_style( 'font-awesome-5', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array( 'normalize' ), '6.2.1', 'all' );
 
 		// Our styles for setting up the grid. We're using Unsemantic. http://unsemantic.com
-		wp_enqueue_style( 'unsemantic-grid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'font-awesome-5' ), '1.0.0', 'all' );
+		wp_enqueue_style( 'unsemantic-grid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'font-awesome-5' ), '1.2.3', 'all' );
 
 		/*
 		 * Load our Google Fonts.
@@ -352,34 +352,18 @@ if ( ! function_exists( 'ephemeris_block_editor_styles' ) ) {
 		$styles = '';
 
 		// Enqueue our seperate Block Editor stylesheet with the rest of our styles
-		wp_enqueue_style( 'ephemeris-blocks-style', trailingslashit( get_template_directory_uri() ) . 'css/blocks-style.css', array(), '1.0.0', 'all' );
-
-		// Increase width of Title
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-post-title .editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-post-title .block-editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-post-title__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-
+		wp_enqueue_style( 'ephemeris-blocks-style', trailingslashit( get_template_directory_uri() ) . 'css/blocks-style.css', array(), '1.0.1', 'all' );
 
 		// Increase width of all Blocks & Block Appender
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .block-editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-default-block-appender {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .block-editor-default-block-appender {max-width: ' . esc_attr( $ephemeris_layout_width - 10 ) . 'px;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block {max-width: ' . esc_attr( $ephemeris_layout_width - 40 ) . 'px;}';
 
 		// Increase width of Wide blocks
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width - 10 + 400 ) . 'px;}';
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .block-editor-block-list__block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width - 10 + 400 ) . 'px;}';
-
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .block-editor-block-list__block[data-align="wide"] .editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 + 400 ) . 'px;}';
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .block-editor-block-list__block[data-align="wide"] .block-editor-block-list__block {max-width: ' . esc_attr( $ephemeris_layout_width - 10 + 400 ) . 'px;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="wide"] .wp-block {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
 
 		// Remove max-width on Full blocks
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="full"] {max-width: none;}';
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .block-editor-block-list__block[data-align="full"] {max-width: none;}';
-
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .block-editor-block-list__block[data-align="full"] .editor-block-list__block  {max-width: none;}';
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .block-editor-block-list__block[data-align="full"] .block-editor-block-list__block  {max-width: none;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="full"] {max-width: none;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="full"] .wp-block  {max-width: none;}';
 
 		// Output our styles into the <head> whenever our block styles are enqueued
 		wp_add_inline_style( 'ephemeris-blocks-style', $styles );
@@ -1657,6 +1641,7 @@ if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 			array( 'url' => 'dribbble.com', 'icon' => 'fab fa-dribbble', 'title' => sprintf( __( 'Follow %s on Dribbble', 'ephemeris' ), $plurality ), 'class' => 'dribbble' ),
 			array( 'url' => 'etsy.com', 'icon' => 'fab fa-etsy', 'title' => sprintf( __( 'favorite %s on Etsy', 'ephemeris' ), $plurality ), 'class' => 'etsy' ),
 			array( 'url' => 'facebook.com', 'icon' => 'fab fa-facebook-f', 'title' => sprintf( __( 'Like %s on Facebook', 'ephemeris' ), $plurality ), 'class' => 'facebook' ),
+			array( 'url' => 'figma.com', 'icon' => 'fab fa-figma', 'title' => sprintf( __( 'Follow %s on Figma', 'ephemeris' ), $plurality ), 'class' => 'figma' ),
 			array( 'url' => 'flickr.com', 'icon' => 'fab fa-flickr', 'title' => sprintf( __( 'Connect with %s on Flickr', 'ephemeris' ), $plurality ), 'class' => 'flickr' ),
 			array( 'url' => 'foursquare.com', 'icon' => 'fab fa-foursquare', 'title' => sprintf( __( 'Follow %s on Foursquare', 'ephemeris' ), $plurality ), 'class' => 'foursquare' ),
 			array( 'url' => 'github.com', 'icon' => 'fab fa-github', 'title' => sprintf( __( 'Fork %s on GitHub', 'ephemeris' ), $plurality ), 'class' => 'github' ),
@@ -1664,10 +1649,12 @@ if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 			array( 'url' => 'kickstarter.com', 'icon' => 'fab fa-kickstarter-k', 'title' => sprintf( __( 'Back %s on Kickstarter', 'ephemeris' ), $plurality ), 'class' => 'kickstarter' ),
 			array( 'url' => 'last.fm', 'icon' => 'fab fa-lastfm', 'title' => sprintf( __( 'Follow %s on Last.fm', 'ephemeris' ), $plurality ), 'class' => 'lastfm' ),
 			array( 'url' => 'linkedin.com', 'icon' => 'fab fa-linkedin-in', 'title' => sprintf( __( 'Connect with %s on LinkedIn', 'ephemeris' ), $plurality ), 'class' => 'linkedin' ),
+			array( 'url' => 'mastodon.social', 'icon' => 'fab fa-mastodon', 'title' => sprintf( __( 'Follow %s on Mastodon', 'ephemeris' ), $plurality ), 'class' => 'mastodon' ),
+			array( 'url' => 'mastodon.art', 'icon' => 'fab fa-mastodon', 'title' => sprintf( __( 'Follow %s on Mastodon', 'ephemeris' ), $plurality ), 'class' => 'mastodon' ),
 			array( 'url' => 'medium.com', 'icon' => 'fab fa-medium-m', 'title' => sprintf( __( 'Follow %s on Medium', 'ephemeris' ), $plurality ), 'class' => 'medium' ),
 			array( 'url' => 'patreon.com', 'icon' => 'fab fa-patreon', 'title' => sprintf( __( 'Support %s on Patreon', 'ephemeris' ), $plurality ), 'class' => 'patreon' ),
 			array( 'url' => 'pinterest.com', 'icon' => 'fab fa-pinterest-p', 'title' => sprintf( __( 'Follow %s on Pinterest', 'ephemeris' ), $plurality ), 'class' => 'pinterest' ),
-			array( 'url' => 'plus.google.com', 'icon' => 'fab fa-google-plus-g', 'title' => sprintf( __( 'Connect with %s on Google+', 'ephemeris' ), $plurality ), 'class' => 'googleplus' ),
+			array( 'url' => 'quora.com', 'icon' => 'fab fa-quora', 'title' => sprintf( __( 'Follow %s on Quora', 'ephemeris' ), $plurality ), 'class' => 'Quora' ),
 			array( 'url' => 'reddit.com', 'icon' => 'fab fa-reddit-alien', 'title' => sprintf( __( 'Join %s on Reddit', 'ephemeris' ), $plurality ), 'class' => 'reddit' ),
 			array( 'url' => 'slack.com', 'icon' => 'fab fa-slack-hash', 'title' => sprintf( __( 'Join %s on Slack', 'ephemeris' ), $plurality ), 'class' => 'slack.' ),
 			array( 'url' => 'slideshare.net', 'icon' => 'fab fa-slideshare', 'title' => sprintf( __( 'Follow %s on SlideShare', 'ephemeris' ), $plurality ), 'class' => 'slideshare' ),
@@ -1675,13 +1662,17 @@ if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 			array( 'url' => 'soundcloud.com', 'icon' => 'fab fa-soundcloud', 'title' => sprintf( __( 'Follow %s on SoundCloud', 'ephemeris' ), $plurality ), 'class' => 'soundcloud' ),
 			array( 'url' => 'spotify.com', 'icon' => 'fab fa-spotify', 'title' => sprintf( __( 'Follow %s on Spotify', 'ephemeris' ), $plurality ), 'class' => 'spotify' ),
 			array( 'url' => 'stackoverflow.com', 'icon' => 'fab fa-stack-overflow', 'title' => sprintf( __( 'Join %s on Stack Overflow', 'ephemeris' ), $plurality ), 'class' => 'stackoverflow' ),
+			array( 'url' => 'steamcommunity.com', 'icon' => 'fab fa-steam', 'title' => sprintf( __( 'Follow %s on Steam', 'ephemeris' ), $plurality ), 'class' => 'steam' ),
+			array( 'url' => 't.me', 'icon' => 'fab fa-telegram', 'title' => sprintf( __( 'Chat with %s on Telegram', 'ephemeris' ), $plurality ), 'class' => 'Telegram' ),
 			array( 'url' => 'tiktok.com', 'icon' => 'fab fa-tiktok', 'title' => sprintf( __( 'Follow %s on TikTok', 'ephemeris' ), $plurality ), 'class' => 'tiktok' ),
 			array( 'url' => 'tumblr.com', 'icon' => 'fab fa-tumblr', 'title' => sprintf( __( 'Follow %s on Tumblr', 'ephemeris' ), $plurality ), 'class' => 'tumblr' ),
 			array( 'url' => 'twitch.tv', 'icon' => 'fab fa-twitch', 'title' => sprintf( __( 'Follow %s on Twitch', 'ephemeris' ), $plurality ), 'class' => 'twitch' ),
 			array( 'url' => 'twitter.com', 'icon' => 'fab fa-twitter', 'title' => sprintf( __( 'Follow %s on Twitter', 'ephemeris' ), $plurality ), 'class' => 'twitter' ),
+			array( 'url' => 'assetstore.unity.com', 'icon' => 'fab fa-unity', 'title' => sprintf( __( 'Follow %s on Unity Asset Store', 'ephemeris' ), $plurality ), 'class' => 'unity' ),
 			array( 'url' => 'unsplash.com', 'icon' => 'fab fa-unsplash', 'title' => sprintf( __( 'Follow %s on Unsplash', 'ephemeris' ), $plurality ), 'class' => 'unsplash' ),
 			array( 'url' => 'vimeo.com', 'icon' => 'fab fa-vimeo-v', 'title' => sprintf( __( 'Follow %s on Vimeo', 'ephemeris' ), $plurality ), 'class' => 'vimeo' ),
 			array( 'url' => 'weibo.com', 'icon' => 'fab fa-weibo', 'title' => sprintf( __( 'Follow %s on weibo', 'ephemeris' ), $plurality ), 'class' => 'weibo' ),
+			array( 'url' => 'wa.me', 'icon' => 'fab fa-whatsapp', 'title' => sprintf( __( 'Chat with %s on WhatsApp', 'ephemeris' ), $plurality ), 'class' => 'WhatsApp' ),
 			array( 'url' => 'youtube.com', 'icon' => 'fab fa-youtube', 'title' => sprintf( __( 'Subscribe to %s on YouTube', 'ephemeris' ), $plurality ), 'class' => 'youtube' ),
 		);
 

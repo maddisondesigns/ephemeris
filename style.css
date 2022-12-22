@@ -4,9 +4,9 @@ Theme URI: https://skyrocketthemes.com/themes/ephemeris-wordpress-theme
 Author: ahortin
 Author URI: https://maddisondesigns.com
 Description: The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customise and extend. Ephemeris is WooCommerce and bbPress compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Ephemeris also supports the new WordPress Block Editor (Gutenberg). Now that's pretty cool, eh!
-Version: 1.4.10
+Version: 1.4.11
 Requires at least: 4.8
-Tested up to: 5.9
+Tested up to: 6.1
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -1409,7 +1409,7 @@ article.sticky {
 
 /* Quote */
 .format-quote .entry-content blockquote:before {
-	font-family: 'Font Awesome 5 Free';
+	font-family: 'Font Awesome 6 Free';
 	display: inline-block;
 	font-weight: 900;
 	font-style: normal;
@@ -2021,8 +2021,8 @@ form label.error {
 
 /* Padding around each top level menu option */
 .nav-menu > li a {
-	padding: 12px;
-	padding: .75rem
+	padding: 10px;
+	padding: .625rem
 }
 
 .main-navigation ul ul li {
@@ -2031,7 +2031,7 @@ form label.error {
 
 /* If you don't want the arrows on the top level drop down, simply remove this style */
 .main-navigation li.menu-item-has-children > a:after {
-	font-family: 'Font Awesome 5 Free';
+	font-family: 'Font Awesome 6 Free';
 	display: inline-block;
 	font-weight: 900;
 	font-style: normal;
@@ -2049,7 +2049,7 @@ form label.error {
 
 /* If you don't want the arrows on the sub-menu options, simply remove this style */
 .main-navigation ul li li.menu-item-has-children > a:after {
-	font-family: 'Font Awesome 5 Free';
+	font-family: 'Font Awesome 6 Free';
 	display: inline-block;
 	font-weight: 900;
 	font-style: normal;
@@ -2978,7 +2978,7 @@ p.demo_store {
 }
 
 .demo_store:before {
-	font-family: 'Font Awesome 5 Free';
+	font-family: 'Font Awesome 6 Free';
 	display: inline-block;
 	font-weight: 900;
 	font-style: normal;
@@ -3004,7 +3004,7 @@ p.demo_store {
 
 .demo_store a:before {
 	display: inline-block;
-	font-family: 'Font Awesome 5 Free';
+	font-family: 'Font Awesome 6 Free';
 	display: inline-block;
 	font-weight: 900;
 	font-style: normal;
@@ -3632,6 +3632,10 @@ p.demo_store {
 	padding: 0.375rem 0.625rem 0.375rem 0;
 }
 
+.site-content .wp-block-table.is-style-stripes td {
+	border: none;
+}
+
 .site-content .wp-block-table th {
 	border-bottom: 1px solid #ccc;
 }
@@ -3648,26 +3652,6 @@ p.demo_store {
 .wp-block-columns {
 	justify-content: space-between;
 	word-break: break-all;
-}
-
-.has-2-columns .wp-block-column {
-	width: 49%;
-}
-
-.has-3-columns .wp-block-column {
-	width: 32%;
-}
-
-.has-4-columns .wp-block-column {
-	width: 23.5%;
-}
-
-.has-5-columns .wp-block-column {
-	width: 18.5%;
-}
-
-.has-6-columns .wp-block-column {
-	width: 15%;
 }
 
 /* Group Block */
@@ -3709,6 +3693,10 @@ p.demo_store {
 }
 
 /* Social Links */
+.wp-block-social-links,
+.wp-block-social-links.has-normal-icon-size {
+	font-size: 26px;
+}
 .wp-block-social-links .wp-social-link {
 	margin: 0 20px 0 0;
 	margin: 0 1.25rem 0 0;

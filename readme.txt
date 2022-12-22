@@ -1,9 +1,9 @@
 === Ephemeris ===
 Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support, block-styles, wide-blocks
-Stable tag: 1.4.10
+Stable tag: 1.4.11
 Requires at least: 4.8
-Tested up to: 5.9
+Tested up to: 6.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -167,6 +167,12 @@ https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-12639
 
 
 == Changelog ==
+
+= 1.4.11 =
+- Update Font Awesome to v6.2.1
+- Update Unsemantic Grid to v1.2.3
+- Add Figma, Mastodon (works with mastodon.social & mastodon.art), Quora, Steam, Telegram, Unity & WhatsApp social icons
+- Update layout of blocks in Block Editor 
 
 = 1.4.10 =
 - Fix missing tagline display in Site Title area
