@@ -1,7 +1,7 @@
 === Ephemeris ===
 Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support, block-styles, wide-blocks
-Stable tag: 1.4.11
+Stable tag: 1.5.0
 Requires at least: 4.8
 Tested up to: 6.1
 Requires PHP: 5.6
@@ -156,8 +156,8 @@ Ephemeris includes the following awesomeness:
 
 and also uses the following:
 
-[Open Sans font](https://fonts.google.com/specimen/Open+Sans), which is licensed under Apache License Version 2.0
-[Dosis](https://fonts.google.com/specimen/Dosis), which is licensed under SIL Open Font License 1.1
+[Open Sans font](https://fonts.bunny.net/family/open-sans), which is licensed under Apache License Version 2.0
+[Dosis](https://fonts.bunny.net/family/dosis), which is licensed under SIL Open Font License 1.1
 
 Screenshot images are all licensed under CC0 1.0 Universal - https://creativecommons.org/publicdomain/zero/1.0/deed.en
 https://www.pexels.com/photo/lighthouse-1532771
@@ -167,6 +167,9 @@ https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-12639
 
 
 == Changelog ==
+
+= 1.5.0 =
+- Load fonts from [Bunny Fonts](https://bunny.net/fonts) rather than Google Fonts. Bunny Fonts is a drop-in replacement for Google Fonts, but without the tracking. Bunny Fonts has zero logging, no data sharing and is completetely GDPR Compliant.
 
 = 1.4.11 =
 - Update Font Awesome to v6.2.1

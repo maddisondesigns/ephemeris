@@ -677,7 +677,7 @@ if ( ! function_exists( 'ephemeris_fonts_url' ) ) {
 				'subset' => urlencode( $subsets ),
 				'display' => urlencode( 'fallback' ),
 			);
-			$fonts_url = add_query_arg( $query_args, "https://fonts.googleapis.com/css" );
+			$fonts_url = add_query_arg( $query_args, "https://fonts.bunny.net/css" );
 		}
 
 		return esc_url_raw( $fonts_url );
