@@ -31,14 +31,14 @@ jQuery( document ).ready(function($) {
 	});
 
 	// Make our Repeater fields sortable
-	$(this).find('.sortable').sortable({
+	$(this).find('.sortable_repeater.sortable').sortable({
 		update: function(event, ui) {
 			ephemerisGetAllInputs($(this).parent());
 		}
 	});
 
 	// Remove item starting from it's parent element
-	$('.sortable').on('click', '.customize-control-sortable-repeater-delete', function(event) {
+	$('.sortable_repeater.sortable').on('click', '.customize-control-sortable-repeater-delete', function(event) {
 		event.preventDefault();
 		var numItems = $(this).parent().parent().find('.repeater').length;
 
@@ -63,12 +63,12 @@ jQuery( document ).ready(function($) {
 	});
 
 	// Refresh our hidden field if any fields change
-	$('.sortable').change(function() {
+	$('.sortable_repeater.sortable').change(function() {
 		ephemerisGetAllInputs($(this).parent());
 	})
 
 	// Add https:// to the start of the URL if it doesn't have it
-	$('.sortable').on('blur', '.repeater-input', function() {
+	$('.sortable_repeater.sortable').on('blur', '.repeater-input', function() {
 		var url = $(this);
 		var val = url.val();
 		if(val && !val.match(/^.+:\/\/.*/)) {
@@ -195,12 +195,39 @@ jQuery( document ).ready(function($) {
 	  var inputValues = $element.find('.multi-image-checkbox').map(function() {
 	    if( $(this).is(':checked') ) {
 	      return $(this).val();
-	 //   } else {
-	 //     return '';
 	    }
 	  }).toArray();
 	  // Important! Make sure to trigger change event so Customizer knows it has to save the field
 	  $element.find('.customize-control-multi-image-checkbox').val(inputValues).trigger('change');
+	}
+
+	/**
+	 * Pill Checkbox Custom Control
+	 *
+	 * @author Anthony Hortin <http://maddisondesigns.com>
+	 * @license http://www.gnu.org/licenses/gpl-2.0.html
+	 * @link https://github.com/maddisondesigns
+	 */
+
+	$( ".pill_checkbox_control .sortable" ).sortable({
+		placeholder: "pill-ui-state-highlight",
+		update: function( event, ui ) {
+			ephemerisGetAllPillCheckboxes($(this).parent());
+		}
+	});
+
+	$('.pill_checkbox_control .sortable-pill-checkbox').on('change', function () {
+		ephemerisGetAllPillCheckboxes($(this).parent().parent().parent());
+	});
+
+	// Get the values from the checkboxes and add to our hidden field
+	function ephemerisGetAllPillCheckboxes($element) {
+		var inputValues = $element.find('.sortable-pill-checkbox').map(function() {
+			if( $(this).is(':checked') ) {
+				return $(this).val();
+			}
+		}).toArray();
+		$element.find('.customize-control-sortable-pill-checkbox').val(inputValues).trigger('change');
 	}
 
 	/**
@@ -352,6 +379,32 @@ jQuery( document ).ready(function($) {
 			$('#'+editor.id).trigger('change');
 		});
 	});
+
+	/**
+	 * WP ColorPicker Alpha Color Picker Control
+	 *
+	 * @author Anthony Hortin <http://maddisondesigns.com>
+	 * @license http://www.gnu.org/licenses/gpl-2.0.html
+	 * @link https://github.com/maddisondesigns
+	 */
+
+	// Manually initialise the wpColorPicker controls so we can add the color picker palette
+	$('.wpcolorpicker-alpha-color-picker').each(function( i, obj ) {
+		var colorPickerInput = $(this);
+		var paletteColors = _wpCustomizeSettings.controls[$(this).attr('id')].colorpickerpalette;
+		var options = {
+			palettes: paletteColors,
+			change: function(event, ui) {
+				// Set 1 ms timeout so input field is changed before change event is triggered
+				// See: https://github.com/Automattic/Iris/issues/55#issuecomment-303716820
+				setTimeout(function(){
+					// Important! Make sure to trigger change event so Customizer knows it has to save the field
+					colorPickerInput.trigger('change');
+				},1);
+			}
+		};
+		$(obj).wpColorPicker(options);
+	} );
 
 	/**
  	 * Alpha Color Picker Custom Control
@@ -619,3 +672,19 @@ jQuery( document ).ready(function($) {
 	}
 
 });
+
+/**
+ * Remove attached events from the Upsell Section to stop panel from being able to open/close
+ */
+( function( $, api ) {
+	api.sectionConstructor['ephemeris-upsell'] = api.Section.extend( {
+
+		// Remove events for this type of section.
+		attachEvents: function () {},
+
+		// Ensure this type of section is active. Normally, sections without contents aren't visible.
+		isContextuallyActive: function () {
+			return true;
+		}
+	} );
+} )( jQuery, wp.customize );

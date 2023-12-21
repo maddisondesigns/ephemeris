@@ -241,7 +241,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_normal',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_normal',
 			array(
 				'label' => __( 'Header Color', 'ephemeris' ),
 				'section' => 'color_page_post_headers_section',
@@ -256,7 +256,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_link',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_link',
 			array(
 				'label' => __( 'Header Link Color', 'ephemeris' ),
 				'section' => 'color_page_post_headers_section',
@@ -271,7 +271,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_hover',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_hover',
 			array(
 				'label' => __( 'Header Link Hover Color', 'ephemeris' ),
 				'section' => 'color_page_post_headers_section',
@@ -286,7 +286,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_visited',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_title_visited',
 			array(
 				'label' => __( 'Header Link Visited Color', 'ephemeris' ),
 				'section' => 'color_page_post_headers_section',
@@ -303,7 +303,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_normal',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_normal',
 			array(
 				'label' => __( 'Header Color', 'ephemeris' ),
 				'section' => 'color_body_headers_section',
@@ -318,7 +318,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_link',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_link',
 			array(
 				'label' => __( 'Header Link Color', 'ephemeris' ),
 				'section' => 'color_body_headers_section',
@@ -333,7 +333,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_hover',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_hover',
 			array(
 				'label' => __( 'Header Link Hover Color', 'ephemeris' ),
 				'section' => 'color_body_headers_section',
@@ -348,7 +348,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_visited',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_header_body_visited',
 			array(
 				'label' => __( 'Header Link Visited Color', 'ephemeris' ),
 				'section' => 'color_body_headers_section',
@@ -365,7 +365,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_normal',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_normal',
 			array(
 				'label' => __( 'Text Color ', 'ephemeris' ),
 				'section' => 'color_body_text_section',
@@ -380,7 +380,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_link',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_link',
 			array(
 				'label' => __( 'Text Link Color', 'ephemeris' ),
 				'section' => 'color_body_text_section',
@@ -395,7 +395,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_hover',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_hover',
 			array(
 				'label' => __( 'Text Link Hover Color', 'ephemeris' ),
 				'section' => 'color_body_text_section',
@@ -410,7 +410,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_visited',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_color_text_visited',
 			array(
 				'label' => __( 'Text Link Visited Color', 'ephemeris' ),
 				'section' => 'color_body_text_section',
@@ -660,7 +660,7 @@ class ephemeris_initialise_customizer_settings {
 			'TikTok' => __( '<i class="fab fa-tiktok"></i>', 'ephemeris' ),
 			'Tumblr' => __( '<i class="fab fa-tumblr"></i>', 'ephemeris' ),
 			'Twitch' => __( '<i class="fab fa-twitch"></i>', 'ephemeris' ),
-			'Twitter' => __( '<i class="fab fa-twitter"></i>', 'ephemeris' ),
+			'Twitter' => __( '<i class="fab fa-x-twitter"></i>', 'ephemeris' ),
 			'Unity' => __( '<i class="fab fa-unity"></i>', 'ephemeris' ),
 			'Unsplash' => __( '<i class="fab fa-unsplash"></i>', 'ephemeris' ),
 			'Vimeo' => __( '<i class="fab fa-vimeo-v"></i>', 'ephemeris' ),
@@ -793,22 +793,11 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_footer_background_color',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_footer_background_color',
 			array(
 				'label' => __( 'Footer Background Color', 'ephemeris' ),
 				'description' => __( 'Select the background color for the footer.', 'ephemeris' ),
 				'section' => 'footer_section',
-				'show_opacity' => true,
-				'palette' => array(
-					'#000',
-					'#fff',
-					'#df312c',
-					'#df9a23',
-					'#eef000',
-					'#7ed934',
-					'#1571c1',
-					'#8309e7'
-				),
 			)
 		) );
 
@@ -820,7 +809,7 @@ class ephemeris_initialise_customizer_settings {
 				'sanitize_callback' => 'ephemeris_hex_rgba_sanitization',
 			)
 		);
-		$wp_customize->add_control( new Ephemeris_Customize_Alpha_Color_Control( $wp_customize, 'ephemeris_footer_credits_font_color',
+		$wp_customize->add_control( new Ephemeris_Alpha_Color_Control( $wp_customize, 'ephemeris_footer_credits_font_color',
 			array(
 				'label' => __( 'Footer Font Color', 'ephemeris' ),
 				'description' => __( 'Select the font color for the footer.', 'ephemeris' ),

@@ -160,6 +160,10 @@ input[type="number"]:focus {
 	border: 3px solid #2885bb;
 }
 
+#customize-controls .image_radio_button_control .radio-button-label > img {
+	max-width: 70px;
+}
+
 /* ==========================================================================
    Image Checkboxes
    ========================================================================== */
@@ -174,6 +178,10 @@ input[type="number"]:focus {
 
 .image_checkbox_control .checkbox-label > input:checked + img {
 	border: 3px solid #2885bb;
+}
+
+#customize-controls .image_checkbox_control .checkbox-label > img {
+	max-width: 70px;
 }
 
 /* ==========================================================================
@@ -213,7 +221,7 @@ input[type="number"]:focus {
 	font-variant: normal;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
-	font-family: "dashicons";
+	font-family: dashicons;
 	font-weight: normal;
 	font-size: 24px;
 	content: "\f147";
@@ -347,7 +355,7 @@ input[type="number"]:focus {
 }
 
 .slider-custom-control .ui-widget-content {
-	background: #f4f4f4 none repeat scroll 0 0;
+	background: #fff none repeat scroll 0 0;
 	color: #333;
 }
 
@@ -441,22 +449,22 @@ input[type="number"]:focus {
 	height: 22px;
 	padding: 0;
 	line-height: 22px;
-	font-size: 14px;
+	font-size: 20px;
 	color: white;
-	font-family: Trebuchet, Arial, sans-serif;
+	font-family: dashicons;
 	font-weight: bold;
 	box-sizing: border-box;
 }
 
 .toggle-switch-inner:before {
-	content: "ON";
+	content: "\f147";
 	padding-left: 8px;
 	background-color: #2885bb;
 	color: #fff;
 }
 
 .toggle-switch-inner:after {
-	content: "OFF";
+	content: "\f158";
 	padding-right: 8px;
 	background-color: #eee;
 	color: #999;
@@ -749,11 +757,17 @@ input[type="number"]:focus {
 
 .customize-control-wpcolorpicker-alpha-color .wp-picker-input-wrap input[type="text"].wp-color-picker {
 	float: left;
-	width: 195px;
+	width: 195px !important;
 }
 
 .customize-control-wpcolorpicker-alpha-color .wp-color-result .wp-color-result-text {
 	border-left: none;
+}
+
+.customize-control-wpcolorpicker-alpha-color .iris-picker-inner .iris-slider,
+.customize-control-wpcolorpicker-alpha-color .iris-picker-inner .iris-alpha-slider,
+.customize-control-two-color-gradient .iris-picker-inner .iris-alpha-slider {
+	width: 17.6px !important;
 }
 
 /* ==========================================================================
@@ -762,6 +776,49 @@ input[type="number"]:focus {
 .google_fonts_select_control .google-fonts,
 .google_fonts_select_control .weight-style {
 	margin-bottom: 10px;
+}
+
+/* ==========================================================================
+   Divider
+   ========================================================================== */
+#customize-theme-controls .simple-divider-custom-control {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display: inline-block;
+}
+
+#customize-theme-controls .simple-divider-custom-control::before {
+	content: ' ';
+}
+
+#customize-theme-controls .simple-divider-custom-control::after {
+	content: ' ';
+	border-top: 1px solid #ddd;
+	left: -20%;
+	position: absolute;
+	width: 140%;
+}
+
+#customize-theme-controls .simple-divider-custom-control.simple-divider-type-dashed::after {
+	border-top: 1px dashed #ddd;
+}
+
+#customize-theme-controls .simple-divider-custom-control.simple-divider-type-dotted::after {
+	border-top: 1px dotted #ddd;
+}
+
+#customize-theme-controls .simple-divider-custom-control.simple-divider-type-double::after {
+	border-top: 3px double #ddd;
+}
+
+#customize-theme-controls .simple-divider-custom-control.simple-divider-width-default::after {
+	width: calc(100% - 24px);
+	left: 12px;
+}
+
+#customize-theme-controls .simple-divider-custom-control.simple-divider-width-half::after {
+	width: 50%;
+	left: calc(25% - 12px);
 }
 
 /* ==========================================================================

@@ -2,127 +2,159 @@
 /**
  * Ephemeris Customizer Custom Controls
  *
- * @package Ephemeris
- * @since Ephemeris 1.0
  */
 
 if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
-	 * Image Check Box Custom Control
-	 *
-	 * @since Ephemeris 1.0
+	 * Custom Control Base Class
 	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	 class Ephemeris_Image_Checkbox_Custom_Control extends WP_Customize_Control {
- 		/**
- 		 * The type of control being rendered
- 		 */
-  		public $type = 'image_checkbox';
- 		/**
- 		 * Enqueue our scripts and styles
- 		 */
-  		public function enqueue() {
- 			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
-  		}
- 		/**
- 		 * Render the control in the customizer
- 		 */
-  		public function render_content() {
-  		?>
- 			<div class="image_checkbox_control">
- 				<?php if( !empty( $this->label ) ) { ?>
- 					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
- 				<?php } ?>
- 				<?php if( !empty( $this->description ) ) { ?>
- 					<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
- 				<?php } ?>
+	class Ephemeris_Custom_Control extends WP_Customize_Control {
+		protected $ephemerisCustomControlsCssVersion = '1.3';
+		protected $ephemerisCustomControlsJsVersion = '1.2';
+		protected function get_ephemeris_resource_url() {
+			if( strpos( wp_normalize_path( __DIR__ ), wp_normalize_path( WP_PLUGIN_DIR ) ) === 0 ) {
+				// We're in a plugin directory and need to determine the url accordingly.
+				return plugin_dir_url( __DIR__ );
+			}
+
+			return trailingslashit( get_template_directory_uri() );
+		}
+	}
+
+	/**
+	 * Custom Section Base Class
+	 *
+	 * @author Anthony Hortin <http://maddisondesigns.com>
+	 * @license http://www.gnu.org/licenses/gpl-2.0.html
+	 * @link https://github.com/maddisondesigns
+	 */
+	class Ephemeris_Custom_Section extends WP_Customize_Section {
+		protected $ephemerisCustomControlsCssVersion = '1.3';
+		protected $ephemerisCustomControlsJsVersion = '1.2';
+		protected function get_ephemeris_resource_url() {
+			if( strpos( wp_normalize_path( __DIR__ ), wp_normalize_path( WP_PLUGIN_DIR ) ) === 0 ) {
+				// We're in a plugin directory and need to determine the url accordingly.
+				return plugin_dir_url( __DIR__ );
+			}
+
+			return trailingslashit( get_template_directory_uri() );
+		}
+	}
+
+	/**
+	 * Image Checkbox Custom Control
+	 *
+	 * @author Anthony Hortin <http://maddisondesigns.com>
+	 * @license http://www.gnu.org/licenses/gpl-2.0.html
+	 * @link https://github.com/maddisondesigns
+	 */
+	 class Ephemeris_Image_Checkbox_Custom_Control extends Ephemeris_Custom_Control {
+		/**
+		 * The type of control being rendered
+		 */
+		public $type = 'image_checkbox';
+		/**
+		 * Enqueue our scripts and styles
+		 */
+		public function enqueue() {
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
+		}
+		/**
+		 * Render the control in the customizer
+		 */
+		public function render_content() {
+		?>
+			<div class="image_checkbox_control">
+				<?php if( !empty( $this->label ) ) { ?>
+					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+				<?php } ?>
+				<?php if( !empty( $this->description ) ) { ?>
+					<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+				<?php } ?>
 				<?php	$chkboxValues = explode( ',', esc_attr( $this->value() ) ); ?>
 				<input type="hidden" id="<?php echo esc_attr( $this->id ); ?>" name="<?php echo esc_attr( $this->id ); ?>" value="<?php echo esc_attr( $this->value() ); ?>" class="customize-control-multi-image-checkbox" <?php $this->link(); ?> />
- 				<?php foreach ( $this->choices as $key => $value ) { ?>
- 					<label class="checkbox-label">
- 						<input type="checkbox" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( in_array( esc_attr( $key ), $chkboxValues ), 1 ); ?> class="multi-image-checkbox"/>
- 						<img src="<?php echo esc_attr( $value['image'] ); ?>" alt="<?php echo esc_attr( $value['name'] ); ?>" title="<?php echo esc_attr( $value['name'] ); ?>" />
- 					</label>
- 				<?php	} ?>
- 			</div>
-  		<?php
-  		}
-  	}
+				<?php foreach ( $this->choices as $key => $value ) { ?>
+					<label class="checkbox-label">
+						<input type="checkbox" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( in_array( esc_attr( $key ), $chkboxValues ), 1 ); ?> class="multi-image-checkbox"/>
+						<img src="<?php echo esc_attr( $value['image'] ); ?>" alt="<?php echo esc_attr( $value['name'] ); ?>" title="<?php echo esc_attr( $value['name'] ); ?>" />
+					</label>
+				<?php	} ?>
+			</div>
+		<?php
+		}
+	}
 
 	/**
 	 * Text Radio Button Custom Control
 	 *
-	 * @since Ephemeris 1.0
-	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	 class Ephemeris_Text_Radio_Button_Custom_Control extends WP_Customize_Control {
- 		/**
- 		 * The type of control being rendered
- 		 */
-  		public $type = 'text_radio_button';
- 		/**
- 		 * Enqueue our scripts and styles
- 		 */
-  		public function enqueue() {
- 			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
-  		}
- 		/**
- 		 * Render the control in the customizer
- 		 */
-  		public function render_content() {
-  		?>
- 			<div class="text_radio_button_control">
- 				<?php if( !empty( $this->label ) ) { ?>
- 					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
- 				<?php } ?>
- 				<?php if( !empty( $this->description ) ) { ?>
- 					<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
- 				<?php } ?>
+	 class Ephemeris_Text_Radio_Button_Custom_Control extends Ephemeris_Custom_Control {
+		/**
+		 * The type of control being rendered
+		 */
+		public $type = 'text_radio_button';
+		/**
+		 * Enqueue our scripts and styles
+		 */
+		public function enqueue() {
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
+		}
+		/**
+		 * Render the control in the customizer
+		 */
+		public function render_content() {
+		?>
+			<div class="text_radio_button_control">
+				<?php if( !empty( $this->label ) ) { ?>
+					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+				<?php } ?>
+				<?php if( !empty( $this->description ) ) { ?>
+					<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+				<?php } ?>
 
 				<div class="radio-buttons">
 					<?php foreach ( $this->choices as $key => $value ) { ?>
-	 					<label class="radio-button-label">
-	 						<input type="radio" name="<?php echo esc_attr( $this->id ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php $this->link(); ?> <?php checked( esc_attr( $key ), $this->value() ); ?>/>
-	 						<span><?php echo esc_html( $value ); ?></span>
-	 					</label>
-	 				<?php	} ?>
+						<label class="radio-button-label">
+							<input type="radio" name="<?php echo esc_attr( $this->id ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php $this->link(); ?> <?php checked( esc_attr( $key ), $this->value() ); ?>/>
+							<span><?php echo esc_html( $value ); ?></span>
+						</label>
+					<?php	} ?>
 				</div>
- 			</div>
-  		<?php
-  		}
-  	}
+			</div>
+		<?php
+		}
+	}
 
 	/**
 	 * Image Radio Button Custom Control
 	 *
-	 * @since Ephemeris 1.0
-	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Image_Radio_Button_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Image_Radio_Button_Custom_Control extends Ephemeris_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
- 		public $type = 'image_radio_button';
+		public $type = 'image_radio_button';
 		/**
 		 * Enqueue our scripts and styles
 		 */
- 		public function enqueue() {
-			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
- 		}
+		public function enqueue() {
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
+		}
 		/**
 		 * Render the control in the customizer
 		 */
- 		public function render_content() {
- 		?>
+		public function render_content() {
+		?>
 			<div class="image_radio_button_control">
 				<?php if( !empty( $this->label ) ) { ?>
 					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
@@ -138,20 +170,18 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					</label>
 				<?php	} ?>
 			</div>
- 		<?php
- 		}
- 	}
+		<?php
+		}
+	}
 
 	/**
 	 * Single Accordion Custom Control
-	 *
-	 * @since Ephemeris 1.0
 	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Single_Accordion_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Single_Accordion_Custom_Control extends Ephemeris_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -160,9 +190,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.2', true );
-			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
-			wp_enqueue_style( 'font-awesome-5', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array(), '5.0.8', 'all' );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', $this->get_ephemeris_resource_url() . 'js/customizer.js', array( 'jquery' ), $this->ephemerisCustomControlsJsVersion, true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -189,7 +218,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					<?php
 						if ( is_array( $this->description ) ) {
 							echo '<ul class="single-accordion-description">';
-					  		foreach ( $this->description as $key => $value ) {
+							foreach ( $this->description as $key => $value ) {
 								echo '<li>' . $key . wp_kses( $value, $allowed_html ) . '</li>';
 							}
 							echo '</ul>';
@@ -207,13 +236,11 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Simple Notice Custom Control
 	 *
-	 * @since Ephemeris 1.0
-	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Simple_Notice_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Simple_Notice_Custom_Control extends Ephemeris_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -256,13 +283,11 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Slider Custom Control
 	 *
-	 * @since Ephemeris 1.0
-	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Slider_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Slider_Custom_Control extends Ephemeris_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -271,8 +296,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), '1.2', true );
-			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', $this->get_ephemeris_resource_url() . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), $this->ephemerisCustomControlsJsVersion, true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -290,22 +315,20 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Toggle Switch Custom Control
 	 *
-	 * @since Ephemeris 1.0
-	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Toggle_Switch_Custom_control extends WP_Customize_Control {
+	class Ephemeris_Toggle_Switch_Custom_control extends Ephemeris_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
-		public $type = 'toogle_switch';
+		public $type = 'toggle_switch';
 		/**
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue(){
-			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -332,20 +355,18 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Sortable Repeater Custom Control
 	 *
-	 * @since Ephemeris 1.0
-	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Sortable_Repeater_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Sortable_Repeater_Custom_Control extends Ephemeris_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
 		public $type = 'sortable_repeater';
 		/**
- 		 * Button labels
- 		 */
+		 * Button labels
+		 */
 		public $button_labels = array();
 		/**
 		 * Constructor
@@ -363,15 +384,15 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), '1.2', true );
-			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', $this->get_ephemeris_resource_url() . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), $this->ephemerisCustomControlsJsVersion, true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
 		}
 		/**
 		 * Render the control in the customizer
 		 */
 		public function render_content() {
 		?>
-	      <div class="sortable_repeater_control">
+		  <div class="sortable_repeater_control">
 				<?php if( !empty( $this->label ) ) { ?>
 					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 				<?php } ?>
@@ -379,7 +400,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
 				<?php } ?>
 				<input type="hidden" id="<?php echo esc_attr( $this->id ); ?>" name="<?php echo esc_attr( $this->id ); ?>" value="<?php echo esc_attr( $this->value() ); ?>" class="customize-control-sortable-repeater" <?php $this->link(); ?> />
-				<div class="sortable">
+				<div class="sortable_repeater sortable">
 					<div class="repeater">
 						<input type="text" value="" class="repeater-input" placeholder="https://" /><span class="dashicons dashicons-sort"></span><a class="customize-control-sortable-repeater-delete" href="#"><span class="dashicons dashicons-no-alt"></span></a>
 					</div>
@@ -393,13 +414,11 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Dropdown Select2 Custom Control
 	 *
-	 * @since Ephemeris 1.4
-	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Dropdown_Select2_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Dropdown_Select2_Custom_Control extends Ephemeris_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -430,10 +449,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris-select2-js', trailingslashit( get_template_directory_uri() ) . 'js/select2.full.min.js', array( 'jquery' ), '4.0.13', true );
-			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'ephemeris-select2-js' ), '1.2', true );
-			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.1', 'all' );
-			wp_enqueue_style( 'ephemeris-select2-css', trailingslashit( get_template_directory_uri() ) . 'css/select2.min.css', array(), '4.0.13', 'all' );
+			wp_enqueue_script( 'ephemeris-select2-js', $this->get_ephemeris_resource_url() . 'js/select2.full.min.js', array( 'jquery' ), '4.0.13', true );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', $this->get_ephemeris_resource_url() . 'js/customizer.js', array( 'ephemeris-select2-js' ), $this->ephemerisCustomControlsJsVersion, true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
+			wp_enqueue_style( 'ephemeris-select2-css', $this->get_ephemeris_resource_url() . 'css/select2.min.css', array(), '4.0.13', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -464,15 +483,25 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 							if ( is_array( $value ) ) {
 								echo '<optgroup label="' . esc_attr( $key ) . '">';
 								foreach ( $value as $optgroupkey => $optgroupvalue ) {
-									echo '<option value="' . esc_attr( $optgroupkey ) . '" ' . ( in_array( esc_attr( $optgroupkey ), $defaultValue ) ? 'selected="selected"' : '' ) . '>' . esc_attr( $optgroupvalue ) . '</option>';
+									if( $this->multiselect ){
+										echo '<option value="' . esc_attr( $optgroupkey ) . '" ' . ( in_array( esc_attr( $optgroupkey ), $defaultValue ) ? 'selected="selected"' : '' ) . '>' . esc_attr( $optgroupvalue ) . '</option>';
+									}
+									else{
+										echo '<option value="' . esc_attr( $optgroupkey ) . '" ' . selected( esc_attr( $optgroupkey ), $defaultValue, false )  . '>' . esc_attr( $optgroupvalue ) . '</option>';
+									}
 								}
 								echo '</optgroup>';
 							}
 							else {
-								echo '<option value="' . esc_attr( $key ) . '" ' . selected( esc_attr( $key ), $defaultValue, false )  . '>' . esc_attr( $value ) . '</option>';
+								if( $this->multiselect ){
+									echo '<option value="' . esc_attr( $key ) . '" ' . ( in_array( esc_attr( $key ), $defaultValue ) ? 'selected="selected"' : '' ) . '>' . esc_attr( $value ) . '</option>';
+								}
+								else{
+									echo '<option value="' . esc_attr( $key ) . '" ' . selected( esc_attr( $key ), $defaultValue, false )  . '>' . esc_attr( $value ) . '</option>';
+								}
 							}
-	 					}
-	 				?>
+						}
+					?>
 				</select>
 			</div>
 		<?php
@@ -482,13 +511,11 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Dropdown Posts Custom Control
 	 *
-	 * @since Ephemeris 1.4
-	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Dropdown_Posts_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Dropdown_Posts_Custom_Control extends Ephemeris_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -538,15 +565,13 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	}
 
 	/**
-	 * TinyMCE Custom Control (requires WP 4.8+)
-	 *
-	 * @since Ephemeris 1.0
+	 * TinyMCE Custom Control
 	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_TinyMCE_Custom_control extends WP_Customize_Control {
+	class Ephemeris_TinyMCE_Custom_control extends Ephemeris_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -555,8 +580,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue(){
-			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery' ), '1.2', true );
-			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', $this->get_ephemeris_resource_url() . 'js/customizer.js', array( 'jquery' ), $this->ephemerisCustomControlsJsVersion, true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
 			wp_enqueue_editor();
 		}
 		/**
@@ -566,6 +591,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			parent::to_json();
 			$this->json['ephemeristinymcetoolbar1'] = isset( $this->input_attrs['toolbar1'] ) ? esc_attr( $this->input_attrs['toolbar1'] ) : 'bold italic bullist numlist alignleft aligncenter alignright link';
 			$this->json['ephemeristinymcetoolbar2'] = isset( $this->input_attrs['toolbar2'] ) ? esc_attr( $this->input_attrs['toolbar2'] ) : '';
+			$this->json['ephemerismediabuttons'] = isset( $this->input_attrs['mediaButtons'] ) && ( $this->input_attrs['mediaButtons'] === true ) ? true : false;
 		}
 		/**
 		 * Render the control in the customizer
@@ -584,15 +610,13 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	}
 
 	/**
-	 * Googe Font Select Custom Control
-	 *
-	 * @since Ephemeris 1.0
+	 * Google Font Select Custom Control
 	 *
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Ephemeris_Google_Font_Select_Custom_Control extends WP_Customize_Control {
+	class Ephemeris_Google_Font_Select_Custom_Control extends Ephemeris_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -604,7 +628,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		/**
 		 * The saved font values decoded from json
 		 */
-		private $fontValues = array();
+		private $fontValues = [];
 		/**
 		 * The index of the saved font within the list of Google fonts
 		 */
@@ -642,10 +666,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris-select2-js', trailingslashit( get_template_directory_uri() ) . 'js/select2.full.min.js', array( 'jquery' ), '4.0.13', true );
-			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'ephemeris-select2-js' ), '1.2', true );
-			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array(), '1.1', 'all' );
-			wp_enqueue_style( 'ephemeris-select2-css', trailingslashit( get_template_directory_uri() ) . 'css/select2.min.css', array(), '4.0.13', 'all' );
+			wp_enqueue_script( 'ephemeris-select2-js', $this->get_ephemeris_resource_url() . 'js/select2.full.min.js', array( 'jquery' ), '4.0.13', true );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', $this->get_ephemeris_resource_url() . 'js/customizer.js', array( 'ephemeris-select2-js' ), $this->ephemerisCustomControlsJsVersion, true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
+			wp_enqueue_style( 'ephemeris-select2-css', $this->get_ephemeris_resource_url() . 'css/select2.min.css', array(), '4.0.13', 'all' );
 		}
 		/**
 		 * Export our List of Google Fonts to JavaScript
@@ -694,7 +718,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 							?>
 						</select>
 					</div>
-					<div class="customize-control-description">Select weight &amp; style for regular text</div>
+					<div class="customize-control-description"><?php esc_html_e( 'Select weight & style for regular text', 'ephemeris' ) ?></div>
 					<div class="weight-style">
 						<select class="google-fonts-regularweight-style">
 							<?php
@@ -704,7 +728,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 							?>
 						</select>
 					</div>
-					<div class="customize-control-description">Select weight for <italic>italic text</italic></div>
+					<div class="customize-control-description"><?php esc_html_e( 'Select weight for', 'ephemeris' ) ?> <italic><?php esc_html_e( 'italic text', 'ephemeris' ) ?></italic></div>
 					<div class="weight-style">
 						<select class="google-fonts-italicweight-style" <?php disabled( in_array( 'italic', $this->fontList[$this->fontListIndex]->variants ), false ); ?>>
 							<?php
@@ -717,12 +741,12 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 									}
 								}
 								if( $optionCount == 0 ) {
-									echo '<option value="">' . esc_html__( 'Not Available for this font', 'ephemeris' ) . '</option>';
+									echo '<option value="">Not Available for this font</option>';
 								}
 							?>
 						</select>
 					</div>
-					<div class="customize-control-description">Select weight for <strong>bold text</strong></div>
+					<div class="customize-control-description"><?php esc_html_e( 'Select weight for', 'ephemeris' ) ?> <strong><?php esc_html_e( 'bold text', 'ephemeris' ) ?></strong></div>
 					<div class="weight-style">
 						<select class="google-fonts-boldweight-style">
 							<?php
@@ -734,8 +758,9 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 										$optionCount++;
 									}
 								}
-								if($optionCount == 0) {
-									echo '<option value="">' . esc_html__( 'Not Available for this font', 'ephemeris' ) . '</option>';
+								// This should never evaluate as there'll always be at least a 'regular' weight
+								if( $optionCount == 0 ) {
+									echo '<option value="">Not Available for this font</option>';
 								}
 							?>
 						</select>
@@ -763,9 +788,9 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		public function ephemeris_getGoogleFonts( $count = 30 ) {
 			// Google Fonts json generated from https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=YOUR-API-KEY
-			$fontFile = trailingslashit( get_template_directory_uri() ) . 'inc/google-fonts-alphabetical.json';
+			$fontFile = $this->get_ephemeris_resource_url() . 'inc/google-fonts-alphabetical.json';
 			if ( $this->fontOrderBy === 'popular' ) {
-				$fontFile = trailingslashit( get_template_directory_uri() ) . 'inc/google-fonts-popularity.json';
+				$fontFile = $this->get_ephemeris_resource_url() . 'inc/google-fonts-popularity.json';
 			}
 
 			$request = wp_remote_get( $fontFile );
@@ -785,15 +810,13 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	}
 
 	/**
- 	 * Alpha Color Picker Custom Control
- 	 *
- 	 * @since Ephemeris 1.0
- 	 *
- 	 * @author Braad Martin <http://braadmartin.com>
- 	 * @license http://www.gnu.org/licenses/gpl-3.0.html
- 	 * @link https://github.com/BraadMartin/components/tree/master/customizer/alpha-color-picker
- 	 */
-	class Ephemeris_Customize_Alpha_Color_Control extends WP_Customize_Control {
+	 * Alpha Color Picker Custom Control
+	 *
+	 * @author Braad Martin <http://braadmartin.com>
+	 * @license http://www.gnu.org/licenses/gpl-3.0.html
+	 * @link https://github.com/BraadMartin/components/tree/master/customizer/alpha-color-picker
+	 */
+	class Ephemeris_Customize_Alpha_Color_Control extends Ephemeris_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -812,8 +835,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'ephemeris-custom-controls-js', trailingslashit( get_template_directory_uri() ) . 'js/customizer.js', array( 'jquery', 'wp-color-picker' ), '1.2', true );
-			wp_enqueue_style( 'ephemeris-custom-controls-css', trailingslashit( get_template_directory_uri() ) . 'css/customizer.css', array( 'wp-color-picker' ), '1.0', 'all' );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', $this->get_ephemeris_resource_url() . 'js/customizer.js', array( 'jquery', 'wp-color-picker' ), $this->ephemerisCustomControlsJsVersion, true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array( 'wp-color-picker' ), $this->ephemerisCustomControlsCssVersion, 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -847,9 +870,297 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	}
 
 	/**
-	 * URL sanitization
+	 * WPColorPicker Alpha Color Picker Custom Control
 	 *
-	 * @since Ephemeris 1.0
+	 * @author Anthony Hortin <http://maddisondesigns.com>
+	 * @license http://www.gnu.org/licenses/gpl-2.0.html
+	 * @link https://github.com/maddisondesigns
+	 *
+	 * Props @kallookoo for WPColorPicker script with Alpha Channel support
+	 *
+	 * @author Sergio <https://github.com/kallookoo>
+	 * @license http://www.gnu.org/licenses/gpl-3.0.html
+	 * @link https://github.com/kallookoo/wp-color-picker-alpha
+	 */
+	class Ephemeris_Alpha_Color_Control extends Ephemeris_Custom_Control {
+		/**
+		 * The type of control being rendered
+		 */
+		public $type = 'wpcolorpicker-alpha-color';
+		/**
+		 * ColorPicker Attributes
+		 */
+		public $attributes = "";
+		/**
+		 * Color palette defaults
+		 */
+		public $defaultPalette = array(
+			'#000000',
+			'#ffffff',
+			'#dd3333',
+			'#dd9933',
+			'#eeee22',
+			'#81d742',
+			'#1e73be',
+			'#8224e3',
+		);
+		/**
+		 * Constructor
+		 */
+		public function __construct( $manager, $id, $args = array(), $options = array() ) {
+			parent::__construct( $manager, $id, $args );
+			$this->attributes .= 'data-default-color="' . esc_attr( $this->value() ) . '"';
+			$this->attributes .= 'data-alpha="true"';
+			$this->attributes .= 'data-alpha-reset="' . ( isset( $this->input_attrs['resetalpha'] ) ? $this->input_attrs['resetalpha'] : 'true' ) . '"';
+			$this->attributes .= 'data-alpha-custom-width="0"';
+			$this->attributes .= 'data-alpha-enabled="true"';
+		}
+		/**
+		 * Enqueue our scripts and styles
+		 */
+		public function enqueue() {
+			wp_enqueue_script( 'wp-color-picker-alpha', $this->get_ephemeris_resource_url() . 'js/wp-color-picker-alpha-min.js', array( 'wp-color-picker' ), '3.0.2', true );
+			wp_enqueue_script( 'ephemeris-custom-controls-js', $this->get_ephemeris_resource_url() . 'js/customizer.js', array( 'jquery', 'wp-color-picker-alpha' ), $this->ephemerisCustomControlsJsVersion, true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
+			wp_enqueue_style( 'wp-color-picker' );
+		}
+		/**
+		 * Pass our Palette colours to JavaScript
+		 */
+		public function to_json() {
+			parent::to_json();
+			$this->json['colorpickerpalette'] = isset( $this->input_attrs['palette'] ) ? $this->input_attrs['palette'] : $this->defaultPalette;
+		}
+		/**
+		 * Render the control in the customizer
+		 */
+		public function render_content() {
+		?>
+		  <div class="wpcolorpicker_alpha_color_control">
+				<?php if( !empty( $this->label ) ) { ?>
+					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+				<?php } ?>
+				<?php if( !empty( $this->description ) ) { ?>
+					<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+				<?php } ?>
+				<input type="text" class="wpcolorpicker-alpha-color-picker color-picker" id="<?php echo esc_attr( $this->id ); ?>" name="<?php echo esc_attr( $this->id ); ?>" value="<?php echo esc_attr( $this->value() ); ?>" <?php echo $this->attributes; ?> <?php $this->link(); ?> />
+			</div>
+		<?php
+		}
+	}
+
+	/**
+	 * Sortable Pill Checkbox Custom Control
+	 *
+	 * @author Anthony Hortin <http://maddisondesigns.com>
+	 * @license http://www.gnu.org/licenses/gpl-2.0.html
+	 * @link https://github.com/maddisondesigns
+	 */
+	class Ephemeris_Pill_Checkbox_Custom_Control extends Ephemeris_Custom_Control {
+		/**
+		 * The type of control being rendered
+		 */
+		public $type = 'pill_checkbox';
+		/**
+		 * Define whether the pills can be sorted using drag 'n drop. Either false or true. Default = false
+		 */
+		private $sortable = false;
+		/**
+		 * The width of the pills. Each pill can be auto width or full width. Default = false
+		 */
+		private $fullwidth = false;
+		/**
+		 * Constructor
+		 */
+		public function __construct( $manager, $id, $args = array(), $options = array() ) {
+			parent::__construct( $manager, $id, $args );
+			// Check if these pills are sortable
+			if ( isset( $this->input_attrs['sortable'] ) && $this->input_attrs['sortable'] ) {
+				$this->sortable = true;
+			}
+			// Check if the pills should be full width
+			if ( isset( $this->input_attrs['fullwidth'] ) && $this->input_attrs['fullwidth'] ) {
+				$this->fullwidth = true;
+			}
+		}		/**
+		 * Enqueue our scripts and styles
+		 */
+		public function enqueue() {
+			wp_enqueue_script( 'ephemeris-custom-controls-js', $this->get_ephemeris_resource_url() . 'js/customizer.js', array( 'jquery', 'jquery-ui-core' ), $this->ephemerisCustomControlsJsVersion, true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
+		}
+		/**
+		 * Render the control in the customizer
+		 */
+		public function render_content() {
+			$reordered_choices = array();
+			$saved_choices = explode( ',', esc_attr( $this->value() ) );
+
+			// Order the checkbox choices based on the saved order
+			if( $this->sortable ) {
+				foreach ( $saved_choices as $key => $value ) {
+					if( isset( $this->choices[$value] ) ) {
+						$reordered_choices[$value] = $this->choices[$value];
+					}
+				}
+				$reordered_choices = array_merge( $reordered_choices, array_diff_assoc( $this->choices, $reordered_choices ) );
+			}
+			else {
+				$reordered_choices = $this->choices;
+			}
+		?>
+			<div class="pill_checkbox_control">
+				<?php if( !empty( $this->label ) ) { ?>
+					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+				<?php } ?>
+				<?php if( !empty( $this->description ) ) { ?>
+					<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+				<?php } ?>
+				<input type="hidden" id="<?php echo esc_attr( $this->id ); ?>" name="<?php echo esc_attr( $this->id ); ?>" value="<?php echo esc_attr( $this->value() ); ?>" class="customize-control-sortable-pill-checkbox" <?php $this->link(); ?> />
+				<div class="sortable_pills<?php echo ( $this->sortable ? ' sortable' : '' ) . ( $this->fullwidth ? ' fullwidth_pills' : '' ); ?>">
+				<?php foreach ( $reordered_choices as $key => $value ) { ?>
+					<label class="checkbox-label">
+						<input type="checkbox" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( in_array( esc_attr( $key ), $saved_choices, true ), true ); ?> class="sortable-pill-checkbox"/>
+						<span class="sortable-pill-title"><?php echo esc_html( $value ); ?></span>
+						<?php if( $this->sortable && $this->fullwidth ) { ?>
+							<span class="dashicons dashicons-sort"></span>
+						<?php } ?>
+					</label>
+				<?php } ?>
+				</div>
+			</div>
+		<?php
+		}
+	}
+
+	/**
+	 * Divider Custom Control
+	 *
+	 * @author Anthony Hortin <http://maddisondesigns.com>
+	 * @license http://www.gnu.org/licenses/gpl-2.0.html
+	 * @link https://github.com/maddisondesigns
+	 */
+	class Ephemeris_Divider_Custom_Control extends Ephemeris_Custom_Control {
+		/**
+		 * The type of control being rendered
+		 */
+		public $type = 'simple_divider';
+		/**
+		 * Define the available widths for the divider
+		 */
+		private $available_divider_widths = array( "default", "full", "half" );
+		/**
+		 * Define the available types of divider
+		 */
+		private $available_divider_types = array( "solid", "dashed", "dotted", "double" );
+		/**
+		 * Define the width of the divider. Either 'default', 'full', or 'half'. Default = 'default'
+		 */
+		private $dividerwidth = 'default';
+		/**
+		 * Define the type of divider line. Either 'solid', 'dashed' or 'dotted'. Default = 'solid'
+		 */
+		private $dividertype = 'solid';
+		/**
+		 * Define size of the top margin in px. Default = 20
+		 */
+		private $margintop = 20;
+		/**
+		 * Define size of the top margin in px. Default = 20
+		 */
+		private $marginbottom = 20;
+		/**
+		 * Constructor
+		 */
+		public function __construct( $manager, $id, $args = array(), $options = array() ) {
+			parent::__construct( $manager, $id, $args );
+			// Check the width of the divider
+			if ( isset( $this->input_attrs['width'] ) ) {
+				if ( in_array( strtolower( $this->input_attrs['width'] ), $this->available_divider_widths, true ) ) {
+					$this->dividerwidth = strtolower( $this->input_attrs['width'] );
+				}
+			}
+			// Check the type of divider
+			if ( isset( $this->input_attrs['type'] ) ) {
+				if ( in_array( strtolower( $this->input_attrs['type'] ), $this->available_divider_types, true ) ) {
+					$this->dividertype = strtolower( $this->input_attrs['type'] );
+				}
+			}
+			// Check if the top margin is specified and valid. Will accept int and string values. i.e. 42 or '42'
+			if ( isset( $this->input_attrs['margintop'] ) &&  is_numeric( $this->input_attrs['margintop'] ) ) {
+				$this->margintop = abs( (int)$this->input_attrs['margintop'] );
+			}
+			// Check if the bottom margin is specified and valid. Will accept int and string values. i.e. 42 or '42'
+			if ( isset( $this->input_attrs['marginbottom'] ) &&  is_numeric( $this->input_attrs['marginbottom'] ) ) {
+				$this->marginbottom = abs( (int)$this->input_attrs['marginbottom'] );
+			}
+		}
+		/**
+		 * Enqueue our scripts and styles
+		 */
+		public function enqueue() {
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
+		}
+		/**
+		 * Render the control in the customizer
+		 */
+		public function render_content() {
+		?>
+			<div class="simple-divider-custom-control simple-divider-type-<?php echo $this->dividertype; ?> simple-divider-width-<?php echo $this->dividerwidth; ?>" style="margin-top:<?php echo $this->margintop; ?>px;margin-bottom:<?php echo $this->marginbottom; ?>px"></div>
+		<?php
+		}
+	}
+
+	/**
+	 * Upsell section
+	 *
+	 * @author Anthony Hortin <http://maddisondesigns.com>
+	 * @license http://www.gnu.org/licenses/gpl-2.0.html
+	 * @link https://github.com/maddisondesigns
+	 *
+	 */
+	class Ephemeris_Upsell_Section extends Ephemeris_Custom_Section {
+		/**
+		 * The type of control being rendered
+		 */
+		public $type = 'ephemeris-upsell';
+		/**
+		 * The Upsell URL
+		 */
+		public $url = '';
+		/**
+		 * The background color for the control
+		 */
+		public $backgroundcolor = '';
+		/**
+		 * The text color for the control
+		 */
+		public $textcolor = '';
+		/**
+		 * Enqueue our scripts and styles
+		 */
+		public function enqueue() {
+			wp_enqueue_script( 'ephemeris-custom-controls-js', $this->get_ephemeris_resource_url() . 'js/customizer.js', array( 'jquery' ), $this->ephemerisCustomControlsJsVersion, true );
+			wp_enqueue_style( 'ephemeris-custom-controls-css', $this->get_ephemeris_resource_url() . 'css/customizer.css', array(), $this->ephemerisCustomControlsCssVersion, 'all' );
+		}
+		/**
+		 * Render the section, and the controls that have been added to it.
+		 */
+		protected function render() {
+			$bkgrndcolor = !empty( $this->backgroundcolor ) ? esc_attr( $this->backgroundcolor ) : '#fff';
+			$color = !empty( $this->textcolor ) ? esc_attr( $this->textcolor ) : '#555d66';
+			?>
+			<li id="accordion-section-<?php echo esc_attr( $this->id ); ?>" class="ephemeris_upsell_section accordion-section control-section control-section-<?php echo esc_attr( $this->id ); ?> cannot-expand">
+				<h3 class="upsell-section-title" <?php echo ' style="color:' . $color . ';border-left-color:' . $bkgrndcolor .';border-right-color:' . $bkgrndcolor .';"'; ?>>
+					<a href="<?php echo esc_url( $this->url); ?>" target="_blank"<?php echo ' style="background-color:' . $bkgrndcolor . ';color:' . $color .';"'; ?>><?php echo esc_html( $this->title ); ?></a>
+				</h3>
+			</li>
+			<?php
+		}
+	}
+
+	/**
+	 * URL sanitization
 	 *
 	 * @param  string	Input to be sanitized (either a string containing a single url or multiple, separated by commas)
 	 * @return string	Sanitized input
@@ -875,9 +1186,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Switch sanitization
 	 *
-	 * @since Ephemeris 1.0
-	 *
-	 * @param  string		Switch value
+	 * @param  string	Switch value
 	 * @return integer	Sanitized value
 	 */
 	if ( ! function_exists( 'ephemeris_switch_sanitization' ) ) {
@@ -893,15 +1202,13 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Radio Button and Select sanitization
 	 *
-	 * @since Ephemeris 1.0
-	 *
-	 * @param  string		Radio Button value
+	 * @param  string	Radio Button value
 	 * @return integer	Sanitized value
 	 */
 	if ( ! function_exists( 'ephemeris_radio_sanitization' ) ) {
 		function ephemeris_radio_sanitization( $input, $setting ) {
 			//get the list of possible radio box or select options
-         $choices = $setting->manager->get_control( $setting->id )->choices;
+		 	$choices = $setting->manager->get_control( $setting->id )->choices;
 
 			if ( array_key_exists( $input, $choices ) ) {
 				return $input;
@@ -914,9 +1221,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Integer sanitization
 	 *
-	 * @since Ephemeris 1.0
-	 *
-	 * @param  string		Input value to check
+	 * @param  string	Input value to check
 	 * @return integer	Returned integer value
 	 */
 	if ( ! function_exists( 'ephemeris_sanitize_integer' ) ) {
@@ -927,8 +1232,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
 	/**
 	 * Text sanitization
-	 *
-	 * @since Ephemeris 1.0
 	 *
 	 * @param  string	Input to be sanitized (either a string containing a single string or multiple, separated by commas)
 	 * @return string	Sanitized input
@@ -954,8 +1257,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Array sanitization
 	 *
-	 * @since Ephemeris 1.4
-	 *
 	 * @param  array	Input to be sanitized
 	 * @return array	Sanitized input
 	 */
@@ -974,9 +1275,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	}
 
 	/**
-	 * Alpha Color (Hex & RGBa) sanitization
-	 *
-	 * @since Ephemeris 1.0
+	 * Alpha Color (Hex, RGB & RGBa) sanitization
 	 *
 	 * @param  string	Input to be sanitized
 	 * @return string	Sanitized input
@@ -987,14 +1286,22 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				return $setting->default;
 			}
 
-			if ( false === strpos( $input, 'rgba' ) ) {
-				// If string doesn't start with 'rgba' then santize as hex color
+			if ( false === strpos( $input, 'rgb' ) ) {
+				// If string doesn't start with 'rgb' then santize as hex color
 				$input = sanitize_hex_color( $input );
 			} else {
-				// Sanitize as RGBa color
-				$input = str_replace( ' ', '', $input );
-				sscanf( $input, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
-				$input = 'rgba(' . ephemeris_in_range( $red, 0, 255 ) . ',' . ephemeris_in_range( $green, 0, 255 ) . ',' . ephemeris_in_range( $blue, 0, 255 ) . ',' . ephemeris_in_range( $alpha, 0, 1 ) . ')';
+				if ( false === strpos( $input, 'rgba' ) ) {
+					// Sanitize as RGB color
+					$input = str_replace( ' ', '', $input );
+					sscanf( $input, 'rgb(%d,%d,%d)', $red, $green, $blue );
+					$input = 'rgb(' . ephemeris_in_range( $red, 0, 255 ) . ',' . ephemeris_in_range( $green, 0, 255 ) . ',' . ephemeris_in_range( $blue, 0, 255 ) . ')';
+				}
+				else {
+					// Sanitize as RGBa color
+					$input = str_replace( ' ', '', $input );
+					sscanf( $input, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
+					$input = 'rgba(' . ephemeris_in_range( $red, 0, 255 ) . ',' . ephemeris_in_range( $green, 0, 255 ) . ',' . ephemeris_in_range( $blue, 0, 255 ) . ',' . ephemeris_in_range( $alpha, 0, 1 ) . ')';
+				}
 			}
 			return $input;
 		}
@@ -1002,8 +1309,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
 	/**
 	 * Only allow values between a certain minimum & maxmium range
-	 *
-	 * @since Ephemeris 1.0
 	 *
 	 * @param  number	Input to be sanitized
 	 * @return number	Sanitized input
@@ -1016,14 +1321,12 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			if ( $input > $max ) {
 				$input = $max;
 			}
-		    return $input;
+			return $input;
 		}
 	}
 
 	/**
 	 * Google Font sanitization
-	 *
-	 * @since Ephemeris 1.0
 	 *
 	 * @param  string	JSON string to be sanitized
 	 * @return string	Sanitized input
@@ -1066,8 +1369,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
 	/**
 	 * Slider sanitization
-	 *
-	 * @since Ephemeris 1.4.2
 	 *
 	 * @param  string	Slider value to be sanitized
 	 * @return string	Sanitized input
