@@ -1,0 +1,13 @@
+{
+	"version": 2,
+	"settings": {
+		"layout": {
+			"contentSize": "inherit",
+			"wideSize": "inherit"
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	}
+}

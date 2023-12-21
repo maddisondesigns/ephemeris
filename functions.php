@@ -278,10 +278,10 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 
 		// Register and enqueue our icon font
 		// We're using the awesome Font Awesome icon font. https://fontawesome.com
-		wp_enqueue_style( 'font-awesome-5', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array( 'normalize' ), '6.2.1', 'all' );
+		wp_enqueue_style( 'font-awesome-6', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array( 'normalize' ), '6.5.1', 'all' );
 
 		// Our styles for setting up the grid. We're using Unsemantic. http://unsemantic.com
-		wp_enqueue_style( 'unsemantic-grid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'font-awesome-5' ), '1.2.3', 'all' );
+		wp_enqueue_style( 'unsemantic-grid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'font-awesome-6' ), '1.2.3', 'all' );
 
 		/*
 		 * Load our Google Fonts.
@@ -358,13 +358,25 @@ if ( ! function_exists( 'ephemeris_block_editor_styles' ) ) {
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block {max-width: ' . esc_attr( $ephemeris_layout_width - 40 ) . 'px;}';
 
 		// Increase width of Wide blocks
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="wide"] {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="wide"] .wp-block {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="wide"],body.block-editor-page .edit-post-visual-editor .wp-block.alignwide {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="wide"] .wp-block,body.block-editor-page .edit-post-visual-editor .wp-block.alignwide .wp-block {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
 
 		// Remove max-width on Full blocks
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="full"] {max-width: none;}';
-		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="full"] .wp-block  {max-width: none;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="full"],body.block-editor-page .edit-post-visual-editor .wp-block.alignfull {max-width: none;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="full"] .wp-block,body.block-editor-page .edit-post-visual-editor .wp-block.alignfull .wp-block {max-width: none;}';
 
+		// Constrain width of Wide and Full Group Containers
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block-group.alignwide.is-layout-constrained {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block-group.alignfull.is-layout-constrained {max-width: none;}';
+
+		// Constrain width of Cover Block Inner Containers
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block-cover .wp-block-cover__inner-container {max-width: ' . esc_attr( $ephemeris_layout_width - 40 ) . 'px;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block-cover.is-style-extended-inner-container .wp-block-cover__inner-container {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
+		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block-cover.is-style-extended-inner-container .wp-block-cover__inner-container .wp-block {max-width: 100%;}';
+
+		// Increase the size of the Modal Popup for the Classic Block
+		// $styles .= 'body.block-editor-page .block-editor-freeform-modal .components-modal__frame {width: ' . esc_attr( $ephemeris_layout_width - 40 ) . 'px;}';
+		
 		// Output our styles into the <head> whenever our block styles are enqueued
 		wp_add_inline_style( 'ephemeris-blocks-style', $styles );
 	}
@@ -381,15 +393,25 @@ add_action( 'enqueue_block_editor_assets', 'ephemeris_block_editor_styles' );
 if ( ! function_exists( 'ephemeris_dynamic_block_editor_styles' ) ) {
 	function ephemeris_dynamic_block_editor_styles() {
 		$defaults = ephemeris_generate_defaults();
+		$ephemeris_layout_width = get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] );
 		$styles = '';
 
 		// Layout styles
-		$styles .= '@media only screen and (max-width: ' . esc_attr( get_theme_mod( 'ephemeris_layout_width', $defaults['ephemeris_layout_width'] ) + 400 ) . 'px) {';
+		$styles .= '@media only screen and (max-width: ' . esc_attr( $ephemeris_layout_width + 400 ) . 'px) {';
 		$styles .= '.site-content .grid-100 .alignwide {margin-left: 0;margin-right: 0;}';
 		$styles .= '.site-content .grid-100 .wp-block-table.alignwide {width: 100%;}';
 		$styles .= '.site-content .grid-100 figure.alignwide.wp-block-embed.is-type-video {width: 100%;}';
 		$styles .= '}';
 
+		// Constrain width of Wide and Full Group Containers
+		$styles .= '.wp-block-group.alignwide.is-layout-constrained {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
+		$styles .= '.wp-block-group.alignfull.is-layout-constrained {max-width: none;}';
+		$styles .= 'body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {max-width: ' . esc_attr( $ephemeris_layout_width - 40 ) . 'px;}';
+
+		// Constrain width of Cover Block Inner Containers
+		$styles .= '.wp-block-cover .wp-block-cover__inner-container {max-width: ' . esc_attr( $ephemeris_layout_width - 40 ) . 'px;}';
+		$styles .= '.wp-block-cover.is-style-extended-inner-container .wp-block-cover__inner-container {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
+		
 		echo '<style type="text/css">' . $styles . '</style>';
 	}
 }
@@ -419,6 +441,11 @@ add_action( 'customize_preview_init', 'ephemeris_customizer_preview_scripts' );
  */
 if ( ! function_exists( 'ephemeris_customize_controls_enqueue_scripts' ) ) {
 	function ephemeris_customize_controls_enqueue_scripts() {
+
+		// Register and enqueue our icon font
+		// We're using the awesome Font Awesome icon font. https://fontawesome.com
+		wp_enqueue_style( 'font-awesome-6', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array(), '6.4.0', 'all' );
+
 		if( ephemeris_is_plugin_active( 'woocommerce' ) ) {
 			$shop_page_url = wc_get_page_permalink( 'shop' );
 
@@ -1368,7 +1395,7 @@ if ( ! function_exists( 'ephemeris_add_search_menu_item' ) ) {
 
 		if( get_theme_mod( 'ephemeris_search_menu_icon', $defaults['ephemeris_search_menu_icon'] ) ) {
 			if( $args->theme_location == 'primary-menu' ) {
-				$items .= '<li class="menu-item menu-item-search"><a href="#" class="nav-search"><i class="fas fa-search"></i></a></li>';
+				$items .= '<li class="menu-item menu-item-search"><a href="#" class="nav-search" title="Search"><i class="fas fa-search" title="Search this site"></i></a></li>';
 			}
 		}
 		return $items;
@@ -1667,7 +1694,7 @@ if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 			array( 'url' => 'tiktok.com', 'icon' => 'fab fa-tiktok', 'title' => sprintf( __( 'Follow %s on TikTok', 'ephemeris' ), $plurality ), 'class' => 'tiktok' ),
 			array( 'url' => 'tumblr.com', 'icon' => 'fab fa-tumblr', 'title' => sprintf( __( 'Follow %s on Tumblr', 'ephemeris' ), $plurality ), 'class' => 'tumblr' ),
 			array( 'url' => 'twitch.tv', 'icon' => 'fab fa-twitch', 'title' => sprintf( __( 'Follow %s on Twitch', 'ephemeris' ), $plurality ), 'class' => 'twitch' ),
-			array( 'url' => 'twitter.com', 'icon' => 'fab fa-twitter', 'title' => sprintf( __( 'Follow %s on Twitter', 'ephemeris' ), $plurality ), 'class' => 'twitter' ),
+			array( 'url' => 'twitter.com', 'icon' => 'fab fa-x-twitter', 'title' => sprintf( __( 'Follow %s on Twitter', 'ephemeris' ), $plurality ), 'class' => 'twitter' ),
 			array( 'url' => 'assetstore.unity.com', 'icon' => 'fab fa-unity', 'title' => sprintf( __( 'Follow %s on Unity Asset Store', 'ephemeris' ), $plurality ), 'class' => 'unity' ),
 			array( 'url' => 'unsplash.com', 'icon' => 'fab fa-unsplash', 'title' => sprintf( __( 'Follow %s on Unsplash', 'ephemeris' ), $plurality ), 'class' => 'unsplash' ),
 			array( 'url' => 'vimeo.com', 'icon' => 'fab fa-vimeo-v', 'title' => sprintf( __( 'Follow %s on Vimeo', 'ephemeris' ), $plurality ), 'class' => 'vimeo' ),
@@ -1862,6 +1889,24 @@ if ( ! function_exists( 'ephemeris_customizer_css_styles' ) ) {
 add_action( 'wp_head', 'ephemeris_customizer_css_styles' );
 
 /**
+ * Create Block Styles for core Blocks
+ */
+if ( ! function_exists( 'ephemeris_register_block_styles' ) ) {
+	function ephemeris_register_block_styles() {
+		// Cover Block: Extended - Allows inner container to extend to Wide Width
+		register_block_style(
+			'core/cover',
+			array(
+				'name' => 'extended-inner-container',
+				'label' => __( 'Extended', 'ephemeris' ),
+				'is_default' => false,
+			)
+		);
+	}
+	add_action( 'init', 'ephemeris_register_block_styles' );
+}
+
+/**
  * Get a complete list of Ephemeris hooks
  *
  * @since Ephemeris 1.0
@@ -1967,6 +2012,9 @@ if ( ! function_exists( 'ephemeris_generate_defaults' ) ) {
 }
 
 /**
-* Load all our Customizer options
-*/
-include_once trailingslashit( get_template_directory() ) . 'inc/customizer.php';
+ * Load all our Customizer options
+ */
+function ephemeris_customizer_setup() {
+	include_once trailingslashit( get_template_directory() ) . 'inc/customizer.php';
+}
+add_action( 'after_setup_theme', 'ephemeris_customizer_setup' );

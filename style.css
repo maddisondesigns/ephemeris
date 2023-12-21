@@ -4,9 +4,9 @@ Theme URI: https://skyrocketthemes.com/themes/ephemeris-wordpress-theme
 Author: ahortin
 Author URI: https://maddisondesigns.com
 Description: The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customise and extend. Ephemeris is WooCommerce and bbPress compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Ephemeris also supports the new WordPress Block Editor (Gutenberg). Now that's pretty cool, eh!
-Version: 1.5.0
+Version: 1.5.1
 Requires at least: 4.8
-Tested up to: 6.1
+Tested up to: 6.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -872,6 +872,10 @@ main {
 	margin: 4px 0;
 	margin: .25rem 0;
 	padding: 0;
+}
+
+.social-icons.alignright {
+	text-align: right;
 }
 
 .social-icons li {
@@ -2020,7 +2024,8 @@ form label.error {
 }
 
 /* Padding around each top level menu option */
-.nav-menu > li a {
+.nav-menu > li a,
+div.nav-menu li a {
 	padding: 10px;
 	padding: .625rem
 }
@@ -3348,15 +3353,16 @@ p.demo_store {
 
 /* gallery block */
 .wp-block-gallery .blocks-gallery-image figcaption,
-.wp-block-gallery .blocks-gallery-item figcaption {
-	padding: 10px;
-	color: #000;
-	background: rgba(255, 255, 255, .7);
+.wp-block-gallery .blocks-gallery-item figcaption,
+.wp-block-gallery .wp-block-image figcaption,
+.wp-block-gallery.has-nested-images figure.wp-block-image figcaption {
+	padding: 8px;
+	padding: .5rem;
+	background: rgba(0, 0, 0, .3);
 }
 
 /* Cover Image block */
 .site-content .grid-100 .wp-block-cover {
-	height: 100vh;
 	width: auto;
 }
 
@@ -3431,14 +3437,15 @@ p.demo_store {
 	font-weight: 400;
 	margin-top: 0;
 	color: #fff;
-}
-
-.wp-block-cover p {
 	margin-bottom: 8px;
 	margin-bottom: .5rem;
 	font-size: 32px;
 	font-size: 2rem;
 	line-height: 1.1666;
+}
+
+.wp-block-cover p:not(.has-text-color) {
+	color: #fff;
 }
 
 /* Blockquote block */
@@ -3559,13 +3566,16 @@ p.demo_store {
 	border-radius: 0;
 }
 
-.wp-block-button__link {
+.wp-block-button__link,
+.wp-block-button__link:active,
+.wp-block-button__link:visited {
 	color: #fff;
 	background-color: #2e7bc4;
 	*background-color: #2e7bc4;
 }
 
 .site-content .wp-block-button .wp-block-button__link:hover {
+	color: #fff;
 	background-color: #344860;
 	*background-color: #344860;
 }
@@ -3652,12 +3662,6 @@ p.demo_store {
 .wp-block-columns {
 	justify-content: space-between;
 	word-break: break-all;
-}
-
-/* Group Block */
-.wp-block-group {
-	margin-bottom: 32px;
-	margin-bottom: 2rem;
 }
 
 /* Video Embed Blocks (e.g. YouTube, Vimeo) */

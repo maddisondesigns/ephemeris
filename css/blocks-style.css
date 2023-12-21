@@ -403,11 +403,6 @@ Description: Used to style the Block Editor (Gutenberg)
 	font-size: .8125rem;
 }
 
-/* Cover Image block */
-.edit-post-visual-editor .wp-block-cover {
-	height: 100vh;
-}
-
 /* Cover Image Block Header */
 .edit-post-visual-editor .wp-block-cover h1.block-editor-rich-text__editable,
 .edit-post-visual-editor .wp-block-cover h2.block-editor-rich-text__editable,
@@ -476,9 +471,6 @@ Description: Used to style the Block Editor (Gutenberg)
 	font-weight: 400;
 	margin-top: 0;
 	color: #fff;
-}
-
-.edit-post-visual-editor .wp-block-cover p.block-editor-rich-text__editable {
 	margin-bottom: 8px;
 	margin-bottom: .5rem;
 	font-size: 32px;
@@ -677,10 +669,12 @@ Description: Used to style the Block Editor (Gutenberg)
 
 /* gallery block */
 .edit-post-visual-editor .wp-block-gallery .blocks-gallery-image figcaption,
-.edit-post-visual-editor .wp-block-gallery .blocks-gallery-item figcaption {
-	padding: 10px;
-	color: #000;
-	background: rgba(255, 255, 255, .7);
+.edit-post-visual-editor .wp-block-gallery .blocks-gallery-item figcaption,
+.edit-post-visual-editor .wp-block-gallery .wp-block-image figcaption,
+.edit-post-visual-editor .wp-block-gallery.has-nested-images figure.wp-block-image figcaption {
+	padding: 8px;
+	padding: .5rem;
+	background: rgba(0, 0, 0, .3);
 }
 
 /* Social Links */
@@ -870,4 +864,9 @@ Description: Used to style the Block Editor (Gutenberg)
 
 .edit-post-layout__metaboxes .components-font-size-picker__buttons .components-font-size-picker__selector:hover {
 	box-shadow: none;
+}
+
+/* Reusable Blocks */
+body.block-editor-page .block-editor .edit-post-visual-editor .block-library-block__reusable-block-container {
+	max-width: none;
 }
