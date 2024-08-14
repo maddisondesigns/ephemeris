@@ -653,6 +653,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="url"],
+input[type="tel"],
 textarea {
 	font-family: inherit;
 	padding: 8px;
