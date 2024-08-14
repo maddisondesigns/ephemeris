@@ -1,7 +1,7 @@
 === Ephemeris ===
 Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support, block-styles, wide-blocks
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 Requires at least: 4.8
 Tested up to: 6.4
 Requires PHP: 5.6
@@ -168,6 +168,9 @@ https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-12639
 
 == Changelog ==
 
+= 1.5.2 =
+- Update Form styles for Tel fields
+
 = 1.5.1 =
 - Add Extended Block Style for Core Group block to enable constraining content width of inner blocks
 - Fix layout of AlignWide and AlignFull Group Blocks
@@ -179,7 +182,7 @@ https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-12639
 - Update Twitter social icon with X icon
 
 = 1.5.0 =
-- Load fonts from [Bunny Fonts](https://bunny.net/fonts) rather than Google Fonts. Bunny Fonts is a drop-in replacement for Google Fonts, but without the tracking. Bunny Fonts has zero logging, no data sharing and is completetely GDPR Compliant.
+- Load fonts from [Bunny Fonts](https://bunny.net/fonts) rather than Google Fonts. Bunny Fonts is a drop-in replacement for Google Fonts, but without the tracking. Bunny Fonts has zero logging, no data sharing and is completely GDPR Compliant.
 
 = 1.4.11 =
 - Update Font Awesome to v6.2.1
