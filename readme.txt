@@ -3,7 +3,7 @@ Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support, block-styles, wide-blocks
 Stable tag: 1.5.2
 Requires at least: 4.8
-Tested up to: 6.4
+Tested up to: 6.7
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -169,7 +169,11 @@ https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-12639
 == Changelog ==
 
 = 1.5.2 =
-- Update Form styles for Tel fields
+- Update Form styles for Tel & Select fields
+- Update body font styles to seperate them into their separate components for easier overriding
+- Update Font Awesome to v6.6.0
+- Update editor styles due to the Block Editor now being iFramed (under certain conditions)
+- Add Bluesky, Letterboxd, Pixiv & Threads social icons
 
 = 1.5.1 =
 - Add Extended Block Style for Core Group block to enable constraining content width of inner blocks
