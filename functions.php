@@ -278,7 +278,7 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 
 		// Register and enqueue our icon font
 		// We're using the awesome Font Awesome icon font. https://fontawesome.com
-		wp_enqueue_style( 'font-awesome-6', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array( 'normalize' ), '6.5.1', 'all' );
+		wp_enqueue_style( 'font-awesome-6', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array( 'normalize' ), '6.6.0', 'all' );
 
 		// Our styles for setting up the grid. We're using Unsemantic. http://unsemantic.com
 		wp_enqueue_style( 'unsemantic-grid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'font-awesome-6' ), '1.2.3', 'all' );
@@ -339,7 +339,8 @@ add_action( 'wp_enqueue_scripts', 'ephemeris_scripts_styles' );
  * Load our Block Editor styles to style the Editor like the front-end.
  * Increased the width of the Block Editor blocks to match the site width from the Customizer by dynamically loading our styles into the <head>
  *
- * Some styles are duplicated (with different classes) because Core Devs ignore backwards compatibility
+ * Some styles are duplicated (with different classes) because Core Devs ignore backwards compatibility, and also because they've now added
+ * everything within in an iframe (but only under certain conditions)
  *
  * @since Ephemeris 1.4
  *
@@ -354,29 +355,37 @@ if ( ! function_exists( 'ephemeris_block_editor_styles' ) ) {
 		// Enqueue our seperate Block Editor stylesheet with the rest of our styles
 		wp_enqueue_style( 'ephemeris-blocks-style', trailingslashit( get_template_directory_uri() ) . 'css/blocks-style.css', array(), '1.0.1', 'all' );
 
+		// Make sure paragraph blocks within blocks are centered within
+		$styles .= 'body.block-editor-iframe__body .block-editor-block-list__layout.is-root-container :where(:not(.alignleft):not(.alignright)) {margin-left: auto !important;margin-right: auto !important;}';
+
 		// Increase width of all Blocks & Block Appender
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block {max-width: ' . esc_attr( $ephemeris_layout_width - 40 ) . 'px;}';
+		$styles .= 'body.block-editor-iframe__body .block-editor-block-list__layout .wp-block {max-width: ' . esc_attr( $ephemeris_layout_width - 40 ) . 'px;}';
+
+		// Increase width of the post title wrapper when iframed
+		$styles .= 'body.block-editor-iframe__body .editor-visual-editor__post-title-wrapper .wp-block {max-width: ' . esc_attr( $ephemeris_layout_width - 40 ) . 'px;}';
 
 		// Increase width of Wide blocks
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="wide"],body.block-editor-page .edit-post-visual-editor .wp-block.alignwide {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="wide"] .wp-block,body.block-editor-page .edit-post-visual-editor .wp-block.alignwide .wp-block {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
+		$styles .= 'body.block-editor-iframe__body .block-editor-block-list__layout .wp-block[data-align="wide"] .wp-block,body.block-editor-iframe__body .block-editor-block-list__layout .wp-block.alignwide {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
 
 		// Remove max-width on Full blocks
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="full"],body.block-editor-page .edit-post-visual-editor .wp-block.alignfull {max-width: none;}';
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block[data-align="full"] .wp-block,body.block-editor-page .edit-post-visual-editor .wp-block.alignfull .wp-block {max-width: none;}';
+		$styles .= 'body.block-editor-iframe__body .block-editor-block-list__layout .wp-block[data-align="full"] .wp-block,body.block-editor-iframe__body .block-editor-block-list__layout .wp-block.alignfull {max-width: none;}';
 
 		// Constrain width of Wide and Full Group Containers
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block-group.alignwide.is-layout-constrained {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block-group.alignfull.is-layout-constrained {max-width: none;}';
+		$styles .= 'body.block-editor-iframe__body .block-editor-block-list__layout .wp-block-group.alignfull.is-layout-constrained {max-width: none;}';
 
 		// Constrain width of Cover Block Inner Containers
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block-cover .wp-block-cover__inner-container {max-width: ' . esc_attr( $ephemeris_layout_width - 40 ) . 'px;}';
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block-cover.is-style-extended-inner-container .wp-block-cover__inner-container {max-width: ' . esc_attr( $ephemeris_layout_width - 40 + 400 ) . 'px;}';
 		$styles .= 'body.block-editor-page .edit-post-visual-editor .wp-block-cover.is-style-extended-inner-container .wp-block-cover__inner-container .wp-block {max-width: 100%;}';
+		$styles .= 'body.block-editor-iframe__body .block-editor-block-list__layout .wp-block-cover.is-style-extended-inner-container .wp-block-cover__inner-container .wp-block {max-width: 100%;}';
 
-		// Increase the size of the Modal Popup for the Classic Block
-		// $styles .= 'body.block-editor-page .block-editor-freeform-modal .components-modal__frame {width: ' . esc_attr( $ephemeris_layout_width - 40 ) . 'px;}';
-		
 		// Output our styles into the <head> whenever our block styles are enqueued
 		wp_add_inline_style( 'ephemeris-blocks-style', $styles );
 	}
@@ -444,7 +453,7 @@ if ( ! function_exists( 'ephemeris_customize_controls_enqueue_scripts' ) ) {
 
 		// Register and enqueue our icon font
 		// We're using the awesome Font Awesome icon font. https://fontawesome.com
-		wp_enqueue_style( 'font-awesome-6', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array(), '6.4.0', 'all' );
+		wp_enqueue_style( 'font-awesome-6', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array(), '6.6.0', 'all' );
 
 		if( ephemeris_is_plugin_active( 'woocommerce' ) ) {
 			$shop_page_url = wc_get_page_permalink( 'shop' );
@@ -708,6 +717,30 @@ if ( ! function_exists( 'ephemeris_fonts_url' ) ) {
 		}
 
 		return esc_url_raw( $fonts_url );
+	}
+}
+
+/**
+ * Get the container grid widths for all the major theme sections (i.e. announcement bar, header, body content, footer credits)
+ * Note: The footer widths for the footer widgets are automatically calculated based on the numbmer of widgets in use
+ *
+ * @since Ephemeris 1.5.2
+ *
+ * @return array
+ */
+if ( ! function_exists( 'ephemeris_get_container_widths' ) ) {
+	function ephemeris_get_container_widths() {
+		$container_width_defaults = array(
+			'ephemeris_announcement_bar_width' => 100,
+			'ephemeris_header_site_title_width' => 40,
+			'ephemeris_header_nav_width' => 60,
+			'ephemeris_body_main_content_width' => 75,
+			'ephemeris_body_sidebar_content_width' => 25,
+			'ephemeris_body_fullwidth_content_width' => 100,
+			'ephemeris_footer_credits_width' => 100,
+		);
+
+		return apply_filters( 'ephemeris_container_width_defaults', $container_width_defaults );
 	}
 }
 
@@ -1662,6 +1695,7 @@ if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 			array( 'url' => 'artstation.com', 'icon' => 'fab fa-artstation', 'title' => sprintf( __( 'Follow %s on ArtStation', 'ephemeris' ), $plurality ), 'class' => 'artstation' ),
 			array( 'url' => 'behance.net', 'icon' => 'fab fa-behance', 'title' => sprintf( __( 'Follow %s on Behance', 'ephemeris' ), $plurality ), 'class' => 'behance' ),
 			array( 'url' => 'bitbucket.org', 'icon' => 'fab fa-bitbucket', 'title' => sprintf( __( 'Fork %s on Bitbucket', 'ephemeris' ), $plurality ), 'class' => 'bitbucket' ),
+			array( 'url' => 'bsky.app', 'icon' => 'fab fa-bluesky', 'title' => sprintf( __( 'Follow %s on Bluesky', 'ephemeris' ), $plurality ), 'class' => 'bluesky' ),
 			array( 'url' => 'codepen.io', 'icon' => 'fab fa-codepen', 'title' => sprintf( __( 'Follow %s on CodePen', 'ephemeris' ), $plurality ), 'class' => 'codepen' ),
 			array( 'url' => 'deviantart.com', 'icon' => 'fab fa-deviantart', 'title' => sprintf( __( 'Watch %s on DeviantArt', 'ephemeris' ), $plurality ), 'class' => 'deviantart' ),
 			array( 'url' => 'discord.gg', 'icon' => 'fab fa-discord', 'title' => sprintf( __( 'Join %s on Discord', 'ephemeris' ), $plurality ), 'class' => 'discord' ),
@@ -1675,12 +1709,14 @@ if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 			array( 'url' => 'instagram.com', 'icon' => 'fab fa-instagram', 'title' => sprintf( __( 'Follow %s on Instagram', 'ephemeris' ), $plurality ), 'class' => 'instagram' ),
 			array( 'url' => 'kickstarter.com', 'icon' => 'fab fa-kickstarter-k', 'title' => sprintf( __( 'Back %s on Kickstarter', 'ephemeris' ), $plurality ), 'class' => 'kickstarter' ),
 			array( 'url' => 'last.fm', 'icon' => 'fab fa-lastfm', 'title' => sprintf( __( 'Follow %s on Last.fm', 'ephemeris' ), $plurality ), 'class' => 'lastfm' ),
+			array( 'url' => 'letterboxd.com', 'icon' => 'fab fa-letterboxd', 'title' => sprintf( __( 'Follow %s on Letterboxd', 'ephemeris' ), $plurality ), 'class' => 'letterboxd' ),
 			array( 'url' => 'linkedin.com', 'icon' => 'fab fa-linkedin-in', 'title' => sprintf( __( 'Connect with %s on LinkedIn', 'ephemeris' ), $plurality ), 'class' => 'linkedin' ),
 			array( 'url' => 'mastodon.social', 'icon' => 'fab fa-mastodon', 'title' => sprintf( __( 'Follow %s on Mastodon', 'ephemeris' ), $plurality ), 'class' => 'mastodon' ),
 			array( 'url' => 'mastodon.art', 'icon' => 'fab fa-mastodon', 'title' => sprintf( __( 'Follow %s on Mastodon', 'ephemeris' ), $plurality ), 'class' => 'mastodon' ),
 			array( 'url' => 'medium.com', 'icon' => 'fab fa-medium-m', 'title' => sprintf( __( 'Follow %s on Medium', 'ephemeris' ), $plurality ), 'class' => 'medium' ),
 			array( 'url' => 'patreon.com', 'icon' => 'fab fa-patreon', 'title' => sprintf( __( 'Support %s on Patreon', 'ephemeris' ), $plurality ), 'class' => 'patreon' ),
 			array( 'url' => 'pinterest.com', 'icon' => 'fab fa-pinterest-p', 'title' => sprintf( __( 'Follow %s on Pinterest', 'ephemeris' ), $plurality ), 'class' => 'pinterest' ),
+			array( 'url' => 'pixiv.net', 'icon' => 'fab fa-pixiv', 'title' => sprintf( __( 'Follow %s on Pixiv', 'ephemeris' ), $plurality ), 'class' => 'pixiv' ),
 			array( 'url' => 'quora.com', 'icon' => 'fab fa-quora', 'title' => sprintf( __( 'Follow %s on Quora', 'ephemeris' ), $plurality ), 'class' => 'Quora' ),
 			array( 'url' => 'reddit.com', 'icon' => 'fab fa-reddit-alien', 'title' => sprintf( __( 'Join %s on Reddit', 'ephemeris' ), $plurality ), 'class' => 'reddit' ),
 			array( 'url' => 'slack.com', 'icon' => 'fab fa-slack-hash', 'title' => sprintf( __( 'Join %s on Slack', 'ephemeris' ), $plurality ), 'class' => 'slack.' ),
@@ -1691,6 +1727,7 @@ if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 			array( 'url' => 'stackoverflow.com', 'icon' => 'fab fa-stack-overflow', 'title' => sprintf( __( 'Join %s on Stack Overflow', 'ephemeris' ), $plurality ), 'class' => 'stackoverflow' ),
 			array( 'url' => 'steamcommunity.com', 'icon' => 'fab fa-steam', 'title' => sprintf( __( 'Follow %s on Steam', 'ephemeris' ), $plurality ), 'class' => 'steam' ),
 			array( 'url' => 't.me', 'icon' => 'fab fa-telegram', 'title' => sprintf( __( 'Chat with %s on Telegram', 'ephemeris' ), $plurality ), 'class' => 'Telegram' ),
+			array( 'url' => 'threads.net', 'icon' => 'fab fa-threads', 'title' => sprintf( __( 'Follow %s on Threads', 'ephemeris' ), $plurality ), 'class' => 'threads' ),
 			array( 'url' => 'tiktok.com', 'icon' => 'fab fa-tiktok', 'title' => sprintf( __( 'Follow %s on TikTok', 'ephemeris' ), $plurality ), 'class' => 'tiktok' ),
 			array( 'url' => 'tumblr.com', 'icon' => 'fab fa-tumblr', 'title' => sprintf( __( 'Follow %s on Tumblr', 'ephemeris' ), $plurality ), 'class' => 'tumblr' ),
 			array( 'url' => 'twitch.tv', 'icon' => 'fab fa-twitch', 'title' => sprintf( __( 'Follow %s on Twitch', 'ephemeris' ), $plurality ), 'class' => 'twitch' ),
