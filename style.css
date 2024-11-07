@@ -4,9 +4,9 @@ Theme URI: https://skyrocketthemes.com/themes/ephemeris-wordpress-theme
 Author: ahortin
 Author URI: https://maddisondesigns.com
 Description: The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customise and extend. Ephemeris is WooCommerce and bbPress compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Ephemeris also supports the new WordPress Block Editor (Gutenberg). Now that's pretty cool, eh!
-Version: 1.5.1
+Version: 1.5.2
 Requires at least: 4.8
-Tested up to: 6.4
+Tested up to: 6.6
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -43,15 +43,17 @@ td { vertical-align: top; }
    ========================================================================== */
 
 body {
-   margin: 0 auto;
-   padding: 0;
-   font: 16px/1.5 'Open Sans', Helvetica, Arial, sans-serif;
-   font-size: 1rem;
-   font-style: normal;
-   font-weight: 400;
-   color: #3a3a3a;
-   background-color: #fff;
-   text-align: left;
+	margin: 0 auto;
+	padding: 0;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #3a3a3a;
+	background-color: #fff;
+	text-align: left;
 }
 
 canvas {
@@ -654,19 +656,20 @@ input[type="password"],
 input[type="email"],
 input[type="url"],
 input[type="tel"],
-textarea {
+textarea,
+select {
 	font-family: inherit;
 	padding: 8px;
 	padding: 0.5rem;
-	font-family: inherit;
 	border: 1px solid #ccc;
 	border-radius: 0;
+	background-color: transparent;
 }
 
 select {
 	max-width: 100%;
-	padding: 5px 0;
-	padding: 0.3125rem 0;
+	padding: 8px;
+	padding: 0.5rem;
 	border: 1px solid #ccc;
 	border-radius: 0;
 }
