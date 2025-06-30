@@ -1,14 +1,14 @@
 === Ephemeris ===
 Contributors: ahortin
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, rtl-language-support, block-styles, wide-blocks
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 Requires at least: 4.8
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customise and extend. Ephemeris is WooCommerce and bbPress compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Ephemeris also supports the new WordPress Block Editor (Gutenberg). Now that's pretty cool, eh!
+The Ephemeris theme is a clean, fast and simple platform for creating beautiful, responsive custom WordPress themes. It's a simple starter theme built on HTML5 & CSS3. At its core is a fluid, responsive grid based on percentages, making for a flexible layout. It incorporates a set of common templates, support for WordPress Post Formats and the gorgeous, retina friendly Font Awesome icon font. Ephemeris is a true multi-purpose theme. With its extensive use of hooks, developers will find it a breeze to customise and extend. Ephemeris is WooCommerce and bbPress compatible, Multilingual Ready (WPML), translatable, and provides RTL language support. It's also compatible with a wide range of popular page builders such as Elementor, Divi Builder, Beaver Builder, SiteOrigin Page Builder and Visual Composer. On top of that, if Elementor is your Page Builder of choice, then you also get the ability to use your own custom header and footer templates that you've created with Elementor, rather than the default theme header and footer, if you so choose. Ephemeris also supports the new WordPress Block Editor (Gutenberg). By loading fonts from Bunny Fonts, instead of Google Fonts, Ephemeris remains completely GDPR Compliant. Bunny Fonts is a drop-in replacement for Google Fonts, but without the tracking, and has zero logging, and no data sharing. Now that's pretty cool, eh!
 
 
 == Description ==
@@ -167,6 +167,12 @@ https://www.pexels.com/photo/photography-of-woman-surrounded-by-sunflowers-12639
 
 
 == Changelog ==
+
+= 1.5.3 =
+- Update Font Awesome to v6.7.2
+- Update jQuery Validation to v1.19.5
+- Add ability to adjust main container widths by using ephemeris_container_width_defaults filter or by overriding ephemeris_get_container_widths function
+- Add BiliBili & Upwork social icons
 
 = 1.5.2 =
 - Update Form styles for Tel & Select fields

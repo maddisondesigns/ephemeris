@@ -21,9 +21,7 @@
 		<div id="footercreditscontainer">
 			<?php	do_action( 'ephemeris_before_credits_content' ); ?>
 			<div class="grid-container site-credits">
-				<div class="grid-100 footer-credits">
-					<?php echo ephemeris_get_credits() ?>
-				</div> <!-- /.grid-100 -->
+				<?php ephemeris_footer_credits_grid(); ?>
 			</div> <!-- /.grid-container.site-credits -->
 			<?php	do_action( 'ephemeris_after_credits_content' ); ?>
 		</div> <!-- /.footercontainer -->
