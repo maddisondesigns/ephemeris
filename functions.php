@@ -282,10 +282,10 @@ if ( ! function_exists( 'ephemeris_scripts_styles' ) ) {
 
 		// Register and enqueue our icon font
 		// We're using the awesome Font Awesome icon font. https://fontawesome.com
-		wp_enqueue_style( 'font-awesome-6', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array( 'normalize' ), '6.7.2', 'all' );
+		wp_enqueue_style( 'font-awesome-7', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array( 'normalize' ), '7.1.0', 'all' );
 
 		// Our styles for setting up the grid. We're using Unsemantic. http://unsemantic.com
-		wp_enqueue_style( 'unsemantic-grid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'font-awesome-6' ), '1.2.3', 'all' );
+		wp_enqueue_style( 'unsemantic-grid', trailingslashit( get_template_directory_uri() ) . 'css/unsemantic.css', array( 'font-awesome-7' ), '1.2.3', 'all' );
 
 		/*
 		 * Load our fonts
@@ -396,7 +396,9 @@ if ( ! function_exists( 'ephemeris_block_editor_styles' ) ) {
 		wp_add_inline_style( 'ephemeris-blocks-style', $styles );
 	}
 }
-add_action( 'enqueue_block_editor_assets', 'ephemeris_block_editor_styles' );
+if ( ephemeris_better_is_admin() ) {
+	add_action( 'enqueue_block_assets', 'ephemeris_block_editor_styles' );
+}
 
 /**
  * Output Block styles in the site header based on Customizer settings
@@ -459,7 +461,7 @@ if ( ! function_exists( 'ephemeris_customize_controls_enqueue_scripts' ) ) {
 
 		// Register and enqueue our icon font
 		// We're using the awesome Font Awesome icon font. https://fontawesome.com
-		wp_enqueue_style( 'font-awesome-6', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array(), '6.7.2', 'all' );
+		wp_enqueue_style( 'font-awesome-7', trailingslashit( get_template_directory_uri() ) . 'css/fontawesome-all.min.css', array(), '7.1.0', 'all' );
 
 		if( ephemeris_is_plugin_active( 'woocommerce' ) ) {
 			$shop_page_url = wc_get_page_permalink( 'shop' );
@@ -1748,6 +1750,8 @@ if ( ! function_exists( 'ephemeris_generate_ephemeris_social_urls' ) ) {
 			array( 'url' => 'flickr.com', 'icon' => 'fa-brands fa-flickr', 'title' => sprintf( __( 'Follow %s on Flickr', 'ephemeris' ), $plurality ), 'class' => 'flickr' ),
 			array( 'url' => 'foursquare.com', 'icon' => 'fa-brands fa-foursquare', 'title' => sprintf( __( 'Follow %s on Foursquare', 'ephemeris' ), $plurality ), 'class' => 'foursquare' ),
 			array( 'url' => 'github.com', 'icon' => 'fa-brands fa-github', 'title' => sprintf( __( 'Fork %s on GitHub', 'ephemeris' ), $plurality ), 'class' => 'github' ),
+			array( 'url' => 'news.ycombinator.com', 'icon' => 'fa-brands fa-hacker-news', 'title' => sprintf( __( 'View %s on Hacker News', 'ephemeris' ), $plurality ), 'class' => 'hacker-news' ),
+			array( 'url' => 'itch.io', 'icon' => 'fa-brands fa-itch-io', 'title' => sprintf( __( 'Follow %s on Itch.io', 'ephemeris' ), $plurality ), 'class' => 'itch-io' ),
 			array( 'url' => 'instagram.com', 'icon' => 'fa-brands fa-instagram', 'title' => sprintf( __( 'Follow %s on Instagram', 'ephemeris' ), $plurality ), 'class' => 'instagram' ),
 			array( 'url' => 'kickstarter.com', 'icon' => 'fa-brands fa-kickstarter-k', 'title' => sprintf( __( 'Back %s on Kickstarter', 'ephemeris' ), $plurality ), 'class' => 'kickstarter' ),
 			array( 'url' => 'last.fm', 'icon' => 'fa-brands fa-lastfm', 'title' => sprintf( __( 'Follow %s on Last.fm', 'ephemeris' ), $plurality ), 'class' => 'lastfm' ),
@@ -1984,6 +1988,21 @@ if ( ! function_exists( 'ephemeris_register_block_styles' ) ) {
 		);
 	}
 	add_action( 'init', 'ephemeris_register_block_styles' );
+}
+
+/**
+ * Check if inside WP Admin. Also works in the Block Editor.
+ */
+function ephemeris_better_is_admin() {
+	$editorContext = !empty( $_GET['context'] ) ? $_GET['context'] : '';
+
+	// Check if in Block Editor - see: https://github.com/WordPress/gutenberg/issues/51090#issuecomment-1576570247
+	if ( is_admin() || ( defined( 'REST_REQUEST' ) && REST_REQUEST && 'edit' === $editorContext ) ) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 /**

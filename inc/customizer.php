@@ -641,6 +641,8 @@ class ephemeris_initialise_customizer_settings {
 			'Flickr' => __( '<i class="fa-brands fa-flickr"></i>', 'ephemeris' ),
 			'Foursquare' => __( '<i class="fa-brands fa-foursquare"></i>', 'ephemeris' ),
 			'GitHub' => __( '<i class="fa-brands fa-github"></i>', 'ephemeris' ),
+			'Hacker News' => __( '<i class="fa-brands fa-hacker-news"></i>', 'ephemeris' ),
+			'Itch.io' => __( '<i class="fa-brands fa-itch-io"></i>', 'ephemeris' ),
 			'Instagram' => __( '<i class="fa-brands fa-instagram"></i>', 'ephemeris' ),
 			'Kickstarter' => __( '<i class="fa-brands fa-kickstarter-k"></i>', 'ephemeris' ),
 			'Last.fm' => __( '<i class="fa-brands fa-lastfm"></i>', 'ephemeris' ),
